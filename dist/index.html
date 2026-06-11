@@ -1494,7 +1494,7 @@
                     <div style="width: 24px;"></div>
                 </div>
 
-                <div class="stotram-container" style="flex: 1; display: flex; flex-direction: column; padding: 16px; box-sizing: border-box; overflow-y: hidden;">
+                <div class="stotram-container" style="flex: 1; display: flex; flex-direction: column; padding: 16px; padding-top: 100px; box-sizing: border-box; overflow-y: hidden;">
                     <!-- Player Control Card -->
                     <div class="stotram-player-card" style="background: rgba(255, 255, 255, 0.45); border-radius: 16px; padding: 16px; border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 16px;">
                         <div style="font-size: 15px; font-weight: bold; color: var(--antara-saffron); margin-bottom: 12px; text-align: center;">
@@ -1539,6 +1539,26 @@
                         <div id="stotram-warning" style="display: none; color: #b71c1c; font-size: 11px; text-align: center; margin-top: 8px; font-weight: 500;">
                             ⚠️ Audio file not found. Reading mode only.
                         </div>
+                    </div>
+
+                    <!-- Quick Navigation Tabs -->
+                    <div class="stotram-nav-tabs" style="display: flex; gap: 6px; margin-bottom: 12px; width: 100%; box-sizing: border-box;">
+                        <button onclick="scrollToStotramSection(1)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
+                            <span>प्रार्थना</span>
+                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Prayers</span>
+                        </button>
+                        <button onclick="scrollToStotramSection(2)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
+                            <span>ध्यानम्</span>
+                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Dhyanam</span>
+                        </button>
+                        <button onclick="scrollToStotramSection(3)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
+                            <span>स्तोत्रम्</span>
+                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Verses</span>
+                        </button>
+                        <button onclick="scrollToStotramSection(4)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
+                            <span>फलश्रुतिः</span>
+                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Benefits</span>
+                        </button>
                     </div>
 
                     <!-- Scrollable Sloka Panel -->
@@ -2685,7 +2705,7 @@
                 }).join("");
 
                 return `
-                    <div style="margin-bottom: 24px;">
+                    <div id="stotram-section-${section.id}" style="margin-bottom: 24px;">
                         <div style="font-size: 13.5px; font-weight: bold; color: var(--antara-saffron); border-bottom: 1px dashed rgba(220, 107, 34, 0.3); padding-bottom: 4px; margin-bottom: 14px; text-align: left;">
                             ${titleHi} / <span style="font-family: 'Inter', sans-serif; font-weight: 600;">${titleEn}</span>
                         </div>
@@ -2693,6 +2713,13 @@
                     </div>
                 `;
             }).join("");
+        }
+
+        function scrollToStotramSection(id) {
+            const sectionEl = document.getElementById(`stotram-section-${id}`);
+            if (sectionEl) {
+                sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         function changeStotramVoice() {
