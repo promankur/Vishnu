@@ -412,11 +412,11 @@
             left: 0;
             width: 100%;
             z-index: 10;
-            margin-top: 36px;
+            margin-top: 10px;
         }
 
         .top-nav .back-arrow {
-            font-size: 20px;
+            font-size: 26px;
             color: var(--antara-saffron);
             cursor: pointer;
             padding: 10px;
@@ -596,7 +596,7 @@
             background: transparent;
             border: none;
             color: var(--antara-saffron);
-            font-size: 24px;
+            font-size: 32px;
             cursor: pointer;
             padding: 10px;
         }
@@ -631,6 +631,29 @@
             box-shadow: 0 -10px 30px rgba(197, 160, 89, 0.05);
             transform: translateY(100%);
             transition: transform 0.3s ease-out;
+        }
+
+        .sheet-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--antara-muted);
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 105;
+            background: rgba(142, 142, 147, 0.1);
+            border-radius: 50%;
+            transition: background 0.2s ease;
+        }
+
+        .sheet-close-btn:hover {
+            background: rgba(142, 142, 147, 0.2);
         }
 
         .modal-sheet.active {
@@ -935,17 +958,20 @@
 
         .settings-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 16px;
-            padding: 0 1px;
+            margin-bottom: 24px;
             box-sizing: border-box;
+            width: 100% !important;
+            max-width: 280px;
+            margin: 0 auto 24px auto;
+            gap: 30px;
         }
 
         .settings-group {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
         }
 
         .settings-label-stacked {
@@ -961,11 +987,11 @@
         .settings-label-stacked .primary-lang {
             font-family: 'Mukta', sans-serif;
             font-weight: 700;
-            font-size: 9px;
+            font-size: 13.5px;
         }
 
         .settings-label-stacked .separator {
-            font-size: 7px;
+            font-size: 10.5px;
             margin: 0;
             font-weight: 400;
             opacity: 0.6;
@@ -974,17 +1000,17 @@
         .settings-label-stacked .secondary-lang {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-size: 7px;
+            font-size: 10.5px;
         }
 
         .voice-toggle-container {
             display: flex;
-            gap: 3px;
+            gap: 6px;
         }
 
         .voice-avatar-btn {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid var(--antara-line);
@@ -1008,12 +1034,12 @@
 
         .speed-toggle-container {
             display: flex;
-            gap: 3px;
+            gap: 6px;
         }
 
         .speed-dial-btn {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid var(--antara-line);
@@ -1030,7 +1056,7 @@
         }
 
         .speed-dial-btn .speed-value {
-            font-size: 8.5px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--cinnamon);
             font-family: 'Inter', sans-serif;
@@ -1092,7 +1118,7 @@
 
         .reset-progress-link {
             text-align: center;
-            font-size: 8px;
+            font-size: 12px;
             font-weight: 500;
             color: #8E8E93;
             margin-bottom: 14px;
@@ -1107,7 +1133,66 @@
         }
 
         .reset-progress-link .en-text {
-            font-size: 7.5px;
+            font-size: 11px;
+        }
+
+        .japa-circle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 2px 0 14px 0;
+            gap: 10px;
+        }
+
+        .japa-circle {
+            flex: 1;
+            aspect-ratio: 1;
+            max-width: 52px;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+            color: var(--antara-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(42, 26, 16, 0.04);
+        }
+
+        #quota-108-circle {
+            background-color: #EEE7DD;
+        }
+
+        #quota-250-circle {
+            background: conic-gradient(#F5D6B8 0deg 90deg, #EEE7DD 90deg 360deg);
+        }
+
+        #quota-500-circle {
+            background: conic-gradient(#F5D6B8 0deg 180deg, #EEE7DD 180deg 360deg);
+        }
+
+        #quota-1000-circle {
+            background-color: #F5D6B8;
+        }
+
+        .japa-circle.active {
+            border: 1.5px solid var(--antara-saffron) !important;
+            color: var(--antara-saffron) !important;
+            box-shadow: 0 0 10px rgba(224, 122, 43, 0.25);
+        }
+
+        #quota-1000-circle.active {
+            background-color: #FDF2E9 !important;
+        }
+
+        .japa-circle span {
+            line-height: 1;
         }
 
         .footer-section {
@@ -1120,10 +1205,10 @@
         }
 
         .chant-instruction-hi {
-            font-size: 11px;
+            font-size: 16.5px;
             font-weight: 700;
             color: var(--antara-dark);
-            margin: 0 0 2px 0;
+            margin: 0 0 3px 0;
             text-align: center;
             font-family: 'Mukta', sans-serif;
             letter-spacing: 0.15px;
@@ -1131,10 +1216,10 @@
         }
 
         .chant-instruction-en {
-            font-size: 8.5px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--antara-dark);
-            margin: 0 0 -8px 0;
+            margin: 0 0 -4px 0;
             text-align: center;
             font-family: 'Inter', sans-serif;
             letter-spacing: 0.05px;
@@ -1199,78 +1284,87 @@
             background-color: var(--btn-light-bg);
             border: 1px solid var(--antara-line);
             border-radius: 12px;
-            padding: 14px 12px;
+            padding: 0 0 14px 0;
             min-height: 90px;
             height: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             box-shadow: 0 2px 8px rgba(42, 26, 16, 0.02);
             box-sizing: border-box;
             text-align: center;
             margin-top: 10px;
             margin-bottom: 10px;
+            overflow: hidden;
         }
 
         .nama-card-title {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: var(--antara-gold);
+            padding: 4px 12px;
             margin-bottom: 6px;
-            line-height: 1.3;
+            line-height: 1.1;
         }
 
         .nama-card-title-hi {
-            font-size: 12px;
+            font-size: 13px;
             font-family: 'Mukta', sans-serif;
             font-weight: 700;
-            color: var(--antara-saffron);
-            margin-bottom: 2px;
+            color: #FFFFFF;
+            margin-bottom: 1px;
         }
 
         .nama-card-title-en {
-            font-size: 10px;
+            font-size: 10.5px;
             font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            color: var(--antara-saffron);
+            font-weight: 500;
+            color: #FFFFFF;
             letter-spacing: 0.2px;
         }
 
         .nama-card-hi {
-            font-size: 13px;
+            font-size: 19.5px;
             font-family: 'Mukta', sans-serif;
             font-weight: 700;
-            color: var(--cinnamon);
-            margin-bottom: 2px;
-            line-height: 1.25;
+            color: var(--antara-dark);
+            margin-bottom: 1px;
+            line-height: 1.15;
+            padding: 0 12px;
         }
 
         .nama-card-en {
-            font-size: 9px;
+            font-size: 13.5px;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            color: var(--cinnamon);
-            margin-bottom: 6px;
-            line-height: 1.2;
+            color: var(--antara-dark);
+            margin-bottom: 5px;
+            line-height: 1.15;
+            padding: 0 12px;
         }
 
         .nama-card-hi-meaning {
-            font-size: 8px;
+            font-size: 12px;
             font-family: 'Mukta', sans-serif;
             font-weight: 500;
             color: #665c54;
-            margin-bottom: 2px;
-            line-height: 1.2;
+            margin-bottom: 1px;
+            line-height: 1.15;
+            padding: 0 12px;
         }
 
         .nama-card-meaning {
-            font-size: 8px;
+            font-size: 12px;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
             color: #555555;
             font-style: italic;
-            line-height: 1.2;
+            line-height: 1.15;
+            padding: 0 12px;
         }
     
     </style>
@@ -1278,10 +1372,6 @@
 <body>
 
     <div class="device-container">
-        <!-- Top notch mockup -->
-        <div style="width: 140px; height: 24px; background: #000; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; justify-content: center; align-items: center;">
-            <div style="width: 40px; height: 4px; background: #1a1a1a; border-radius: 2px;"></div>
-        </div>
 
         <div class="screen">
             
@@ -1337,16 +1427,27 @@
                 <div id="dashboard-setup-options" style="width: 100%; display: none;">
                     <!-- Action Buttons List -->
                     <div class="buttons-container narrow-block" style="margin-bottom: 4px;">
-                        <div class="btn-pill primary" style="cursor: default;">नामावली जप <span class="pipe">|</span> <span class="en-text">Namavali Japa</span></div>
-                        <div class="btn-pill selected" id="quota-1000-btn" onclick="switchQuota(1000)">पूर्ण जप 1000 <span class="pipe">|</span> <span class="en-text">Full Chant</span></div>
-                        <div class="btn-pill secondary" id="quota-500-btn" onclick="switchQuota(500)">आधा जप 500 <span class="pipe">|</span> <span class="en-text">Half Chant</span></div>
-                        <div class="btn-pill secondary" id="quota-250-btn" onclick="switchQuota(250)">चौथाई जप 250 <span class="pipe">|</span> <span class="en-text">Quarter Chant</span></div>
-                        <div class="btn-pill secondary" id="quota-100-btn" onclick="switchQuota(100)">एक माला 100 <span class="pipe">|</span> <span class="en-text">One Mala</span></div>
-                        <div class="btn-pill secondary" id="quota-akhand-btn" onclick="switchQuota(1000)">अखंड नामावली <span class="pipe">|</span> <span class="en-text">Akhand Namavali</span></div>
-                        <div class="btn-pill primary" onclick="enterStotramScreen()">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text">Full Stotram</span></div>
+                        <div class="btn-pill primary" onclick="startChantingSession()" style="height: 38px; border-radius: 19px; font-size: 14px; margin-bottom: 2px;">नामावली जप <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Namavali Japa</span></div>
+                        
+                        <div class="japa-circle-row">
+                            <div class="japa-circle" id="quota-108-circle" onclick="switchQuota(108)">
+                                <span>108</span>
+                            </div>
+                            <div class="japa-circle" id="quota-250-circle" onclick="switchQuota(250)">
+                                <span>250</span>
+                            </div>
+                            <div class="japa-circle" id="quota-500-circle" onclick="switchQuota(500)">
+                                <span>500</span>
+                            </div>
+                            <div class="japa-circle" id="quota-1000-circle" onclick="switchQuota(1000)">
+                                <span>1000</span>
+                            </div>
+                        </div>
+
+                        <div class="btn-pill primary" onclick="enterStotramScreen()" style="height: 38px; border-radius: 19px; font-size: 14px; background-color: var(--antara-saffron); margin-top: 8px;">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Full Stotram</span></div>
                     </div>
 
-                    <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-bottom: 14px;">
+                    <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-top: 14px; margin-bottom: 14px;">
                         प्रगति रीसेट <span class="pipe">|</span> <span class="en-text">Reset Progress</span>
                     </div>
                 </div>
@@ -1366,7 +1467,7 @@
                         प्रगति रीसेट <span class="pipe">|</span> <span class="en-text">Reset Progress</span>
                     </div>
                     <div class="buttons-container narrow-block" style="margin-top: 12px; margin-bottom: 4px;">
-                        <div class="btn-pill primary" onclick="enterStotramScreen()">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text">Full Stotram</span></div>
+                        <div class="btn-pill primary" onclick="enterStotramScreen()" style="height: 38px; border-radius: 19px; font-size: 14px; background-color: var(--antara-saffron);">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Full Stotram</span></div>
                     </div>
                 </div>
 
@@ -1494,75 +1595,36 @@
                     <div style="width: 24px;"></div>
                 </div>
 
-                <div class="stotram-container" style="flex: 1; display: flex; flex-direction: column; padding: 16px; padding-top: 100px; box-sizing: border-box; overflow-y: hidden;">
+                <div class="stotram-container" style="flex: 1; display: flex; flex-direction: column; padding: 12px 8px; padding-top: 100px; box-sizing: border-box; overflow-y: hidden;">
                     <!-- Player Control Card -->
-                    <div class="stotram-player-card" style="background: rgba(255, 255, 255, 0.45); border-radius: 16px; padding: 16px; border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 16px;">
-                        <div style="font-size: 15px; font-weight: bold; color: var(--antara-saffron); margin-bottom: 12px; text-align: center;">
-                            <span class="lang-h">स्तोत्र पाठ</span>
-                            <span class="lang-sep">/</span>
-                            <span class="lang-e" style="font-family: 'Inter', sans-serif;">Stotram Recital</span>
-                        </div>
-
-                        <!-- Voice and Speed controls row -->
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 12px; gap: 8px;">
-                            <div>
-                                <span class="lang-h">आवाज</span><span class="lang-sep">/</span><span class="lang-e">Voice</span>:
-                                <select id="stotram-voice-select" onchange="changeStotramVoice()" style="background: #EAE5DB; border: none; border-radius: 6px; padding: 2px 6px; font-size: 11px; color: var(--antara-charcoal); font-family: inherit;">
-                                    <option value="male">Male / पुरुष</option>
-                                    <option value="female">Female / महिला</option>
-                                </select>
-                            </div>
-                            <div>
-                                <span class="lang-h">गति</span><span class="lang-sep">/</span><span class="lang-e">Speed</span>:
-                                <select id="stotram-speed-select" onchange="changeStotramSpeed()" style="background: #EAE5DB; border: none; border-radius: 6px; padding: 2px 6px; font-size: 11px; color: var(--antara-charcoal); font-family: inherit;">
-                                    <option value="0.75">0.75x</option>
-                                    <option value="1.0" selected>1.0x</option>
-                                    <option value="1.25">1.25x</option>
-                                    <option value="1.5">1.5x</option>
-                                </select>
-                            </div>
+                    <div class="stotram-player-card" style="background: rgba(255, 255, 255, 0.45); border-radius: 16px; padding: 12px 16px; border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 12px;">
+                        <!-- Metadata Line -->
+                        <div style="color: var(--antara-muted); text-align: center; margin-bottom: 10px; font-family: 'Inter', sans-serif; opacity: 0.85; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <span style="font-family: 'Mukta', sans-serif; font-size: 13px; font-weight: 600; color: var(--antara-dark);">विष्णु सहस्रनाम</span>
+                            <span style="font-size: 10px; opacity: 0.5;">|</span>
+                            <span style="font-size: 10.5px; font-family: 'Inter', sans-serif;">Vishnu Sahasranama • 25 min</span>
                         </div>
 
                         <!-- Progress slider -->
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-                            <span id="stotram-time-current" style="font-size: 10px; color: var(--antara-muted); width: 32px; text-align: left;">0:00</span>
-                            <input type="range" id="stotram-progress-slider" min="0" max="100" value="0" oninput="seekStotram(this.value)" style="flex: 1; accent-color: var(--antara-saffron); height: 4px; border-radius: 2px;">
-                            <span id="stotram-time-total" style="font-size: 10px; color: var(--antara-muted); width: 32px; text-align: right;">0:00</span>
+                        <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 4px; padding: 0 4px;">
+                            <span id="stotram-time-current" style="font-size: 10px; color: var(--antara-muted); text-align: left; width: auto; margin-right: 2px;">0:00</span>
+                            <input type="range" id="stotram-progress-slider" min="0" max="100" value="0" oninput="seekStotram(this.value)" style="flex: 1; accent-color: var(--antara-gold); height: 4px; border-radius: 2px; outline: none; margin: 0;">
+                            <span id="stotram-time-total" style="font-size: 10px; color: var(--antara-muted); text-align: right; width: auto; margin-left: 2px;">25:12</span>
                         </div>
 
-                        <!-- Play button -->
-                        <div style="display: flex; justify-content: center; align-items: center; gap: 16px;">
-                            <button id="stotram-play-btn" onclick="toggleStotramPlayback()" style="background: var(--antara-saffron); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">▶</button>
+                        <!-- Play button (Hidden from UI, kept in DOM for script compat) -->
+                        <div style="display: none; justify-content: center; align-items: center;">
+                            <button id="stotram-play-btn" onclick="toggleStotramPlayback()" style="background: transparent; color: var(--antara-saffron); border: 2px solid var(--antara-saffron); border-radius: 50%; width: 36px; height: 36px; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none; box-shadow: none; padding-left: 2px;">▶</button>
                         </div>
                         
                         <!-- File Missing Warning -->
-                        <div id="stotram-warning" style="display: none; color: #b71c1c; font-size: 11px; text-align: center; margin-top: 8px; font-weight: 500;">
+                        <div id="stotram-warning" style="display: none; color: #b71c1c; font-size: 11px; text-align: center; margin-top: 6px; font-weight: 500;">
                             ⚠️ Audio file not found. Reading mode only.
                         </div>
                     </div>
 
-                    <!-- Quick Navigation Tabs -->
-                    <div class="stotram-nav-tabs" style="display: flex; gap: 6px; margin-bottom: 12px; width: 100%; box-sizing: border-box;">
-                        <button onclick="scrollToStotramSection(1)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
-                            <span>प्रार्थना</span>
-                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Prayers</span>
-                        </button>
-                        <button onclick="scrollToStotramSection(2)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
-                            <span>ध्यानम्</span>
-                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Dhyanam</span>
-                        </button>
-                        <button onclick="scrollToStotramSection(3)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
-                            <span>स्तोत्रम्</span>
-                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Verses</span>
-                        </button>
-                        <button onclick="scrollToStotramSection(4)" style="flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--antara-line); border-radius: 20px; padding: 6px 4px; font-size: 10.5px; font-weight: bold; color: var(--antara-saffron); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2;">
-                            <span>फलश्रुतिः</span>
-                            <span style="font-size: 8.5px; font-weight: normal; color: var(--antara-muted); margin-top: 2px;">Benefits</span>
-                        </button>
-                    </div>
-
                     <!-- Scrollable Sloka Panel -->
-                    <div id="stotram-verses-panel" style="flex: 1; overflow-y: auto; background: rgba(255, 255, 255, 0.3); border-radius: 16px; padding: 16px; border: 1px solid rgba(255, 255, 255, 0.3); box-sizing: border-box;">
+                    <div id="stotram-verses-panel" style="flex: 1; overflow-y: auto; background: rgba(255, 255, 255, 0.3); border-radius: 16px; padding: 8px; border: 1px solid rgba(255, 255, 255, 0.3); box-sizing: border-box;">
                         <!-- Verses will be loaded here dynamically -->
                     </div>
                 </div>
@@ -1573,6 +1635,7 @@
             
             <!-- Preferences Sheet -->
             <div class="modal-sheet" id="preferences-sheet">
+                <div class="sheet-close-btn" onclick="closePreferencesSheet()">✕</div>
                 <div class="sheet-drag-handle" onclick="closePreferencesSheet()"></div>
                 <div class="sheet-title" style="text-align: center; margin-bottom: 16px;">
                     <span class="lang-h">जप लक्ष्य चुनें</span>
@@ -1596,10 +1659,10 @@
                         <span class="lang-sep">/</span>
                         <span class="lang-e">Quarter Recitation</span>
                     </div>
-                    <div class="quota-split-btn" onclick="switchQuota(100)">
-                        <span class="lang-h">एक माला 100</span>
+                    <div class="quota-split-btn" onclick="switchQuota(108)">
+                        <span class="lang-h">एक माला 108</span>
                         <span class="lang-sep">/</span>
-                        <span class="lang-e">One Mala</span>
+                        <span class="lang-e">One Mala 108</span>
                     </div>
                 </div>
 
@@ -1615,9 +1678,15 @@
     
             <!-- Spiritual Significance Sheet (Commentary) -->
             <div class="modal-sheet" id="significance-sheet">
+                <div class="sheet-close-btn" onclick="closeSignificanceSheet()">✕</div>
                 <div class="sheet-drag-handle" onclick="closeSignificanceSheet()"></div>
                 
-                <div class="sheet-body" id="sheet-significance-body" style="line-height: 1.55; max-height: 350px; overflow-y: auto; padding-top: 16px;">
+                <div class="sheet-tabs" style="display: flex; gap: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--antara-line); padding: 4px 16px 8px 16px; margin-top: 16px; box-sizing: border-box; width: 100%;">
+                    <div class="sheet-tab active" id="tab-commentary" onclick="switchSelfStudyTab('commentary')" style="font-size: 13px; font-weight: bold; color: var(--antara-saffron); border-bottom: 2px solid var(--antara-saffron); padding: 4px 0; cursor: pointer; transition: all 0.2s;">नाम महिमा / Significance</div>
+                    <div class="sheet-tab" id="tab-prayers" onclick="switchSelfStudyTab('prayers')" style="font-size: 13px; font-weight: 500; color: var(--antara-muted); padding: 4px 0; cursor: pointer; transition: all 0.2s;">प्रार्थना / Prayers</div>
+                </div>
+
+                <div class="sheet-body" id="sheet-significance-body" style="line-height: 1.55; max-height: 420px; overflow-y: auto; padding: 0 16px 16px 16px; box-sizing: border-box;">
                     The spiritual significance text loads here...
                 </div>
             </div>
@@ -1681,7 +1750,7 @@
             }
 
             state.quotaSplit = parseInt(state.quotaSplit);
-            if (isNaN(state.quotaSplit) || ![1000, 500, 250, 100].includes(state.quotaSplit)) {
+            if (isNaN(state.quotaSplit) || ![1000, 500, 250, 108].includes(state.quotaSplit)) {
                 state.quotaSplit = 1000;
             }
 
@@ -1953,6 +2022,8 @@
         }
 
         let currentAudioPlayer = null;
+        let activeSpeechId = 0;
+        let currentCommentaryHtml = "";
 
         function playSample() {
             // Test with name ID 2 (विष्णुः)
@@ -1961,12 +2032,16 @@
         }
 
         function speakSahasranamaName(item, callback) {
+            activeSpeechId++;
+            const mySpeechId = activeSpeechId;
+
             // Stop any ongoing speech synthesis
             if (synthesis) {
                 synthesis.cancel();
             }
             // Stop any ongoing audio player playback
             if (currentAudioPlayer) {
+                currentAudioPlayer.isCancelled = true;
                 currentAudioPlayer.pause();
                 currentAudioPlayer = null;
             }
@@ -1982,34 +2057,39 @@
             let fallbackTriggered = false;
 
             player.addEventListener('play', () => {
+                if (mySpeechId !== activeSpeechId) return;
                 speechInProgress = true;
             });
 
             player.addEventListener('ended', () => {
+                if (mySpeechId !== activeSpeechId) return;
                 speechInProgress = false;
                 currentAudioPlayer = null;
                 if (callback) callback();
             });
 
             player.addEventListener('error', () => {
+                if (mySpeechId !== activeSpeechId) return;
                 if (fallbackTriggered) return;
                 fallbackTriggered = true;
                 currentAudioPlayer = null;
                 console.log(`Recorded audio ${audioPath} not found. Falling back to TTS.`);
-                speakText(toDativeSanskrit(item.devanagari), callback);
+                speakText(toDativeSanskrit(item.devanagari), mySpeechId, callback);
             });
 
             player.play().catch(err => {
+                if (mySpeechId !== activeSpeechId) return;
                 if (fallbackTriggered) return;
                 fallbackTriggered = true;
                 currentAudioPlayer = null;
                 console.log("Audio playback failed, falling back to TTS:", err);
-                speakText(toDativeSanskrit(item.devanagari), callback);
+                speakText(toDativeSanskrit(item.devanagari), mySpeechId, callback);
             });
         }
 
-        function speakText(text, callback) {
+        function speakText(text, speechId, callback) {
             if (currentAudioPlayer) {
+                currentAudioPlayer.isCancelled = true;
                 currentAudioPlayer.pause();
                 currentAudioPlayer = null;
             }
@@ -2017,7 +2097,7 @@
                 synthesis = window.speechSynthesis || window.webkitSpeechSynthesis;
             }
             if (!synthesis) {
-                if (callback) callback();
+                if (speechId === activeSpeechId && callback) callback();
                 return;
             }
             try {
@@ -2028,6 +2108,7 @@
                 speechInProgress = false;
                 
                 speechTimeout = setTimeout(() => {
+                    if (speechId !== activeSpeechId) return;
                     try {
                         // Correct pronunciation phonetically: replace नमः with नम्महा
                         let spokenText = text.replace(/नमः/g, "नम्महा");
@@ -2075,15 +2156,18 @@
                         utterance.volume = 1.0;
                         
                         utterance.onstart = () => {
+                            if (speechId !== activeSpeechId) return;
                             speechInProgress = true;
                         };
                         
                         utterance.onend = () => {
+                            if (speechId !== activeSpeechId) return;
                             speechInProgress = false;
                             if (callback) callback();
                         };
                         
                         utterance.onerror = (err) => {
+                            if (speechId !== activeSpeechId) return;
                             console.warn("speechSynthesis error:", err);
                             speechInProgress = false;
                             if (callback) callback();
@@ -2093,13 +2177,13 @@
                     } catch (err2) {
                         console.error("Speech synthesis invocation failed:", err2);
                         speechInProgress = false;
-                        if (callback) callback();
+                        if (speechId === activeSpeechId && callback) callback();
                     }
                 }, 100);
             } catch (err) {
                 console.error("speechSynthesis failed to speak:", err);
                 speechInProgress = false;
-                if (callback) callback();
+                if (speechId === activeSpeechId && callback) callback();
             }
         }
 
@@ -2131,32 +2215,30 @@
         // Helper to sync quota split buttons
         function syncQuotaButtons() {
             const btns = {
-                1000: ["quota-1000-btn", "quota-akhand-btn"],
-                500: ["quota-500-btn"],
-                250: ["quota-250-btn"],
-                100: ["quota-100-btn"]
+                1000: ["quota-1000-circle"],
+                500: ["quota-500-circle"],
+                250: ["quota-250-circle"],
+                108: ["quota-108-circle"]
             };
             
             const activeQuota = state.quotaSplit;
             
-            [1000, 500, 250, 100].forEach(q => {
+            [1000, 500, 250, 108].forEach(q => {
                 const ids = btns[q];
                 ids.forEach(id => {
                     const el = document.getElementById(id);
                     if (el) {
                         if (q === activeQuota) {
-                            el.classList.add("selected");
-                            el.classList.remove("secondary");
+                            el.classList.add("active");
                         } else {
-                            el.classList.remove("selected");
-                            el.classList.add("secondary");
+                            el.classList.remove("active");
                         }
                     }
                 });
             });
 
             // Also keep bottom sheet modal split buttons synced if they exist
-            const modalBtnValues = [1000, 500, 250, 100];
+            const modalBtnValues = [1000, 500, 250, 108];
             const activeIdx = modalBtnValues.indexOf(state.quotaSplit);
             document.querySelectorAll(".modal-sheet .quota-split-container").forEach(container => {
                 const modalBtns = container.querySelectorAll(".quota-split-btn");
@@ -2211,18 +2293,84 @@
             let hindiCommentary = "नाम " + item.devanagari + " (" + item.transliteration + ") ईश्वर के '" + cleanHin + "' (" + cleanEng + ") रूप को दर्शाता है। ध्यान में, यह गुण ब्रह्मांड को प्रभावित करने और हमारे अस्तित्व को बनाए रखने वाली दिव्य शक्ति का प्रतीक है। इस नाम पर ध्यान लगाने से साधक दिव्य ऊर्जा से जुड़ता है, आंतरिक बाधाएं दूर होती हैं और शांत चेतना का विकास होता है।";
             let englishCommentary = "The name " + item.transliteration + " (" + item.devanagari + ") represents the Supreme Lord as '" + cleanEng + "' (" + cleanHin + "). In spiritual contemplation, this attribute signifies the divine power that fills the cosmos and sustains our existence. Meditating upon this name aligns the seeker with the supreme qualities of " + cleanEng + ", clearing inner obstacles and cultivating serene consciousness.";
             
-            let bilingualCommentary = `
+            currentCommentaryHtml = `
+                <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px;">
+                    <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
+                    <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
+                    <div style="font-size: 12px; color: var(--antara-muted); margin-top: 4px;">${item.hindi} / ${item.english}</div>
+                </div>
                 <div class="commentary-hi" style="font-size: 15.6px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); margin-bottom: 16px; line-height: 1.5;">${hindiCommentary}</div>
                 <div class="commentary-en" style="font-size: 13px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.5;">${englishCommentary}</div>
             `;
             
-            document.getElementById("sheet-significance-body").innerHTML = bilingualCommentary;
+            switchSelfStudyTab('commentary');
             
             // Suspend Auto-Advance timer
             clearAutoAdvanceTimer();
             
             document.getElementById("sheet-backdrop").classList.add("active");
             document.getElementById("significance-sheet").classList.add("active");
+        }
+
+        let currentSelfStudyTab = 'commentary';
+        function switchSelfStudyTab(tab) {
+            currentSelfStudyTab = tab;
+            const tabCommentary = document.getElementById("tab-commentary");
+            const tabPrayers = document.getElementById("tab-prayers");
+            const body = document.getElementById("sheet-significance-body");
+            if (!tabCommentary || !tabPrayers || !body) return;
+            
+            if (tab === 'commentary') {
+                tabCommentary.style.color = "var(--antara-saffron)";
+                tabCommentary.style.borderBottom = "2px solid var(--antara-saffron)";
+                tabCommentary.style.fontWeight = "bold";
+                
+                tabPrayers.style.color = "var(--antara-muted)";
+                tabPrayers.style.borderBottom = "none";
+                tabPrayers.style.fontWeight = "500";
+                
+                body.innerHTML = currentCommentaryHtml;
+            } else {
+                tabPrayers.style.color = "var(--antara-saffron)";
+                tabPrayers.style.borderBottom = "2px solid var(--antara-saffron)";
+                tabPrayers.style.fontWeight = "bold";
+                
+                tabCommentary.style.color = "var(--antara-muted)";
+                tabCommentary.style.borderBottom = "none";
+                tabCommentary.style.fontWeight = "500";
+                
+                body.innerHTML = getPrayersHtml();
+            }
+            body.scrollTop = 0;
+        }
+
+        function getPrayersHtml() {
+            let html = "";
+            stotramDb.forEach(section => {
+                if (section.id === 3) return; // Skip main Sahasranama verses
+                const titleHi = section.title_hi;
+                const titleEn = section.title_en;
+                
+                const versesHtml = section.verses.map((v, idx) => {
+                    return `
+                        <div style="background: rgba(220, 107, 34, 0.03); border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid rgba(220, 107, 34, 0.08); text-align: center;">
+                            <div style="font-size: 13.5px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); line-height: 1.5; white-space: pre-line; margin-bottom: 4px;">${v.sanskrit}</div>
+                            <div style="font-size: 11px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.4; white-space: pre-line;">${v.roman}</div>
+                        </div>
+                    `;
+                }).join("");
+
+                html += `
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-size: 13px; font-weight: bold; color: var(--antara-saffron); border-bottom: 1px dashed rgba(220, 107, 34, 0.2); padding-bottom: 6px; margin-bottom: 10px; text-align: left; line-height: 1.4;">
+                            <div>${titleHi}</div>
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11.5px; opacity: 0.95; margin-top: 2px;">${titleEn}</div>
+                        </div>
+                        ${versesHtml}
+                    </div>
+                `;
+            });
+            return html;
         }
 
         function closeSignificanceSheet() {
@@ -2295,7 +2443,7 @@
             state.lastReadIndex = start;
 
             let quota = parseInt(state.quotaSplit);
-            if (isNaN(quota) || ![1000, 500, 250, 100].includes(quota)) quota = 1000;
+            if (isNaN(quota) || ![1000, 500, 250, 108].includes(quota)) quota = 1000;
             state.quotaSplit = quota;
             
             saveState();
@@ -2369,6 +2517,7 @@
         }
 
         function prevChant() {
+            clearAutoAdvanceTimer();
             if (activeSessionIndex > 0) {
                 activeSessionIndex--;
                 updateChantUI();
@@ -2376,6 +2525,7 @@
         }
 
         function nextChant() {
+            clearAutoAdvanceTimer();
             if (activeSessionIndex < sessionList.length - 1) {
                 activeSessionIndex++;
                 updateChantUI();
@@ -2493,14 +2643,13 @@
         function openSignificanceSheetForName(item) {
             const backdrop = document.getElementById("sheet-backdrop");
             const sheet = document.getElementById("significance-sheet");
-            const body = document.getElementById("sheet-significance-body");
             
             // Split commentary paragraphs
             const parts = item.significance.split("\n\n"); // handle both forms
             const hindiPart = parts[0] || "";
             const englishPart = parts[1] || "";
             
-            body.innerHTML = `
+            currentCommentaryHtml = `
                 <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px;">
                     <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
                     <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
@@ -2510,7 +2659,8 @@
                 ${englishPart ? `<div style="font-size: 13px; font-weight: normal; color: var(--antara-muted); line-height: 1.55;">${englishPart}</div>` : ""}
             `;
             
-            body.scrollTop = 0;
+            switchSelfStudyTab('commentary');
+            
             backdrop.classList.add("active");
             sheet.classList.add("active");
         }
@@ -2652,16 +2802,6 @@
                 currentAudioPlayer = null;
             }
 
-            // Sync Stotram preferences with main preferences
-            const voiceSelect = document.getElementById("stotram-voice-select");
-            if (voiceSelect) {
-                voiceSelect.value = state.useMaleVoice ? "male" : "female";
-            }
-            const speedSelect = document.getElementById("stotram-speed-select");
-            if (speedSelect) {
-                speedSelect.value = "1.0"; // default to normal recorded speed
-            }
-
             // Hide warning by default
             document.getElementById("stotram-warning").style.display = "none";
 
@@ -2669,6 +2809,9 @@
             renderStotramVerses();
 
             openScreen("screen-stotram");
+
+            // Auto-start Stotram playback
+            toggleStotramPlayback();
         }
 
         function exitStotramScreen() {
@@ -2691,24 +2834,25 @@
             const panel = document.getElementById("stotram-verses-panel");
             if (!panel) return;
 
-            panel.innerHTML = stotramDb.map(section => {
-                const titleHi = section.title_hi;
-                const titleEn = section.title_en;
-                
+            // Only show Sahasranama verses (section.id === 3)
+            const filteredSections = stotramDb.filter(section => section.id === 3);
+
+            panel.innerHTML = filteredSections.map(section => {
                 const versesHtml = section.verses.map((v, idx) => {
+                    const cleanRoman = v.roman.split('\n').map(line => {
+                        return line.replace(/\|\|.*$/, "").replace(/\|+$/, "").trim();
+                    }).join('\n');
+
                     return `
                         <div class="stotram-verse-card" style="background: rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.4); text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-                            <div style="font-size: 15px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); line-height: 1.5; white-space: pre-line; margin-bottom: 8px;">${v.sanskrit}</div>
-                            <div style="font-size: 12px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.4; white-space: pre-line;">${v.roman}</div>
+                            <div style="font-size: 17px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); line-height: 1.5; white-space: pre-line; margin-bottom: 8px;">${v.sanskrit}</div>
+                            <div style="font-size: 10px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.35; white-space: pre-line;">${cleanRoman}</div>
                         </div>
                     `;
                 }).join("");
 
                 return `
                     <div id="stotram-section-${section.id}" style="margin-bottom: 24px;">
-                        <div style="font-size: 13.5px; font-weight: bold; color: var(--antara-saffron); border-bottom: 1px dashed rgba(220, 107, 34, 0.3); padding-bottom: 4px; margin-bottom: 14px; text-align: left;">
-                            ${titleHi} / <span style="font-family: 'Inter', sans-serif; font-weight: 600;">${titleEn}</span>
-                        </div>
                         ${versesHtml}
                     </div>
                 `;
@@ -2722,31 +2866,7 @@
             }
         }
 
-        function changeStotramVoice() {
-            const voiceSelect = document.getElementById("stotram-voice-select");
-            if (voiceSelect) {
-                state.useMaleVoice = (voiceSelect.value === "male");
-                saveState();
-                
-                // Update settings UI for voice toggle
-                updateSettingsUI();
-                
-                // If playing, reload stotram audio with new voice
-                if (stotramPlayer && !stotramPlayer.paused) {
-                    toggleStotramPlayback(); // pause
-                    toggleStotramPlayback(); // load new voice & play
-                } else if (stotramPlayer) {
-                    stotramPlayer = null; // reset player so it loads new voice next time
-                }
-            }
-        }
 
-        function changeStotramSpeed() {
-            const speedSelect = document.getElementById("stotram-speed-select");
-            if (speedSelect && stotramPlayer) {
-                stotramPlayer.playbackRate = parseFloat(speedSelect.value);
-            }
-        }
 
         function toggleStotramPlayback() {
             const playBtn = document.getElementById("stotram-play-btn");
@@ -2792,10 +2912,8 @@
                 });
 
                 // Apply speed selection
-                const speedSelect = document.getElementById("stotram-speed-select");
-                if (speedSelect) {
-                    stotramPlayer.playbackRate = parseFloat(speedSelect.value);
-                }
+                const speedMultiplier = (state.speechRate || 0.3) / 0.3;
+                stotramPlayer.playbackRate = speedMultiplier;
 
                 stotramPlayer.play().then(() => {
                     warningEl.style.display = "none";
