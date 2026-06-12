@@ -1316,6 +1316,15 @@
             margin-top: 10px;
             margin-bottom: 10px;
             overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nama-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(220, 107, 34, 0.08);
+            border-color: rgba(220, 107, 34, 0.25);
+            background-color: #FFFDFB;
         }
 
         .nama-card-title {
@@ -1505,7 +1514,7 @@
                 </div>
 
                 <!-- Today's Vishnu Nama Card -->
-                <div class="nama-card narrow-block">
+                <div class="nama-card narrow-block" onclick="openSignificanceForTodayNama()">
                     <div class="nama-card-title">
                         <div class="nama-card-title-hi">आज का विष्णु नाम</div>
                         <div class="nama-card-title-en">Today's Vishnu Nama</div>
@@ -1734,6 +1743,96 @@
         
         let isAutoAdvance = false;
         let autoAdvanceTimer = null;
+        let todayNamaObj = null;
+        let wakeLock = null;
+
+        async function requestWakeLock() {
+            if ('wakeLock' in navigator) {
+                try {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Screen Wake Lock acquired');
+                } catch (err) {
+                    console.warn(`Wake Lock request failed: ${err.name}, ${err.message}`);
+                }
+            }
+        }
+
+        async function releaseWakeLock() {
+            if (wakeLock) {
+                try {
+                    await wakeLock.release();
+                    wakeLock = null;
+                    console.log('Screen Wake Lock released');
+                } catch (err) {
+                    console.warn(`Wake Lock release failed: ${err.name}, ${err.message}`);
+                }
+            }
+        }
+
+        document.addEventListener('visibilitychange', async () => {
+            const sheet = document.getElementById("significance-sheet");
+            if (sheet && sheet.classList.contains("active") && document.visibilityState === 'visible') {
+                await requestWakeLock();
+            }
+        });
+
+        function showToast(message) {
+            let toast = document.getElementById("toast-notification");
+            if (!toast) {
+                toast = document.createElement("div");
+                toast.id = "toast-notification";
+                toast.style.position = "fixed";
+                toast.style.bottom = "80px";
+                toast.style.left = "50%";
+                toast.style.transform = "translateX(-50%)";
+                toast.style.background = "rgba(44, 34, 25, 0.95)";
+                toast.style.color = "#fff";
+                toast.style.padding = "10px 20px";
+                toast.style.borderRadius = "24px";
+                toast.style.fontSize = "13px";
+                toast.style.fontFamily = "'Inter', sans-serif";
+                toast.style.zIndex = "3000";
+                toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+                toast.style.pointerEvents = "none";
+                toast.style.transition = "opacity 0.3s ease";
+                document.body.appendChild(toast);
+            }
+            toast.textContent = message;
+            toast.style.opacity = "1";
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.opacity = "0";
+            }, 2000);
+        }
+
+        function shareCurrentNama(id) {
+            const item = db.find(x => x.id === id);
+            if (!item) return;
+            
+            const shareText = `ॐ विष्णु सहस्रनाम\n\nNama #${item.id}\nSanskrit: ${item.devanagari}\nTransliteration: ${item.transliteration}\nMeaning: ${item.hindi} / ${item.english}\n\nRead more at: https://vishnu.promankur.com`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: `Vishnu Nama #${item.id}`,
+                    text: shareText,
+                    url: 'https://vishnu.promankur.com'
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                navigator.clipboard.writeText(shareText + '\nhttps://vishnu.promankur.com').then(() => {
+                    showToast("Copied to clipboard!");
+                }).catch(err => {
+                    console.error("Clipboard copy failed:", err);
+                });
+            }
+        }
+
+        function openSignificanceForTodayNama() {
+            if (todayNamaObj) {
+                openSignificanceSheetForName(todayNamaObj);
+            }
+        }
 
         // Initialize state
         // Initialize state
@@ -1845,6 +1944,7 @@
             const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
             const index = seed % db.length;
             const nameObj = db[index];
+            todayNamaObj = nameObj;
             
             const elHi = document.getElementById('nama-hi');
             const elEn = document.getElementById('nama-en');
@@ -2315,8 +2415,22 @@
             let hindiCommentary = "नाम " + item.devanagari + " (" + item.transliteration + ") ईश्वर के '" + cleanHin + "' (" + cleanEng + ") रूप को दर्शाता है। ध्यान में, यह गुण ब्रह्मांड को प्रभावित करने और हमारे अस्तित्व को बनाए रखने वाली दिव्य शक्ति का प्रतीक है। इस नाम पर ध्यान लगाने से साधक दिव्य ऊर्जा से जुड़ता है, आंतरिक बाधाएं दूर होती हैं और शांत चेतना का विकास होता है।";
             let englishCommentary = "The name " + item.transliteration + " (" + item.devanagari + ") represents the Supreme Lord as '" + cleanEng + "' (" + cleanHin + "). In spiritual contemplation, this attribute signifies the divine power that fills the cosmos and sustains our existence. Meditating upon this name aligns the seeker with the supreme qualities of " + cleanEng + ", clearing inner obstacles and cultivating serene consciousness.";
             
+            // Request Wake Lock when sheet is opened
+            requestWakeLock();
+            
             currentCommentaryHtml = `
-                <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px;">
+                <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px; position: relative;">
+                    <!-- Share Button -->
+                    <div onclick="event.stopPropagation(); shareCurrentNama(${item.id})" style="position: absolute; right: 0; top: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--antara-gold); transition: all 0.2s;" title="Share Name">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </div>
+                    
                     <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
                     <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
                     <div style="font-size: 12px; color: var(--antara-muted); margin-top: 4px;">${item.hindi} / ${item.english}</div>
@@ -2398,6 +2512,9 @@
         function closeSignificanceSheet() {
             document.getElementById("sheet-backdrop").classList.remove("active");
             document.getElementById("significance-sheet").classList.remove("active");
+            
+            // Release Wake Lock
+            releaseWakeLock();
             
             // Resume Auto-Advance timer if active
             if (isAutoAdvance) {
@@ -2682,8 +2799,22 @@
             const hindiPart = parts[0] || "";
             const englishPart = parts[1] || "";
             
+            // Request Wake Lock when sheet is opened
+            requestWakeLock();
+            
             currentCommentaryHtml = `
-                <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px;">
+                <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px; position: relative;">
+                    <!-- Share Button -->
+                    <div onclick="event.stopPropagation(); shareCurrentNama(${item.id})" style="position: absolute; right: 0; top: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--antara-gold); transition: all 0.2s;" title="Share Name">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </div>
+                    
                     <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
                     <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
                     <div style="font-size: 12px; color: var(--antara-muted); margin-top: 4px;">${item.hindi} / ${item.english}</div>
