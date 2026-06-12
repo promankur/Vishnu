@@ -36,15 +36,15 @@
         }
 
         body.dark-theme {
-            --antara-bg-start: #1e150f;        /* Deep brown/charcoal */
-            --antara-bg-end: #120b07;          /* Near black chocolate */
-            --antara-gold: #DDAA55;            /* Golden highlights */
+            --antara-bg-start: #3A0F08;        /* Deep cinnamon maroon */
+            --antara-bg-end: #200804;          /* Deepest black-maroon */
+            --antara-gold: #DDAA55;            /* Glowing Antique Gold */
             --antara-saffron: #f28738;         /* Saffron Accent */
-            --antara-dark: #F7EAD7;            /* Ivory for primary text */
-            --antara-muted: #A39382;           /* Warm bronze gray for labels */
-            --antara-line: #3a2a1f;            /* Line separators */
-            --antara-card-bg: rgba(30, 21, 15, 0.6); /* Translucent dark card */
-            --antara-sheet-bg: #1a100a;        /* Deep brown sheet */
+            --antara-dark: #FDF6EB;            /* Alabaster Warm White/Ivory */
+            --antara-muted: #C5B4A3;           /* Muted warm gold/bronze */
+            --antara-line: #5C1F15;            /* Cinnamon red divider lines */
+            --antara-card-bg: rgba(58, 15, 8, 0.6); /* Semi-transparent cinnamon card */
+            --antara-sheet-bg: #280A05;        /* Deepest cinnamon sheet background */
         }
 
         * {
@@ -1431,45 +1431,7 @@
                     </button>
                 </div>
 
-                <!-- 2. Settings Row (Voice & Speed horizontally aligned in a single narrow row) -->
-                <div class="settings-row narrow-block">
-                    <!-- Voice Group -->
-                    <div class="settings-group">
-                        <div class="settings-label-stacked">
-                            <span class="primary-lang">आवाज</span>
-                            <span class="separator">|</span>
-                            <span class="secondary-lang">Voice</span>
-                        </div>
-                        <div class="voice-toggle-container">
-                            <div class="voice-avatar-btn active" id="voice-female-btn" onclick="selectVoice('female')">
-                                <img src="Female.png" alt="Female Voice">
-                            </div>
-                            <div class="voice-avatar-btn" id="voice-male-btn" onclick="selectVoice('male')">
-                                <img src="Male.png" alt="Male Voice">
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Speed Group (circular speed dial options) -->
-                    <div class="settings-group">
-                        <div class="settings-label-stacked">
-                            <span class="primary-lang">गति</span>
-                            <span class="separator">|</span>
-                            <span class="secondary-lang">Speed</span>
-                        </div>
-                        <div class="speed-toggle-container">
-                            <div class="speed-dial-btn" id="speed-0.8-btn" onclick="selectSpeed(0.8)">
-                                <span class="speed-value">0.8</span>
-                            </div>
-                            <div class="speed-dial-btn active" id="speed-1.0-btn" onclick="selectSpeed(1.0)">
-                                <span class="speed-value">1.0</span>
-                            </div>
-                            <div class="speed-dial-btn" id="speed-1.2-btn" onclick="selectSpeed(1.2)">
-                                <span class="speed-value">1.2</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- STATE A: Choose Count inline (Shown only when lastReadIndex == 1) -->
                 <div id="dashboard-setup-options" style="width: 100%; display: none;">
@@ -1740,6 +1702,46 @@
                         <span class="lang-h">एक माला 108</span>
                         <span class="lang-sep">/</span>
                         <span class="lang-e">One Mala 108</span>
+                    </div>
+                </div>
+
+                <!-- Settings Row inside bottom sheet -->
+                <div class="settings-row narrow-block" style="margin-top: 20px; border-top: 1px solid var(--antara-line); padding-top: 16px;">
+                    <!-- Voice Group -->
+                    <div class="settings-group">
+                        <div class="settings-label-stacked">
+                            <span class="primary-lang">आवाज</span>
+                            <span class="separator">|</span>
+                            <span class="secondary-lang">Voice</span>
+                        </div>
+                        <div class="voice-toggle-container">
+                            <div class="voice-avatar-btn active" id="voice-female-btn" onclick="selectVoice('female')">
+                                <img src="Female.png" alt="Female Voice">
+                            </div>
+                            <div class="voice-avatar-btn" id="voice-male-btn" onclick="selectVoice('male')">
+                                <img src="Male.png" alt="Male Voice">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Speed Group -->
+                    <div class="settings-group">
+                        <div class="settings-label-stacked">
+                            <span class="primary-lang">गति</span>
+                            <span class="separator">|</span>
+                            <span class="secondary-lang">Speed</span>
+                        </div>
+                        <div class="speed-toggle-container">
+                            <div class="speed-dial-btn" id="speed-0.8-btn" onclick="selectSpeed(0.8)">
+                                <span class="speed-value">0.8</span>
+                            </div>
+                            <div class="speed-dial-btn active" id="speed-1.0-btn" onclick="selectSpeed(1.0)">
+                                <span class="speed-value">1.0</span>
+                            </div>
+                            <div class="speed-dial-btn" id="speed-1.2-btn" onclick="selectSpeed(1.2)">
+                                <span class="speed-value">1.2</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
