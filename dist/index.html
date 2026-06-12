@@ -1425,10 +1425,17 @@
                 <div class="antara-logo-container" style="margin-bottom: 30px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%;">
                     <img class="antara-logo-img" src="Antara_Logo2.png" alt="Antara Logo" style="height: 38px;">
                     
-                    <!-- Dark mode toggle button -->
-                    <button onclick="toggleDarkMode()" style="background: transparent; border: none; cursor: pointer; color: var(--antara-gold); font-size: 20px; outline: none; padding: 4px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Toggle Dark Theme">
-                        <span id="theme-icon">🌙</span>
-                    </button>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <!-- Dark mode toggle button -->
+                        <button onclick="toggleDarkMode()" style="background: transparent; border: none; cursor: pointer; color: var(--antara-gold); font-size: 20px; outline: none; padding: 4px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Toggle Dark Theme">
+                            <span id="theme-icon">🌙</span>
+                        </button>
+                        
+                        <!-- Settings gear button -->
+                        <button onclick="openPreferencesSheet()" style="background: transparent; border: none; cursor: pointer; color: var(--antara-gold); font-size: 20px; outline: none; padding: 4px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Preferences">
+                            <span>⚙️</span>
+                        </button>
+                    </div>
                 </div>
 
 
