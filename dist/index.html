@@ -24,17 +24,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --antara-bg-start: #FDFBF7;        /* Warm Ivory / Temple Parchment */
-            --antara-bg-end: #F6F0E5;          /* Softer, warm parchment ivory */
-            --antara-gold: #B89347;            /* 5-10% Stronger, deeper antique gold accent */
+            --antara-bg-start: #FFFFFF;        /* Pristine White */
+            --antara-bg-end: #FAF8F5;          /* Alabaster / Soft Warm Ivory White */
+            --antara-gold: #C5A059;            /* Warm Antique Gold */
             --antara-saffron: #E07A2B;         /* Saffron Accent */
             --antara-dark: #88321C;            /* Official Antara Maroon Color */
             --antara-muted: #8A8273;           /* Muted warm gray/bronze */
-            --antara-line: #E8DFD3;            /* Softer, warmer border boundaries */
-            --antara-card-bg: #FCF8F2;         /* Warm Ivory card background */
-            --antara-sheet-bg: #FDFBF7;        /* Warm Ivory bottom sheet */
-            --antara-warning: #C62828;         /* Strong readable warning red */
-            --antara-verses-bg: rgba(255, 255, 255, 0.45); /* Frosted white glass */
+            --antara-line: #E5DCD0;            /* Delicate warm line */
+            --antara-card-bg: #FFFFFF;         /* Card background */
+            --antara-sheet-bg: #FFFFFF;        /* Sheet background */
         }
 
         body.dark-theme {
@@ -47,13 +45,6 @@
             --antara-line: #5C1F15;            /* Cinnamon red divider lines */
             --antara-card-bg: rgba(58, 15, 8, 0.6); /* Semi-transparent cinnamon card */
             --antara-sheet-bg: #280A05;        /* Deepest cinnamon sheet background */
-            --antara-warning: #FF7B7B;         /* Highly legible warning coral/pink */
-            --antara-verses-bg: rgba(40, 10, 5, 0.4); /* Deep cinnabar frosted glass */
-            --btn-light-bg: var(--antara-card-bg);
-        }
-
-        body.dark-theme .screen {
-            background: radial-gradient(125% 85% at 50% 0%, #4d1810 0%, var(--antara-bg-start) 45%, var(--antara-bg-end) 100%);
         }
 
         * {
@@ -104,7 +95,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            transition: background 0.3s;
         }
 
         .screen::-webkit-scrollbar {
@@ -204,11 +194,6 @@
             100% { transform: scale(1.6); opacity: 0; }
         }
 
-        @keyframes breathe-text {
-            0% { opacity: 0.35; transform: scale(0.98); }
-            100% { opacity: 0.95; transform: scale(1.02); }
-        }
-
         /* Screens */
         .app-screen {
             display: none;
@@ -250,7 +235,7 @@
         }
 
         .soft-resume-name {
-            font-family: 'Mukta', sans-serif;
+            font-family: 'Mukta', serif;
             font-size: 32px;
             color: var(--antara-saffron);
             font-weight: bold;
@@ -546,7 +531,7 @@
         }
 
         .sanskrit-name {
-            font-family: 'Mukta', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--antara-saffron);
             font-size: 36px;
             font-weight: 700;
@@ -682,25 +667,6 @@
             transition: transform 0.3s ease-out;
         }
 
-        .sheet-section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--antara-line), transparent);
-            width: 85%;
-            margin: 10px auto 14px auto;
-            position: relative;
-        }
-        .sheet-section-divider::after {
-            content: "✦";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--antara-sheet-bg);
-            padding: 0 10px;
-            color: var(--antara-gold);
-            font-size: 10px;
-        }
-
         .sheet-close-btn {
             position: absolute;
             top: 20px;
@@ -754,8 +720,122 @@
             cursor: pointer;
         }
 
+        /* Toggle Switch Styles for Settings */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .3s ease;
+            border-radius: 24px;
+            border: 1.5px solid var(--antara-line);
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 2.5px;
+            background-color: var(--antara-muted);
+            transition: .3s ease;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: rgba(242, 135, 56, 0.3);
+            border-color: var(--antara-saffron);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+            background-color: var(--antara-saffron);
+        }
+
+        /* Preferences Sheet Styling Classes */
+        .voice-avatar-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1.5px solid var(--antara-line);
+            padding: 2px;
+            box-sizing: border-box;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.2s;
+            background: transparent;
+        }
+        .voice-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .voice-avatar-btn.active {
+            border: 2.5px solid var(--antara-saffron) !important;
+            background: rgba(242,135,56,0.1) !important;
+            opacity: 1 !important;
+        }
+
+        .speed-dial-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid var(--antara-line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--antara-muted);
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.2s;
+            background: transparent;
+        }
+        .speed-dial-btn.active {
+            background: var(--antara-saffron) !important;
+            color: white !important;
+            border-color: var(--antara-saffron) !important;
+            font-weight: bold !important;
+            box-shadow: 0 2px 6px rgba(242,135,56,0.4) !important;
+            opacity: 1 !important;
+        }
+
+        .pref-quota-opt {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: normal;
+            color: var(--antara-muted);
+            opacity: 0.8;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pref-quota-opt.active {
+            color: var(--antara-saffron) !important;
+            font-weight: bold !important;
+            opacity: 1 !important;
+        }
+
         .sheet-title {
-            font-family: 'Mukta', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--antara-saffron);
             font-size: 20px;
             font-weight: bold;
@@ -777,7 +857,7 @@
             margin-bottom: 16px;
         }
         .significance-sanskrit {
-            font-family: 'Mukta', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 28px;
             font-weight: bold;
             color: var(--antara-saffron);
@@ -814,7 +894,7 @@
 
         /* Success complete screen */
         .success-screen-flat {
-            display: flex;
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -824,7 +904,7 @@
         }
 
         .success-screen-flat h3 {
-            font-family: 'Mukta', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--antara-saffron);
             font-size: 26px;
             font-weight: 700;
@@ -935,8 +1015,8 @@
             border: 1px solid var(--antara-line);
             border-radius: 20px;
             font-size: 13px;
-            background: var(--antara-card-bg) !important;
-            color: var(--antara-dark) !important;
+            background: rgba(250, 248, 245, 0.9);
+            color: var(--antara-dark);
             outline: none;
             box-sizing: border-box;
             transition: border-color 0.2s;
@@ -984,7 +1064,7 @@
         }
         .search-results-dropdown {
             position: absolute;
-            background: var(--antara-sheet-bg);
+            background: white;
             border: 1px solid var(--antara-line);
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -1015,7 +1095,7 @@
         /* Antara Design System Tokens & Mockup styles */
         :root {
             --cinnamon: #7B1F1C;
-            --btn-light-bg: var(--antara-card-bg);
+            --btn-light-bg: #FCFAF7;
         }
 
         .narrow-block {
@@ -1082,7 +1162,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid var(--antara-line);
-            background-color: var(--btn-light-bg);
+            background-color: #FFF;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1111,7 +1191,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid var(--antara-line);
-            background-color: var(--btn-light-bg);
+            background-color: #FFF;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1126,7 +1206,7 @@
         .speed-dial-btn .speed-value {
             font-size: 13px;
             font-weight: 600;
-            color: var(--antara-dark);
+            color: var(--cinnamon);
             font-family: 'Inter', sans-serif;
             line-height: 1;
         }
@@ -1169,18 +1249,6 @@
             background-color: #EEE7DD;
             border: 1px solid var(--antara-line);
             color: var(--cinnamon);
-        }
-
-        .btn-pill.tab-active {
-            background-color: var(--cinnamon);
-            color: #FFFFFF;
-            border: 1px solid var(--cinnamon);
-        }
-
-        .btn-pill.tab-inactive {
-            background-color: #EEE7DD;
-            color: var(--cinnamon);
-            border: 1px solid var(--antara-line);
         }
 
         .btn-pill .pipe {
@@ -1287,7 +1355,7 @@
         .chant-instruction-hi {
             font-size: 16.5px;
             font-weight: 700;
-            color: var(--antara-saffron);
+            color: var(--antara-dark);
             margin: 0 0 3px 0;
             text-align: center;
             font-family: 'Mukta', sans-serif;
@@ -1298,7 +1366,7 @@
         .chant-instruction-en {
             font-size: 13px;
             font-weight: 500;
-            color: var(--antara-saffron);
+            color: var(--antara-dark);
             margin: 0 0 -4px 0;
             text-align: center;
             font-family: 'Inter', sans-serif;
@@ -1326,8 +1394,8 @@
         }
 
         .app-logo-center {
-            width: 118px;
-            height: 118px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
@@ -1365,228 +1433,27 @@
             border: 1px solid var(--antara-line);
             border-radius: 12px;
             padding: 0 0 14px 0;
-            min-height: 110px;
+            min-height: 90px;
             height: auto;
-            width: 240px; /* Enlarged by 50% from 160px for premium layout */
-            margin: 12px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            box-shadow: 0 4px 12px rgba(184, 147, 71, 0.05);
+            box-shadow: 0 2px 8px rgba(42, 26, 16, 0.02);
             box-sizing: border-box;
             text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.25s ease-in-out;
-            flex-shrink: 0;
+            transition: all 0.2s ease-in-out;
         }
 
         .nama-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(220, 107, 34, 0.08);
-            border-color: rgba(220, 107, 34, 0.35);
+            box-shadow: 0 6px 14px rgba(220, 107, 34, 0.08);
+            border-color: rgba(220, 107, 34, 0.25);
             background-color: #FFFDFB;
-        }
-
-        body.dark-theme .nama-card:hover {
-            background-color: rgba(92, 31, 21, 0.3);
-            border-color: var(--antara-gold);
-            box-shadow: 0 8px 20px rgba(220, 107, 34, 0.18);
-        }
-
-
-        @keyframes flicker {
-            0% { transform: scale(1) rotate(-0.5deg); opacity: 0.9; }
-            20% { transform: scale(1.04) rotate(0.5deg) skewX(-1deg); opacity: 0.95; }
-            40% { transform: scale(0.98) rotate(-1deg); opacity: 0.9; }
-            60% { transform: scale(1.06) rotate(1deg) skewX(1deg); opacity: 1; }
-            80% { transform: scale(1.02) rotate(-0.5deg); opacity: 0.95; }
-            100% { transform: scale(1.05) rotate(0deg); opacity: 1; }
-        }
-        .flickering-flame {
-            animation: flicker 0.6s ease-in-out infinite alternate;
-            transform-origin: 12px 15px;
-        }
-        .diya-svg {
-            width: 24px;
-            height: 28px;
-            filter: drop-shadow(0 1px 1.5px rgba(0,0,0,0.15));
-            transition: all 0.3s ease;
-        }
-        .diya-svg.active {
-            filter: drop-shadow(0 2px 5px rgba(255, 152, 0, 0.65)) drop-shadow(0 4px 12px rgba(255, 87, 34, 0.35));
-        }
-        .diya-base {
-            fill: rgba(200, 106, 75, 0.15);
-            stroke: rgba(200, 106, 75, 0.4);
-            stroke-width: 0.75px;
-            transition: all 0.3s ease;
-        }
-        body.dark-theme .diya-base {
-            fill: rgba(126, 62, 47, 0.15);
-            stroke: rgba(126, 62, 47, 0.4);
-        }
-        .diya-svg.active .diya-base {
-            fill: #C86A4B;
-            stroke: #8E3E2F;
-            stroke-width: 1px;
-        }
-        body.dark-theme .diya-svg.active .diya-base {
-            fill: #7E3E2F;
-            stroke: #FF9800;
-            stroke-width: 1px;
-        }
-        .diya-flame-inner {
-            fill: #FFF59D;
-        }
-        .diya-flame-outer {
-            fill: #FF9800;
-        }
-
-        #dashboard-setup-options, #dashboard-resume-card, .search-container {
-            flex-shrink: 0;
-        }
-
-        .daily-reflection-card {
-            background-color: var(--btn-light-bg);
-            border: 1.5px solid var(--antara-line);
-            border-radius: 14px;
-            padding: 0;
-            width: 100%;
-            margin: 6px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            box-shadow: 0 4px 12px rgba(184, 147, 71, 0.05);
-            box-sizing: border-box;
-            text-align: center;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.25s ease-in-out;
-            flex-shrink: 0;
-            height: auto;
-            min-height: 0;
-            padding-bottom: 5px;
-        }
-        .daily-reflection-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(220, 107, 34, 0.08);
-            border-color: rgba(220, 107, 34, 0.35);
-            background-color: #FFFDFB;
-        }
-        body.dark-theme .daily-reflection-card {
-            background-color: var(--antara-card-bg);
-            border-color: var(--antara-line);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-        body.dark-theme .daily-reflection-card:hover {
-            background-color: rgba(92, 31, 21, 0.3);
-            border-color: var(--antara-line);
-            box-shadow: 0 8px 20px rgba(220, 107, 34, 0.18);
-        }
-        body.dark-theme .daily-reflection-card .nama-card-hi {
-            color: #FFFFFF;
-        }
-        body.dark-theme .daily-reflection-card .nama-card-en {
-            color: var(--antara-gold);
-        }
-        body.dark-theme .daily-reflection-card .nama-card-hi-meaning {
-            color: #FFFFFF;
-        }
-        body.dark-theme .daily-reflection-card .nama-card-meaning {
-            color: var(--antara-gold);
-        }
-        .daily-reflection-card .nama-card-title {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 4px;
-            font-family: 'Mukta', sans-serif;
-            font-size: 13.5px;
-            font-weight: 700;
-            color: #FFFFFF;
-            letter-spacing: 0.5px;
-            background: rgba(110, 48, 28, 0.5);
-            padding: 8px 12px 6px 12px;
-            box-sizing: border-box;
-            border-bottom: 1px solid var(--antara-line);
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-        }
-        .daily-reflection-title-combined {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            color: #FFFFFF;
-            font-family: 'Mukta', sans-serif;
-            font-size: 13.5px;
-            font-weight: 700;
-        }
-        .daily-reflection-card .nama-card-hi {
-            font-family: 'Mukta', sans-serif;
-            font-size: 30px;
-            font-weight: 700;
-            color: var(--antara-dark);
-            margin: 2px 8px 0px 8px;
-            line-height: 1.22;
-        }
-        .daily-reflection-card .nama-card-en {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-style: italic;
-            font-weight: 500;
-            color: var(--antara-muted);
-            margin: 1px 8px 2px 8px;
-            line-height: 1.2;
-        }
-        .daily-reflection-card .nama-card-hi-meaning {
-            font-family: 'Mukta', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--antara-gold);
-            margin: 2px 8px 1px 8px;
-            line-height: 1.2;
-        }
-        .daily-reflection-card .nama-card-meaning {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--antara-dark);
-            opacity: 0.8;
-            margin: 1px 8px 4px 8px;
-            line-height: 1.2;
-        }
-        .contemplate-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 12px;
-            background: transparent;
-            color: var(--antara-saffron) !important;
-            border: none;
-            font-size: 11.5px;
-            font-weight: bold;
-            text-transform: none;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
-            box-shadow: none;
-            transition: opacity 0.2s ease;
-        }
-        .contemplate-link:hover {
-            opacity: 0.8;
-            transform: none;
-            box-shadow: none;
-            background: transparent;
-        }
-        
-        .quota-split-btn-dash:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-        .quota-split-btn-dash:active {
-            transform: translateY(0);
         }
 
         .nama-card-title {
@@ -1596,9 +1463,9 @@
             justify-content: center;
             width: 100%;
             background-color: var(--antara-gold);
-            padding: 5px 12px;
-            margin-bottom: 8px;
-            line-height: 1.15;
+            padding: 4px 12px;
+            margin-bottom: 6px;
+            line-height: 1.1;
         }
 
         .nama-card-title-hi {
@@ -1610,360 +1477,188 @@
         }
 
         .nama-card-title-en {
-            font-size: 10px;
+            font-size: 10.5px;
             font-family: 'Inter', sans-serif;
-            font-weight: 600;
+            font-weight: 500;
             color: #FFFFFF;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            letter-spacing: 0.2px;
         }
 
         .nama-card-hi {
-            font-size: 21px; /* Enlarged name text */
+            font-size: 19.5px;
             font-family: 'Mukta', sans-serif;
             font-weight: 700;
             color: var(--antara-dark);
-            margin-bottom: 2px;
-            line-height: 1.2;
+            margin-bottom: 1px;
+            line-height: 1.15;
             padding: 0 12px;
         }
 
         .nama-card-en {
-            font-size: 14px;
+            font-size: 13.5px;
             font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            color: var(--antara-gold); /* Golden/saffron accent color for transliteration */
-            margin-bottom: 6px;
-            line-height: 1.2;
+            font-weight: 500;
+            color: var(--antara-dark);
+            margin-bottom: 5px;
+            line-height: 1.15;
             padding: 0 12px;
         }
 
         .nama-card-hi-meaning {
-            font-size: 12.5px;
+            font-size: 12px;
             font-family: 'Mukta', sans-serif;
             font-weight: 500;
-            color: var(--antara-dark); /* Uses theme-adaptive color instead of static grey */
-            margin-bottom: 2px;
-            line-height: 1.2;
+            color: #665c54;
+            margin-bottom: 1px;
+            line-height: 1.15;
             padding: 0 12px;
-            opacity: 0.95;
         }
 
         .nama-card-meaning {
             font-size: 12px;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            color: var(--antara-muted); /* Uses theme-adaptive muted color */
+            color: #555555;
             font-style: italic;
-            line-height: 1.2;
+            line-height: 1.15;
             padding: 0 12px;
-            margin-bottom: 4px;
-        }
-
-        /* Sadhana Diya Flickering Animations */
-        @keyframes flame-flicker-slow {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.45; }
-            50% { transform: scale(1.08) rotate(1.5deg); opacity: 0.35; }
-        }
-        @keyframes flame-flicker-mid {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
-            30% { transform: scale(0.94) rotate(-2deg); opacity: 0.75; }
-            70% { transform: scale(1.04) rotate(1.5deg); opacity: 0.95; }
-        }
-        @keyframes flame-flicker-fast {
-            0%, 100% { transform: scale(1) translate(0, 0); }
-            25% { transform: scale(0.97, 1.03) translate(-0.2px, -0.4px); }
-            50% { transform: scale(1.03, 0.97) translate(0.2px, 0.2px); }
-            75% { transform: scale(0.96, 1.04) translate(-0.1px, 0.3px); }
-        }
-
-        .flicker-slow {
-            animation: flame-flicker-slow 1.6s infinite ease-in-out;
-        }
-        .flicker-mid {
-            animation: flame-flicker-mid 1.1s infinite ease-in-out;
-        }
-        .flicker-fast {
-            animation: flame-flicker-fast 0.55s infinite ease-in-out;
-        }
-
-        /* Custom active states for settings buttons */
-        .voice-avatar-btn.active {
-            border: 2px solid var(--antara-saffron) !important;
-            box-shadow: 0 0 6px rgba(224, 122, 43, 0.4);
-            background-color: var(--antara-card-bg);
-        }
-        .speed-dial-btn.active {
-            border: 2px solid var(--antara-saffron) !important;
-            box-shadow: 0 0 6px rgba(224, 122, 43, 0.4);
-            background-color: var(--antara-saffron) !important;
-        }
-        .speed-dial-btn.active .speed-value {
-            color: #FFFFFF !important;
-        }
-
-        /* Dark theme overrides for quota split buttons */
-        body.dark-theme .quota-split-btn {
-            background: rgba(92, 31, 21, 0.3);
-            border: 1px solid var(--antara-line);
-        }
-        body.dark-theme .quota-split-btn.active {
-            background: var(--antara-saffron);
-            border: none;
-        }
-        body.dark-theme .quota-split-btn .lang-h {
-            color: var(--antara-dark);
-        }
-        body.dark-theme .quota-split-btn.active .lang-h {
-            color: #FFFFFF;
-        }
-        body.dark-theme .quota-split-btn .lang-e {
-            color: var(--antara-muted);
-        }
-        body.dark-theme .quota-split-btn.active .lang-e {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        /* Dark theme override for inactive speed-dial buttons (fixes invisible white-on-white labels) */
-        body.dark-theme .speed-dial-btn {
-            background-color: rgba(92, 31, 21, 0.3);
-            border: 1px solid var(--antara-line);
-        }
-        /* Opener Styles */
-        .opener-capsule-btn-gold {
-            flex: 1;
-            height: 38px;
-            border-radius: 19px;
-            background: linear-gradient(135deg, #FFEBB3 0%, #D4AF37 100%);
-            color: #200804;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 12.5px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-        }
-        .opener-capsule-btn-gold:active {
-            transform: scale(0.97);
-        }
-        .opener-capsule-btn-outline {
-            flex: 1;
-            height: 38px;
-            border-radius: 19px;
-            border: 1.5px solid rgba(229, 192, 123, 0.6);
-            background: rgba(0,0,0,0.15);
-            color: #E5C07B;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 12.5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-        }
-        .opener-capsule-btn-outline:active {
-            transform: scale(0.97);
-        }
-        .calendar-dot-empty {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 1px solid rgba(229, 192, 123, 0.4);
-            background: rgba(0,0,0,0.2);
-            display: inline-block;
-            box-sizing: border-box;
-        }
-        .calendar-dot-checked {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #FFEBB3 0%, #D4AF37 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #200804;
-            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.4);
-            box-sizing: border-box;
-        }
-        @keyframes pulse-glow {
-            0% { transform: scale(0.97); opacity: 0.85; filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.2)); }
-            100% { transform: scale(1.03); opacity: 1; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.45)); }
         }
     
     </style>
 </head>
-<body class="dark-theme">
-    <script>
-        (function() {
-            var isDarkVal = localStorage.getItem("antara_dark_theme");
-            if (isDarkVal === "false") {
-                document.body.classList.remove("dark-theme");
-            }
-        })();
-    </script>
+<body>
 
     <div class="device-container">
 
         <div class="screen">
-                       <!-- 1. DASHBOARD SCREEN -->
-            <div class="app-screen active" id="screen-dashboard" style="flex-direction: column; height: 100%; box-sizing: border-box; padding: 12px 18px 16px 18px; justify-content: space-between; overflow: hidden;">
+            
+            <!-- 1. DASHBOARD SCREEN -->
+            <div class="app-screen active" id="screen-dashboard" style="flex-direction: column; height: 100%; box-sizing: border-box; padding: 20px 24px 20px 24px;">
                 
                 <!-- Antara Branding Logo at Top -->
-                <div class="antara-logo-container" style="margin-bottom: 8px; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; width: 100%; flex-shrink: 0; box-sizing: border-box;">
-                    <!-- Empty left spacer to maintain brand logo alignment -->
-                    <div style="width: 64px; display: flex; align-items: center; justify-content: flex-start;">
-                    </div>
+                <div class="antara-logo-container" style="margin-bottom: 30px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <img class="antara-logo-img" src="Antara_Logo2.png" alt="Antara Logo" style="height: 38px;">
                     
-                    <!-- Centered Branding Logo -->
-                    <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                        <img class="antara-logo-img" src="Antara_Logo2.png" alt="Antara Logo" style="height: 30px; cursor: pointer;" onclick="openScreen('screen-dashboard')" title="Go Home">
-                    </div>
-                    
-                    <!-- Right Action Icons (Sun & Gear) -->
-                    <div style="display: flex; gap: 10px; align-items: center; justify-content: flex-end; width: 64px;">
-                        <!-- Theme Toggle Sun Icon -->
-                        <button onclick="toggleDarkMode()" style="background: transparent; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; outline: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'" title="Toggle Theme">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--antara-saffron)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <line x1="12" y1="1" x2="12" y2="4"></line>
-                                <line x1="12" y1="20" x2="12" y2="23"></line>
-                                <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
-                                <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
-                                <line x1="1" y1="12" x2="4" y2="12"></line>
-                                <line x1="20" y1="12" x2="23" y2="12"></line>
-                                <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
-                                <line x1="17.66" y1="5.64" x2="19.78" y2="4.22"></line>
-                            </svg>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <!-- Dark mode toggle button -->
+                        <button onclick="toggleDarkMode()" style="background: transparent; border: none; cursor: pointer; color: var(--antara-gold); font-size: 20px; outline: none; padding: 4px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Toggle Dark Theme">
+                            <span id="theme-icon">🌙</span>
                         </button>
                         
-                        <!-- Settings button -->
-                        <button onclick="openPreferencesSheet()" style="background: transparent; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; outline: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'" title="Preferences">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--antara-saffron)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
+                        <!-- Settings gear button -->
+                        <button onclick="openPreferencesSheet()" style="background: transparent; border: none; cursor: pointer; color: var(--antara-gold); font-size: 20px; outline: none; padding: 4px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Preferences">
+                            <span>⚙️</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Scrollable Content Area -->
-                <div style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; width: 100%; gap: 6px; padding: 2px 2px 8px 2px;" class="custom-scrollbar">
 
-                    <!-- Spacing below header logo -->
-                    <div style="height: 64px; flex-shrink: 0;"></div>
 
-                    <!-- STATE A: Side-by-side Choice (Namavali Japa and Full Stotram) -->
-                    <div id="dashboard-setup-options" style="width: 100%; display: none; flex-direction: column; align-items: center; flex-shrink: 0;">
-                        <!-- Side-by-side Row -->
-                        <div style="display: flex; gap: 12px; justify-content: center; width: calc(100% - 32px); max-width: 320px; margin: 4px auto 8px auto; box-sizing: border-box;">
-                            <!-- Namavali Japa (Gray pill button) -->
-                            <div onclick="startChantingSession()" class="quota-split-btn-dash" style="flex: 1; height: 52px; border-radius: 26px; background: var(--antara-gold); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; box-sizing: border-box;">
-                                <span style="font-family: 'Mukta', sans-serif; font-size: 19.5px; font-weight: 700; color: #FFFFFF; line-height: 1.15;">नामावली जप</span>
-                                <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.9); line-height: 1.15;">Namavali Japa</span>
-                            </div>
-                            
-                            <!-- Full Stotram (Saffron pill button) -->
-                            <div onclick="enterStotramScreen()" class="quota-split-btn-dash" style="flex: 1; height: 52px; border-radius: 26px; background: var(--antara-saffron); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; box-sizing: border-box; box-shadow: 0 2px 8px rgba(220, 107, 34, 0.15);">
-                                <span style="font-family: 'Mukta', sans-serif; font-size: 19.5px; font-weight: 700; color: #FFFFFF; line-height: 1.15;">सम्पूर्ण स्तोत्र पाठ</span>
-                                <span style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.9); line-height: 1.15;">Full Stotram</span>
-                            </div>
-                        </div>
-
-                        <!-- Reset Progress Link -->
-                        <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-top: 4px; margin-bottom: 8px; text-align: center; width: 100%; cursor: pointer;">
-                            प्रगति रीसेट <span class="pipe" style="color: var(--antara-saffron); margin: 0 4px;">|</span> <span class="en-text">Reset Progress</span>
-                        </div>
-                    </div>
-
-                    <!-- STATE B: Resume Recitation Card (Shown only when lastReadIndex > 1) -->
-                    <div id="dashboard-resume-card" style="display: none; width: 100%; flex-direction: column; align-items: center; flex-shrink: 0;">
-                        <!-- Resume container (Clicking it resumes the active session) -->
-                        <div class="soft-resume-container" onclick="handleDashboardResumeClick()" style="margin-bottom: 8px; cursor: pointer; width: calc(100% - 32px); max-width: 320px; box-sizing: border-box;">
-                            <span class="soft-resume-name" id="resume-name-text">भूतकृत्</span>
-                            <span class="soft-resume-translit" id="resume-translit-text">Bhutakrit</span>
-                            <div class="name-index-indicator-inline" id="resume-index-text">7 / 1000</div>
-                        </div>
-                        <div class="resume-meanings" onclick="handleDashboardResumeClick()" style="text-align: center; margin-top: 10px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; width: calc(100% - 32px); max-width: 320px;">
-                            <div class="resume-meaning-hindi" id="resume-hindi-mean">सभी प्राणियों का निर्माता</div>
-                            <div class="resume-meaning-english" id="resume-english-mean">Creator of all beings</div>
-                        </div>
+                <!-- STATE A: Choose Count inline (Shown only when lastReadIndex == 1) -->
+                <div id="dashboard-setup-options" style="width: 100%; display: none;">
+                    <!-- Action Buttons List -->
+                    <div class="buttons-container narrow-block" style="margin-bottom: 4px;">
+                        <div class="btn-pill primary" onclick="startChantingSession()" style="height: 38px; border-radius: 19px; font-size: 14px; margin-bottom: 2px;">नामावली जप <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Namavali Japa</span></div>
                         
-                        <!-- Reset Progress Link -->
-                        <div class="reset-progress-link" onclick="confirmResetProgress()" style="margin-bottom: 12px; text-align: center; width: 100%;">
-                            प्रगति रीसेट <span class="pipe">|</span> <span class="en-text">Reset Progress</span>
-                        </div>
-
-                        <!-- Action buttons dependent on last practice mode -->
-                        <div id="japa-resume-action" style="width: calc(100% - 32px); max-width: 320px;">
-                            <button class="btn-pill primary" onclick="startChainingSession()" style="width: 100%; height: 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: none; cursor: pointer;">
-                                <span style="font-family: 'Mukta', sans-serif; font-size: 13px; font-weight: 700; line-height: 1.2;">जप जारी रखें</span>
-                                <span style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 1.2; opacity: 0.9;">Resume Chanting</span>
-                            </button>
-                        </div>
-                        <div id="stotram-resume-action" style="width: calc(100% - 32px); max-width: 320px; display: none;">
-                            <button class="btn-pill primary" onclick="enterStotramScreen()" style="width: 100%; height: 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--antara-saffron); border: none; cursor: pointer;">
-                                <span style="font-family: 'Mukta', sans-serif; font-size: 13px; font-weight: 700; line-height: 1.2;">पाठ जारी रखें</span>
-                                <span style="font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; line-height: 1.2; opacity: 0.9;">Resume Stotram</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Today's Vishnu Nama Card (Daily Reflection) -->
-                    <div class="daily-reflection-card" onclick="openSignificanceForTodayNama()" style="flex-shrink: 0; width: calc(100% - 32px); max-width: 320px; margin: 4px auto;">
-                        <div class="nama-card-title">
-                            दैनिक चिंतन / Daily Reflection
-                        </div>
-                        <div class="nama-card-hi" id="nama-hi">मुक्तानां परमा गतिः</div>
-                        <div class="nama-card-en" id="nama-en">Muktānāṃ Paramā Gatiḥ</div>
-                        <div class="nama-card-hi-meaning" id="nama-hi-meaning">मुक्तों का परम आश्रय</div>
-                        <div class="nama-card-meaning" id="nama-meaning">Ultimate Goal of Liberated Souls</div>
-                        <div class="contemplate-link" style="font-size: 9.5px; font-family: 'Mukta', sans-serif; font-weight: bold; color: var(--antara-saffron); margin-top: 2px; letter-spacing: 0.5px;">
-                            मनन करें | Contemplate
-                        </div>
-                    </div>
-
-                    <!-- Search Box (moved below Daily Reflections) -->
-                    <div class="search-container" style="width: calc(100% - 88px); margin: 4px auto; position: relative; flex-shrink: 0; max-width: 264px; box-sizing: border-box;">
-                        <div class="search-input-wrapper" style="position: relative; width: 100%;">
-                            <input type="text" id="search-input" placeholder="खोजें | Search Names" oninput="onSearchInput()" style="height: 28px; width: 100%; background-color: var(--antara-card-bg) !important; border: 1px solid var(--antara-line); border-radius: 14px; padding: 0 10px 0 28px; box-shadow: 0 2px 6px rgba(42, 26, 16, 0.03); box-sizing: border-box; font-size: 11px; color: var(--antara-dark) !important; outline: none;">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 10px; top: 8px; pointer-events: none;">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <div class="search-clear-btn" id="search-clear" onclick="clearSearch()" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 11px; cursor: pointer; color: var(--antara-muted);">✕</div>
-                        </div>
-                        <!-- Search Results Dropdown -->
-                        <div class="search-results-dropdown" id="search-results" style="display: none; width: 100%; left: 0; top: 100%;"></div>
-                    </div>
-
-                    <!-- Streak / Calendar Card -->
-                    <div class="nama-card" style="margin: 4px auto; cursor: default; padding: 10px 12px; min-height: 116px; width: calc(100% - 32px); max-width: 320px; border: 1.5px solid var(--antara-line); border-radius: 14px; background: var(--antara-card-bg); flex-shrink: 0; box-sizing: border-box;">
-                        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 6px; border-bottom: 1px solid var(--antara-line); padding-bottom: 4px; width: 100%;">
-                            <div style="font-family: 'Mukta', sans-serif; font-size: 13px; font-weight: 700; color: var(--antara-gold); letter-spacing: 0.5px; text-align: center;">
-                                साधना यात्रा | Practice Journey
+                        <div class="japa-circle-row">
+                            <div class="japa-circle" id="quota-108-circle" onclick="switchQuota(108)">
+                                <span>108</span>
+                            </div>
+                            <div class="japa-circle" id="quota-250-circle" onclick="switchQuota(250)">
+                                <span>250</span>
+                            </div>
+                            <div class="japa-circle" id="quota-500-circle" onclick="switchQuota(500)">
+                                <span>500</span>
+                            </div>
+                            <div class="japa-circle" id="quota-1000-circle" onclick="switchQuota(1000)">
+                                <span>1000</span>
                             </div>
                         </div>
-                        
-                        <!-- Calendar Grid Wrapper -->
-                        <div id="progress-calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 8px; width: 100%;">
-                            <!-- Last 7 days populated here -->
-                        </div>
+
+                        <div class="btn-pill primary" onclick="enterStotramScreen()" style="height: 38px; border-radius: 19px; font-size: 14px; background-color: var(--antara-saffron); margin-top: 8px;">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Full Stotram</span></div>
                     </div>
 
+                    <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-top: 14px; margin-bottom: 14px;">
+                        प्रगति रीसेट <span class="pipe">|</span> <span class="en-text">Reset Progress</span>
+                    </div>
                 </div>
+
+                <!-- STATE B: Resume Recitation Card (Shown only when lastReadIndex > 1) -->
+                <div id="dashboard-resume-card" style="display: none; width: 100%;">
+                    <div class="soft-resume-container" onclick="startChantingSession()" style="margin-bottom: 8px;">
+                        <span class="soft-resume-name" id="resume-name-text">भूतकृत्</span>
+                        <span class="soft-resume-translit" id="resume-translit-text">Bhutakrit</span>
+                        <div class="name-index-indicator-inline" id="resume-index-text">7 / 1000</div>
+                    </div>
+                    <div class="resume-meanings" onclick="startChantingSession()" style="text-align: center; margin-top: 10px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer;">
+                        <div class="resume-meaning-hindi" id="resume-hindi-mean">सभी प्राणियों का निर्माता</div>
+                        <div class="resume-meaning-english" id="resume-english-mean">Creator of all beings</div>
+                    </div>
+                    <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-bottom: 14px;">
+                        प्रगति रीसेट <span class="pipe">|</span> <span class="en-text">Reset Progress</span>
+                    </div>
+                    <div class="buttons-container narrow-block" style="margin-top: 12px; margin-bottom: 4px;">
+                        <div class="btn-pill primary" onclick="enterStotramScreen()" style="height: 38px; border-radius: 19px; font-size: 14px; background-color: var(--antara-saffron);">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Full Stotram</span></div>
+                    </div>
+                </div>
+
+                <!-- Search Box (moved below Reset Progress) -->
+                <div class="search-container narrow-block" style="margin-top: 4px; margin-bottom: 8px; position: relative;">
+                    <div class="search-input-wrapper" style="position: relative; width: 100%;">
+                        <input type="text" id="search-input" placeholder="खोजें | Search Names" oninput="onSearchInput()" style="height: 28px; width: 100%; background-color: #FFFFFF; border: 1px solid var(--antara-line); border-radius: 14px; padding: 0 10px 0 24px; box-shadow: 0 2px 6px rgba(42, 26, 16, 0.03); box-sizing: border-box; font-size: 9.5px; color: var(--antara-dark); outline: none;">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 8px; top: 9px; pointer-events: none;">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <div class="search-clear-btn" id="search-clear" onclick="clearSearch()" style="display: none; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; cursor: pointer; color: var(--antara-muted);">✕</div>
+                    </div>
+                    <!-- Search Results Dropdown -->
+                    <div class="search-results-dropdown" id="search-results" style="display: none; width: 100%; left: 0; top: 100%;"></div>
+                </div>
+
+                <!-- Today's Vishnu Nama Card -->
+                <div class="nama-card narrow-block" onclick="openSignificanceForTodayNama()">
+                    <div class="nama-card-title">
+                        <div class="nama-card-title-hi">आज का विष्णु नाम</div>
+                        <div class="nama-card-title-en">Today's Vishnu Nama</div>
+                    </div>
+                    <div class="nama-card-hi" id="nama-hi">मुक्तानां परमा गतिः</div>
+                    <div class="nama-card-en" id="nama-en">Muktānāṃ Paramā Gatiḥ</div>
+                    <div class="nama-card-hi-meaning" id="nama-hi-meaning">मुक्तों का परम आश्रय</div>
+                    <div class="nama-card-meaning" id="nama-meaning">Ultimate Goal of Liberated Souls</div>
+                </div>
+
+                <!-- Streak / Calendar Card -->
+                <div class="nama-card narrow-block" style="margin-top: 8px; margin-bottom: 8px; cursor: default; padding: 12px 14px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div style="font-family: 'Mukta', sans-serif; font-size: 13px; font-weight: 700; color: var(--antara-dark);">
+                            साधना प्रगति <span style="font-size: 10px; font-weight: 400; opacity: 0.7;">| Progress</span>
+                        </div>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--antara-saffron); display: flex; align-items: center; gap: 4px;">
+                            🔥 <span id="streak-count-text">0</span> Day Streak
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar Grid Wrapper -->
+                    <div id="progress-calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 8px;">
+                        <!-- Last 7 days populated here -->
+                    </div>
+                </div>
+
+                <!-- Meditative layout spacer -->
+                <div class="flex-spacer" style="flex: 1;"></div>
 
                 <!-- Footer Section -->
-                <div class="footer-section" style="width: 100%; margin-top: auto; flex-shrink: 0; display: flex; flex-direction: column; align-items: center;">
-                    <!-- Standardized: chant instruction text flanks the central mandala (no side brand logos) -->
-                    <div class="vishnu-logo-row" style="margin-top: 16px; margin-bottom: 10px; gap: 0px; justify-content: center; align-items: center;">
-                        <h4 class="chant-instruction-hi" style="margin: 0; flex: 1; text-align: right; max-width: 130px; font-size: 12px; line-height: 1.28; transform: translateX(10px); white-space: nowrap;">चरण कमल स्पर्श<br>कर जप शुरू करें</h4>
+                <div class="footer-section">
+                    <h4 class="chant-instruction-hi">चरण कमल स्पर्श कर जप शुरू करें</h4>
+                    <h5 class="chant-instruction-en">Touch Lotus Feet to Begin Chanting</h5>
+                    
+                    <!-- Triptych logo row -->
+                    <div class="vishnu-logo-row">
+                        <img class="vishnu-logo-h" src="Vishnu Logo H.png" alt="विष्णु १०००">
                         <!-- Large circular gold mandala feet image button with no border/shadow -->
                         <img class="app-logo-center" src="app_logo_transparent.png" alt="Lotus Feet Mandala">
-                        <h5 class="chant-instruction-en" style="margin: 0; flex: 1; text-align: left; max-width: 130px; font-size: 10px; line-height: 1.28; transform: translateX(-10px); white-space: nowrap;">Touch Lotus Feet<br>to Begin Chanting</h5>
+                        <img class="vishnu-logo-e" src="Vishnu Logo E.png" alt="Vishnu 1000">
                     </div>
                 </div>
             </div>
@@ -2044,7 +1739,7 @@
                 <div class="top-nav">
                     <div class="back-arrow" onclick="exitStotramScreen()">◀</div>
                     <!-- Centered Antara Logo -->
-                    <img src="Antara_Logo2.png" alt="Antara Logo" style="height: 38px;">
+                    <img src="Antara_Logo2.png" alt="Antara Logo" style="height: 55px; object-fit: contain;">
                     <div style="width: 24px;"></div>
                 </div>
 
@@ -2072,7 +1767,7 @@
                             
                             <!-- Speed selector -->
                             <div style="position: relative;">
-                                <select id="stotram-speed-select" onchange="changeStotramSpeed(this.value)" style="background: var(--antara-card-bg); border: 1px solid var(--antara-line); border-radius: 20px; padding: 4px 10px; font-size: 12px; font-family: 'Inter', sans-serif; color: var(--antara-dark); cursor: pointer; outline: none; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+                                <select id="stotram-speed-select" onchange="changeStotramSpeed(this.value)" style="background: rgba(255,255,255,0.9); border: 1px solid var(--antara-line); border-radius: 20px; padding: 4px 10px; font-size: 12px; font-family: 'Inter', sans-serif; color: var(--antara-dark); cursor: pointer; outline: none; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
                                     <option value="0.5">0.5x</option>
                                     <option value="0.75">0.75x</option>
                                     <option value="1.0" selected>1.0x</option>
@@ -2083,13 +1778,13 @@
                         </div>
                         
                         <!-- File Missing Warning -->
-                        <div id="stotram-warning" style="display: none; color: var(--antara-warning); font-size: 11px; text-align: center; margin-top: 6px; font-weight: 500;">
+                        <div id="stotram-warning" style="display: none; color: #b71c1c; font-size: 11px; text-align: center; margin-top: 6px; font-weight: 500;">
                             ⚠️ Audio file not found. Reading mode only.
                         </div>
                     </div>
 
                     <!-- Scrollable Sloka Panel -->
-                    <div id="stotram-verses-panel" style="flex: 1; overflow-y: auto; background: var(--antara-verses-bg); border-radius: 16px; padding: 8px; border: 1px solid var(--antara-line); box-sizing: border-box;">
+                    <div id="stotram-verses-panel" style="flex: 1; overflow-y: auto; background: rgba(255, 255, 255, 0.3); border-radius: 16px; padding: 8px; border: 1px solid rgba(255, 255, 255, 0.3); box-sizing: border-box;">
                         <!-- Verses will be loaded here dynamically -->
                     </div>
                 </div>
@@ -2099,98 +1794,133 @@
             <div class="modal-sheet-backdrop" id="sheet-backdrop" onclick="closeAllSheets()"></div>
             
             <!-- Preferences Sheet -->
-            <div class="modal-sheet" id="preferences-sheet" style="padding: 16px 20px 24px 20px;">
-                <div class="sheet-close-btn" onclick="closePreferencesSheet()">✕</div>
+            <div class="modal-sheet" id="preferences-sheet" style="padding: 24px 24px 16px 24px;">
                 <div class="sheet-drag-handle" onclick="closePreferencesSheet()"></div>
                 
-                <div class="sheet-title" style="text-align: center; margin-bottom: 16px; font-family: 'Mukta', sans-serif; font-size: 16px; font-weight: bold; color: var(--antara-saffron);">
-                    सेटिंग्स <span class="pipe" style="margin: 0 4px; opacity: 0.5;">|</span> <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: normal; color: var(--antara-muted);">Settings</span>
+                <!-- Title Row: Close button on the left, Title in the center -->
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; flex-shrink: 0; width: 100%; box-sizing: border-box;">
+                    <div onclick="closePreferencesSheet()" style="cursor: pointer; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin-right: 12px; background: rgba(142, 142, 147, 0.1); border-radius: 50%;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--antara-muted)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.8;">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </div>
+                    <div style="flex: 1; font-family: 'Mukta', sans-serif; font-weight: bold; color: var(--antara-saffron); font-size: 20px; text-align: left; display: flex; align-items: center; gap: 8px;">
+                        सेटिंग्स <span style="font-family: 'Inter', sans-serif; font-weight: normal; color: var(--antara-dark); font-size: 16px; opacity: 0.85;">| Settings</span>
+                    </div>
                 </div>
-                
-                <!-- CARD 1: Practice Selection (Namaavali Japa, Quota, Full Stotram) -->
-                <div class="pref-section-card" style="background: rgba(197, 160, 89, 0.03); border: 1px solid var(--antara-line); margin-bottom: 12px; padding: 16px 14px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box;">
-                    <!-- Mode Selection label -->
-                    <div style="font-family: 'Mukta', sans-serif; font-size: 11px; font-weight: bold; color: var(--antara-gold); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">साधना प्रकार | Practice Mode</div>
+
+                <!-- CARD 1: Practice Mode & Japa Count Target -->
+                <div style="background: rgba(58, 15, 8, 0.04); border: 1.5px solid var(--antara-line); border-radius: 16px; padding: 18px 20px; margin-bottom: 16px; box-sizing: border-box; width: 100%;">
+                    <div style="text-align: center; font-family: 'Mukta', sans-serif; font-weight: bold; font-size: 13px; color: var(--antara-gold); letter-spacing: 0.5px; margin-bottom: 16px;">
+                        साधना प्रकार | <span style="font-family: 'Inter', sans-serif;">PRACTICE MODE</span>
+                    </div>
                     
-                    <!-- Side-by-side Mode buttons -->
-                    <div style="display: flex; gap: 12px; justify-content: center; width: 100%; margin-bottom: 16px;">
-                        <!-- Namavali Japa (Filled Saffron) -->
-                        <div onclick="startChantingSession(); closePreferencesSheet();" style="width: 120px; height: 38px; border-radius: 19px; font-size: 12px; background-color: var(--antara-saffron); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; box-shadow: 0 2px 6px rgba(224, 122, 43, 0.2); flex-shrink: 0;">
-                            <span style="font-family: 'Mukta', sans-serif; font-weight: 700; color: #FFFFFF; line-height: 1.1;">नामावली जप</span>
-                            <span class="en-text" style="font-family: 'Inter', sans-serif; font-size: 8.5px; color: rgba(255, 255, 255, 0.9); line-height: 1.1;">Namavali Japa</span>
-                        </div>
-                        <!-- Full Stotram (Outlined Gold) -->
-                        <div onclick="enterStotramScreen(); closePreferencesSheet();" style="width: 120px; height: 38px; border-radius: 19px; border: 1.5px solid var(--antara-gold); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; box-sizing: border-box; background: transparent; transition: background 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(184, 147, 71, 0.08)';" onmouseout="this.style.background='transparent';">
-                            <span style="font-family: 'Mukta', sans-serif; font-size: 12px; font-weight: 700; color: var(--antara-gold); line-height: 1.1;">सम्पूर्ण स्तोत्र</span>
-                            <span class="en-text" style="font-family: 'Inter', sans-serif; font-size: 8.5px; color: var(--antara-gold); line-height: 1.1;">Full Stotram</span>
-                        </div>
+                    <!-- Mode Selector Pill Buttons -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                        <button id="pref-mode-japa-btn" onclick="switchPracticeMode('japa')" style="flex: 1; height: 44px; border-radius: 22px; background: var(--antara-saffron); border: none; color: white; font-family: 'Mukta', sans-serif; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(242,135,56,0.3); outline: none;">नामावली जप</button>
+                        <button id="pref-mode-stotram-btn" onclick="switchPracticeMode('stotram')" style="flex: 1; height: 44px; border-radius: 22px; background: transparent; border: 1.5px solid var(--antara-gold); color: var(--antara-gold); font-family: 'Mukta', sans-serif; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none;">सम्पूर्ण स्तोत्र</button>
                     </div>
 
-                    <!-- Quota Count label -->
-                    <div style="font-family: 'Mukta', sans-serif; font-size: 10.5px; font-weight: bold; color: var(--antara-muted); margin-bottom: 8px;">जप संख्या लक्ष्य | Japa Count Target</div>
-                    
-                    <!-- Preferences Quota Slider -->
-                    <div class="japa-slider-container" style="position: relative; width: 80%; margin: 24px auto 16px auto; padding-top: 20px; box-sizing: border-box;">
-                        <!-- Track Line -->
-                        <div style="position: absolute; top: 10px; left: 0; right: 0; height: 3px; background: var(--antara-line); border-radius: 2px;"></div>
-                        <!-- Active track portion -->
-                        <div id="pref-active-track" style="position: absolute; top: 10px; left: 0; height: 3px; background: var(--antara-saffron); border-radius: 2px; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); width: 0%;"></div>
+                    <div style="text-align: center; font-family: 'Mukta', sans-serif; font-size: 12px; color: var(--antara-muted); margin-bottom: 8px;">
+                        जप संख्या लक्ष्य | <span style="font-family: 'Inter', sans-serif;">Japa Count Target</span>
+                    </div>
+
+                    <!-- Target Selector Slider/Line -->
+                    <div style="position: relative; padding: 25px 0 10px 0; margin: 0 10px; box-sizing: border-box;">
+                        <!-- Hand Pointer Finger pointing to target -->
+                        <img id="pref-finger-pointer" src="Finger.png" alt="Finger Pointer" style="position: absolute; top: -10px; left: 0px; width: 24px; height: 24px; object-fit: contain; transition: left 0.2s ease;">
                         
-                        <!-- Sliding Finger -->
-                        <div id="pref-slider-finger" style="position: absolute; top: -22px; left: 0%; font-size: 22px; transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(-50%); cursor: pointer; user-select: none; z-index: 2;">👇</div>
+                        <!-- Custom Horizontal Line -->
+                        <div style="position: relative; height: 2px; background: rgba(255,255,255,0.15); width: 100%; margin-bottom: 16px; border-radius: 1px;">
+                            <!-- Highlighted progress line -->
+                            <div id="pref-track-progress" style="position: absolute; height: 100%; background: var(--antara-saffron); width: 0%; transition: width 0.2s ease;"></div>
+                        </div>
                         
-                        <!-- Labels Row -->
-                        <div style="display: flex; justify-content: space-between; position: relative; width: 100%;">
-                            <div onclick="switchQuota(108)" class="slider-label" data-quota="108" style="cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: bold; color: var(--antara-dark); transition: color 0.3s, transform 0.3s;">108</div>
-                            <div onclick="switchQuota(250)" class="slider-label" data-quota="250" style="cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: bold; color: var(--antara-dark); transition: color 0.3s, transform 0.3s;">250</div>
-                            <div onclick="switchQuota(500)" class="slider-label" data-quota="500" style="cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: bold; color: var(--antara-dark); transition: color 0.3s, transform 0.3s;">500</div>
-                            <div onclick="switchQuota(1000)" class="slider-label" data-quota="1000" style="cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: bold; color: var(--antara-dark); transition: color 0.3s, transform 0.3s;">1000</div>
+                        <!-- Target options -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <span class="pref-quota-opt" onclick="switchQuota(108)">108</span>
+                            <span class="pref-quota-opt" onclick="switchQuota(250)">250</span>
+                            <span class="pref-quota-opt" onclick="switchQuota(500)">500</span>
+                            <span class="pref-quota-opt" onclick="switchQuota(1000)">1000</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- CARD 2: Voice & Speed -->
-                <div class="pref-section-card" style="background: rgba(224, 122, 43, 0.03); border: 1px solid var(--antara-line); border-radius: 14px; padding: 16px 14px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box;">
-                    <div style="display: flex; justify-content: space-around; align-items: center; width: 100%; gap: 12px; padding: 4px 0;">
-                        <!-- Voice Selection -->
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                            <span style="font-size: 9.5px; font-weight: 600; color: var(--antara-muted); font-family: 'Mukta', sans-serif;">आवाज | Voice</span>
-                            <div class="voice-toggle-container" style="display: flex; gap: 8px;">
-                                <div class="voice-avatar-btn active" id="voice-female-btn" onclick="selectVoice('female')">
+                <div style="background: rgba(58, 15, 8, 0.04); border: 1.5px solid var(--antara-line); border-radius: 16px; padding: 18px 20px; margin-bottom: 20px; box-sizing: border-box; width: 100%;">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <!-- Voice Column -->
+                        <div style="flex: 1.1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="font-family: 'Mukta', sans-serif; font-size: 12px; color: var(--antara-muted); margin-bottom: 12px;">आवाज | Voice</div>
+                            <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                <!-- Female Avatar -->
+                                <div class="voice-avatar-btn" id="voice-female-btn" onclick="selectVoice('female')">
                                     <img src="Female.png" alt="Female Voice">
                                 </div>
+                                <!-- Male Avatar -->
                                 <div class="voice-avatar-btn" id="voice-male-btn" onclick="selectVoice('male')">
                                     <img src="Male.png" alt="Male Voice">
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Divider Line -->
-                        <div style="width: 1px; height: 36px; background-color: var(--antara-line);"></div>
+                        <!-- Vertical Divider -->
+                        <div style="width: 1px; background: var(--antara-line); margin: 0 10px; height: 60px; opacity: 0.5;"></div>
                         
-                        <!-- Speed Selection -->
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                            <span style="font-size: 9.5px; font-weight: 600; color: var(--antara-muted); font-family: 'Mukta', sans-serif;">गति | Speed</span>
-                            <div class="speed-toggle-container" style="display: flex; gap: 4px;">
-                                <div class="speed-dial-btn" id="speed-0.8-btn" onclick="selectSpeed(0.8)">
-                                    <span class="speed-value">0.8</span>
-                                </div>
-                                <div class="speed-dial-btn active" id="speed-1.0-btn" onclick="selectSpeed(1.0)">
-                                    <span class="speed-value">1.0</span>
-                                </div>
-                                <div class="speed-dial-btn" id="speed-1.2-btn" onclick="selectSpeed(1.2)">
-                                    <span class="speed-value">1.2</span>
-                                </div>
+                        <!-- Speed Column -->
+                        <div style="flex: 1.1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="font-family: 'Mukta', sans-serif; font-size: 12px; color: var(--antara-muted); margin-bottom: 12px;">गति | Speed</div>
+                            <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
+                                <!-- Speed 0.8 -->
+                                <div class="speed-dial-btn" id="speed-0.8-btn" onclick="selectSpeed(0.8)">0.8</div>
+                                <!-- Speed 1.0 -->
+                                <div class="speed-dial-btn" id="speed-1.0-btn" onclick="selectSpeed(1.0)">1.0</div>
+                                <!-- Speed 1.2 -->
+                                <div class="speed-dial-btn" id="speed-1.2-btn" onclick="selectSpeed(1.2)">1.2</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <center>
-                    <div class="reset-link" onclick="confirmResetProgress()" style="margin-top: 4px; font-size: 11px; cursor: pointer; color: var(--antara-muted); opacity: 0.8; text-decoration: underline;">
-                        <span class="lang-h">प्रगति रीसेट करें</span><span class="lang-sep"> / </span><span class="lang-e">Reset Progress</span>
+                <!-- Row 1: Dark Theme -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 4px 8px; box-sizing: border-box; width: 100%;">
+                    <div style="font-family: 'Mukta', sans-serif; font-size: 16px; font-weight: bold; color: var(--antara-dark);">
+                        डार्क थीम <span style="font-family: 'Inter', sans-serif; font-weight: normal; color: var(--antara-muted); opacity: 0.8;">/ Dark Theme</span>
                     </div>
-                </center>
+                    <!-- Custom Toggle Switch -->
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-theme-toggle" onchange="toggleDarkMode()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Row 2: Daily Reminder -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding: 4px 8px; box-sizing: border-box; width: 100%;">
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-family: 'Mukta', sans-serif; font-size: 16px; font-weight: bold; color: var(--antara-dark);">
+                            दैनिक स्मरणपत्र <span style="font-family: 'Inter', sans-serif; font-weight: normal; color: var(--antara-muted); opacity: 0.8;">/ Daily Reminder</span>
+                        </div>
+                        <div id="settings-reminder-time-row" style="font-family: 'Mukta', sans-serif; font-size: 13px; color: var(--antara-saffron); margin-top: 4px; display: flex; align-items: center; gap: 4px; display: none;">
+                            स्मरण समय: <span id="settings-reminder-time-txt">05:15 AM</span> 
+                            <span onclick="changeReminderTimeWeb()" style="color: #64B5F6; font-size: 12px; display: inline-flex; align-items: center; gap: 2px; cursor: pointer;">
+                                (⚙️ बदलें)
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Custom Toggle Switch -->
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="settings-reminder-toggle" onchange="toggleReminderWeb()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Reset Progress Link -->
+                <div style="text-align: center; margin-bottom: 24px; width: 100%;">
+                    <span style="font-family: 'Mukta', sans-serif; font-size: 15px; color: var(--antara-muted); cursor: pointer; text-decoration: underline; text-underline-offset: 4px;" onclick="confirmResetProgress()">
+                        प्रगति रीसेट करें <span style="font-family: 'Inter', sans-serif;">/ Reset Progress</span>
+                    </span>
+                </div>
             </div>
 
             
@@ -2223,8 +1953,7 @@
             quotaSplit: 1000,
             streak: 0,
             lastChantedDate: "",
-            bookmarks: [],
-            activeDashboardTab: 'japa'
+            bookmarks: []
         };
 
         // Active Session variables
@@ -2327,8 +2056,6 @@
             }
         }
 
-
-
         // Initialize state
         // Initialize state
         function initApp() {
@@ -2353,15 +2080,8 @@
             if (!state || typeof state !== 'object') {
                 state = {
                     lastReadIndex: 1,
-                    quotaSplit: 1000,
-                    activeDashboardTab: 'japa'
+                    quotaSplit: 1000
                 };
-            }
-            if (!state.activeDashboardTab) {
-                state.activeDashboardTab = 'japa';
-            }
-            if (!state.activeMainTab) {
-                state.activeMainTab = 'sadhana';
             }
 
             state.lastReadIndex = parseInt(state.lastReadIndex);
@@ -2380,18 +2100,22 @@
             if (state.speechRate === undefined) {
                 state.speechRate = 0.3;
             }
-
-            // Apply saved dark theme preference, default to true (Dark Theme)
-            let isDarkVal = localStorage.getItem("antara_dark_theme");
-            if (isDarkVal === null) {
-                isDarkVal = "true";
-                localStorage.setItem("antara_dark_theme", "true");
+            if (state.reminderEnabled === undefined) {
+                state.reminderEnabled = false;
             }
-            const isDark = isDarkVal === "true";
+            if (state.reminderHour === undefined) {
+                state.reminderHour = 5;
+            }
+            if (state.reminderMinute === undefined) {
+                state.reminderMinute = 15;
+            }
+
+            // Apply saved dark theme preference
+            const isDark = localStorage.getItem("antara_dark_theme") === "true";
             if (isDark) {
                 document.body.classList.add("dark-theme");
-            } else {
-                document.body.classList.remove("dark-theme");
+                const iconEl = document.getElementById("theme-icon");
+                if (iconEl) iconEl.innerText = "☀️";
             }
 
             saveState(); // Save sanitized state back
@@ -2414,6 +2138,11 @@
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle("dark-theme");
             localStorage.setItem("antara_dark_theme", isDark);
+            const iconEl = document.getElementById("theme-icon");
+            if (iconEl) {
+                iconEl.innerText = isDark ? "☀️" : "🌙";
+            }
+            updateSettingsUI();
         }
 
         function selectSpeed(rate) {
@@ -2424,7 +2153,7 @@
         }
 
         function updateSettingsUI() {
-            // 1. Sync voice avatars (preference sheet)
+            // 1. Sync voice avatars
             const femaleBtn = document.getElementById("voice-female-btn");
             const maleBtn = document.getElementById("voice-male-btn");
             if (femaleBtn && maleBtn) {
@@ -2436,44 +2165,119 @@
                     maleBtn.classList.remove("active");
                 }
             }
-            
-            // Sync voice avatars (dashboard)
-            const dbFemaleBtn = document.getElementById("db-voice-female-btn");
-            const dbMaleBtn = document.getElementById("db-voice-male-btn");
-            if (dbFemaleBtn && dbMaleBtn) {
-                if (state.useMaleVoice) {
-                    dbMaleBtn.classList.add("active");
-                    dbFemaleBtn.classList.remove("active");
-                } else {
-                    dbFemaleBtn.classList.add("active");
-                    dbMaleBtn.classList.remove("active");
-                }
-            }
 
             // 2. Sync speed dials (closest to 0.8, 1.0, 1.2)
             const currentRate = state.speechRate / 0.3;
+            const btn8 = document.getElementById("speed-0.8-btn");
+            const btn10 = document.getElementById("speed-1.0-btn");
+            const btn12 = document.getElementById("speed-1.2-btn");
             
-            const syncSpeed = (id8, id10, id12) => {
-                const btn8 = document.getElementById(id8);
-                const btn10 = document.getElementById(id10);
-                const btn12 = document.getElementById(id12);
-                if (btn8 && btn10 && btn12) {
-                    btn8.classList.remove("active");
-                    btn10.classList.remove("active");
-                    btn12.classList.remove("active");
+            if (btn8 && btn10 && btn12) {
+                btn8.classList.remove("active");
+                btn10.classList.remove("active");
+                btn12.classList.remove("active");
+                
+                if (Math.abs(currentRate - 0.8) < 0.1) {
+                    btn8.classList.add("active");
+                } else if (Math.abs(currentRate - 1.2) < 0.1) {
+                    btn12.classList.add("active");
+                } else {
+                    btn10.classList.add("active");
+                }
+            }
+
+            // 3. Sync Dark Theme switch
+            const themeCheckbox = document.getElementById("settings-theme-toggle");
+            if (themeCheckbox) {
+                themeCheckbox.checked = document.body.classList.contains("dark-theme");
+            }
+
+            // 4. Sync Daily Reminder switch
+            const reminderCheckbox = document.getElementById("settings-reminder-toggle");
+            const reminderTimeRow = document.getElementById("settings-reminder-time-row");
+            const reminderTimeTxt = document.getElementById("settings-reminder-time-txt");
+
+            if (reminderCheckbox) {
+                reminderCheckbox.checked = state.reminderEnabled;
+            }
+            if (reminderTimeRow) {
+                reminderTimeRow.style.display = state.reminderEnabled ? "flex" : "none";
+            }
+            if (reminderTimeTxt) {
+                let displayHour = state.reminderHour;
+                const amPm = displayHour >= 12 ? "PM" : "AM";
+                if (displayHour === 0) displayHour = 12;
+                else if (displayHour > 12) displayHour -= 12;
+                const paddedHour = displayHour.toString().padStart(2, '0');
+                const paddedMin = state.reminderMinute.toString().padStart(2, '0');
+                reminderTimeTxt.innerText = `${paddedHour}:${paddedMin} ${amPm}`;
+            }
+
+            // 5. Sync practice mode buttons
+            const isStotramActive = document.getElementById("screen-stotram").classList.contains("active");
+            const japaBtn = document.getElementById("pref-mode-japa-btn");
+            const stotramBtn = document.getElementById("pref-mode-stotram-btn");
+            if (japaBtn && stotramBtn) {
+                if (isStotramActive) {
+                    stotramBtn.style.background = "var(--antara-saffron)";
+                    stotramBtn.style.color = "white";
+                    stotramBtn.style.borderColor = "transparent";
+                    stotramBtn.style.boxShadow = "0 4px 10px rgba(242,135,56,0.3)";
                     
-                    if (Math.abs(currentRate - 0.8) < 0.1) {
-                        btn8.classList.add("active");
-                    } else if (Math.abs(currentRate - 1.2) < 0.1) {
-                        btn12.classList.add("active");
+                    japaBtn.style.background = "transparent";
+                    japaBtn.style.color = "var(--antara-gold)";
+                    japaBtn.style.borderColor = "var(--antara-gold)";
+                    japaBtn.style.boxShadow = "none";
+                } else {
+                    japaBtn.style.background = "var(--antara-saffron)";
+                    japaBtn.style.color = "white";
+                    japaBtn.style.borderColor = "transparent";
+                    japaBtn.style.boxShadow = "0 4px 10px rgba(242,135,56,0.3)";
+                    
+                    stotramBtn.style.background = "transparent";
+                    stotramBtn.style.color = "var(--antara-gold)";
+                    stotramBtn.style.borderColor = "var(--antara-gold)";
+                    stotramBtn.style.boxShadow = "none";
+                }
+            }
+        }
+
+        function switchPracticeMode(mode) {
+            closePreferencesSheet();
+            if (mode === 'japa') {
+                startChantingSession();
+            } else if (mode === 'stotram') {
+                enterStotramScreen();
+            }
+        }
+
+        function toggleReminderWeb() {
+            const checkbox = document.getElementById("settings-reminder-toggle");
+            if (checkbox) {
+                state.reminderEnabled = checkbox.checked;
+                saveState();
+                updateSettingsUI();
+            }
+        }
+
+        function changeReminderTimeWeb() {
+            const current = `${state.reminderHour.toString().padStart(2, '0')}:${state.reminderMinute.toString().padStart(2, '0')}`;
+            const timeStr = prompt("स्मरण समय दर्ज करें (HH:MM 24-घंटे प्रारूप):\nEnter reminder time (HH:MM 24-hour format):", current);
+            if (timeStr) {
+                const parts = timeStr.split(":");
+                if (parts.length === 2) {
+                    const h = parseInt(parts[0]);
+                    const m = parseInt(parts[1]);
+                    if (!isNaN(h) && h >= 0 && h < 24 && !isNaN(m) && m >= 0 && m < 60) {
+                        state.reminderHour = h;
+                        state.reminderMinute = m;
+                        saveState();
+                        updateSettingsUI();
                     } else {
-                        btn10.classList.add("active");
+                        alert("अमान्य समय प्रारूप / Invalid time format");
                     }
                 }
-            };
-            
-            syncSpeed("speed-0.8-btn", "speed-1.0-btn", "speed-1.2-btn");
-            syncSpeed("db-speed-0.8-btn", "db-speed-1.0-btn", "db-speed-1.2-btn");
+            }
         }
 
         function randomizeTodayNama() {
@@ -2523,7 +2327,7 @@
                         if (instructionsHi) instructionsHi.classList.remove('text-glow');
                         if (instructionsEn) instructionsEn.classList.remove('text-glow');
                         
-                        handleMandalaClick();
+                        startChantingSession();
                         isNavigating = false;
                     }, 600);
                 };
@@ -2874,42 +2678,50 @@
 
         // Helper to sync quota split buttons
         function syncQuotaButtons() {
+            const btns = {
+                1000: ["quota-1000-circle"],
+                500: ["quota-500-circle"],
+                250: ["quota-250-circle"],
+                108: ["quota-108-circle"]
+            };
+            
             const activeQuota = state.quotaSplit;
             
-            // Map active quota to slider percentage positioning
-            let leftPct = "0%";
-            if (activeQuota === 250) leftPct = "33.33%";
-            else if (activeQuota === 500) leftPct = "66.67%";
-            else if (activeQuota === 1000) leftPct = "100%";
-            
-            // Update dashboard setup slider (if exists)
-            const japaFinger = document.getElementById("japa-slider-finger");
-            const japaTrack = document.getElementById("japa-active-track");
-            if (japaFinger) japaFinger.style.left = leftPct;
-            if (japaTrack) japaTrack.style.width = leftPct;
-            
-            // Update pref sheet slider (if exists)
-            const prefFinger = document.getElementById("pref-slider-finger");
-            const prefTrack = document.getElementById("pref-active-track");
-            if (prefFinger) prefFinger.style.left = leftPct;
-            if (prefTrack) prefTrack.style.width = leftPct;
-            
-            // Highlight the active label element
-            const allContainers = document.querySelectorAll(".japa-slider-container");
-            allContainers.forEach(container => {
-                const labels = container.querySelectorAll(".slider-label");
-                labels.forEach(label => {
-                    const qVal = parseInt(label.getAttribute("data-quota"));
-                    if (qVal === activeQuota) {
-                        label.style.color = "var(--antara-saffron)";
-                        label.style.transform = "scale(1.15)";
-                        label.style.textShadow = "0 0 8px rgba(224, 122, 43, 0.15)";
-                    } else {
-                        label.style.color = "var(--antara-dark)";
-                        label.style.transform = "none";
-                        label.style.textShadow = "none";
+            [1000, 500, 250, 108].forEach(q => {
+                const ids = btns[q];
+                ids.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        if (q === activeQuota) {
+                            el.classList.add("active");
+                        } else {
+                            el.classList.remove("active");
+                        }
                     }
                 });
+            });
+
+            // Sync new target options slider
+            const indexMap = {108: 0, 250: 1, 500: 2, 1000: 3};
+            const activeIdx = indexMap[state.quotaSplit] !== undefined ? indexMap[state.quotaSplit] : 3;
+
+            const finger = document.getElementById("pref-finger-pointer");
+            const trackProgress = document.getElementById("pref-track-progress");
+            if (finger) {
+                const pct = (activeIdx / 3) * 100;
+                finger.style.left = `calc(${pct}% - 12px)`;
+            }
+            if (trackProgress) {
+                trackProgress.style.width = `${(activeIdx / 3) * 100}%`;
+            }
+
+            const optElements = document.querySelectorAll(".pref-quota-opt");
+            optElements.forEach((el, idx) => {
+                if (idx === activeIdx) {
+                    el.classList.add("active");
+                } else {
+                    el.classList.remove("active");
+                }
             });
         }
 
@@ -2972,10 +2784,10 @@
                     
                     <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
                     <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
-                    <div style="font-size: 12px; color: var(--antara-dark); opacity: 0.75; margin-top: 4px;">${item.hindi} / ${item.english}</div>
+                    <div style="font-size: 12px; color: var(--antara-muted); margin-top: 4px;">${item.hindi} / ${item.english}</div>
                 </div>
                 <div class="commentary-hi" style="font-size: 15.6px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); margin-bottom: 16px; line-height: 1.5;">${hindiCommentary}</div>
-                <div class="commentary-en" style="font-size: 13px; font-family: 'Inter', sans-serif; color: var(--antara-dark); opacity: 0.75; line-height: 1.5;">${englishCommentary}</div>
+                <div class="commentary-en" style="font-size: 13px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.5;">${englishCommentary}</div>
             `;
             
             switchSelfStudyTab('commentary');
@@ -2988,130 +2800,6 @@
         }
 
         let currentSelfStudyTab = 'commentary';
-        
-        function switchDashboardTab(tab) {
-            state.activeDashboardTab = tab;
-            
-            const tabJapaSetup = document.getElementById("tab-japa-setup");
-            const tabStotramSetup = document.getElementById("tab-stotram-setup");
-            const tabJapaResume = document.getElementById("tab-japa-resume");
-            const tabStotramResume = document.getElementById("tab-stotram-resume");
-            
-            const japaSetupContent = document.getElementById("japa-setup-content");
-            const stotramSetupContent = document.getElementById("stotram-setup-content");
-            
-            const japaResumeAction = document.getElementById("japa-resume-action");
-            const stotramResumeAction = document.getElementById("stotram-resume-action");
-            
-            const applyTabStyle = (btn, isActive) => {
-                if (!btn) return;
-                if (isActive) {
-                    btn.style.background = "var(--antara-card-accent)";
-                    btn.style.color = "var(--antara-dark)";
-                    btn.style.fontWeight = "bold";
-                    btn.style.boxShadow = "0 1px 3px rgba(0,0,0,0.05)";
-                } else {
-                    btn.style.background = "transparent";
-                    btn.style.color = "var(--antara-muted)";
-                    btn.style.fontWeight = "normal";
-                    btn.style.boxShadow = "none";
-                }
-            };
-            
-            if (tab === 'japa') {
-                applyTabStyle(tabJapaSetup, true);
-                applyTabStyle(tabStotramSetup, false);
-                applyTabStyle(tabJapaResume, true);
-                applyTabStyle(tabStotramResume, false);
-                
-                if (japaSetupContent) japaSetupContent.style.display = "flex";
-                if (stotramSetupContent) stotramSetupContent.style.display = "none";
-                if (japaResumeAction) japaResumeAction.style.display = "block";
-                if (stotramResumeAction) stotramResumeAction.style.display = "none";
-            } else {
-                applyTabStyle(tabJapaSetup, false);
-                applyTabStyle(tabStotramSetup, true);
-                applyTabStyle(tabJapaResume, false);
-                applyTabStyle(tabStotramResume, true);
-                
-                if (japaSetupContent) japaSetupContent.style.display = "none";
-                if (stotramSetupContent) stotramSetupContent.style.display = "flex";
-                if (japaResumeAction) japaResumeAction.style.display = "none";
-                if (stotramResumeAction) stotramResumeAction.style.display = "block";
-            }
-        }
-
-        function switchMainTab(tab) {
-            state.activeMainTab = tab;
-            saveState();
-
-            const tabSadhana = document.getElementById("main-tab-sadhana");
-            const tabChanting = document.getElementById("main-tab-chanting");
-            
-            const sadhanaContent = document.getElementById("sadhana-tab-content");
-            const chantingContent = document.getElementById("chanting-tab-content");
-            
-            if (tab === 'sadhana') {
-                if (tabSadhana) {
-                    tabSadhana.style.background = "var(--antara-saffron)";
-                    tabSadhana.style.color = "#FFFFFF";
-                    tabSadhana.style.fontWeight = "bold";
-                    tabSadhana.style.boxShadow = "0 4px 10px rgba(224, 122, 43, 0.25)";
-                    tabSadhana.style.border = "none";
-                }
-                if (tabChanting) {
-                    tabChanting.style.background = "transparent";
-                    tabChanting.style.color = "var(--antara-gold)";
-                    tabChanting.style.fontWeight = "normal";
-                    tabChanting.style.boxShadow = "none";
-                    tabChanting.style.border = "1.5px solid var(--antara-gold)";
-                }
-                if (sadhanaContent) sadhanaContent.style.display = "flex";
-                if (chantingContent) chantingContent.style.display = "none";
-            } else {
-                if (tabChanting) {
-                    tabChanting.style.background = "var(--antara-saffron)";
-                    tabChanting.style.color = "#FFFFFF";
-                    tabChanting.style.fontWeight = "bold";
-                    tabChanting.style.boxShadow = "0 4px 10px rgba(224, 122, 43, 0.25)";
-                    tabChanting.style.border = "none";
-                }
-                if (tabSadhana) {
-                    tabSadhana.style.background = "transparent";
-                    tabSadhana.style.color = "var(--antara-gold)";
-                    tabSadhana.style.fontWeight = "normal";
-                    tabSadhana.style.boxShadow = "none";
-                    tabSadhana.style.border = "1.5px solid var(--antara-gold)";
-                }
-                if (sadhanaContent) sadhanaContent.style.display = "none";
-                if (chantingContent) chantingContent.style.display = "flex";
-            }
-        }
-
-        function handleMandalaClick() {
-            if (state.activeMainTab === 'sadhana') {
-                startChantingSession();
-            } else {
-                if (state.activeDashboardTab === 'japa') {
-                    startChantingSession();
-                } else {
-                    enterStotramScreen();
-                }
-            }
-        }
-
-        function handleDashboardResumeClick() {
-            if (state.activeMainTab === 'sadhana') {
-                startChantingSession();
-            } else {
-                if (state.activeDashboardTab === 'japa') {
-                    startChantingSession();
-                } else {
-                    enterStotramScreen();
-                }
-            }
-        }
-
         function switchSelfStudyTab(tab) {
             currentSelfStudyTab = tab;
             const tabCommentary = document.getElementById("tab-commentary");
@@ -3154,7 +2842,7 @@
                     return `
                         <div style="background: rgba(220, 107, 34, 0.03); border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid rgba(220, 107, 34, 0.08); text-align: center;">
                             <div style="font-size: 13.5px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); line-height: 1.5; white-space: pre-line; margin-bottom: 4px;">${v.sanskrit}</div>
-                            <div style="font-size: 11.5px; font-family: 'Inter', sans-serif; color: var(--antara-dark); opacity: 0.75; font-weight: 500; line-height: 1.4; white-space: pre-line;">${v.roman}</div>
+                            <div style="font-size: 11px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.4; white-space: pre-line;">${v.roman}</div>
                         </div>
                     `;
                 }).join("");
@@ -3217,11 +2905,9 @@
                 document.getElementById("resume-hindi-mean").innerText = cleanMeaningText(nextItem.hindi);
                 document.getElementById("resume-english-mean").innerText = cleanMeaningText(nextItem.english);
                 
-                document.getElementById("dashboard-resume-card").style.display = "flex";
+                document.getElementById("dashboard-resume-card").style.display = "block";
             }
             
-            syncQuotaButtons();
-            switchDashboardTab(state.activeDashboardTab || 'japa');
             renderProgressCalendar();
         }
 
@@ -3238,7 +2924,7 @@
                 days.push(d);
             }
             
-            const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
             const completed = state.completedDates || [];
             
             grid.innerHTML = days.map(d => {
@@ -3247,31 +2933,23 @@
                 const isChanted = completed.includes(dateStr);
                 const isToday = dateStr === today.toISOString().split('T')[0];
                 
-                const todayIndicator = isToday ? 'border-bottom: 2px solid var(--antara-gold); font-weight: 700; color: var(--antara-dark);' : '';
+                const dotBg = isChanted ? 'var(--antara-saffron)' : 'transparent';
+                const dotBorder = isChanted ? 'none' : '1px solid var(--antara-line)';
+                const dotColor = isChanted ? '#FFFFFF' : 'var(--antara-muted)';
+                const todayIndicator = isToday ? 'border-bottom: 2.5px solid var(--antara-gold); font-weight: 700; color: var(--antara-dark);' : '';
                 
                 return `
-                    <div class="diya-cell" style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
                         <span style="font-size: 9px; color: var(--antara-muted); ${todayIndicator} padding-bottom: 1px;">${dayName}</span>
-                        <span style="font-size: 8px; color: var(--antara-muted); opacity: 0.7; font-weight: 500;">${d.getDate()}</span>
-                        <svg class="diya-svg ${isChanted ? 'active' : ''}" viewBox="0 0 24 28">
-                            <!-- Flame -->
-                            <g class="${isChanted ? 'flickering-flame' : ''}" style="${isChanted ? '' : 'display: none;'}">
-                                <path class="diya-flame-outer" d="M12,1 C13.5,4 15,6 15,8 C15,9.8 13.5,10.8 12,10.8 C10.5,10.8 9,9.8 9,8 C9,6 10.5,4 12,1 Z" />
-                                <path class="diya-flame-inner" d="M12,3.5 C13,5.5 13.8,6.8 13.8,8 C13.8,9.2 13,10 12,10 C11,10 10.2,9.2 10.2,8 C10.2,6.8 11,5.5 12,3.5 Z" />
-                            </g>
-                            <!-- Oil Level -->
-                            <ellipse cx="12" cy="15" rx="6.5" ry="1.5" fill="${isChanted ? '#7E2C11' : 'transparent'}" />
-                            <!-- Diya Base -->
-                            <path class="diya-base" d="M 4,13 C 4,19 8,23 12,23 C 16,23 20,19 20,13 C 20,12 17,13.5 14,13 C 13,12.5 12,10 12,10 C 12,10 11,12.5 10,13 C 7,13.5 4,12 4,13 Z" />
-                        </svg>
+                        <div style="width: 22px; height: 22px; border-radius: 50%; background: ${dotBg}; border: ${dotBorder}; display: flex; align-items: center; justify-content: center; font-size: 10px; color: ${dotColor}; font-weight: 600; transition: all 0.2s;">
+                            ${isChanted ? '✓' : ''}
+                        </div>
+                        <span style="font-size: 8px; color: var(--antara-muted); opacity: 0.7;">${d.getDate()}</span>
                     </div>
                 `;
             }).join("");
             
-            const streakEl = document.getElementById("streak-count-text");
-            if (streakEl) {
-                streakEl.innerText = state.streak || 0;
-            }
+            document.getElementById("streak-count-text").innerText = state.streak || 0;
         }
 
         function confirmResetProgress() {
@@ -3554,10 +3232,10 @@
                     
                     <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
                     <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
-                    <div style="font-size: 12px; color: var(--antara-dark); opacity: 0.75; margin-top: 4px;">${item.hindi} / ${item.english}</div>
+                    <div style="font-size: 12px; color: var(--antara-muted); margin-top: 4px;">${item.hindi} / ${item.english}</div>
                 </div>
                 ${hindiPart ? `<div style="font-size: 15.6px; font-weight: bold; color: var(--antara-dark); line-height: 1.55; font-family: Georgia, serif; margin-bottom: 16px;">${hindiPart}</div>` : ""}
-                ${englishPart ? `<div style="font-size: 13px; font-weight: normal; color: var(--antara-dark); opacity: 0.75; line-height: 1.55;">${englishPart}</div>` : ""}
+                ${englishPart ? `<div style="font-size: 13px; font-weight: normal; color: var(--antara-muted); line-height: 1.55;">${englishPart}</div>` : ""}
             `;
             
             switchSelfStudyTab('commentary');
@@ -3568,520 +3246,128 @@
         
         // Saved Names sheet functionality removed
     
-                const stotramDb = [
-        {
-                "id": 1,
-                "title_hi": "पूर्वाङ्गम् (प्रारंभिक प्रार्थना)",
-                "title_en": "Purvanga (Opening Prayers)",
-                "verses": [
-                        {
-                                "sanskrit": "शुक्लाम्बरधरं विष्णुं शशिवर्णं चतुर्भुजम् ।\nप्रसन्नवदनं ध्यायेत् सर्वविघ्नोपशान्तये ॥",
-                                "roman": "śuklāmbaradharaṁ viṣṇuṁ śaśivarṇaṁ caturbhujam |\nprasannavadanaṁ dhyāyet sarvavighnopaśāntaye ||"
-                        },
-                        {
-                                "sanskrit": "यस्य द्विरदवक्त्राद्याः पारिषद्याः परः शतम् ।\nविघ्नं निघ्नन्ति सततं विष्वक्सेनं तमाश्रये ॥",
-                                "roman": "yasya dviradavaktrādyāḥ pāriṣadyāḥ paraḥ śatam |\nvighnaṁ nighnanti satataṁ viṣvakṣenaṁ tamāśraye ||"
-                        },
-                        {
-                                "sanskrit": "व्यासं वसिष्ठनप्तारं शक्तेः पौत्रमकल्मषम् ।\nपराशरात्मजं वन्दे शुकतातं तपोनिधिम् ॥",
-                                "roman": "vyāsaṁ vasiṣṭhanaptāraṁ śakteḥ pautramakalmaṣam |\nparāśarātmajaṁ vande śukatātaṁ taponidhim ||"
-                        },
-                        {
-                                "sanskrit": "व्यासाय विष्णुरूपाय व्यासरूपाय विष्णवे ।\nनमो वै ब्रह्मनिधये वासिट्ठाय नमो नमः ॥",
-                                "roman": "vyāsāya viṣṇurūpāya vyāsarūpāya viṣṇave |\nnamo vai brahmanidhaye vāsiṣṭhāya namo namaḥ ||"
-                        },
-                        {
-                                "sanskrit": "अविकाराय शुद्धाय नित्याय परमात्मने ।\nसदैकरूपरूपाय विष्णवे सर्वजिष्णवे ॥",
-                                "roman": "avikārāya śuddhāya nityāya paramātmane |\nsadaikarūparūpāya viṣṇave sarvajiṣṇave ||"
-                        },
-                        {
-                                "sanskrit": "यस्य स्मरणमात्रेण जन्मसंसारबन्धनात् ।\nविमुच्यते नमस्तस्मै विष्णवे प्रभविष्णवे ॥\nॐ नमो विष्णवे प्रभविष्णवे ।",
-                                "roman": "yasya smaraṇamātreṇa janmasamsārabandhanāt |\nvimucyate namastasmai viṣṇave prabhaviṣṇave ||\nom namo viṣṇave prabhaviṣṇave |"
-                        }
-                ]
-        },
-        {
-                "id": 2,
-                "title_hi": "ध्यानम्",
-                "title_en": "Dhyanam (Meditation)",
-                "verses": [
-                        {
-                                "sanskrit": "क्षीरोदन्वत्प्रदेशे शुचिमणिविलसत् सैकते मौक्तिकानां\nमालाक्लुप्तासनस्थः स्फटिकमणिनिभैः मौक्तिकैर्मण्डिताङ्गः ।\nशुभ्रैरभ्रैरदभ्रैः उपरि विरचितैः मुक्तपीयूष वर्षैः\nआनन्दी नः पुनीयादरिनलिनगदा शङ्खपाणिर्मुकुन्दः ॥",
-                                "roman": "kṣīrodanvatpradeśe śucimaṇivilasatsaikate mauktikānām\nmālākḷptāsanastahaḥ sphaṭikamaṇinibhaihi mauktikairmaṇḍitāṅgahaḥ |\nśubhrairabhrairadabhraihi upari viracitaihi muktapīyūṣavarṣaihi\nānandī nahaḥ punīyādarinalinagadā śaṅkhapāṇirmukundahaḥ ||"
-                        },
-                        {
-                                "sanskrit": "भूः पादौ यस्य नाभिर्वियदसुरनिलश्चन्द्र सूर्यौ च नेत्रे\nकर्णावाशाः शिरो द्यौर्मुखमपि दहनो यस्य वास्तेयमब्धिः ।\nअन्तःस्थं यस्य विश्वं सुरनरखगगोभोगिगन्धर्वदैत्यैः\nचित्रं रंरम्यते तं त्रिभुवनवपुषं विष्णुमीशं नमामि ॥",
-                                "roman": "bhūhuḥ pādau yasya nābhirviyadasuranilaścandra sūryau ca netre\nkarṇāvāśāhaḥ śiro dyaurmukhamapi dahano yasya vāsteyamabdhihi |\nantaḥsthaṁ yasya viśvaṁ suranarakhagagobhogigandharvadaityaihi\ncitraṁ raṁramyate taṁ tribhuvanavapuṣaṁ viṣṇumīśaṁ namāmi ||"
-                        },
-                        {
-                                "sanskrit": "शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं\nविश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गम् ।\nलक्ष्मीकान्तं कमलनयनं योगिभिर्ध्यानगम्यं\nवन्दे विष्णुं भवभयहरं सर्वलोकैकनाथम् ॥",
-                                "roman": "śāntākāraṁ bhujagaśayanaṁ padmanābhaṁ sureśaṁ\nviśvādhāraṁ gaganasadṛśaṁ meghavarṇaṁ śubhāṅgam |\nlakṣmīkāntaṁ kamalanayanaṁ yogibhirdhyānagamyaṁ\nvande viṣṇuṁ bhavabhayaharaṁ sarvalokaikanātham ||"
-                        },
-                        {
-                                "sanskrit": "मेघश्यामं पीतकौशेयवासं श्रीवत्साङ्कं कौस्तुभोद्भासिताङ्गम् ।\nपुण्योपेतं पुण्डरीकायताक्षं विष्णुं वन्दे सर्वलोकैकनाथम् ॥",
-                                "roman": "meghaśyāmaṁ pītakaueśayavāsaṁ śrīvatsāṅkaṁ kaustubhodbhāsitāṅgam |\npuṇyopetaṁ puṇḍarīkāyatākṣaṁ viṣṇuṁ vande sarvalokaikanātham ||"
-                        }
-                ]
-        },
-        {
-                "id": 3,
-                "title_hi": "सहस्रनाम स्तोत्रम्",
-                "title_en": "Sahasranama Stotram (The 1000 Names)",
-                "verses": [
-                        {
-                                "sanskrit": "ॐ विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।\nभूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥",
-                                "roman": "oṃ viśvaṃ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |\nbhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||"
-                        },
-                        {
-                                "sanskrit": "पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।\nअव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥",
-                                "roman": "pūtātmā paramātmā ca muktānāṃ paramā gatiḥ |\navyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||"
-                        },
-                        {
-                                "sanskrit": "योगो योगविदां नेता प्रधानपुरुषेश्वरः ।\nनारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥",
-                                "roman": "yogo yogavidāṃ netā pradhānapuruṣeśvaraḥ |\nnārasiṃhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||"
-                        },
-                        {
-                                "sanskrit": "सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।\nसम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥",
-                                "roman": "sarvaḥ śarvaḥ śivaḥ sthāṇurbhūtādirnidhiravyayaḥ |\nsambhavo bhāvano bhartā prabhavaḥ prabhurīśvaraḥ || 4 ||"
-                        },
-                        {
-                                "sanskrit": "स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।\nअनादिनिधनो धाता विधाता धातुरुत्तमः ॥ ५ ॥",
-                                "roman": "svayambhūḥ śambhurādityaḥ puṣkarākṣo mahāsvanaḥ |\nanādinidhano dhātā vidhātā dhāturuttamaḥ || 5 ||"
-                        },
-                        {
-                                "sanskrit": "अप्रमेयो हृषीकेशः पद्मनाभोऽमरप्रभुः ।\nविश्वकर्मा मनुस्त्वष्टा स्थविष्ठः स्थविरो ध्रुवः ॥ ६ ॥",
-                                "roman": "aprameyo hṛṣīkeśaḥ padmanābho'maraprabhuḥ |\nviśvakarmā manustvaṣṭā sthaviṣṭhaḥ sthaviro dhruvaḥ || 6 ||"
-                        },
-                        {
-                                "sanskrit": "अग्राह्यः शाश्वतः कृष्णो लोहिताक्षः प्रतर्दनः ।\nप्रभूतस्त्रिककुब्धाम पवित्रं मङ्गलं परम् ॥ ७ ॥",
-                                "roman": "agrāhyaḥ śāśvataḥ kṛṣṇo lohitākṣaḥ pratardanaḥ |\nprabhūtastrikakubdhāma pavitraṃ maṅgalaṃ param || 7 ||"
-                        },
-                        {
-                                "sanskrit": "ईशानः प्राणदः प्राणो ज्येष्ठः श्रेष्ठः प्रजापतिः ।\nहिरण्यगर्भो भूगर्भो माधवो मधुसूदनः ॥ ८ ॥",
-                                "roman": "īśānaḥ prāṇadaḥ prāṇo jyeṣṭhaḥ śreṣṭhaḥ prajāpatiḥ |\nhiraṇyagarbho bhūgarbho mādhavo madhusūdanaḥ || 8 ||"
-                        },
-                        {
-                                "sanskrit": "ईश्वरो विक्रमी धन्वी मेधावी विक्रमः क्रमः ।\nअनुत्तमो दुराधर्षः कृतज्ञः कृतिरात्मवान् ॥ ९ ॥",
-                                "roman": "īśvaro vikramī dhanvī medhāvī vikramaḥ kramaḥ |\nanuttamo durādharṣaḥ kṛtajñaḥ kṛtirātmavān || 9 ||"
-                        },
-                        {
-                                "sanskrit": "सुरेशः शरणं शर्म विश्वरेताः प्रजाभवः ।\nअहः संवत्सरो व्यालः प्रत्ययः सर्वदर्शनः ॥ १० ॥",
-                                "roman": "sureśaḥ śaraṇaṃ śarma viśvaretāḥ prajābhavaḥ |\nahaḥ saṃvatsaro vyālaḥ pratyayaḥ sarvadarśanaḥ || 10 ||"
-                        },
-                        {
-                                "sanskrit": "अजः सर्वेश्वरः सिद्धः सिद्धिः सर्वादिरच्युतः ।\nवृषाकपिरमेयात्मा सर्वयोगविनिःसृतः ॥ ११ ॥",
-                                "roman": "ajaḥ sarveśvaraḥ siddhaḥ siddhiḥ sarvādiracyutaḥ |\nvṛṣākapirameyātmā sarvayogaviniḥsṛtaḥ || 11 ||"
-                        },
-                        {
-                                "sanskrit": "वसुर्वसुमनाः सत्यः समात्माऽसम्मितः समः ।\nअमोघः पुण्डरीकाक्षो वृषकर्मा वृषाकृतिः ॥ १२ ॥",
-                                "roman": "vasurvasumanāḥ satyaḥ samātmā'sammitaḥ samaḥ |\namoghaḥ puṇḍarīkākṣo vṛṣakarmā vṛṣākṛtiḥ || 12 ||"
-                        },
-                        {
-                                "sanskrit": "रुद्रो बहुशिरा बभ्रुर्विश्वयोनिः शुचिश्रवाः ।\nअमृतः शाश्वतस्थाणुर्वरारोहो महातपाः ॥ १३ ॥",
-                                "roman": "rudro bahuśirā babhrurviśvayoniḥ śuciśravāḥ |\namṛtaḥ śāśvatasthāṇurvarāroho mahātapāḥ || 13 ||"
-                        },
-                        {
-                                "sanskrit": "सर्वगः सर्वविद्भानुर्विष्वक्सेनो जनार्दनः ।\nवेदो वेदविदव्यङ्गो वेदाङ्गो वेदवित् कविः ॥ १४ ॥",
-                                "roman": "sarvagaḥ sarvavidbhānurviṣvakseno janārdanaḥ |\nvedo vedavidavyaṅgo vedāṅgo vedavit kaviḥ || 14 ||"
-                        },
-                        {
-                                "sanskrit": "लोकाध्यक्षः सुराध्यक्षो धर्माध्यक्षः कृताकृतः ।\nचतुरात्मा चतुर्व्यूहश्चतुर्दंष्ट्रश्चतुर्भुजः ॥ १५ ॥",
-                                "roman": "lokādhyakṣaḥ surādhyakṣo dharmādhyakṣaḥ kṛtākṛtaḥ |\ncaturātmā caturvyūhaścaturdaṃṣṭraścaturbhujaḥ || 15 ||"
-                        },
-                        {
-                                "sanskrit": "भ्राजिष्णुर्भोजनं भोक्ता सहिष्णुर्जगदादिजः ।\nअनघो विजयो जेता विश्वयोनिः पुनर्वसुः ॥ १६ ॥",
-                                "roman": "bhrājiṣṇurbhojanaṃ bhoktā sahiṣṇurjagadādijaḥ |\nanagho vijayo jetā viśvayoniḥ punarvasuḥ || 16 ||"
-                        },
-                        {
-                                "sanskrit": "उपेन्द्रो वामनः प्रांशुरमोघः शुचिरूर्जितः ।\nअतीन्द्रः सङ्ग्रहः सर्गो धृतात्मा नियमो यमः ॥ १७ ॥",
-                                "roman": "upendro vāmanaḥ prāṃśuramoghaḥ śucirūrjitaḥ |\natīndraḥ saṅgrahaḥ sargo dhṛtātmā niyamo yamaḥ || 17 ||"
-                        },
-                        {
-                                "sanskrit": "वेद्यो वैद्यः सदायोगी वीरहा माधवो मधुः ।\nअतीन्द्रियो महामायो महोत्साहो महाबलः ॥ १८ ॥",
-                                "roman": "vedyo vaidyaḥ sadāyogī vīrahā mādhavo madhuḥ |\natīndriyo mahāmāyo mahotsāho mahābalaḥ || 18 ||"
-                        },
-                        {
-                                "sanskrit": "महाबुद्धिर्महावीर्यो महाशक्तिर्महाद्युतिः ।\nअनिर्देश्यवपुः श्रीमानमेयात्मा महाद्रिधृक् ॥ १९ ॥",
-                                "roman": "mahābuddhirmahāvīryo mahāśaktirmahādyutiḥ |\nanirdeśyavapuḥ śrīmānameyātmā mahādridhṛk || 19 ||"
-                        },
-                        {
-                                "sanskrit": "महेष्वासो महीभर्ता श्रीनिवासः सतां गतिः ।\nअनिरुद्धः सुरानन्दो गोविन्दो गोविदां पतिः ॥ २० ॥",
-                                "roman": "maheṣvāso mahībhartā śrīnivāsaḥ satāṃ gatiḥ |\naniruddhaḥ surānando govindo govidāṃ patiḥ || 20 ||"
-                        },
-                        {
-                                "sanskrit": "मरीचिर्दमनो हंसः सुपर्णो भुजगोत्तमः ।\nहिरण्यनाभः सुतपाः पद्मनाभः प्रजापतिः ॥ २१ ॥",
-                                "roman": "marīcirdamano haṃsaḥ suparṇo bhujagottamaḥ |\nhiraṇyanābhaḥ sutapāḥ padmanābhaḥ prajāpatiḥ || 21 ||"
-                        },
-                        {
-                                "sanskrit": "अमृत्युः सर्वदृक् सिंहः सन्धाता सन्धिमान् स्थिरः ।\nअजो दुर्मर्षणः शास्ता विश्रुतात्मा सुरारिहा ॥ २२ ॥",
-                                "roman": "amṛtyuḥ sarvadṛk siṃhaḥ sandhātā sandhimān sthiraḥ |\najo durmarṣaṇaḥ śāstā viśrutātmā surārihā || 22 ||"
-                        },
-                        {
-                                "sanskrit": "गुरुर्गुरुतमो धाम सत्यः सत्यपराक्रमः ।\nनिमिषोऽनिमिषः स्रग्वी वाचस्पतिरुदारधीः ॥ २३ ॥",
-                                "roman": "gururgurutamo dhāma satyaḥ satyaparākramaḥ |\nnimiṣo'nimiṣaḥ sragvī vācaspatirudāradhīḥ || 23 ||"
-                        },
-                        {
-                                "sanskrit": "अग्रणीर्ग्रामणीः श्रीमान् न्यायो नेता समीरणः ।\nसहस्रमूर्धा विश्वात्मा सहस्राक्षः सहस्रपात् ॥ २४ ॥",
-                                "roman": "agraṇīrgrāmaṇīḥ śrīmān nyāyo netā samīraṇaḥ |\nsahasramūrdhā viśvātmā sahasrākṣaḥ sahasrapāt || 24 ||"
-                        },
-                        {
-                                "sanskrit": "आवर्तनो निवृत्तात्मा संवृतः सम्प्रमर्दनः ।\nअहः संवर्तको वह्निरनिलो धरणीधरः ॥ २५ ॥",
-                                "roman": "āvartano nivṛttātmā saṃvṛtaḥ sampramardanaḥ |\nahaḥ saṃvartako vahniranilo dharaṇīdharaḥ || 25 ||"
-                        },
-                        {
-                                "sanskrit": "सुप्रसादः प्रसन्नात्मा विश्वधृग्विश्वभुग्विभुः ।\nसत्कर्ता सत्कृतः साधुर्जह्नुर्नारायणो नरः ॥ २६ ॥",
-                                "roman": "suprasādaḥ prasannātmā viśvadhṛgviśvabhugvibhuḥ |\nsatkartā satkṛtaḥ sādhurjahnurnārāyaṇo naraḥ || 26 ||"
-                        },
-                        {
-                                "sanskrit": "असङ्ख्येयोऽप्रमेयात्मा विशिष्टः शिष्टकृच्छुचिः ।\nसिद्धार्थः सिद्धसङ्कल्पः सिद्धिदः सिद्धिसाधनः ॥ २७ ॥",
-                                "roman": "asaṅkhyeyo'prameyātmā viśiṣṭaḥ śiṣṭakṛcchuciḥ |\nsiddhārthaḥ siddhasaṅkalpaḥ siddhidaḥ siddhisādhanaḥ || 27 ||"
-                        },
-                        {
-                                "sanskrit": "वृषाही वृषभो विष्णुर्वृषपर्वा वृषोदरः ।\nवर्धनो वर्धमानश्च विविक्तः श्रुतिसागरः ॥ २८ ॥",
-                                "roman": "vṛṣāhī vṛṣabho viṣṇurvṛṣaparvā vṛṣodaraḥ |\nvardhano vardhamānaśca viviktaḥ śrutisāgaraḥ || 28 ||"
-                        },
-                        {
-                                "sanskrit": "सुभुजो दुर्धरो वाग्मी महेन्द्रो वसुदो वसुः ।\nनैकरूपो बृहद्रूपः शिपिविष्टः प्रकाशनः ॥ २९ ॥",
-                                "roman": "subhujo durdharo vāgmī mahendro vasudo vasuḥ |\nnaikarūpo bṛhadrūpaḥ śipiviṣṭaḥ prakāśanaḥ || 29 ||"
-                        },
-                        {
-                                "sanskrit": "ओजस्तेजोद्युतिधरः प्रकाशात्मा प्रतापनः ।\nऋद्धः स्पष्टाक्षरो मन्त्रश्चन्द्रांशुर्भास्करद्युतिः ॥ ३० ॥",
-                                "roman": "ojastejodyutidharaḥ prakāśātmā pratāpanaḥ |\nṛddhaḥ spaṣṭākṣaro mantraścandrāṃśurbhāskaradyutiḥ || 30 ||"
-                        },
-                        {
-                                "sanskrit": "अमृतांशूद्भवो भानुः शशबिन्दुः सुरेश्वरः ।\nऔषधं जगतः सेतुः सत्यधर्मपराक्रमः ॥ ३१ ॥",
-                                "roman": "amṛtāṃśūdbhavo bhānuḥ śaśabinduḥ sureśvaraḥ |\nauṣadhaṃ jagataḥ setuḥ satyadharmaparākramaḥ || 31 ||"
-                        },
-                        {
-                                "sanskrit": "भूतभव्यभवन्नाथः पवनः पावनोऽनलः ।\nकामहा कामकृत्कान्तः कामः कामप्रदः प्रभुः ॥ ३२ ॥",
-                                "roman": "bhūtabhavyabhavannāthaḥ pavanaḥ pāvano'nalaḥ |\nkāmahā kāmakṛtkāntaḥ kāmaḥ kāmapradaḥ prabhuḥ || 32 ||"
-                        },
-                        {
-                                "sanskrit": "युगादिकृद्युगावर्तो नैकमायो महाशनः ।\nअदृश्यो व्यक्तरूपश्च सहस्रजिदनन्तजित् ॥ ३३ ॥",
-                                "roman": "yugādikṛdyugāvarto naikamāyo mahāśanaḥ |\nadṛśyo vyaktarūpaśca sahasrajidanantajit || 33 ||"
-                        },
-                        {
-                                "sanskrit": "इष्टोऽविशिष्टः शिष्टेष्टः शिखण्डी नहुषो वृषः ।\nक्रोधहा क्रोधकृत्कर्ता विश्वबाहुर्महीधरः ॥ ३४ ॥",
-                                "roman": "iṣṭo'viśiṣṭaḥ śiṣṭeṣṭaḥ śikhaṇḍī nahuṣo vṛṣaḥ |\nkrodhahā krodhakṛtkartā viśvabāhurmahīdharaḥ || 34 ||"
-                        },
-                        {
-                                "sanskrit": "अच्युतः प्रथितः प्राणः प्राणदो वासवानुजः ।\nअपांनिधिरधिष्ठानमप्रमत्तः प्रतिष्ठितः ॥ ३५ ॥",
-                                "roman": "acyutaḥ prathitaḥ prāṇaḥ prāṇado vāsavānujaḥ |\napāṃnidhiradhiṣṭhānamapramattaḥ pratiṣṭhitaḥ || 35 ||"
-                        },
-                        {
-                                "sanskrit": "स्कन्दः स्कन्दधरो धुर्यो वरदो वायुवाहनः ।\nवासुदेवो बृहद्भानुरादिदेवः पुरन्दरः ॥ ३६ ॥",
-                                "roman": "skandaḥ skandadharo dhuryo varado vāyuvāhanaḥ |\nvāsudevo bṛhadbhānurādidevaḥ purandaraḥ || 36 ||"
-                        },
-                        {
-                                "sanskrit": "अशोकस्तारणस्तारः शूरः शौरिर्जनेश्वरः ।\nअनुकूलः शतावर्तः पद्मी पद्मनिभेक्षणः ॥ ३७ ॥",
-                                "roman": "aśokastāraṇastāraḥ śūraḥ śaurirjaneśvaraḥ |\nanukūlaḥ śatāvartaḥ padmī padmanibhekṣaṇaḥ || 37 ||"
-                        },
-                        {
-                                "sanskrit": "पद्मनाभोऽरविन्दाक्षः पद्मगर्भः शरीरभृत् ।\nमहर्द्धिरृद्धो वृद्धात्मा महाक्षो गरुडध्वजः ॥ ३८ ॥",
-                                "roman": "padmanābho'ravindākṣaḥ padmagarbhaḥ śarīrabhṛt |\nmaharddhirṛddho vṛddhātmā mahākṣo garuḍadhvajaḥ || 38 ||"
-                        },
-                        {
-                                "sanskrit": "अतुलः शरभो भीमः समयज्ञो हविर्हरिः ।\nसर्वलक्षणलक्षण्यो लक्ष्मीवान् समितिञ्जयः ॥ ३९ ॥",
-                                "roman": "atulaḥ śarabho bhīmaḥ samayajño havirhariḥ |\nsarvalakṣaṇalakṣaṇyo lakṣmīvān samitiñjayaḥ || 39 ||"
-                        },
-                        {
-                                "sanskrit": "विक्षरो रोहितो मार्गो हेतुर्दामोदरः सहः ।\nमहीधरो महाभागो वेगवानमिताशनः ॥ ४० ॥",
-                                "roman": "vikṣaro rohito mārgo heturdāmodaraḥ sahaḥ |\nmahīdharo mahābhāgo vegavānamitāśanaḥ || 40 ||"
-                        },
-                        {
-                                "sanskrit": "उद्भवः क्षोभणो देवः श्रीगर्भः परमेश्वरः ।\nकरणं कारणं कर्ता विकर्ता गहनो गुहः ॥ ४१ ॥",
-                                "roman": "udbhavaḥ kṣobhaṇo devaḥ śrīgarbhaḥ parameśvaraḥ |\nkaraṇaṃ kāraṇaṃ kartā vikartā gahano guhaḥ || 41 ||"
-                        },
-                        {
-                                "sanskrit": "व्यवसायो व्यवस्थानः संस्थानः स्थानदो ध्रुवः ।\nपरर्द्धिः परमस्पष्टस्तुष्टः पुष्टः शुभेक्षणः ॥ ४२ ॥",
-                                "roman": "vyavasāyo vyavasthānaḥ saṃsthānaḥ sthānado dhruvaḥ |\npararddhiḥ paramaspaṣṭastuṣṭaḥ puṣṭaḥ śubhekṣaṇaḥ || 42 ||"
-                        },
-                        {
-                                "sanskrit": "रामो विरामो विरजो मार्गो नेयो नयोऽनयः ।\nवीरः शक्तिमतां श्रेष्ठो धर्मो धर्मविदुत्तमः ॥ ४३ ॥",
-                                "roman": "rāmo virāmo virajo mārgo neyo nayo'nayaḥ |\nvīraḥ śaktimatāṃ śreṣṭho dharmo dharmaviduttamaḥ || 43 ||"
-                        },
-                        {
-                                "sanskrit": "वैकुण्ठः पुरुषः प्राणः प्राणदः प्रणवः पृथुः ।\nहिरण्यगर्भः शत्रुघ्नो व्याप्तो वायुरधोक्षजः ॥ ४४ ॥",
-                                "roman": "vaikuṇṭhaḥ puruṣaḥ prāṇaḥ prāṇadaḥ praṇavaḥ pṛthuḥ |\nhiraṇyagarbhaḥ śatrughno vyāpto vāyuradhokṣajaḥ || 44 ||"
-                        },
-                        {
-                                "sanskrit": "ऋतुः सुदर्शनः कालः परमेष्ठी परिग्रहः ।\nउग्रः संवत्सरो दक्षो विश्रामो विश्वदक्षिणः ॥ ४५ ॥",
-                                "roman": "ṛtuḥ sudarśanaḥ kālaḥ parameṣṭhī parigrahaḥ |\nugraḥ saṃvatsaro dakṣo viśrāmo viśvadakṣiṇaḥ || 45 ||"
-                        },
-                        {
-                                "sanskrit": "विस्तारः स्थावरस्थाणुः प्रमाणं बीजमव्ययम् ।\nअर्थोऽनर्थो महाकोशो महाभोगो महाधनः ॥ ४६ ॥",
-                                "roman": "vistāraḥ sthāvarasthāṇuḥ pramāṇaṃ bījamavyayam |\nartho'nartho mahākośo mahābhogo mahādhanaḥ || 46 ||"
-                        },
-                        {
-                                "sanskrit": "अनिर्विण्णः स्थविष्ठोऽभूर्धर्मयूपो महामखः ।\nनक्षत्रनेमिर्नक्षत्री क्षमः क्षामः समीहनः ॥ ४७ ॥",
-                                "roman": "anirviṇṇaḥ sthaviṣṭho'bhūrdharmayūpo mahāmakhaḥ |\nnakṣatranemirnakṣatrī kṣamaḥ kṣāmaḥ samīhanaḥ || 47 ||"
-                        },
-                        {
-                                "sanskrit": "यज्ञ इज्यो महेज्यश्च क्रतुः सत्रं सतां गतिः ।\nसर्वदर्शी विमुक्तात्मा सर्वज्ञो ज्ञानमुत्तमम् ॥ ४८ ॥",
-                                "roman": "yajña ijyo mahejyaśca kratuḥ satraṃ satāṃ gatiḥ |\nsarvadarśī vimuktātmā sarvajño jñānamuttamam || 48 ||"
-                        },
-                        {
-                                "sanskrit": "सुव्रतः सुमुखः सूक्ष्मः सुघोषः सुखदः सुहृत् ।\nमनोहरो जितक्रोधो वीरबाहुर्विदारणः ॥ ४९ ॥",
-                                "roman": "suvrataḥ sumukhaḥ sūkṣmaḥ sughoṣaḥ sukhadaḥ suhṛt |\nmanoharo jitakrodho vīrabāhurvidāraṇaḥ || 49 ||"
-                        },
-                        {
-                                "sanskrit": "स्वापनः स्ववशो व्यापी नैकात्मा नैककर्मकृत् ।\nवत्सरो वत्सलो वत्सी रत्नगर्भो धनेश्वरः ॥ ५० ॥",
-                                "roman": "svāpanaḥ svavaśo vyāpī naikātmā naikakarmakṛt |\nvatsaro vatsalo vatsī ratnagarbho dhaneśvaraḥ || 50 ||"
-                        },
-                        {
-                                "sanskrit": "धर्मगुब्धर्मकृद्धर्मी सदसत्क्षरमक्षरम् ।\nअविज्ञाता सहस्रांशुर्विधाता कृतलक्षणः ॥ ५१ ॥",
-                                "roman": "dharmagubdharmakṛddharmī sadasatkṣaramakṣaram |\navijñātā sahasrāṃśurvidhātā kṛtalakṣaṇaḥ || 51 ||"
-                        },
-                        {
-                                "sanskrit": "गभस्तिनेमिः सत्त्वस्थः सिंहो भूतमहेश्वरः ।\nआदिदेवो महादेवो देवेशो देवभृद्गुरुः ॥ ५२ ॥",
-                                "roman": "gabhastinemiḥ sattvasthaḥ siṃho bhūtamaheśvaraḥ |\nādidevo mahādevo deveśo devabhṛdguruḥ || 52 ||"
-                        },
-                        {
-                                "sanskrit": "उत्तरो गोपतिर्गोप्ता ज्ञानगम्यः पुरातनः ।\nशरीरभूतभृद्भोक्ता कपीन्द्रो भूरिदक्षिणः ॥ ५३ ॥",
-                                "roman": "uttaro gopatirgoptā jñānagamyaḥ purātanaḥ |\nśarīrabhūtabhṛdbhoktā kapīndro bhūridakṣiṇaḥ || 53 ||"
-                        },
-                        {
-                                "sanskrit": "सोमपोऽमृतपः सोमः पुरुजित्पुरुसत्तमः ।\nविनयो जयः सत्यसन्धो दाशार्हः सात्वताम्पतिः  विनियोज्यः ॥ ५४ ॥",
-                                "roman": "somapo'mṛtapaḥ somaḥ purujitpurusattamaḥ |\nvinayo jayaḥ satyasandho dāśārhaḥ sātvatāmpatiḥ  viniyojyaḥ || 54 ||"
-                        },
-                        {
-                                "sanskrit": "जीवो विनयिता साक्षी मुकुन्दोऽमितविक्रमः ।\nअम्भोनिधिरनन्तात्मा महोदधिशयोऽन्तकः ॥ ५५ ॥",
-                                "roman": "jīvo vinayitā sākṣī mukundo'mitavikramaḥ |\nambhonidhiranantātmā mahodadhiśayo'ntakaḥ || 55 ||"
-                        },
-                        {
-                                "sanskrit": "अजो महार्हः स्वाभाव्यो जितामित्रः प्रमोदनः ।\nआनन्दो नन्दनो नन्दः सत्यधर्मा त्रिविक्रमः ॥ ५६ ॥",
-                                "roman": "ajo mahārhaḥ svābhāvyo jitāmitraḥ pramodanaḥ |\nānando nandano nandaḥ satyadharmā trivikramaḥ || 56 ||"
-                        },
-                        {
-                                "sanskrit": "महर्षिः कपिलाचार्यः कृतज्ञो मेदिनीपतिः ।\nत्रिपदस्त्रिदशाध्यक्षो महाशृङ्गः कृतान्तकृत् ॥ ५७ ॥",
-                                "roman": "maharṣiḥ kapilācāryaḥ kṛtajño medinīpatiḥ |\ntripadastridaśādhyakṣo mahāśṛṅgaḥ kṛtāntakṛt || 57 ||"
-                        },
-                        {
-                                "sanskrit": "महावराहो गोविन्दः सुषेणः कनकाङ्गदी ।\nगुह्यो गभीरो गहनो गुप्तश्चक्रगदाधरः ॥ ५८ ॥",
-                                "roman": "mahāvarāho govindaḥ suṣeṇaḥ kanakāṅgadī |\nguhyo gabhīro gahano guptaścakragadādharaḥ || 58 ||"
-                        },
-                        {
-                                "sanskrit": "वेधाः स्वाङ्गोऽजितः कृष्णो दृढः सङ्कर्षणोऽच्युतः ।\nवरुणो वारुणो वृक्षः पुष्कराक्षो महामनाः ॥ ५९ ॥",
-                                "roman": "vedhāḥ svāṅgo'jitaḥ kṛṣṇo dṛḍhaḥ saṅkarṣaṇo'cyutaḥ |\nvaruṇo vāruṇo vṛkṣaḥ puṣkarākṣo mahāmanāḥ || 59 ||"
-                        },
-                        {
-                                "sanskrit": "भगवान् भगहाऽऽनन्दी वनमाली हलायुधः ।\nआदित्यो ज्योतिरादित्यः सहिष्णुर्गतिसत्तमः ॥ ६० ॥",
-                                "roman": "bhagavān bhagahā''nandī vanamālī halāyudhaḥ |\nādityo jyotirādityaḥ sahiṣṇurgatisattamaḥ || 60 ||"
-                        },
-                        {
-                                "sanskrit": "सुधन्वा खण्डपरशुर्दारुणो द्रविणप्रदः ।\nदिवस्पृक् सर्वदृग्व्यासो वाचस्पतिरयोनिजः ॥ ६१ ॥",
-                                "roman": "sudhanvā khaṇḍaparaśurdāruṇo draviṇapradaḥ |\ndivaspṛk sarvadṛgvyāso vācaspatirayonijaḥ || 61 ||"
-                        },
-                        {
-                                "sanskrit": "त्रिसामा सामगः साम निर्वाणं भेषजं भिषक् ।\nसंन्यासकृच्छमः शान्तो निष्ठा शान्तिः परायणम् ॥ ६२ ॥",
-                                "roman": "trisāmā sāmagaḥ sāma nirvāṇaṃ bheṣajaṃ bhiṣak |\nsaṃnyāsakṛcchamaḥ śānto niṣṭhā śāntiḥ parāyaṇam || 62 ||"
-                        },
-                        {
-                                "sanskrit": "शुभाङ्गः शान्तिदः स्रष्टा कुमुदः कुवलेशयः ।\nगोहितो गोपतिर्गोप्ता वृषभाक्षो वृषप्रियः ॥ ६३ ॥",
-                                "roman": "śubhāṅgaḥ śāntidaḥ sraṣṭā kumudaḥ kuvaleśayaḥ |\ngohito gopatirgoptā vṛṣabhākṣo vṛṣapriyaḥ || 63 ||"
-                        },
-                        {
-                                "sanskrit": "अनिवर्ती निवृत्तात्मा सङ्क्षेप्ता क्षेमकृच्छिवः ।\nश्रीवत्सवक्षाः श्रीवासः श्रीपतिः श्रीमतांवरः ॥ ६४ ॥",
-                                "roman": "anivartī nivṛttātmā saṅkṣeptā kṣemakṛcchivaḥ |\nśrīvatsavakṣāḥ śrīvāsaḥ śrīpatiḥ śrīmatāṃvaraḥ || 64 ||"
-                        },
-                        {
-                                "sanskrit": "श्रीदः श्रीशः श्रीनिवासः श्रीनिधिः श्रीविभावनः ।\nश्रीधरः श्रीकरः श्रेयः श्रीमाँल्लोकत्रयाश्रयः ॥ ६५ ॥",
-                                "roman": "śrīdaḥ śrīśaḥ śrīnivāsaḥ śrīnidhiḥ śrīvibhāvanaḥ |\nśrīdharaḥ śrīkaraḥ śreyaḥ śrīmā~llokatrayāśrayaḥ || 65 ||"
-                        },
-                        {
-                                "sanskrit": "स्वक्षः स्वङ्गः शतानन्दो नन्दिर्ज्योतिर्गणेश्वरः ।\nविजितात्माऽविधेयात्मा सत्कीर्तिश्छिन्नसंशयः ॥ ६६ ॥",
-                                "roman": "svakṣaḥ svaṅgaḥ śatānando nandirjyotirgaṇeśvaraḥ |\nvijitātmā'vidheyātmā satkīrtiśchinnasaṃśayaḥ || 66 ||"
-                        },
-                        {
-                                "sanskrit": "उदीर्णः सर्वतश्चक्षुरनीशः शाश्वतस्थिरः ।\nभूशयो भूषणो भूतिर्विशोकः शोकनाशनः ॥ ६७ ॥",
-                                "roman": "udīrṇaḥ sarvataścakṣuranīśaḥ śāśvatasthiraḥ |\nbhūśayo bhūṣaṇo bhūtirviśokaḥ śokanāśanaḥ || 67 ||"
-                        },
-                        {
-                                "sanskrit": "अर्चिष्मानर्चितः कुम्भो विशुद्धात्मा विशोधनः ।\nअनिरुद्धोऽप्रतिरथः प्रद्युम्नोऽमितविक्रमः ॥ ६८ ॥",
-                                "roman": "arciṣmānarcitaḥ kumbho viśuddhātmā viśodhanaḥ |\naniruddho'pratirathaḥ pradyumno'mitavikramaḥ || 68 ||"
-                        },
-                        {
-                                "sanskrit": "कालनेमिनिहा वीरः शौरिः शूरजनेश्वरः ।\nत्रिलोकात्मा त्रिलोकेशः केशवः केशिहा हरिः ॥ ६९ ॥",
-                                "roman": "kālaneminihā vīraḥ śauriḥ śūrajaneśvaraḥ |\ntrilokātmā trilokeśaḥ keśavaḥ keśihā hariḥ || 69 ||"
-                        },
-                        {
-                                "sanskrit": "कामदेवः कामपालः कामी कान्तः कृतागमः ।\nअनिर्देश्यवपुर्विष्णुर्वीरोऽनन्तो धनञ्जयः ॥ ७० ॥",
-                                "roman": "kāmadevaḥ kāmapālaḥ kāmī kāntaḥ kṛtāgamaḥ |\nanirdeśyavapurviṣṇurvīro'nanto dhanañjayaḥ || 70 ||"
-                        },
-                        {
-                                "sanskrit": "ब्रह्मण्यो ब्रह्मकृद् ब्रह्मा ब्रह्म ब्रह्मविवर्धनः ।\nब्रह्मविद् ब्राह्मणो ब्रह्मी ब्रह्मज्ञो ब्राह्मणप्रियः ॥ ७१ ॥",
-                                "roman": "brahmaṇyo brahmakṛd brahmā brahma brahmavivardhanaḥ |\nbrahmavid brāhmaṇo brahmī brahmajño brāhmaṇapriyaḥ || 71 ||"
-                        },
-                        {
-                                "sanskrit": "महाक्रमो महाकर्मा महातेजा महोरगः ।\nमहाक्रतुर्महायज्वा महायज्ञो महाहविः ॥ ७२ ॥",
-                                "roman": "mahākramo mahākarmā mahātejā mahoragaḥ |\nmahākraturmahāyajvā mahāyajño mahāhaviḥ || 72 ||"
-                        },
-                        {
-                                "sanskrit": "स्तव्यः स्तवप्रियः स्तोत्रं स्तुतिः स्तोता रणप्रियः ।\nपूर्णः पूरयिता पुण्यः पुण्यकीर्तिरनामयः ॥ ७३ ॥",
-                                "roman": "stavyaḥ stavapriyaḥ stotraṃ stutiḥ stotā raṇapriyaḥ |\npūrṇaḥ pūrayitā puṇyaḥ puṇyakīrtiranāmayaḥ || 73 ||"
-                        },
-                        {
-                                "sanskrit": "मनोजवस्तीर्थकरो वसुरेता वसुप्रदः ।\nवसुप्रदो वासुदेवो वसुर्वसुमना हविः ॥ ७४ ॥",
-                                "roman": "manojavastīrthakaro vasuretā vasupradaḥ |\nvasuprado vāsudevo vasurvasumanā haviḥ || 74 ||"
-                        },
-                        {
-                                "sanskrit": "सद्गतिः सत्कृतिः सत्ता सद्भूतिः सत्परायणः ।\nशूरसेनो यदुश्रेष्ठः सन्निवासः सुयामुनः ॥ ७५ ॥",
-                                "roman": "sadgatiḥ satkṛtiḥ sattā sadbhūtiḥ satparāyaṇaḥ |\nśūraseno yaduśreṣṭhaḥ sannivāsaḥ suyāmunaḥ || 75 ||"
-                        },
-                        {
-                                "sanskrit": "भूतावासो वासुदेवः सर्वासुनिलयोऽनलः ।\nदर्पहा दर्पदो दृप्तो दुर्धरोऽथापराजितः ॥ ७६ ॥",
-                                "roman": "bhūtāvāso vāsudevaḥ sarvāsunilayo'nalaḥ |\ndarpahā darpado dṛpto durdharo'thāparājitaḥ || 76 ||"
-                        },
-                        {
-                                "sanskrit": "विश्वमूर्तिर्महामूर्तिर्दीप्तमूर्तिरमूर्तिमान् ।\nअनेकमूर्तिरव्यक्तः शतमूर्तिः शताननः ॥ ७७ ॥",
-                                "roman": "viśvamūrtirmahāmūrtirdīptamūrtiramūrtimān |\nanekamūrtiravyaktaḥ śatamūrtiḥ śatānanaḥ || 77 ||"
-                        },
-                        {
-                                "sanskrit": "एको नैकः सवः कः किं यत् तत्पदमनुत्तमम् ।\nलोकबन्धुर्लोकनाथो माधवो भक्तवत्सलः ॥ ७८ ॥",
-                                "roman": "eko naikaḥ savaḥ kaḥ kiṃ yat tatpadamanuttamam |\nlokabandhurlokanātho mādhavo bhaktavatsalaḥ || 78 ||"
-                        },
-                        {
-                                "sanskrit": "सुवर्णवर्णो हेमाङ्गो वराङ्गश्चन्दनाङ्गदी ।\nवीरहा विषमः शून्यो घृताशीरचलश्चलः ॥ ७९ ॥",
-                                "roman": "suvarṇavarṇo hemāṅgo varāṅgaścandanāṅgadī |\nvīrahā viṣamaḥ śūnyo ghṛtāśīracalaścalaḥ || 79 ||"
-                        },
-                        {
-                                "sanskrit": "अमानी मानदो मान्यो लोकस्वामी त्रिलोकधृक् ।\nसुमेधा मेधजो धन्यः सत्यमेधा धराधरः ॥ ८० ॥",
-                                "roman": "amānī mānado mānyo lokasvāmī trilokadhṛk |\nsumedhā medhajo dhanyaḥ satyamedhā dharādharaḥ || 80 ||"
-                        },
-                        {
-                                "sanskrit": "तेजोवृषो द्युतिधरः सर्वशस्त्रभृतां वरः ।\nप्रग्रहो निग्रहो व्यग्रो नैकशृङ्गो गदाग्रजः ॥ ८१ ॥",
-                                "roman": "tejovṛṣo dyutidharaḥ sarvaśastrabhṛtāṃ varaḥ |\npragraho nigraho vyagro naikaśṛṅgo gadāgrajaḥ || 81 ||"
-                        },
-                        {
-                                "sanskrit": "चतुर्मूर्तिश्चतुर्बाहुश्चतुर्व्यूहश्चतुर्गतिः ।\nचतुरात्मा चतुर्भावश्चतुर्वेदविदेकपात् ॥ ८२ ॥",
-                                "roman": "caturmūrtiścaturbāhuścaturvyūhaścaturgatiḥ |\ncaturātmā caturbhāvaścaturvedavidekapāt || 82 ||"
-                        },
-                        {
-                                "sanskrit": "समावर्तोऽनिवृत्तात्मा दुर्जयो दुरतिक्रमः ।\nदुर्लभो दुर्गमो दुर्गो दुरावासो दुरारिहा ॥ ८३ ॥",
-                                "roman": "samāvarto'nivṛttātmā durjayo duratikramaḥ |\ndurlabho durgamo durgo durāvāso durārihā || 83 ||"
-                        },
-                        {
-                                "sanskrit": "शुभाङ्गो लोकसारङ्गः सुतन्तुस्तन्तुवर्धनः ।\nइन्द्रकर्मा महाकर्मा कृतकर्मा कृतागमः ॥ ८४ ॥",
-                                "roman": "śubhāṅgo lokasāraṅgaḥ sutantustantuvardhanaḥ |\nindrakarmā mahākarmā kṛtakarmā kṛtāgamaḥ || 84 ||"
-                        },
-                        {
-                                "sanskrit": "उद्भवः सुन्दरः सुन्दो रत्ननाभः सुलोचनः ।\nअर्को वाजसनः शृङ्गी जयन्तः सर्वविज्जयी ॥ ८५ ॥",
-                                "roman": "udbhavaḥ sundaraḥ sundo ratnanābhaḥ sulocanaḥ |\narko vājasanaḥ śṛṅgī jayantaḥ sarvavijjayī || 85 ||"
-                        },
-                        {
-                                "sanskrit": "सुवर्णबिन्दुरक्षोभ्यः सर्ववागीश्वरेश्वरः ।\nमहाह्रदो महागर्तो महाभूतो महानिधिः ॥ ८६ ॥",
-                                "roman": "suvarṇabindurakṣobhyaḥ sarvavāgīśvareśvaraḥ |\nmahāhrado mahāgarto mahābhūto mahānidhiḥ || 86 ||"
-                        },
-                        {
-                                "sanskrit": "कुमुदः कुन्दरः कुन्दः पर्जन्यः पावनोऽनिलः ।\nअमृताशोऽमृतवपुः सर्वज्ञः सर्वतोमुखः ॥ ८७ ॥",
-                                "roman": "kumudaḥ kundaraḥ kundaḥ parjanyaḥ pāvano'nilaḥ |\namṛtāśo'mṛtavapuḥ sarvajñaḥ sarvatomukhaḥ || 87 ||"
-                        },
-                        {
-                                "sanskrit": "सुलभः सुव्रतः सिद्धः शत्रुजिच्छत्रुतापनः ।\nन्यग्रोधोऽदुम्बरोऽश्वत्थश्चाणूरान्ध्रनिषूदनः ॥ ८८ ॥",
-                                "roman": "sulabhaḥ suvrataḥ siddhaḥ śatrujicchatrutāpanaḥ |\nnyagrodho'dumbaro'śvatthaścāṇūrāndhraniṣūdanaḥ || 88 ||"
-                        },
-                        {
-                                "sanskrit": "सहस्रार्चिः सप्तजिह्वः सप्तैधाः सप्तवाहनः ।\nअमूर्तिरनघोऽचिन्त्यो भयकृद्भयनाशनः ॥ ८९ ॥",
-                                "roman": "sahasrārciḥ saptajihvaḥ saptaidhāḥ saptavāhanaḥ |\namūrtiranagho'cintyo bhayakṛdbhayanāśanaḥ || 89 ||"
-                        },
-                        {
-                                "sanskrit": "अणुर्बृहत्कृशः स्थूलो गुणभृन्निर्गुणो महान् ।\nअधृतः स्वधृतः स्वास्यः प्राग्वंशो वंशवर्धनः ॥ ९० ॥",
-                                "roman": "aṇurbṛhatkṛśaḥ sthūlo guṇabhṛnnirguṇo mahān |\nadhṛtaḥ svadhṛtaḥ svāsyaḥ prāgvaṃśo vaṃśavardhanaḥ || 90 ||"
-                        },
-                        {
-                                "sanskrit": "भारभृत् कथितो योगी योगीशः सर्वकामदः ।\nआश्रमः श्रमणः क्षामः सुपर्णो वायुवाहनः ॥ ९१ ॥",
-                                "roman": "bhārabhṛt kathito yogī yogīśaḥ sarvakāmadaḥ |\nāśramaḥ śramaṇaḥ kṣāmaḥ suparṇo vāyuvāhanaḥ || 91 ||"
-                        },
-                        {
-                                "sanskrit": "धनुर्धरो धनुर्वेदो दण्डो दमयिता दमः ।\nअपराजितः सर्वसहो नियन्ताऽनियमोऽयमः ॥ ९२ ॥",
-                                "roman": "dhanurdharo dhanurvedo daṇḍo damayitā damaḥ |\naparājitaḥ sarvasaho niyantā'niyamo'yamaḥ || 92 ||"
-                        },
-                        {
-                                "sanskrit": "सत्त्ववान् सात्त्विकः सत्यः सत्यधर्मपरायणः ।\nअभिप्रायः प्रियार्होऽर्हः प्रियकृत् प्रीतिवर्धनः ॥ ९३ ॥",
-                                "roman": "sattvavān sāttvikaḥ satyaḥ satyadharmaparāyaṇaḥ |\nabhiprāyaḥ priyārho'rhaḥ priyakṛt prītivardhanaḥ || 93 ||"
-                        },
-                        {
-                                "sanskrit": "विहायसगतिर्ज्योतिः सुरुचिर्हुतभुग्विभुः ।\nरविर्विरोचनः सूर्यः सविता रविलोचनः ॥ ९४ ॥",
-                                "roman": "vihāyasagatirjyotiḥ surucirhutabhugvibhuḥ |\nravirvirocanaḥ sūryaḥ savitā ravilocanaḥ || 94 ||"
-                        },
-                        {
-                                "sanskrit": "अनन्तो हुतभुग्भोक्ता सुखदो नैकजोऽग्रजः ।\nअनिर्विण्णः सदामर्षी लोकाधिष्ठानमद्भुतः ॥ ९५ ॥",
-                                "roman": "ananto hutabhugbhoktā sukhado naikajo'grajaḥ |\nanirviṇṇaḥ sadāmarṣī lokādhiṣṭhānamadbhutaḥ || 95 ||"
-                        },
-                        {
-                                "sanskrit": "सनात्सनातनतमः कपिलः कपिरव्ययः ।\nस्वस्तिदः स्वस्तिकृत्स्वस्ति स्वस्तिभुक्स्वस्तिदक्षिणः ॥ ९६ ॥",
-                                "roman": "sanātsanātanatamaḥ kapilaḥ kapiravyayaḥ |\nsvastidaḥ svastikṛtsvasti svastibhuksvastidakṣiṇaḥ || 96 ||"
-                        },
-                        {
-                                "sanskrit": "अरौद्रः कुण्डली चक्री विक्रम्यूर्जितशासनः ।\nशब्दातिगः शब्दसहः शिशिरः शर्वरीकरः ॥ ९७ ॥",
-                                "roman": "araudraḥ kuṇḍalī cakrī vikramyūrjitaśāsanaḥ |\nśabdātigaḥ śabdasahaḥ śiśiraḥ śarvarīkaraḥ || 97 ||"
-                        },
-                        {
-                                "sanskrit": "अक्रूरः पेशलो दक्षो दक्षिणः क्षमिणांवरः ।\nविद्वत्तमो वीतभयः पुण्यश्रवणकीर्तनः ॥ ९८ ॥",
-                                "roman": "akrūraḥ peśalo dakṣo dakṣiṇaḥ kṣamiṇāṃvaraḥ |\nvidvattamo vītabhayaḥ puṇyaśravaṇakīrtanaḥ || 98 ||"
-                        },
-                        {
-                                "sanskrit": "उत्तारणो दुष्कृतिहा पुण्यो दुःस्वप्ननाशनः ।\nवीरहा रक्षणः सन्तो जीवनः पर्यवस्थितः ॥ ९९ ॥",
-                                "roman": "uttāraṇo duṣkṛtihā puṇyo duḥsvapnanāśanaḥ |\nvīrahā rakṣaṇaḥ santo jīvanaḥ paryavasthitaḥ || 99 ||"
-                        },
-                        {
-                                "sanskrit": "अनन्तरूपोऽनन्तश्रीर्जितमन्युर्भयापहः ।\nचतुरश्रो गभीरात्मा विदिशो व्यादिशो दिशः ॥ १०० ॥",
-                                "roman": "anantarūpo'nantaśrīrjitamanyurbhayāpahaḥ |\ncaturaśro gabhīrātmā vidiśo vyādiśo diśaḥ || 100 ||"
-                        },
-                        {
-                                "sanskrit": "अनादिर्भूर्भुवो लक्ष्मीः सुवीरो रुचिराङ्गदः ।\nजननो जनजन्मादिर्भीमो भीमपराक्रमः ॥ १०१ ॥",
-                                "roman": "anādirbhūrbhuvo lakṣmīḥ suvīro rucirāṅgadaḥ |\njanano janajanmādirbhīmo bhīmaparākramaḥ || 101 ||"
-                        },
-                        {
-                                "sanskrit": "आधारनिलयोऽधाता पुष्पहासः प्रजागरः ।\nऊर्ध्वगः सत्पथाचारः प्राणदः प्रणवः पणः ॥ १०२ ॥",
-                                "roman": "ādhāranilayo'dhātā puṣpahāsaḥ prajāgaraḥ |\nūrdhvagaḥ satpathācāraḥ prāṇadaḥ praṇavaḥ paṇaḥ || 102 ||"
-                        },
-                        {
-                                "sanskrit": "प्रमाणं प्राणनिलयः प्राणभृत्प्राणजीवनः ।\nतत्त्वं तत्त्वविदेकात्मा जन्ममृत्युजरातिगः ॥ १०३ ॥",
-                                "roman": "pramāṇaṃ prāṇanilayaḥ prāṇabhṛtprāṇajīvanaḥ |\ntattvaṃ tattvavidekātmā janmamṛtyujarātigaḥ || 103 ||"
-                        },
-                        {
-                                "sanskrit": "भूर्भुवःस्वस्तरुस्तारः सविता प्रपितामहः ।\nयज्ञो यज्ञपतिर्यज्वा यज्ञाङ्गो यज्ञवाहनः ॥ १०४ ॥",
-                                "roman": "bhūrbhuvaḥsvastarustāraḥ savitā prapitāmahaḥ |\nyajño yajñapatiryajvā yajñāṅgo yajñavāhanaḥ || 104 ||"
-                        },
-                        {
-                                "sanskrit": "यज्ञभृद् यज्ञकृद् यज्ञी यज्ञभुग् यज्ञसाधनः ।\nयज्ञान्तकृद् यज्ञगुह्यमन्नमन्नाद एव च ॥ १०५ ॥",
-                                "roman": "yajñabhṛd yajñakṛd yajñī yajñabhug yajñasādhanaḥ |\nyajñāntakṛd yajñaguhyamannamannāda eva ca || 105 ||"
-                        },
-                        {
-                                "sanskrit": "आत्मयोनिः स्वयञ्जातो वैखानः सामगायनः ।\nदेवकीनन्दनः स्रष्टा क्षितीशः पापनाशनः ॥ १०६ ॥",
-                                "roman": "ātmayoniḥ svayañjāto vaikhānaḥ sāmagāyanaḥ |\ndevakīnandanaḥ sraṣṭā kṣitīśaḥ pāpanāśanaḥ || 106 ||"
-                        },
-                        {
-                                "sanskrit": "शङ्खभृन्नन्दकी चक्री शार्ङ्गधन्वा गदाधरः ।\nरथाङ्गपाणिरक्षोभ्यः सर्वप्रहरणायुधः ॥ १०७ ॥\nसर्वप्रहरणायुध ॐ नम इति ।",
-                                "roman": "śaṅkhabhṛnnandakī cakrī śārṅgadhanvā gadādharaḥ |\nrathāṅgapāṇirakṣobhyaḥ sarvapraharaṇāyudhaḥ || 107 ||\nsarvapraharaṇāyudha oṃ nama iti |"
-                        },
-                        {
-                                "sanskrit": "वनमाली गदी शार्ङ्गी शङ्खी चक्री च नन्दकी ।\nश्रीमान् नारायणो विष्णुर्वासुदेवोऽभिरक्षतु ॥ १०८ ॥\nश्रीवासुदेवोऽभिरक्षतु ॐ नम इति ।",
-                                "roman": "vanamālī gadī śārṅgī śaṅkhī cakrī ca nandakī |\nśrīmān nārāyaṇo viṣṇurvāsudevo'bhirakṣatu || 108 ||\nśrīvāsudevo'bhirakṣatu oṃ nama iti |"
-                        }
-                ]
-        },
-        {
-                "id": 4,
-                "title_hi": "उत्तरन्यासः (फलश्रुतिः)",
-                "title_en": "Phalashruti (Concluding Prayers & Benefits)",
-                "verses": [
-                        {
-                                "sanskrit": "इतीदं कीर्तनीयस्य केशवस्य महात्मनः ।\nनाम्नां सहस्रं दिव्यानामशेषेण प्रकीर्तितम् ॥",
-                                "roman": "itīdaṁ kīrtanīyasya keśavasya mahātmanaḥ |\nnāmnāṁ sahasraṁ divyānāmaśeṣeṇa prakīrtitam ||"
-                        },
-                        {
-                                "sanskrit": "य इदं शृणुयान्नित्यं यश्चापि परिकीर्तयेत् ।\nनाशुभं प्राप्नुयात् किञ्चित्सोऽमुत्रेह च मानवः ॥",
-                                "roman": "ya isaṁ śṛṇuyānnityam yaścāpi parikīrtayet |\nnāśubhaṁ prāpnuyāt kiñcitso'mutreha ca mānavaḥ ||"
-                        },
-                        {
-                                "sanskrit": "वेदान्तगो ब्राह्मणः स्यात् क्षत्रियो विजयी भवेत् ।\nवैश्यो धनसमृद्धः स्यात् शूद्रः सुखमवाप्नुयात् ॥",
-                                "roman": "vedāntago brāhmaṇahaḥ syāt kṣatriyo vijayī bhavet |\nvaiśyo dhanasamṛddhahaḥ syāt śūdraḥ sukhamavāpnuyāt ||"
-                        }
-                ]
-        }
-];
+        const stotramDb = [
+          {
+            "id": 1,
+            "title_hi": "पूर्वाङ्गम् (प्रारंभिक प्रार्थना)",
+            "title_en": "Purvanga (Opening Prayers)",
+            "verses": [
+              {
+                "sanskrit": "शुक्लाम्बरधरं विष्णुं शशिवर्णं चतुर्भुजम् ।\nप्रसन्नवदनं ध्यायेत् सर्वविघ्नोपशान्तये ॥",
+                "roman": "śuklāmbaradharaṁ viṣṇuṁ śaśivarṇaṁ caturbhujam |\nprasannavadanaṁ dhyāyet sarvavighnopaśāntaye ||"
+              },
+              {
+                "sanskrit": "यस्य द्विरदवक्त्राद्याः पारिषद्याः परः शतम् ।\nविघ्नं निघ्नन्ति सततं विष्वक्सेनं तमाश्रये ॥",
+                "roman": "yasya dviradavaktrādyāḥ pāriṣadyāḥ paraḥ śatam |\nvighnaṁ nighnanti satataṁ viṣvakṣenaṁ tamāśraye ||"
+              },
+              {
+                "sanskrit": "व्यासं वसिष्ठनप्तारं शक्तेः पौत्रमकल्मषम् ।\nपराशरात्मजं वन्दे शुकतातं तपोनिधिम् ॥",
+                "roman": "vyāsaṁ vasiṣṭhanaptāraṁ śakteḥ pautramakalmaṣam |\nparāśarātmajaṁ vande śukatātaṁ taponidhim ||"
+              },
+              {
+                "sanskrit": "व्यासाय विष्णुरूपाय व्यासरूपाय विष्णवे ।\nनमो वै ब्रह्मनिधये वासिट्ठाय नमो नमः ॥",
+                "roman": "vyāsāya viṣṇurūpāya vyāsarūpāya viṣṇave |\nnamo vai brahmanidhaye vāsiṣṭhāya namo namaḥ ||"
+              },
+              {
+                "sanskrit": "अविकाराय शुद्धाय नित्याय परमात्मने ।\nसदैकरूपरूपाय विष्णवे सर्वजिष्णवे ॥",
+                "roman": "avikārāya śuddhāya nityāya paramātmane |\nsadaikarūparūpāya viṣṇave sarvajiṣṇave ||"
+              },
+              {
+                "sanskrit": "यस्य स्मरणमात्रेण जन्मसंसारबन्धनात् ।\nविमुच्यते नमस्तस्मै विष्णवे प्रभविष्णवे ॥\nॐ नमो विष्णवे प्रभविष्णवे ।",
+                "roman": "yasya smaraṇamātreṇa janmasamsārabandhanāt |\nvimucyate namastasmai viṣṇave prabhaviṣṇave ||\nom namo viṣṇave prabhaviṣṇave |"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title_hi": "ध्यानम्",
+            "title_en": "Dhyanam (Meditation)",
+            "verses": [
+              {
+                "sanskrit": "क्षीरोदन्वत्प्रदेशे शुचिमणिविलसत् सैकते मौक्तिकानां\nमालाक्लुप्तासनस्थः स्फटिकमणिनिभैः मौक्तिकैर्मण्डिताङ्गः ।\nशुभ्रैरभ्रैरदभ्रैः उपरि विरचितैः मुक्तपीयूष वर्षैः\nआनन्दी नः पुनीयादरिनलिनगदा शङ्खपाणिर्मुकुन्दः ॥",
+                "roman": "kṣīrodanvatpradeśe śucimaṇivilasatsaikate mauktikānāṁ\nmālākḷptāsanastahaḥ sphaṭikamaṇinibhaihi mauktikairmaṇḍitāṅgahaḥ |\nśubhrairabhrairadabhraihi upari viracitaihi muktapīyūṣavarṣaihi\nānandī nahaḥ punīyādarinalinagadā śaṅkhapāṇirmukundahaḥ ||"
+              },
+              {
+                "sanskrit": "भूः पादौ यस्य नाभिर्वियदसुरनिलश्चन्द्र सूर्यौ च नेत्रे\nकर्णावाशाः शिरो द्यौर्मुखमपि दहनो यस्य वास्तेयमब्धिः ।\nअन्तःस्थं यस्य विश्वं सुरनरखगगोभोगिगन्धर्वदैत्यैः\nचित्रं रंरम्यते तं त्रिभुवनवपुषं विष्णुमीशं नमामि ॥",
+                "roman": "bhūhuḥ pādau yasya nābhirviyadasuranilaścandra sūryau ca netre\nkarṇāvāśāhaḥ śiro dyaurmukhamapi dahano yasya vāsteyamabdhihi |\nantaḥsthaṁ yasya viśvaṁ suranarakhagagobhogigandharvadaityaihi\ncitraṁ raṁramyate taṁ tribhuvanavapuṣaṁ viṣṇumīśaṁ namāmi ||"
+              },
+              {
+                "sanskrit": "शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं\nविश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गम् ।\nलक्ष्मीकान्तं कमलनयनं योगिभिर्ध्यानगम्यं\nवन्दे विष्णुं भवभयहरं सर्वलोकैकनाथम् ॥",
+                "roman": "śāntākāraṁ bhujagaśayanaṁ padmanābhaṁ sureśaṁ\nviśvādhāraṁ gaganasadṛśaṁ meghavarṇaṁ śubhāṅgam |\nlakṣmīkāntaṁ kamalanayanaṁ yogibhirdhyānagamyaṁ\nvande viṣṇuṁ bhavabhayaharaṁ sarvalokaikanātham ||"
+              },
+              {
+                "sanskrit": "मेघश्यामं पीतकौशेयवासं श्रीवत्साङ्कं कौस्तुभोद्भासिताङ्गम् ।\nपुण्योपेतं पुण्डरीकायताक्षं विष्णुं वन्दे सर्वलोकैकनाथम् ॥",
+                "roman": "meghaśyāmaṁ pītakaueśayavāsaṁ śrīvatsāṅkaṁ kaustubhodbhāsitāṅgam |\npuṇyopetaṁ puṇḍarīkāyatākṣaṁ viṣṇuṁ vande sarvalokaikanātham ||"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "title_hi": "सहस्रनाम स्तोत्रम्",
+            "title_en": "Sahasranama Stotram (The 1000 Names)",
+            "verses": [
+              {
+                "sanskrit": "विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।\nभूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥",
+                "roman": "viśvaṁ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |\nbhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||"
+              },
+              {
+                "sanskrit": "पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।\nअव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥",
+                "roman": "pūtātmā paramātmā ca muktānāṁ paramā gatih |\navyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||"
+              },
+              {
+                "sanskrit": "योगो योगविदां नेता प्रधानपुरुषेश्वरः ।\nनारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥",
+                "roman": "yogo yogavidāṁ netā pradhānapuruṣeśvaraḥ |\nnārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||"
+              },
+              {
+                "sanskrit": "सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।\nसम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥",
+                "roman": "sarvahaḥ śarvahaḥ śivahaḥ sthāṇurbhūtādirnidhiravyayahaḥ |\nsambhavo bhāvano bhartā prabhavahaḥ prabhurīśvarahaḥ || 4 ||"
+              },
+              {
+                "sanskrit": "स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।\nअनादिनिधनो धाता विधाता धातुरुत्तमः ॥ ५ ॥",
+                "roman": "svayambhūḥ śambhurādityaḥ puṣkarākṣo mahāsvanahaḥ |\nanādinidhano dhātā vidhātā dhāturuttamaha || 5 ||"
+              },
+              {
+                "sanskrit": "अप्रमेयो हृषीकेशः पद्मनाभोऽमरप्रभुः ।\nविश्वकर्मा मनुस्तष्टा स्थविष्ठः स्थविरो ध्रुवः ॥ ६ ॥",
+                "roman": "aprameyo hṛṣīkeśaḥ padmanābho'maraprabhuḥ |\nviśvakarmā manustaṣṭā sthaviṣṭhaḥ sthaviro dhruvahaḥ || 6 ||"
+              },
+              {
+                "sanskrit": "अग्राह्यः शाश्वतः कृष्णो लोहिताक्षः प्रतर्दनः ।\nप्रभूतस्त्रिककुब्धाम पवित्रं मङ्गलं परम् ॥ ७ ॥",
+                "roman": "agrāhyaḥ śāśvataḥ kṛṣṇo lohitākṣaḥ pratardanahaḥ |\nprabhūtastrikakubdhāma pavitraṁ maṅgalaṁ param || 7 ||"
+              },
+              {
+                "sanskrit": "ईशानः प्राणदः प्राणो ज्येष्ठः श्रेष्ठः प्रजापतिः ।\nहिरण्यगर्भो भूगर्भो माधवो मधुसूदनः ॥ ८ ॥",
+                "roman": "īśānaḥ prāṇadaḥ prāṇo jyeṣṭhaḥ śreṣṭhaḥ प्रजापतिः ।\nhiraṇyagarbho bhūgarbho mādhavo madhusūdanahaḥ || 8 ||"
+              },
+              {
+                "sanskrit": "ईश्वरो विक्रमी धन्वी मेधावी विक्रमः क्रमः ।\nअनुत्तमो दुराधर्षः कृतज्ञः कृतिरात्मवान् ॥ ९ ॥",
+                "roman": "īśvaro vikramī dhanvī medhāvī vikramahaḥ kramahaḥ |\nanuttamo durādharṣahaḥ kṛtajñahaḥ kṛtirātmavān || 9 ||"
+              },
+              {
+                "sanskrit": "सुरेशः शरणं शर्म विश्वरेताः प्रजाभवः ।\nअहः संवत्सरो व्यालः प्रत्ययः सर्वदर्शनः ॥ १० ॥",
+                "roman": "sureśahaḥ śaraṇaṁ śarma viśvaretāḥ prajābhavahaḥ |\nahahaḥ saṁvatsaro vyālahaḥ pratyayahaḥ sarvadarśanahaḥ || 10 ||"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "title_hi": "उत्तरन्यासः (फलश्रुतिः)",
+            "title_en": "Phalashruti (Concluding Prayers & Benefits)",
+            "verses": [
+              {
+                "sanskrit": "इतीदं कीर्तनीयस्य केशवस्य महात्मनः ।\nनाम्नां सहस्रं दिव्यानामशेषेण प्रकीर्तितम् ॥",
+                "roman": "itīdaṁ kīrtanīyasya keśavasya mahātmanaḥ |\nnaamnāṁ sahasraṁ divyānāmaśeṣeṇa prakīrtitam ||"
+              },
+              {
+                "sanskrit": "य इदं शृणुयान्नित्यं यश्चापि परिकीर्तयेत् ।\nनाशुभं प्राप्नुयात् किञ्चित्सोऽमुत्रेह च मानवः ॥",
+                "roman": "ya isaṁ śṛṇuyānnityam yaścāpi parikīrtayet |\nnāśubhaṁ prāpnuyāt kiñcitso'mutreha ca mānavaḥ ||"
+              },
+              {
+                "sanskrit": "वेदान्तगो ब्राह्मणः स्यात् क्षत्रियो विजयी भवेत् ।\nवैश्यो धनसमृद्धः स्यात् शूद्रः सुखमवाप्नुयात् ॥",
+                "roman": "vedāntago brāhmaṇahaḥ syāt kṣatriyo vijayī bhavet |\nvaiśyo dhanasamṛddhahaḥ syāt śūdraḥ sukhamavāpnuyāt ||"
+              }
+            ]
+          }
+        ];
 
         let stotramPlayer = null;
         let stotramProgressInterval = null;
@@ -4137,9 +3423,9 @@
                     }).join('\n');
 
                     return `
-                        <div class="stotram-verse-card" style="background: var(--antara-card-bg); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid var(--antara-line); text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+                        <div class="stotram-verse-card" style="background: rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.4); text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
                             <div style="font-size: 17px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); line-height: 1.5; white-space: pre-line; margin-bottom: 8px;">${v.sanskrit}</div>
-                            <div style="font-size: 11.5px; font-family: 'Inter', sans-serif; color: var(--antara-dark); opacity: 0.75; font-weight: 500; line-height: 1.4; white-space: pre-line;">${cleanRoman}</div>
+                            <div style="font-size: 10px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.35; white-space: pre-line;">${cleanRoman}</div>
                         </div>
                     `;
                 }).join("");
