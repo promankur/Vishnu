@@ -10,6 +10,7 @@ const ASSETS_TO_CACHE = [
   './Vishnu Logo.png',
   './Female.png',
   './Male.png',
+  './Finger.png',
   './app_logo_transparent.png'
 ];
 

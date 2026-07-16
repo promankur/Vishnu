@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadhana Seva Support — Vishnu1000</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Razorpay Checkout SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root {
+            --bg-dark: #120A07;
+            --bg-card: #1C110C;
+            --maroon: #7B1F1C;
+            --saffron: #D2691E;
+            --gold: #C5A059;
+            --gold-light: rgba(197, 160, 89, 0.1);
+            --text-light: #F4EFEB;
+            --text-muted: #A39690;
+            --border: #2C1E18;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            padding: 24px;
+            box-sizing: border-box;
+            background-color: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            margin: 15px;
+        }
+
+        .header-logo {
+            margin-bottom: 16px;
+        }
+
+        .header-logo img {
+            height: 60px;
+            width: 60px;
+        }
+
+        .app-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .page-subtitle {
+            font-size: 13px;
+            color: var(--saffron);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .desc-text {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #DDD4CF;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        /* Tier Grid */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tier-btn {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            color: var(--text-light);
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .tier-btn:hover {
+            border-color: var(--gold);
+        }
+
+        .tier-btn.selected {
+            background-color: var(--gold-light);
+            border-color: var(--gold);
+        }
+
+        .tier-amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .tier-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .custom-input-container {
+            margin-bottom: 24px;
+        }
+
+        .custom-input {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            box-sizing: border-box;
+            color: var(--text-light);
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .custom-input:focus {
+            border-color: var(--saffron);
+        }
+
+        /* Payment Panel */
+        .payment-panel {
+            background-color: var(--bg-dark);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: #FAF8F5;
+            margin: 0 auto 16px auto;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Stylized QR Code image placeholder */
+        .qr-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .pay-app-btn {
+            background: linear-gradient(135deg, var(--maroon), var(--saffron));
+            color: var(--text-light);
+            border: none;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(210, 105, 30, 0.2);
+            transition: transform 0.1s, opacity 0.2s;
+            outline: none;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .pay-app-btn:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+
+        .payment-hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 12px;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .back-btn:hover {
+            color: var(--text-light);
+        }
+
+        /* Thank you Modal Overlay */
+        .thank-you-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 10, 7, 0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .thank-you-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px 24px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .thank-you-card h2 {
+            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-family: 'Mukta', sans-serif;
+        }
+
+        .thank-you-card p {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #DDD4CF;
+            margin-bottom: 24px;
+        }
+
+        .close-thank-you-btn {
+            background: linear-gradient(135deg, var(--maroon), var(--saffron));
+            color: var(--text-light);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-logo">
+            <img src="app_logo_transparent.png" alt="Vishnu1000 Logo">
+        </div>
+        <div class="app-name">Vishnu1000</div>
+        <div class="page-subtitle">Sadhana Seva Support</div>
+
+        <div class="desc-text">
+            We believe spiritual companion apps should be completely private and free from commercial distractions. Vishnu1000 does not harvest your personal data, serves zero ads, and remains 100% free to download. If this app adds value to your daily practice, please consider supporting the seva to cover hosting, maintenance, and the recording of future Sahasranamas (like Shiva, Durga, and Lalitha Sahasranama).
+        </div>
+
+        <!-- Tier Grid -->
+        <div class="tier-grid">
+            <button class="tier-btn selected" onclick="selectTier(108, this)">
+                <div class="tier-amount">₹108</div>
+                <div class="tier-label">One Mala Seva</div>
+            </button>
+            <button class="tier-btn" onclick="selectTier(251, this)">
+                <div class="tier-amount">₹251</div>
+                <div class="tier-label">Shubham Seva</div>
+            </button>
+            <button class="tier-btn" onclick="selectTier(501, this)">
+                <div class="tier-amount">₹501</div>
+                <div class="tier-label">Prasada Seva</div>
+            </button>
+            <button class="tier-btn" onclick="selectTier(1008, this)">
+                <div class="tier-amount">₹1,008</div>
+                <div class="tier-label">Maha Seva</div>
+            </button>
+        </div>
+
+        <!-- Custom Input -->
+        <div class="custom-input-container">
+            <input type="number" class="custom-input" id="custom-amount-input" placeholder="Enter Custom Amount (₹)" oninput="customAmountChanged(this.value)">
+        </div>
+
+        <!-- Payment Panel -->
+        <div class="payment-panel" style="padding: 18px 20px;">
+            <!-- Razorpay Payment Button -->
+            <button class="pay-app-btn" id="pay-button" onclick="payViaRazorpay()">
+                Support with ₹108
+            </button>
+
+            <div class="payment-hint">
+                Securely pay via UPI (GPay, PhonePe, Paytm, Amazon Pay), Netbanking, Wallets, or Cards.
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="window.history.back() || window.close()">
+            Return to App
+        </button>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div class="thank-you-overlay" id="thank-you-modal">
+        <div class="thank-you-card">
+            <div style="font-size: 40px; margin-bottom: 16px;">🙏</div>
+            <h2>Namaste & Thank You</h2>
+            <p>Thank you for supporting the Vishnu1000 Sadhana Seva! Your support directly funds our ad-free hosting and the creation of future chanting companions (Shiva, Durga, and Lalitha Sahasranama).</p>
+            <button class="close-thank-you-btn" onclick="closeThankYouModal()">
+                Return to App
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentAmount = 108;
+        const RAZORPAY_KEY_ID = "rzp_live_SrWqmVsc662x4T";
+
+        function updateButtonText() {
+            document.getElementById('pay-button').innerText = `Support with ₹${currentAmount}`;
+        }
+
+        function selectTier(amount, buttonEl) {
+            currentAmount = amount;
+            
+            // Reset selected states
+            const buttons = document.querySelectorAll('.tier-btn');
+            buttons.forEach(b => b.classList.remove('selected'));
+            buttonEl.classList.add('selected');
+
+            // Clear custom input
+            document.getElementById('custom-amount-input').value = '';
+            
+            updateButtonText();
+        }
+
+        function customAmountChanged(val) {
+            const amount = parseInt(val);
+            if (amount && amount > 0) {
+                currentAmount = amount;
+                // Remove tier selections
+                const buttons = document.querySelectorAll('.tier-btn');
+                buttons.forEach(b => b.classList.remove('selected'));
+                updateButtonText();
+            }
+        }
+
+        function payViaRazorpay() {
+            var options = {
+                "key": RAZORPAY_KEY_ID,
+                "amount": currentAmount * 100, // in paise
+                "currency": "INR",
+                "name": "Vishnu1000",
+                "description": "Sadhana Seva Support",
+                "image": "app_logo_transparent.png",
+                "handler": function (response){
+                    // Show thank you modal on success
+                    showThankYouModal();
+                },
+                "theme": {
+                    "color": "#7B1F1C" // Maroon brand color
+                }
+            };
+            var rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        function showThankYouModal() {
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thank-you-modal').style.display = 'none';
+            window.history.back() || window.close();
+        }
+    </script>
+</body>
+</html>

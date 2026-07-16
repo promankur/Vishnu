@@ -9,6 +9,14 @@
     <title>Antara - Vishnu 1000</title>
     <link rel="shortcut icon" href="app_logo_transparent.png" type="image/png">
     <link rel="manifest" href="manifest.json">
+    <!-- iOS Web App Compatibility -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Vishnu1000">
+    <link rel="apple-touch-icon" href="app_logo_transparent.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app_logo_transparent.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="app_logo_transparent.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="app_logo_transparent.png">
     <meta name="description" content="Chant, study, and contemplate the 1000 names of Lord Vishnu with Antara Vishnu 1000. Features Namavali Japa, Full Stotram chanting, and Self-Study significance.">
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
@@ -948,23 +956,27 @@
             body {
                 padding: 0;
                 align-items: stretch;
+                -webkit-tap-highlight-color: transparent;
             }
             .device-container {
                 width: 100%;
-                height: 100vh;
+                height: 100dvh;
                 border-radius: 0;
                 padding: 0;
                 box-shadow: none;
             }
             .screen {
                 border-radius: 0;
+                padding-top: env(safe-area-inset-top, 0px);
+                padding-bottom: env(safe-area-inset-bottom, 0px);
             }
             .dashboard-flanking-container {
                 margin-top: 48px;
                 margin-bottom: 0px;
             }
             .top-nav {
-                margin-top: 48px;
+                margin-top: 0px;
+                top: env(safe-area-inset-top, 0px);
             }
             .modal-sheet-backdrop {
                 border-radius: 0;
@@ -1915,6 +1927,13 @@
                     </label>
                 </div>
 
+                <!-- Support our Seva Link -->
+                <div style="text-align: center; margin-bottom: 16px; width: 100%;">
+                    <a href="support.html" style="font-family: 'Mukta', sans-serif; font-size: 15px; font-weight: bold; color: var(--antara-saffron); text-decoration: underline; text-underline-offset: 4px;">
+                        साधना सहयोग / Support our Seva
+                    </a>
+                </div>
+
                 <!-- Reset Progress Link -->
                 <div style="text-align: center; margin-bottom: 24px; width: 100%;">
                     <span style="font-family: 'Mukta', sans-serif; font-size: 15px; color: var(--antara-muted); cursor: pointer; text-decoration: underline; text-underline-offset: 4px;" onclick="confirmResetProgress()">
@@ -2095,7 +2114,7 @@
             }
 
             if (state.useMaleVoice === undefined) {
-                state.useMaleVoice = true;
+                state.useMaleVoice = false;
             }
             if (state.speechRate === undefined) {
                 state.speechRate = 0.3;
@@ -2129,7 +2148,11 @@
         }
 
         function selectVoice(gender) {
-            state.useMaleVoice = (gender === 'male');
+            if (gender === 'male') {
+                alert("Coming Soon! / जल्द ही आ रहा है!");
+                return;
+            }
+            state.useMaleVoice = false;
             saveState();
             updateSettingsUI();
             playSample();
