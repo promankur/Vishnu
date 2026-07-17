@@ -377,6 +377,27 @@
     </div>
 
     <div class="container">
+        <!-- Data Settings Section -->
+        <div style="background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 24px; box-sizing: border-box; width: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleConfigPanel()">
+                <div style="font-size: 15px; font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: 8px;">
+                    ⚙️ <span>Connect Live Google Forms Feedback</span>
+                </div>
+                <div id="config-toggle-icon" style="color: var(--text-muted); font-size: 12.5px;">[ Show Configuration ]</div>
+            </div>
+            <div id="config-panel" style="display: none; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+                <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                    To load live responses, open your Google Form Responses Sheet, click <strong>File > Share > Publish to web</strong>, choose <strong>CSV (Comma-separated values)</strong>, and paste the URL here.
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <input type="text" id="csv-url-input" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" style="flex: 1; min-width: 250px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-dark); color: var(--text-light); font-size: 13px; outline: none;">
+                    <button onclick="saveCSVUrl()" style="padding: 10px 20px; border-radius: 8px; background: linear-gradient(135deg, var(--maroon), var(--saffron)); border: none; color: var(--text-light); font-weight: 600; font-size: 13px; cursor: pointer;">Connect</button>
+                    <button onclick="clearCSVUrl()" style="padding: 10px 14px; border-radius: 8px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; cursor: pointer;">Clear</button>
+                </div>
+                <div id="csv-status" style="font-size: 12px; margin-top: 8px; color: var(--gold); display: none;"></div>
+            </div>
+        </div>
+
         <!-- Metrics -->
         <div class="metrics-grid">
             <div class="metric-card">
@@ -509,24 +530,226 @@
     </div>
 
     <script>
+        let currentFilter = 'all';
+        let feedbackData = [];
+
+        // Save original mock HTML to restore if needed
+        const originalFeedbackHTML = document.getElementById('feedback-container').innerHTML;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedUrl = localStorage.getItem('vishnu_feedback_csv_url');
+            if (savedUrl) {
+                document.getElementById('csv-url-input').value = savedUrl;
+                fetchFeedbackCSV(savedUrl);
+            }
+        });
+
+        function toggleConfigPanel() {
+            const panel = document.getElementById('config-panel');
+            const icon = document.getElementById('config-toggle-icon');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                icon.innerText = '[ Hide Configuration ]';
+            } else {
+                panel.style.display = 'none';
+                icon.innerText = '[ Show Configuration ]';
+            }
+        }
+
+        function saveCSVUrl() {
+            const url = document.getElementById('csv-url-input').value.trim();
+            const statusDiv = document.getElementById('csv-status');
+            
+            if (!url) {
+                statusDiv.style.display = 'block';
+                statusDiv.style.color = 'var(--red)';
+                statusDiv.innerText = 'Please enter a valid URL.';
+                return;
+            }
+
+            statusDiv.style.display = 'block';
+            statusDiv.style.color = 'var(--gold)';
+            statusDiv.innerText = 'Connecting and fetching data...';
+
+            localStorage.setItem('vishnu_feedback_csv_url', url);
+            fetchFeedbackCSV(url);
+        }
+
+        function clearCSVUrl() {
+            localStorage.removeItem('vishnu_feedback_csv_url');
+            document.getElementById('csv-url-input').value = '';
+            
+            const statusDiv = document.getElementById('csv-status');
+            statusDiv.style.display = 'none';
+            
+            // Restore default mock data
+            document.getElementById('feedback-container').innerHTML = originalFeedbackHTML;
+            document.getElementById('feedback-count').innerText = '8';
+            
+            // Reload filter chips
+            filterFeedback('all');
+        }
+
+        function fetchFeedbackCSV(url) {
+            const statusDiv = document.getElementById('csv-status');
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(text => {
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.color = '#4CAF50';
+                    statusDiv.innerText = 'Successfully loaded live data!';
+                    
+                    const rows = parseCSV(text);
+                    renderLiveFeedback(rows);
+                })
+                .catch(error => {
+                    console.error('Error fetching CSV:', error);
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.color = 'var(--red)';
+                    statusDiv.innerText = 'Failed to load live data. Ensure the URL is published to web as CSV and CORS allows access.';
+                });
+        }
+
+        function parseCSV(text) {
+            let lines = [];
+            let row = [""];
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                let c = text[i];
+                let next = text[i+1];
+                if (c === '"') {
+                    if (inQuotes && next === '"') {
+                        row[row.length - 1] += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (c === ',' && !inQuotes) {
+                    row.push('');
+                } else if ((c === '\r' || c === '\n') && !inQuotes) {
+                    if (c === '\r' && next === '\n') {
+                        i++;
+                    }
+                    lines.push(row);
+                    row = [''];
+                } else {
+                    row[row.length - 1] += c;
+                }
+            }
+            if (row.length > 1 || row[0] !== '') {
+                lines.push(row);
+            }
+            return lines;
+        }
+
+        function renderLiveFeedback(rows) {
+            if (rows.length <= 1) return; // Empty or only header
+
+            const container = document.getElementById('feedback-container');
+            container.innerHTML = '';
+            
+            // Detect headers (row 0)
+            const dataRows = rows.slice(1);
+            feedbackData = [];
+
+            dataRows.forEach(row => {
+                if (row.length < 3) return; // Skip empty rows
+                
+                const timestamp = row[0] || 'Unknown Date';
+                const user = row[1] || 'Anonymous';
+                const rawCategory = (row[2] || '').toLowerCase().trim();
+                const feedbackText = row[3] || '';
+
+                // Map category tag classes
+                let category = 'praise';
+                if (rawCategory.includes('bug') || rawCategory.includes('issue') || rawCategory.includes('error')) {
+                    category = 'bug';
+                } else if (rawCategory.includes('suggest') || rawCategory.includes('feature') || rawCategory.includes('improve')) {
+                    category = 'suggestion';
+                }
+
+                feedbackData.push({
+                    timestamp,
+                    user,
+                    category,
+                    text: feedbackText
+                });
+            });
+
+            // Render items
+            renderFilteredFeedback();
+        }
+
+        function renderFilteredFeedback() {
+            const container = document.getElementById('feedback-container');
+            container.innerHTML = '';
+            let count = 0;
+
+            feedbackData.forEach(item => {
+                if (currentFilter === 'all' || item.category === currentFilter) {
+                    const tagClass = item.category === 'praise' ? 'tag-praise' : (item.category === 'suggestion' ? 'tag-suggestion' : 'tag-bug');
+                    const labelText = item.category === 'praise' ? 'Praise' : (item.category === 'suggestion' ? 'Suggestion' : 'Bug');
+                    
+                    const itemHtml = `
+                        <div class="feedback-item" data-type="${item.category}">
+                            <div class="feedback-top">
+                                <span class="feedback-user">${escapeHtml(item.user)}</span>
+                                <span class="feedback-tag ${tagClass}">${labelText}</span>
+                            </div>
+                            <div class="feedback-text">"${escapeHtml(item.text)}"</div>
+                            <div class="feedback-date">${escapeHtml(item.timestamp)}</div>
+                        </div>
+                    `;
+                    container.innerHTML += itemHtml;
+                    count++;
+                }
+            });
+
+            document.getElementById('feedback-count').innerText = count;
+        }
+
         function filterFeedback(type) {
+            currentFilter = type;
+            
             // Update filter chips active state
             const chips = document.querySelectorAll('.filter-chip');
             chips.forEach(c => c.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            // Find clicked chip
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
 
-            // Hide/show feedback items
-            const items = document.querySelectorAll('.feedback-item');
-            let count = 0;
-            items.forEach(item => {
-                if (type === 'all' || item.getAttribute('data-type') === type) {
-                    item.style.display = 'flex';
-                    count++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            document.getElementById('feedback-count').innerText = count;
+            if (feedbackData.length > 0) {
+                renderFilteredFeedback();
+            } else {
+                // Mock data filtering
+                const items = document.querySelectorAll('.feedback-item');
+                let count = 0;
+                items.forEach(item => {
+                    if (type === 'all' || item.getAttribute('data-type') === type) {
+                        item.style.display = 'flex';
+                        count++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                document.getElementById('feedback-count').innerText = count;
+            }
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
     </script>
 </body>
