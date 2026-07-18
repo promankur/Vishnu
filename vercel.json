@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/library.html", "destination": "/library.html" },
+    { "source": "/support.html", "destination": "/support.html" },
+    { "source": "/booklet_mockup.html", "destination": "/booklet_mockup.html" }
+  ]
 }
