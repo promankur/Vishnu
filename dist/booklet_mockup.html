@@ -76,7 +76,7 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             border-radius: 4px;
             position: relative;
-            padding: 26px 36px 18px 36px;
+            padding: 24px 34px 16px 34px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -89,23 +89,23 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .header-logo-img {
-            height: 34px;
+            height: 32px;
         }
 
         .header-brand-title {
             font-family: 'Mukta', sans-serif;
-            font-size: 23px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--brand-saffron);
             line-height: 1;
         }
 
         .header-brand-sub {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--brand-saffron);
             font-weight: 700;
             vertical-align: super;
@@ -114,17 +114,17 @@
         .header-page-title {
             text-align: center;
             font-family: 'Mukta', sans-serif;
-            font-size: 18.5px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--brand-saffron);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        /* Non-Tabular Open List Items - 10 per page */
+        /* Non-Tabular Open List Items - 10 per page with comfortable line-spacing matching 1E */
         .list-item {
             display: flex;
             gap: 14px;
-            margin-bottom: 9px;
+            margin-bottom: 8.5px;
             align-items: flex-start;
         }
 
@@ -145,7 +145,7 @@
             display: flex;
             align-items: baseline;
             gap: 8px;
-            margin-bottom: 1px;
+            margin-bottom: 2px; /* Generous spacing matching 1E */
         }
 
         .list-item-nama {
@@ -153,7 +153,7 @@
             font-size: 15.5px;
             font-weight: 700;
             color: var(--brand-saffron);
-            line-height: 1.2;
+            line-height: 1.35; /* Un-cramped line height */
         }
 
         .list-item-iast {
@@ -167,73 +167,77 @@
             font-family: 'Mukta', sans-serif;
             font-size: 13px;
             color: var(--brand-text-regular);
-            line-height: 1.35;
+            line-height: 1.4; /* Generous line height matching 1E */
+            margin-top: 1px;
         }
 
-        /* 2H & 2E SELF-STUDY LAYOUT - 3 NAMES PER PAGE WITH 1.2X HINDI SCALE */
-        .svadhyaya-entry {
-            margin-bottom: 16px; /* Generous block spacing */
+        /* 2H & 2E SELF-STUDY LAYOUT - 4 NAMES PER A5 PAGE */
+        .svadhyaya-entry-4 {
+            margin-bottom: 11px;
+            padding-bottom: 2px;
         }
 
         /* Hindi 14pt (14px) Body Text */
-        .svadhyaya-body-hi {
+        .svadhyaya-body-hi-4 {
             font-family: 'Mukta', sans-serif;
-            font-size: 14px; /* 14pt for high Hindi legibility */
+            font-size: 13.5px; /* High legibility */
             color: var(--brand-text-regular);
-            line-height: 1.45;
-            margin-top: 3px;
-            margin-bottom: 5px;
+            line-height: 1.38;
+            margin-top: 2px;
+            margin-bottom: 3px;
         }
 
         /* English 12pt (12px) Body Text */
-        .svadhyaya-body-en {
+        .svadhyaya-body-en-4 {
             font-family: 'Mukta', sans-serif;
-            font-size: 12px; /* 12pt for English */
+            font-size: 12px;
             color: var(--brand-text-regular);
-            line-height: 1.4;
-            margin-top: 3px;
-            margin-bottom: 5px;
+            line-height: 1.35;
+            margin-top: 2px;
+            margin-bottom: 3px;
         }
 
         /* Tinted Saffron Container for Insight Text (No Repeating Labels) */
-        .insight-box-hi {
+        .insight-box-hi-4 {
             background: rgba(224, 109, 40, 0.08); /* Tinted Saffron */
-            border-radius: 6px;
-            padding: 6px 10px;
-            font-size: 13.5px; /* 13.5pt for Hindi Insight */
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 13px;
             color: var(--brand-cinnamon);
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
-        .insight-box-en {
+        .insight-box-en-4 {
             background: rgba(224, 109, 40, 0.08); /* Tinted Saffron */
-            border-radius: 6px;
-            padding: 6px 10px;
-            font-size: 12px; /* 12pt for English Insight */
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 11.5px;
             color: var(--brand-cinnamon);
-            line-height: 1.38;
+            line-height: 1.32;
         }
 
-        /* STOTRAM LAYOUT */
-        .stotram-item {
+        /* STOTRAM RECITAL LAYOUT - FREE FLOWING WITH ATOMIC VERSE BINDING */
+        .stotram-block-atomic {
             display: flex;
             gap: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             align-items: flex-start;
+            page-break-inside: avoid; /* Ensures verse + transliteration never split across pages */
+            break-inside: avoid;
         }
 
-        .stotram-verse-text {
+        .stotram-verse-text-full {
             font-family: 'Mukta', sans-serif;
-            font-size: 15px;
+            font-size: 14.5px;
             font-weight: 600;
             color: var(--brand-cinnamon);
-            line-height: 1.45;
+            line-height: 1.4;
             white-space: pre-line;
         }
 
-        .stotram-iast-text {
+        .stotram-iast-text-full {
             font-family: 'Mukta', sans-serif;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 400;
             color: var(--brand-muted);
             line-height: 1.35;
@@ -247,7 +251,7 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid var(--brand-line);
-            padding-top: 6px;
+            padding-top: 5px;
             font-family: 'Mukta', sans-serif;
             font-size: 11px;
             color: var(--brand-muted);
@@ -260,13 +264,13 @@
     <div class="controls">
         <button class="btn-tab active" onclick="showView('1H')">हिन्दी नामावली (10 per A5)</button>
         <button class="btn-tab" onclick="showView('1E')">English Namavali (10 per A5)</button>
-        <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय (14pt, 3 per A5)</button>
-        <button class="btn-tab" onclick="showView('2E')">English Self-Study (12pt, 3 per A5)</button>
-        <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ</button>
-        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital</button>
+        <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय (4 per A5)</button>
+        <button class="btn-tab" onclick="showView('2E')">English Self-Study (4 per A5)</button>
+        <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ (Full Flow)</button>
+        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital (Full Flow)</button>
     </div>
 
-    <!-- HINDI ESSENTIAL - ALL 10 NAMES ON PAGE -->
+    <!-- HINDI ESSENTIAL - 10 NAMES WITH COMFORTABLE LINE SPACING MATCHING 1E -->
     <div id="view-1H" class="page-container-a5">
         <div>
             <div class="header-logo-row">
@@ -362,7 +366,7 @@
         </div>
     </div>
 
-    <!-- ENGLISH ESSENTIAL - ALL 10 NAMES ON PAGE -->
+    <!-- ENGLISH ESSENTIAL - 10 NAMES WITH MATCHING LINE SPACING -->
     <div id="view-1E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -488,7 +492,7 @@
         </div>
     </div>
 
-    <!-- HINDI SELF-STUDY (14PT FONT, 3 NAMES PER PAGE, TINTED SAFFRON CONTAINER WITHOUT DUPLICATE LABELS) -->
+    <!-- HINDI SELF-STUDY (4 SEQUENTIAL NAMES PER A5 PAGE) -->
     <div id="view-2H" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -498,46 +502,61 @@
             <div class="header-page-title">श्रीविष्णुसहस्रनाम स्वाध्याय (आदि शंकर भाष्य)</div>
 
             <!-- NAME 003 -->
-            <div class="list-item svadhyaya-entry">
+            <div class="list-item svadhyaya-entry-4">
                 <div class="list-item-num">००३</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ वषट्काराय नमः</div>
-                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 1px;">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
-                    <div class="svadhyaya-body-hi">
-                        भगवान् विष्णु ही समस्त वैदिक यज्ञों के भोक्ता एवं फलदाता हैं। जब याज्ञिक पुरोहित अग्नि में आहुति देते हुए 'वषट्' शब्द का उच्चारण करते हैं, तब वे वास्तव में श्रीहरि के ही स्वरूप का आह्वान कर रहे होते हैं।
+                    <div class="list-item-nama" style="font-size: 15px;">ॐ वषट्काराय नमः</div>
+                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
+                    <div class="svadhyaya-body-hi-4">
+                        भगवान् विष्णु ही समस्त वैदिक यज्ञों के भोक्ता एवं फलदाता हैं। जब याज्ञिक पुरोहित आहुति देते समय 'वषट्' का उच्चारण करते हैं, तब वे वास्तव में श्रीहरि का ही आह्वान करते हैं।
                     </div>
-                    <div class="insight-box-hi">
+                    <div class="insight-box-hi-4">
                         अपने प्रत्येक कर्म को ईश्वर के प्रति समर्पित यज्ञानुष्ठान समझकर सम्पादित करें।
                     </div>
                 </div>
             </div>
 
             <!-- NAME 004 -->
-            <div class="list-item svadhyaya-entry">
+            <div class="list-item svadhyaya-entry-4">
                 <div class="list-item-num">००४</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
-                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 1px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
-                    <div class="svadhyaya-body-hi">
-                        भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी हैं। अतीत, वर्तमान और भविष्य की समस्त घटनाएँ भगवान् के संकल्प में ही प्रतिष्ठित हैं।
+                    <div class="list-item-nama" style="font-size: 15px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                    <div class="svadhyaya-body-hi-4">
+                        भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु तीनों कालों के निरपेक्ष स्वामी हैं। अतीत, वर्तमान और भविष्य की समस्त घटनाएँ भगवान् के संकल्प में प्रतिष्ठित हैं।
                     </div>
-                    <div class="insight-box-hi">
-                        चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान में शरणार्थी बनें।
+                    <div class="insight-box-hi-4">
+                        चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं।
                     </div>
                 </div>
             </div>
 
             <!-- NAME 005 -->
-            <div class="list-item svadhyaya-entry" style="margin-bottom: 0;">
+            <div class="list-item svadhyaya-entry-4">
                 <div class="list-item-num">००५</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ भूतकृते नमः</div>
-                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 1px;">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</div>
-                    <div class="svadhyaya-body-hi">
+                    <div class="list-item-nama" style="font-size: 15px;">ॐ भूतकृते नमः</div>
+                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</div>
+                    <div class="svadhyaya-body-hi-4">
                         भगवान् विष्णु ही इस ब्रह्मांड के मूल रचियता हैं। वे सूक्ष्म पंचमहाभूतों से लेकर विराट चैतन्य जीवों तक सबकी रचना अपनी अमोघ शक्ति द्वारा करते हैं।
                     </div>
-                    <div class="insight-box-hi">
+                    <div class="insight-box-hi-4">
                         सृष्टि के प्रत्येक रूप में प्रभु की दिव्य कलाकृति का दर्शन करें और अहंकार का त्याग करें।
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAME 006 -->
+            <div class="list-item svadhyaya-entry-4" style="margin-bottom: 0;">
+                <div class="list-item-num">००६</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama" style="font-size: 15px;">ॐ भूतभृते नमः</div>
+                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जो सम्पूर्ण जीवों का अपने पोषण एवं अनुग्रह द्वारा भरण-पोषण करते हैं।</div>
+                    <div class="svadhyaya-body-hi-4">
+                        भगवान् विष्णु अपनी असीम करुणा से प्रत्येक प्राणी की मूलभूत आवश्यकताओं की पूर्ति करते हैं और उनका संरक्षण करते हैं।
+                    </div>
+                    <div class="insight-box-hi-4">
+                        ईश्वर के इस पोषण तत्त्व पर पूर्ण विश्वास रखकर जीवन में निर्भयता प्राप्त करें।
                     </div>
                 </div>
             </div>
@@ -545,11 +564,11 @@
 
         <div class="page-footer-a5">
             <div>अन्तरा डिजिटल अभयारण्य</div>
-            <div>नाम ५</div>
+            <div>नाम ६</div>
         </div>
     </div>
 
-    <!-- ENGLISH SELF-STUDY (12PT FONT, 3 NAMES PER PAGE, TINTED SAFFRON CONTAINER WITHOUT DUPLICATE LABELS) -->
+    <!-- ENGLISH SELF-STUDY (4 SEQUENTIAL NAMES PER A5 PAGE) -->
     <div id="view-2E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -559,61 +578,81 @@
             <div class="header-page-title">Shri Viṣṇu Sahasranama Self-Study (Adi Shankara Bhashya)</div>
 
             <!-- NAME 003 -->
-            <div class="list-item svadhyaya-entry">
+            <div class="list-item svadhyaya-entry-4">
                 <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">003</div>
                 <div class="list-item-content">
                     <div class="list-item-nama-row">
                         <span class="list-item-nama">ॐ वषट्काराय नमः</span>
                         <span class="list-item-iast">Om Vaṣaṭkārāya Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
+                    <div class="list-item-meaning" style="font-size: 12px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
                         He for whose invocation the sacred 'Vaṣaṭ' oblation is offered in Vedic Yajnas.
                     </div>
-                    <div class="svadhyaya-body-en">
+                    <div class="svadhyaya-body-en-4">
                         Lord Vishnu is the supreme recipient of all Vedic sacrifices. Whenever priests chant 'Vaṣaṭ' during oblations, they invoke His divine presence.
                     </div>
-                    <div class="insight-box-en">
+                    <div class="insight-box-en-4">
                         Perform every daily act as a sacred offering to the Divine Consciousness.
                     </div>
                 </div>
             </div>
 
             <!-- NAME 004 -->
-            <div class="list-item svadhyaya-entry">
+            <div class="list-item svadhyaya-entry-4">
                 <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">004</div>
                 <div class="list-item-content">
                     <div class="list-item-nama-row">
                         <span class="list-item-nama">ॐ भूतभव्यभवत्प्रभवे नमः</span>
                         <span class="list-item-iast">Om Bhūtabhavyabhavatprabhave Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
+                    <div class="list-item-meaning" style="font-size: 12px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
                         The Sovereign Lord of all three realms of Time—Past, Present, and Future.
                     </div>
-                    <div class="svadhyaya-body-en">
-                        Lord Vishnu is not merely a passive witness to time, but the absolute Master of Time itself. Everything past, present, and future resides eternally within His consciousness.
+                    <div class="svadhyaya-body-en-4">
+                        Lord Vishnu is not merely a passive witness to time, but the absolute Master of Time itself. Everything past, present, and future resides in His consciousness.
                     </div>
-                    <div class="insight-box-en">
-                        Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrender anxiety about time and rest in divine presence.
+                    <div class="insight-box-en-4">
+                        Contemplate that regardless of past burdens, the Supreme Lord governs your future.
                     </div>
                 </div>
             </div>
 
             <!-- NAME 005 -->
-            <div class="list-item svadhyaya-entry" style="margin-bottom: 0;">
+            <div class="list-item svadhyaya-entry-4">
                 <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">005</div>
                 <div class="list-item-content">
                     <div class="list-item-nama-row">
                         <span class="list-item-nama">ॐ भूतकृते नमः</span>
                         <span class="list-item-iast">Om Bhūtakṛte Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
+                    <div class="list-item-meaning" style="font-size: 12px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
                         The Cosmic Creator who brings forth all beings into existence.
                     </div>
-                    <div class="svadhyaya-body-en">
-                        Lord Vishnu is the primary creator of the universe. From subtle cosmic elements to living beings, everything is brought forth by His divine power.
+                    <div class="svadhyaya-body-en-4">
+                        Lord Vishnu is the primary creator of the universe. From subtle cosmic elements to living beings, everything is brought forth by His power.
                     </div>
-                    <div class="insight-box-en">
+                    <div class="insight-box-en-4">
                         Recognize the Divine hand in all of creation and let go of individual ego.
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAME 006 -->
+            <div class="list-item svadhyaya-entry-4" style="margin-bottom: 0;">
+                <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">006</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ भूतभृते नमः</span>
+                        <span class="list-item-iast">Om Bhūtabhṛte Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning" style="font-size: 12px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
+                        The Nurturer and Sustainer who nourishes all living beings.
+                    </div>
+                    <div class="svadhyaya-body-en-4">
+                        Lord Vishnu sustains all creation with His grace, ensuring every living entity is protected and provided for.
+                    </div>
+                    <div class="insight-box-en-4">
+                        Rest in total faith that the Supreme Sustainer looks after your life.
                     </div>
                 </div>
             </div>
@@ -621,11 +660,11 @@
 
         <div class="page-footer-a5">
             <div>Antara Digital Sanctuary</div>
-            <div>Name 5</div>
+            <div>Name 6</div>
         </div>
     </div>
 
-    <!-- STOTRAM-H: HINDI STOTRAM RECITAL (5 VERSES ON PAGE) -->
+    <!-- STOTRAM-H: HINDI STOTRAM RECITAL (FULL FLOW 8 VERSES) -->
     <div id="view-StotramH" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -634,34 +673,52 @@
             </div>
             <div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">००१</div>
-                <div class="stotram-verse-text">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
+                <div class="stotram-verse-text-full">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
 भूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥</div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">००२</div>
-                <div class="stotram-verse-text">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
+                <div class="stotram-verse-text-full">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
 अव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥</div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">००३</div>
-                <div class="stotram-verse-text">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
+                <div class="stotram-verse-text-full">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
 नारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥</div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">००४</div>
-                <div class="stotram-verse-text">सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।
+                <div class="stotram-verse-text-full">सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।
 सम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥</div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">००५</div>
-                <div class="stotram-verse-text">स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।
+                <div class="stotram-verse-text-full">स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।
 अनादिनिधनो धाता विधाता धातुरुत्तमः ॥ ५ ॥</div>
+            </div>
+
+            <div class="stotram-block-atomic">
+                <div class="list-item-num">००६</div>
+                <div class="stotram-verse-text-full">अप्रमेयो हृषीकेशः पद्मनाभोऽमरप्रभुः ।
+विश्वकर्मा मनुष्टष्टा स्थविष्ठः स्थविरो ध्रुवः ॥ ६ ॥</div>
+            </div>
+
+            <div class="stotram-block-atomic">
+                <div class="list-item-num">००७</div>
+                <div class="stotram-verse-text-full">अग्राह्यः शाश्वतः कृष्णो लोहिताक्षः प्रतर्दनः ।
+प्रभूतस्त्रिककुब्धाम पवित्रं मङ्गलं परम् ॥ ७ ॥</div>
+            </div>
+
+            <div class="stotram-block-atomic">
+                <div class="list-item-num">००८</div>
+                <div class="stotram-verse-text-full">इशानः प्राणदः प्राणो ज्येष्ठः श्रेष्ठः प्रजापतिः ।
+हिरण्यगर्भो भूगर्भो माधवो मधुसूदनः ॥ ८ ॥</div>
             </div>
         </div>
 
@@ -671,7 +728,7 @@
         </div>
     </div>
 
-    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL -->
+    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL (FULL ATOMIC FLOW 5 VERSES) -->
     <div id="view-StotramE" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -680,43 +737,53 @@
             </div>
             <div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">001</div>
                 <div>
-                    <div class="stotram-verse-text">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
+                    <div class="stotram-verse-text-full">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
 भूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥</div>
-                    <div class="stotram-iast-text">viśvaṁ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |
+                    <div class="stotram-iast-text-full">viśvaṁ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |
 bhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||</div>
                 </div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">002</div>
                 <div>
-                    <div class="stotram-verse-text">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
+                    <div class="stotram-verse-text-full">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
 अव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥</div>
-                    <div class="stotram-iast-text">pūtātmā paramātmā ca muktānāṁ paramā gatiḥ |
+                    <div class="stotram-iast-text-full">pūtātmā paramātmā ca muktānāṁ paramā gatiḥ |
 avyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||</div>
                 </div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">003</div>
                 <div>
-                    <div class="stotram-verse-text">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
+                    <div class="stotram-verse-text-full">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
 नारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥</div>
-                    <div class="stotram-iast-text">yogo yogavidāṁ netā pradhānapuruṣeśvaraḥ |
+                    <div class="stotram-iast-text-full">yogo yogavidāṁ netā pradhānapuruṣeśvaraḥ |
 nārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||</div>
                 </div>
             </div>
 
-            <div class="stotram-item">
+            <div class="stotram-block-atomic">
                 <div class="list-item-num">004</div>
                 <div>
-                    <div class="stotram-verse-text">सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।
+                    <div class="stotram-verse-text-full">सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।
 सम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥</div>
-                    <div class="stotram-iast-text">sarvaḥ śarvaḥ śivaḥ sthāṇurbhūtādirnidhiravyayaḥ |
+                    <div class="stotram-iast-text-full">sarvaḥ śarvaḥ śivaḥ sthāṇurbhūtādirnidhiravyayaḥ |
 sambhavo bhāvano bhartā prabhavaḥ prabhurīśvaraḥ || 4 ||</div>
+                </div>
+            </div>
+
+            <div class="stotram-block-atomic">
+                <div class="list-item-num">005</div>
+                <div>
+                    <div class="stotram-verse-text-full">स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।
+अनादिनिधनो धाता विधाता धातुरुत्तमः ॥ ५ ॥</div>
+                    <div class="stotram-iast-text-full">svayambhūḥ śambhurādityaḥ puṣkarākṣo mahāsvanaḥ |
+anādinidhano dhātā vidhātā dhāturuttamaḥ || 5 ||</div>
                 </div>
             </div>
         </div>
