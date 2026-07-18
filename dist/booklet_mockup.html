@@ -76,7 +76,7 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             border-radius: 4px;
             position: relative;
-            padding: 32px 36px 20px 36px;
+            padding: 28px 36px 20px 36px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -117,14 +117,14 @@
             font-size: 19px;
             font-weight: 700;
             color: var(--brand-saffron);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         /* Non-Tabular Open List Items */
         .list-item {
             display: flex;
             gap: 16px;
-            margin-bottom: 14px; /* Clean spacing allowing max 10 items per page */
+            margin-bottom: 14px;
             align-items: flex-start;
         }
 
@@ -170,30 +170,30 @@
             line-height: 1.4;
         }
 
-        /* 2H & 2E SELF-STUDY LAYOUT - 2 NAMES PER A5 PAGE */
+        /* 2H & 2E SELF-STUDY LAYOUT - FULL UNTRUNCATED TEXT FOR 2 NAMES PER A5 PAGE */
         .svadhyaya-entry {
-            margin-bottom: 22px;
+            margin-bottom: 16px;
         }
 
         .svadhyaya-body {
             font-family: 'Mukta', sans-serif;
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--brand-text-regular);
-            line-height: 1.55;
-            margin-top: 6px;
-            margin-bottom: 6px;
+            line-height: 1.45;
+            margin-top: 4px;
+            margin-bottom: 4px;
         }
 
         .svadhyaya-subhead {
             font-family: 'Mukta', sans-serif;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--brand-saffron);
             margin-top: 4px;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
-        /* Positioned exactly 20px above footer line */
+        /* Bottom Badge positioned directly at baseline above footer border */
         .svadhyaya-bottom-badge {
             text-align: center;
             font-family: 'Mukta', sans-serif;
@@ -201,7 +201,7 @@
             font-weight: 700;
             color: var(--brand-saffron);
             margin-top: auto;
-            margin-bottom: 20px; /* Exactly 20px above footer line */
+            margin-bottom: 6px; /* Sits directly on top of footer line */
         }
 
         /* STOTRAM LAYOUT */
@@ -237,10 +237,9 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid var(--brand-line);
-            padding-top: 8px;
-            margin-top: auto;
+            padding-top: 6px;
             font-family: 'Mukta', sans-serif;
-            font-size: 11.5px;
+            font-size: 11px;
             color: var(--brand-muted);
         }
     </style>
@@ -403,7 +402,7 @@
         </div>
     </div>
 
-    <!-- HINDI SELF-STUDY (2 NAMES PER A5 PAGE) -->
+    <!-- HINDI SELF-STUDY (2 FULL UNTRUNCATED NAMES PER A5 PAGE - MATCHING SUGGESTED MOCKUP) -->
     <div id="view-2H" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -412,42 +411,44 @@
             </div>
             <div class="header-page-title">श्रीविष्णुसहस्रनाम स्वाध्याय</div>
 
-            <!-- NAME 1 OF 2 ON PAGE -->
+            <!-- ENTRY 1 ON PAGE -->
             <div class="list-item svadhyaya-entry">
-                <div class="list-item-num">००३</div>
+                <div class="list-item-num">००४</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ वषट्काराय नमः</div>
-                    <div class="list-item-meaning" style="font-size: 13px; font-weight: 600; margin-top: 2px;">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
+                    <div class="list-item-nama" style="font-size: 16px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                    <div class="list-item-meaning" style="font-size: 13px; font-weight: 600; margin-top: 2px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
                     
                     <div class="svadhyaya-body">
-                        भगवान् विष्णु ही समस्त वैदिक यज्ञों के भोक्ता एवं फलदाता हैं। जब याज्ञिक पुरोहित अग्नि में आहुति देते हुए 'वषट्' शब्द का उच्चारण करते हैं, तब वे वास्तव में श्रीहरि के ही स्वरूप का आह्वान कर रहे होते हैं।
+                        भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है।
                     </div>
+
                     <div class="svadhyaya-subhead">साधना सूत्र:</div>
                     <div class="svadhyaya-body" style="margin-bottom: 0;">
-                        अपने प्रत्येक कर्म को ईश्वर के प्रति समर्पित यज्ञानुष्ठान समझकर सम्पादित करें।
+                        चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
                     </div>
                 </div>
             </div>
 
-            <!-- NAME 2 OF 2 ON PAGE -->
+            <!-- ENTRY 2 ON PAGE -->
             <div class="list-item svadhyaya-entry" style="margin-bottom: 0;">
                 <div class="list-item-num">००४</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                    <div class="list-item-nama" style="font-size: 16px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
                     <div class="list-item-meaning" style="font-size: 13px; font-weight: 600; margin-top: 2px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
                     
                     <div class="svadhyaya-body">
-                        भगवान् विष्णु तीनों कालों के निरपेक्ष स्वामी हैं। अतीत में जो घटा, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होगा—सब उन्हीं में प्रतिष्ठित है।
+                        भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है।
                     </div>
+
                     <div class="svadhyaya-subhead">साधना सूत्र:</div>
                     <div class="svadhyaya-body" style="margin-bottom: 0;">
-                        काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनें।
+                        चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Positioned exactly 20px above footer line -->
+        <!-- Positioned at baseline cyan blue reference line directly above footer border -->
         <div class="svadhyaya-bottom-badge">☸ स्वाध्याय एवं दार्शनिक चिंतन (आदि शंकर भाष्य)</div>
 
         <div class="page-footer-a5">
@@ -456,7 +457,7 @@
         </div>
     </div>
 
-    <!-- ENGLISH SELF-STUDY (2 NAMES PER A5 PAGE) -->
+    <!-- ENGLISH SELF-STUDY (2 FULL UNTRUNCATED NAMES PER A5 PAGE - MATCHING SUGGESTED MOCKUP) -->
     <div id="view-2E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -465,31 +466,9 @@
             </div>
             <div class="header-page-title">Shri Viṣṇu Sahasranama Self-Study</div>
 
-            <!-- NAME 1 OF 2 ON PAGE -->
+            <!-- ENTRY 1 ON PAGE -->
             <div class="list-item svadhyaya-entry">
-                <div class="list-item-num">003</div>
-                <div class="list-item-content">
-                    <div class="list-item-nama-row">
-                        <span class="list-item-nama">ॐ वषट्काराय नमः</span>
-                        <span class="list-item-iast">Om Vaṣaṭkārāya Namaḥ</span>
-                    </div>
-                    <div class="list-item-meaning" style="font-size: 13px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 2px;">
-                        He for whose invocation the sacred 'Vaṣaṭ' oblation is offered in Vedic Yajnas.
-                    </div>
-
-                    <div class="svadhyaya-body">
-                        Lord Vishnu is the supreme recipient of all Vedic sacrifices. Whenever priests chant 'Vaṣaṭ' during oblations, they invoke His divine presence.
-                    </div>
-                    <div class="svadhyaya-subhead">Sadhana Insight:</div>
-                    <div class="svadhyaya-body" style="margin-bottom: 0;">
-                        Perform every daily act as a sacred offering to the Divine Consciousness.
-                    </div>
-                </div>
-            </div>
-
-            <!-- NAME 2 OF 2 ON PAGE -->
-            <div class="list-item svadhyaya-entry" style="margin-bottom: 0;">
-                <div class="list-item-num">004</div>
+                <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">004</div>
                 <div class="list-item-content">
                     <div class="list-item-nama-row">
                         <span class="list-item-nama">ॐ भूतभव्यभवत्प्रभवे नमः</span>
@@ -500,17 +479,41 @@
                     </div>
 
                     <div class="svadhyaya-body">
-                        Lord Vishnu is the absolute Master of Time itself. Everything past, present, and future resides eternally within His supreme consciousness.
+                        Lord Vishnu is not merely a passive witness to time, but the absolute Master ("Prabhu") of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
                     </div>
+
                     <div class="svadhyaya-subhead">Sadhana Insight:</div>
                     <div class="svadhyaya-body" style="margin-bottom: 0;">
-                        Surrender anxiety about time and rest gracefully in divine presence.
+                        Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ENTRY 2 ON PAGE -->
+            <div class="list-item svadhyaya-entry" style="margin-bottom: 0;">
+                <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">004</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ भूतभव्यभवत्प्रभवे नमः</span>
+                        <span class="list-item-iast">Om Bhūtabhavyabhavatprabhave Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning" style="font-size: 13px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 2px;">
+                        The Sovereign Lord of all three realms of Time—Past, Present, and Future.
+                    </div>
+
+                    <div class="svadhyaya-body">
+                        Lord Vishnu is not merely a passive witness to time, but the absolute Master ("Prabhu") of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
+                    </div>
+
+                    <div class="svadhyaya-subhead">Sadhana Insight:</div>
+                    <div class="svadhyaya-body" style="margin-bottom: 0;">
+                        Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Positioned exactly 20px above footer line -->
+        <!-- Positioned at baseline cyan blue reference line directly above footer border -->
         <div class="svadhyaya-bottom-badge">☸ Self-Study & Contemplation (Shankara Bhashya)</div>
 
         <div class="page-footer-a5">
