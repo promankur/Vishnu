@@ -2517,6 +2517,7 @@
             saveState();
         }
 
+        let globalNamavaliAudio = null;
         let currentAudioPlayer = null;
         let activeSpeechId = 0;
         let currentCommentaryHtml = "";
@@ -2535,52 +2536,56 @@
             if (synthesis) {
                 synthesis.cancel();
             }
-            // Stop any ongoing audio player playback
-            if (currentAudioPlayer) {
-                currentAudioPlayer.isCancelled = true;
-                currentAudioPlayer.pause();
-                currentAudioPlayer = null;
+
+            // Reuse persistent Audio instance to prevent iOS Safari Autoplay blocking
+            if (!globalNamavaliAudio) {
+                globalNamavaliAudio = new Audio();
             }
+
+            // Reset existing listeners and pause
+            globalNamavaliAudio.pause();
+            globalNamavaliAudio.onplay = null;
+            globalNamavaliAudio.onended = null;
+            globalNamavaliAudio.onerror = null;
 
             const gender = state.useMaleVoice ? "male" : "female";
             const audioPath = `audio/${gender}/${item.id}.mp3`;
-            const player = new Audio(audioPath);
-            currentAudioPlayer = player;
-
-            // Scale speed rate. 0.3 is normal 1.0x recorded speed.
-            player.playbackRate = Math.max(0.5, Math.min(2.0, (state.speechRate || 0.3) / 0.3));
+            
+            globalNamavaliAudio.src = audioPath;
+            globalNamavaliAudio.playbackRate = Math.max(0.5, Math.min(2.0, (state.speechRate || 0.3) / 0.3));
+            currentAudioPlayer = globalNamavaliAudio;
 
             let fallbackTriggered = false;
 
-            player.addEventListener('play', () => {
+            globalNamavaliAudio.onplay = () => {
                 if (mySpeechId !== activeSpeechId) return;
                 speechInProgress = true;
-            });
+            };
 
-            player.addEventListener('ended', () => {
+            globalNamavaliAudio.onended = () => {
                 if (mySpeechId !== activeSpeechId) return;
                 speechInProgress = false;
-                currentAudioPlayer = null;
                 if (callback) callback();
-            });
+            };
 
-            player.addEventListener('error', () => {
+            globalNamavaliAudio.onerror = () => {
                 if (mySpeechId !== activeSpeechId) return;
                 if (fallbackTriggered) return;
                 fallbackTriggered = true;
-                currentAudioPlayer = null;
                 console.log(`Recorded audio ${audioPath} not found. Falling back to TTS.`);
                 speakText(toDativeSanskrit(item.devanagari), mySpeechId, callback);
-            });
+            };
 
-            player.play().catch(err => {
-                if (mySpeechId !== activeSpeechId) return;
-                if (fallbackTriggered) return;
-                fallbackTriggered = true;
-                currentAudioPlayer = null;
-                console.log("Audio playback failed, falling back to TTS:", err);
-                speakText(toDativeSanskrit(item.devanagari), mySpeechId, callback);
-            });
+            const playPromise = globalNamavaliAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(err => {
+                    if (mySpeechId !== activeSpeechId) return;
+                    if (fallbackTriggered) return;
+                    fallbackTriggered = true;
+                    console.log("Audio playback failed, falling back to TTS:", err);
+                    speakText(toDativeSanskrit(item.devanagari), mySpeechId, callback);
+                });
+            }
         }
 
         function speakText(text, speechId, callback) {
