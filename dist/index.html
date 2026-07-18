@@ -3896,11 +3896,15 @@
             if (stotramPlayer) {
                 if (stotramPlayer.paused) {
                     stotramPlayer.play().then(() => {
+                        warningEl.style.display = "none";
                         playBtn.innerText = "⏸";
                         startStotramProgressTracker();
                     }).catch(err => {
-                        console.log("Stotram playback failed:", err);
-                        warningEl.style.display = "block";
+                        console.log("Stotram playback failed on user click:", err);
+                        playBtn.innerText = "▶";
+                        if (err.name !== 'NotAllowedError' && err.name !== 'AbortError') {
+                            warningEl.style.display = "block";
+                        }
                     });
                 } else {
                     stotramPlayer.pause();
@@ -3926,8 +3930,11 @@
                     stotramPlayer = null;
                 });
 
-                stotramPlayer.addEventListener('error', () => {
-                    warningEl.style.display = "block";
+                stotramPlayer.addEventListener('error', (e) => {
+                    console.log("Stotram audio network error:", e);
+                    if (stotramPlayer && stotramPlayer.error) {
+                        warningEl.style.display = "block";
+                    }
                     playBtn.innerText = "▶";
                     stotramPlayer = null;
                 });
@@ -3946,9 +3953,11 @@
                     playBtn.innerText = "⏸";
                     startStotramProgressTracker();
                 }).catch(err => {
-                    console.log("Stotram playback error:", err);
-                    warningEl.style.display = "block";
-                    stotramPlayer = null;
+                    console.log("Stotram auto-play blocked or failed:", err);
+                    playBtn.innerText = "▶";
+                    if (err.name !== 'NotAllowedError' && err.name !== 'AbortError') {
+                        warningEl.style.display = "block";
+                    }
                 });
             }
         }
