@@ -1922,8 +1922,8 @@
                     </label>
                 </div>
 
-                <!-- Row 2: Daily Reminder -->
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding: 4px 8px; box-sizing: border-box; width: 100%;">
+                <!-- Row 2: Daily Reminder (Android Native Feature) -->
+                <div id="settings-reminder-row" style="display: none; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding: 4px 8px; box-sizing: border-box; width: 100%;">
                     <div style="display: flex; flex-direction: column;">
                         <div style="font-family: 'Mukta', sans-serif; font-size: 16px; font-weight: bold; color: var(--antara-dark);">
                             दैनिक स्मरणपत्र <span style="font-family: 'Inter', sans-serif; font-weight: normal; color: var(--antara-muted); opacity: 0.8;">/ Daily Reminder</span>
@@ -2318,7 +2318,8 @@
             if (!db || db.length === 0) return;
             const today = new Date();
             const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-            const index = seed % db.length;
+            const hashed = Math.abs((seed * 2654435761) % 4294967296);
+            const index = hashed % db.length;
             const nameObj = db[index];
             todayNamaObj = nameObj;
             
@@ -2873,11 +2874,14 @@
             document.getElementById("sheet-backdrop").classList.remove("active");
             document.getElementById("significance-sheet").classList.remove("active");
             
-            // Release Wake Lock
-            releaseWakeLock();
+            // Only release Wake Lock if NOT on active chanting screen
+            const chantingScreen = document.getElementById("screen-chanting");
+            if (!chantingScreen || !chantingScreen.classList.contains("active")) {
+                releaseWakeLock();
+            }
             
-            // Resume Auto-Advance timer if active
-            if (isAutoAdvance) {
+            // Resume Auto-Advance timer if active on chanting screen
+            if (isAutoAdvance && chantingScreen && chantingScreen.classList.contains("active")) {
                 setupAutoAdvanceTimer(3000);
             }
         }
@@ -3029,7 +3033,7 @@
                 title = "अर्ध जप - भाग " + (block + 1) + " / Half Japa";
             } else if (quota === 250) {
                 title = "पाद जप - भाग " + (block + 1) + " / Pada Japa";
-            } else if (quota === 100) {
+            } else if (quota === 108) {
                 title = "माला जप - माला " + (block + 1) + " / Mala Japa";
             } else {
                 title = "अखण्ड जप / Akhanda Japa";
