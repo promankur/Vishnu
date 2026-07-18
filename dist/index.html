@@ -2711,7 +2711,10 @@
             document.getElementById(screenId).classList.add("active");
             
             if (screenId === "screen-dashboard") {
+                releaseWakeLock();
                 refreshDashboard();
+            } else if (screenId === "screen-chanting") {
+                requestWakeLock();
             }
         }
 
@@ -2799,17 +2802,10 @@
             if (sessionList.length === 0) return;
             const item = sessionList[activeSessionIndex];
             if (item) {
+                // Suspend Auto-Advance timer while the sheet is open
+                clearAutoAdvanceTimer();
                 openSignificanceSheetForName(item);
             }
-        }
-            
-            switchSelfStudyTab('commentary');
-            
-            // Suspend Auto-Advance timer
-            clearAutoAdvanceTimer();
-            
-            document.getElementById("sheet-backdrop").classList.add("active");
-            document.getElementById("significance-sheet").classList.add("active");
         }
 
         let currentSelfStudyTab = 'commentary';
@@ -3242,6 +3238,7 @@
         }
         
         function openSignificanceSheetForName(item) {
+            clearAutoAdvanceTimer();
             const backdrop = document.getElementById("sheet-backdrop");
             const sheet = document.getElementById("significance-sheet");
             
@@ -3981,6 +3978,26 @@
         document.addEventListener("DOMContentLoaded", () => {
             initApp();
             
+            // Search dropdown dismissal on outside click
+            document.addEventListener('click', function(e) {
+                const searchInput = document.getElementById('search-input');
+                const searchResults = document.getElementById('search-results');
+                if (searchResults && searchInput && searchResults.style.display !== 'none') {
+                    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                        clearSearch();
+                    }
+                }
+            });
+
+            // Escape key handler to dismiss search and sheets
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                    closeSignificanceSheet();
+                    closePreferencesSheet();
+                }
+            });
+
             // Register PWA Service Worker
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('sw.js')
