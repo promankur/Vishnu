@@ -120,7 +120,7 @@
             margin-bottom: 22px;
         }
 
-        /* Non-Tabular Open List Items - 1H & 1E */
+        /* Non-Tabular Open List Items */
         .list-item {
             display: flex;
             gap: 16px;
@@ -171,16 +171,12 @@
         }
 
         /* 2H & 2E SELF-STUDY LAYOUT matching Image 2 */
-        .svadhyaya-item {
-            margin-bottom: 20px;
-        }
-
         .svadhyaya-body {
             font-family: 'Mukta', sans-serif;
             font-size: 13.5px;
             color: var(--brand-text-regular);
             line-height: 1.65;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .svadhyaya-subhead {
@@ -198,7 +194,7 @@
             font-weight: 700;
             color: var(--brand-saffron);
             margin-top: auto;
-            margin-bottom: 12px;
+            margin-bottom: 8px; /* Positioned right above footer line */
         }
 
         /* STOTRAM LAYOUT (Matching 1H/1E style) */
@@ -246,15 +242,15 @@
 
     <!-- Tab Selector -->
     <div class="controls">
-        <button class="btn-tab active" onclick="showView('1H')">1H: Hindi Essential</button>
-        <button class="btn-tab" onclick="showView('1E')">1E: English Essential</button>
-        <button class="btn-tab" onclick="showView('2H')">2H: Hindi Self-Study</button>
-        <button class="btn-tab" onclick="showView('2E')">2E: English Self-Study</button>
-        <button class="btn-tab" onclick="showView('StotramH')">Stotram-H: Hindi Recital</button>
-        <button class="btn-tab" onclick="showView('StotramE')">Stotram-E: English Recital</button>
+        <button class="btn-tab active" onclick="showView('1H')">हिन्दी नामावली</button>
+        <button class="btn-tab" onclick="showView('1E')">English Namavali</button>
+        <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय</button>
+        <button class="btn-tab" onclick="showView('2E')">English Self-Study</button>
+        <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ</button>
+        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital</button>
     </div>
 
-    <!-- CHOICE 1H: HINDI ESSENTIAL (MATCHING IMAGE 1 LEFT) -->
+    <!-- HINDI ESSENTIAL (MATCHING IMAGE 1 LEFT) -->
     <div id="view-1H" class="page-container-a5">
         <div>
             <div class="header-logo-row">
@@ -313,12 +309,12 @@
         </div>
 
         <div class="page-footer-a5">
-            <div>अन्तरा विष्णु १००० • साधना पुस्तिका (1H)</div>
+            <div>अन्तरा विष्णु १००० • साधना पुस्तिका</div>
             <div>पृष्ठ १</div>
         </div>
     </div>
 
-    <!-- CHOICE 1E: ENGLISH ESSENTIAL (MATCHING IMAGE 1 RIGHT) -->
+    <!-- ENGLISH ESSENTIAL (MATCHING IMAGE 1 RIGHT) -->
     <div id="view-1E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -395,12 +391,12 @@
         </div>
 
         <div class="page-footer-a5">
-            <div>Antara Vishnu 1000 • Essential Edition (1E)</div>
+            <div>Antara Vishnu 1000 • Essential Edition</div>
             <div>Page 1</div>
         </div>
     </div>
 
-    <!-- CHOICE 2H: HINDI SELF-STUDY (MATCHING IMAGE 2 LEFT) -->
+    <!-- HINDI SELF-STUDY (MATCHING IMAGE 2 LEFT - INDENTED TO NAME) -->
     <div id="view-2H" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -409,24 +405,26 @@
             </div>
             <div class="header-page-title">श्रीविष्णुसहस्रनाम स्वाध्याय</div>
 
-            <div class="list-item" style="margin-bottom: 20px;">
+            <div class="list-item" style="margin-bottom: 16px;">
                 <div class="list-item-num">००४</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 18px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
-                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                    <div class="list-item-nama" style="font-size: 17.5px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 3px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                    
+                    <!-- Self-study content indented to match Vishnu Name -->
+                    <div class="svadhyaya-body" style="margin-top: 14px;">
+                        भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है।
+                    </div>
+
+                    <div class="svadhyaya-subhead">साधना सूत्र:</div>
+                    <div class="svadhyaya-body" style="margin-bottom: 0;">
+                        चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
+                    </div>
                 </div>
-            </div>
-
-            <div class="svadhyaya-body">
-                भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है।
-            </div>
-
-            <div class="svadhyaya-subhead">साधना सूत्र:</div>
-            <div class="svadhyaya-body">
-                चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
             </div>
         </div>
 
+        <!-- Positioned right above footer line -->
         <div class="svadhyaya-bottom-badge">☸ स्वाध्याय एवं दार्शनिक चिंतन (आदि शंकर भाष्य)</div>
 
         <div class="page-footer-a5">
@@ -435,7 +433,7 @@
         </div>
     </div>
 
-    <!-- CHOICE 2E: ENGLISH SELF-STUDY (MATCHING IMAGE 2 RIGHT) -->
+    <!-- ENGLISH SELF-STUDY (MATCHING IMAGE 2 RIGHT - INDENTED TO NAME) -->
     <div id="view-2E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -445,7 +443,7 @@
             <div class="header-page-title">Shri Viṣṇu Sahasranama Self-Study</div>
 
             <div class="list-item" style="margin-bottom: 16px;">
-                <div class="list-item-num" style="font-family: 'Inter', sans-serif;">004</div>
+                <div class="list-item-num" style="font-family: 'Mukta', sans-serif;">004</div>
                 <div class="list-item-content">
                     <div class="list-item-nama-row">
                         <span class="list-item-nama" style="font-size: 17px;">ॐ भूतभव्यभवत्प्रभवे नमः</span>
@@ -454,19 +452,21 @@
                     <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 4px;">
                         The Sovereign Lord of all three realms of Time—Past, Present, and Future.
                     </div>
+
+                    <!-- Self-study content indented to match Vishnu Name -->
+                    <div class="svadhyaya-body" style="margin-top: 14px;">
+                        Lord Vishnu is not merely a passive witness to time, but the absolute Master (*Prabhu*) of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
+                    </div>
+
+                    <div class="svadhyaya-subhead">Sadhana Insight:</div>
+                    <div class="svadhyaya-body" style="margin-bottom: 0;">
+                        Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
+                    </div>
                 </div>
-            </div>
-
-            <div class="svadhyaya-body">
-                Lord Vishnu is not merely a passive witness to time, but the absolute Master (*Prabhu*) of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
-            </div>
-
-            <div class="svadhyaya-subhead">Sadhana Insight:</div>
-            <div class="svadhyaya-body">
-                Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
             </div>
         </div>
 
+        <!-- Positioned right above footer line -->
         <div class="svadhyaya-bottom-badge" style="font-size: 11.5px; letter-spacing: 0.5px;">SELF-STUDY & CONTEMPLATION (Shankara Bhashya)</div>
 
         <div class="page-footer-a5">
@@ -475,7 +475,7 @@
         </div>
     </div>
 
-    <!-- STOTRAM-H: HINDI STOTRAM RECITAL RECITAL MOCKUP -->
+    <!-- STOTRAM-H: HINDI STOTRAM RECITAL MOCKUP -->
     <div id="view-StotramH" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -556,7 +556,7 @@ nārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||</div>
         </div>
 
         <div class="page-footer-a5">
-            <div>Antara Vishnu 1000 • Stotram Edition (1E)</div>
+            <div>Antara Vishnu 1000 • Stotram Edition</div>
             <div>Page 1</div>
         </div>
     </div>
