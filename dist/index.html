@@ -51,8 +51,21 @@
             --antara-dark: #FDF6EB;            /* Alabaster Warm White/Ivory */
             --antara-muted: #C5B4A3;           /* Muted warm gold/bronze */
             --antara-line: #5C1F15;            /* Cinnamon red divider lines */
-            --antara-card-bg: rgba(58, 15, 8, 0.6); /* Semi-transparent cinnamon card */
+            --antara-card-bg: rgba(58, 15, 8, 0.75); /* Semi-transparent cinnamon card */
             --antara-sheet-bg: #280A05;        /* Deepest cinnamon sheet background */
+        }
+
+        body.dark-theme .nama-card {
+            background-color: var(--antara-card-bg);
+            border-color: var(--antara-line);
+        }
+        body.dark-theme .nama-card:hover {
+            background-color: rgba(58, 15, 8, 0.95);
+            border-color: var(--antara-saffron);
+        }
+        body.dark-theme .nama-card-hi-meaning,
+        body.dark-theme .nama-card-meaning {
+            color: var(--antara-muted);
         }
 
         * {
@@ -1111,7 +1124,8 @@
         }
 
         .narrow-block {
-            width: 160px;
+            width: 100%;
+            max-width: 280px;
             margin: 0 auto;
             box-sizing: border-box;
         }
@@ -2149,11 +2163,7 @@
         }
 
         function selectVoice(gender) {
-            if (gender === 'male') {
-                alert("Coming Soon! / जल्द ही आ रहा है!");
-                return;
-            }
-            state.useMaleVoice = false;
+            state.useMaleVoice = (gender === 'male');
             saveState();
             updateSettingsUI();
             playSample();
@@ -2788,36 +2798,10 @@
         function openSignificanceSheet() {
             if (sessionList.length === 0) return;
             const item = sessionList[activeSessionIndex];
-            
-            let cleanEng = cleanMeaningText(item.english).replace(/"/g, "").replace(/'/g, "");
-            let cleanHin = cleanMeaningText(item.hindi).replace(/"/g, "").replace(/'/g, "");
-            
-            let hindiCommentary = "नाम " + item.devanagari + " (" + item.transliteration + ") ईश्वर के '" + cleanHin + "' (" + cleanEng + ") रूप को दर्शाता है। ध्यान में, यह गुण ब्रह्मांड को प्रभावित करने और हमारे अस्तित्व को बनाए रखने वाली दिव्य शक्ति का प्रतीक है। इस नाम पर ध्यान लगाने से साधक दिव्य ऊर्जा से जुड़ता है, आंतरिक बाधाएं दूर होती हैं और शांत चेतना का विकास होता है।";
-            let englishCommentary = "The name " + item.transliteration + " (" + item.devanagari + ") represents the Supreme Lord as '" + cleanEng + "' (" + cleanHin + "). In spiritual contemplation, this attribute signifies the divine power that fills the cosmos and sustains our existence. Meditating upon this name aligns the seeker with the supreme qualities of " + cleanEng + ", clearing inner obstacles and cultivating serene consciousness.";
-            
-            // Request Wake Lock when sheet is opened
-            requestWakeLock();
-            
-            currentCommentaryHtml = `
-                <div style="text-align: center; margin-bottom: 16px; border-bottom: 1px solid var(--antara-line); padding-bottom: 12px; position: relative;">
-                    <!-- Share Button -->
-                    <div onclick="event.stopPropagation(); shareCurrentNama(${item.id})" style="position: absolute; right: 0; top: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--antara-gold); transition: all 0.2s;" title="Share Name">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="18" cy="5" r="3"></circle>
-                            <circle cx="6" cy="12" r="3"></circle>
-                            <circle cx="18" cy="19" r="3"></circle>
-                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                        </svg>
-                    </div>
-                    
-                    <div style="font-size: 24px; font-weight: bold; color: var(--antara-saffron);">${item.devanagari}</div>
-                    <div style="font-size: 15px; color: var(--antara-saffron); font-weight: normal; margin-top: 4px;">${item.transliteration}</div>
-                    <div style="font-size: 12px; color: var(--antara-muted); margin-top: 4px;">${item.hindi} / ${item.english}</div>
-                </div>
-                <div class="commentary-hi" style="font-size: 15.6px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); margin-bottom: 16px; line-height: 1.5;">${hindiCommentary}</div>
-                <div class="commentary-en" style="font-size: 13px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.5;">${englishCommentary}</div>
-            `;
+            if (item) {
+                openSignificanceSheetForName(item);
+            }
+        }
             
             switchSelfStudyTab('commentary');
             
@@ -2940,9 +2924,32 @@
             renderProgressCalendar();
         }
 
+        function getLocalDateString(d = new Date()) {
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function recalculateStreakOnLoad() {
+            const today = new Date();
+            const todayStr = getLocalDateString(today);
+            const yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+            const yesterdayStr = getLocalDateString(yesterday);
+            
+            const lastChanted = state.lastChantedDate || "";
+            if (lastChanted && lastChanted !== todayStr && lastChanted !== yesterdayStr) {
+                state.streak = 0;
+                saveState();
+            }
+        }
+
         function renderProgressCalendar() {
             const grid = document.getElementById("progress-calendar-grid");
             if (!grid) return;
+            
+            recalculateStreakOnLoad();
             
             const days = [];
             const today = new Date();
@@ -2957,10 +2964,10 @@
             const completed = state.completedDates || [];
             
             grid.innerHTML = days.map(d => {
-                const dateStr = d.toISOString().split('T')[0];
+                const dateStr = getLocalDateString(d);
                 const dayName = weekdays[d.getDay()];
                 const isChanted = completed.includes(dateStr);
-                const isToday = dateStr === today.toISOString().split('T')[0];
+                const isToday = dateStr === getLocalDateString(today);
                 
                 const dotBg = isChanted ? 'var(--antara-saffron)' : 'transparent';
                 const dotBorder = isChanted ? 'none' : '1px solid var(--antara-line)';
@@ -3096,7 +3103,7 @@
                 state.lastReadIndex = sessionEndIndex + 1;
                 
                 // Log completion
-                const todayStr = new Date().toISOString().split('T')[0];
+                const todayStr = getLocalDateString(new Date());
                 if (!state.completedDates) {
                     state.completedDates = [];
                 }
@@ -3105,7 +3112,7 @@
                     
                     const yesterday = new Date();
                     yesterday.setDate(yesterday.getDate() - 1);
-                    const yesterdayStr = yesterday.toISOString().split('T')[0];
+                    const yesterdayStr = getLocalDateString(yesterday);
                     
                     if (state.lastChantedDate === yesterdayStr) {
                         state.streak = (state.streak || 0) + 1;

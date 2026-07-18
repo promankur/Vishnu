@@ -1,4 +1,4 @@
-const CACHE_NAME = 'antara-sahasranama-v2';
+const CACHE_NAME = 'antara-sahasranama-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -41,19 +41,40 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Stale-While-Revalidate strategy
+  // Only intercept GET requests
+  if (event.request.method !== 'GET') return;
+
+  const url = new URL(event.request.url);
+
+  // Skip third-party URLs (analytics, razorpay, external CDNs)
+  if (url.origin !== self.location.origin) return;
+
+  // Network-First strategy for HTML navigation requests
+  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname.endsWith('/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse.status === 200) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Stale-While-Revalidate for local static assets
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
         if (networkResponse.status === 200) {
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
-          });
+          const copy = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
         }
         return networkResponse;
-      }).catch(() => {
-        // Fetch failed
-      });
+      }).catch(() => {});
       return cachedResponse || fetchPromise;
     })
   );
