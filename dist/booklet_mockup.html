@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishnu 1000 - Devotional Booklet Mockup</title>
+    <title>Vishnu 1000 - Devotional Publication Series (4 Choices)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,6 @@
             --brand-maroon: #3A0F08;
             --brand-saffron: #E06D28;
             --brand-gold: #D4AF37;
-            --brand-gold-light: #F4E8C1;
             --brand-paper: #FDFBF7;
             --brand-dark-text: #2A0804;
             --brand-muted: #7A6B63;
@@ -38,10 +37,12 @@
 
         .controls {
             display: flex;
-            gap: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
             margin-bottom: 30px;
             background: #2C2825;
-            padding: 10px 20px;
+            padding: 10px 16px;
             border-radius: 30px;
             border: 1px solid #443E38;
         }
@@ -50,9 +51,9 @@
             background: transparent;
             border: none;
             color: #A0958B;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
-            padding: 8px 18px;
+            padding: 8px 16px;
             cursor: pointer;
             border-radius: 20px;
             transition: all 0.2s;
@@ -64,7 +65,7 @@
             box-shadow: 0 2px 8px rgba(224, 109, 40, 0.4);
         }
 
-        /* Printable Page Frame (A4 Aspect Ratio approx: 210mm x 297mm -> 794px x 1123px) */
+        /* Standard A4 Page Frame */
         .page-container {
             width: 794px;
             height: 1123px;
@@ -80,23 +81,39 @@
             overflow: hidden;
         }
 
-        /* Ornamental Outer & Inner Borders */
+        /* A5 Page Frame for Self-Study Editions (148mm x 210mm -> 559px x 794px) */
+        .page-container-a5 {
+            width: 559px;
+            height: 794px;
+            background: var(--brand-paper);
+            color: var(--brand-dark-text);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border-radius: 4px;
+            position: relative;
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* Ornamental Borders */
         .page-border {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
             border: 2px solid var(--brand-gold);
             pointer-events: none;
         }
 
         .page-border-inner {
             position: absolute;
-            top: 26px;
-            left: 26px;
-            right: 26px;
-            bottom: 26px;
+            top: 22px;
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
             border: 1px solid var(--brand-saffron);
             opacity: 0.6;
             pointer-events: none;
@@ -105,186 +122,74 @@
         /* Corner Mandala Accents */
         .corner-accent {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             color: var(--brand-gold);
-            font-size: 22px;
+            font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .corner-tl { top: 12px; left: 12px; }
-        .corner-tr { top: 12px; right: 12px; }
-        .corner-bl { bottom: 12px; left: 12px; }
-        .corner-br { bottom: 12px; right: 12px; }
+        .corner-tl { top: 8px; left: 8px; }
+        .corner-tr { top: 8px; right: 8px; }
+        .corner-bl { bottom: 8px; left: 8px; }
+        .corner-br { bottom: 8px; right: 8px; }
 
-        /* COVER PAGE DESIGN */
-        .cover-header {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .antara-brand-sub {
-            font-family: 'Cinzel', serif;
-            font-size: 11px;
-            letter-spacing: 4px;
-            color: var(--brand-saffron);
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .antara-brand-main {
-            font-family: 'Mukta', 'Cinzel', serif;
-            font-size: 34px;
-            font-weight: 700;
-            color: var(--brand-maroon);
-            letter-spacing: 1px;
-        }
-
-        .cover-hero-box {
-            text-align: center;
-            margin: 60px 0;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(224, 109, 40, 0.04) 100%);
-            border-top: 2px solid var(--brand-gold);
-            border-bottom: 2px solid var(--brand-gold);
-            position: relative;
-        }
-
-        .cover-hero-symbol {
-            font-size: 54px;
-            color: var(--brand-saffron);
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-
-        .cover-title-hi {
-            font-family: 'Mukta', sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--brand-maroon);
-            line-height: 1.2;
-            margin-bottom: 8px;
-        }
-
-        .cover-title-en {
-            font-family: 'Cinzel', serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .cover-divider {
-            width: 80px;
-            height: 2px;
-            background: var(--brand-gold);
-            margin: 0 auto 20px auto;
-        }
-
-        .cover-subtitle {
-            font-family: 'Mukta', 'Inter', sans-serif;
-            font-size: 15px;
-            color: var(--brand-muted);
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .edition-badge {
-            display: inline-block;
-            margin-top: 24px;
-            padding: 6px 20px;
-            background: var(--brand-maroon);
-            color: var(--brand-gold);
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .cover-footer {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .cover-footer-text {
-            font-size: 11px;
-            color: var(--brand-muted);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        /* INTERIOR PAGE DESIGN */
+        /* Page Headers & Footers */
         .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--brand-line);
-            padding-bottom: 12px;
-            margin-bottom: 24px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .header-title {
             font-family: 'Cinzel', 'Mukta', serif;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--brand-saffron);
             letter-spacing: 1px;
         }
 
         .header-edition {
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--brand-muted);
         }
 
-        /* Background / Intro section */
-        .intro-card {
-            background: rgba(232, 223, 209, 0.25);
-            border-left: 3px solid var(--brand-saffron);
-            padding: 16px 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 24px;
+        .page-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--brand-line);
+            padding-top: 10px;
+            margin-top: auto;
+            font-size: 10.5px;
+            color: var(--brand-muted);
         }
 
-        .intro-title {
-            font-family: 'Mukta', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--brand-maroon);
-            margin-bottom: 6px;
-        }
-
-        .intro-p {
-            font-size: 12.5px;
-            color: var(--brand-dark-text);
-            line-height: 1.65;
-        }
-
-        /* Namavali Grid Table */
+        /* Namavali Grid Table (1H & 1E) */
         .namavali-grid {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .namavali-grid th {
             background: var(--brand-maroon);
             color: var(--brand-gold);
             font-family: 'Mukta', 'Inter', sans-serif;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 600;
             text-align: left;
-            padding: 8px 12px;
-            letter-spacing: 0.5px;
+            padding: 8px 10px;
         }
 
         .namavali-grid td {
-            padding: 10px 12px;
+            padding: 8px 10px;
             border-bottom: 1px solid var(--brand-line);
-            font-size: 13px;
+            font-size: 12.5px;
             vertical-align: top;
         }
 
@@ -293,7 +198,7 @@
         }
 
         .col-num {
-            width: 50px;
+            width: 40px;
             font-weight: 700;
             color: var(--brand-saffron);
             font-family: 'Inter', sans-serif;
@@ -301,33 +206,79 @@
 
         .col-nama {
             font-family: 'Mukta', sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--brand-maroon);
-            width: 220px;
-        }
-
-        .col-meaning {
-            color: var(--brand-dark-text);
-            line-height: 1.45;
         }
 
         .meaning-roman {
             font-size: 11px;
             color: var(--brand-muted);
             font-style: italic;
-            margin-bottom: 2px;
         }
 
-        .page-footer {
+        /* A5 SELF-STUDY LAYOUT (2H & 2E) */
+        .a5-name-header {
+            text-align: center;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1.5px dashed var(--brand-gold);
+        }
+
+        .a5-name-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .a5-name-sanskrit {
+            font-family: 'Mukta', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--brand-maroon);
+            margin-bottom: 4px;
+        }
+
+        .a5-name-roman {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--brand-saffron);
+            letter-spacing: 1px;
+        }
+
+        .a5-short-meaning {
+            background: rgba(224, 109, 40, 0.06);
+            border-left: 3px solid var(--brand-saffron);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--brand-maroon);
+            margin-bottom: 16px;
+            line-height: 1.45;
+        }
+
+        .a5-section-label {
+            font-family: 'Mukta', 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-gold);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--brand-line);
-            padding-top: 12px;
-            margin-top: auto;
-            font-size: 11px;
-            color: var(--brand-muted);
+            gap: 6px;
+        }
+
+        .a5-commentary-text {
+            font-size: 12px;
+            color: var(--brand-dark-text);
+            line-height: 1.7;
+            text-align: justify;
         }
     </style>
 </head>
@@ -335,250 +286,239 @@
 
     <!-- Tab Selector -->
     <div class="controls">
-        <button class="btn-tab active" onclick="showView('cover')">📖 Cover Page Mockup</button>
-        <button class="btn-tab" onclick="showView('hindi')">🕉️ Hindi Booklet Interior</button>
-        <button class="btn-tab" onclick="showView('english')">🌐 English Booklet Interior</button>
+        <button class="btn-tab active" onclick="showView('1H')">1H: Hindi Sadhana List</button>
+        <button class="btn-tab" onclick="showView('1E')">1E: English Sadhana List</button>
+        <button class="btn-tab" onclick="showView('2H')">2H: Hindi Self-Study (A5 Page)</button>
+        <button class="btn-tab" onclick="showView('2E')">2E: English Self-Study (A5 Page)</button>
     </div>
 
-    <!-- COVER PAGE MOCKUP -->
-    <div id="view-cover" class="page-container">
-        <div class="page-border"></div>
-        <div class="page-border-inner"></div>
-        <div class="corner-accent corner-tl">☸</div>
-        <div class="corner-accent corner-tr">☸</div>
-        <div class="corner-accent corner-bl">☸</div>
-        <div class="corner-accent corner-br">☸</div>
-
-        <div class="cover-header">
-            <div class="antara-brand-sub">WITHIN • BETWEEN • BEYOND</div>
-            <div class="antara-brand-main">अन्तरा | ANTARA</div>
-        </div>
-
-        <div class="cover-hero-box">
-            <div class="cover-hero-symbol">🕉</div>
-            <div class="cover-title-hi">श्रीविष्णुसहस्रनामस्तोत्रम्</div>
-            <div class="cover-title-en">SHREE VISHNU SAHASRANAMA</div>
-            <div class="cover-divider"></div>
-            <div class="cover-subtitle">
-                The 1000 Sacred Names of Lord Vishnu<br>
-                A Distraction-Free Companion for Daily Chanting, Self-Study & Contemplation
-            </div>
-            <div class="edition-badge" id="cover-badge-text">Collector's Devotional Edition</div>
-        </div>
-
-        <div class="cover-footer">
-            <div class="cover-footer-text">100% Free & Devotional • Offline Sadhana Companion</div>
-            <div style="font-size: 10px; color: var(--brand-saffron); margin-top: 6px; font-weight: 600;">PROMAN ASSOCIATES LLP • vishnu.promankur.com</div>
-        </div>
-    </div>
-
-    <!-- HINDI INTERIOR PAGE MOCKUP -->
-    <div id="view-hindi" class="page-container" style="display: none;">
+    <!-- CHOICE 1H: HINDI SADHANA LIST -->
+    <div id="view-1H" class="page-container">
         <div class="page-border"></div>
         <div class="page-border-inner"></div>
 
         <div>
             <div class="page-header">
-                <div class="header-title">श्रीविष्णुसहस्रनाम नामावली | हिन्दी संस्करण</div>
+                <div class="header-title">श्रीविष्णुसहस्रनाम नामावली | 1H: हिन्दी साधना संस्करण</div>
                 <div class="header-edition">Antara Digital Sanctuary</div>
-            </div>
-
-            <div class="intro-card">
-                <div class="intro-title">स्तोत्र की पृष्ठभूमि एवं धर्म का अर्थ</div>
-                <div class="intro-p">
-                    महाभारत के अनुशासन पर्व में कुरुक्षेत्र की रणभूमि पर शरशय्या पर लेटे पितामह भीष्म ने धर्मराज युधिष्ठिर के प्रश्नों ("किमेकं दैवतं लोके...", "को धर्मः सर्वधर्माणां...") का उत्तर देते हुए इन १००० पवित्र नामों का उपदेश दिया था। यहाँ 'धर्म' केवल पूजा-पद्धति नहीं, अपितु शास्त्रों के अनुसार मनुष्य का 'सदाचार एवं कर्तव्य-पथ' (Code of Conduct) है।
-                </div>
             </div>
 
             <table class="namavali-grid">
                 <thead>
                     <tr>
-                        <th style="width: 55px;">क्र.सं.</th>
-                        <th style="width: 220px;">नाम (चतुर्थी विभक्ति)</th>
-                        <th>गूढ़ अर्थ एवं व्याख्या (आदि शंकराचार्य भाष्य पर आधारित)</th>
+                        <th style="width: 45px;">क्र.</th>
+                        <th style="width: 210px;">विष्णु नाम (चतुर्थी विभक्ति)</th>
+                        <th>संक्षिप्त अर्थ (आदि शंकर भाष्य)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="col-num">१</td>
                         <td class="col-nama">ॐ विश्वाय नमः</td>
-                        <td class="col-meaning">जो सम्पूर्ण जगत् के रूप में स्वयं व्याप्त हैं अथवा जिसका यह दृश्य जगत् विस्तार है।</td>
+                        <td>जो सम्पूर्ण जगत् के रूप में स्वयं व्याप्त हैं।</td>
                     </tr>
                     <tr>
                         <td class="col-num">२</td>
                         <td class="col-nama">ॐ विष्णवे नमः</td>
-                        <td class="col-meaning">जो सर्वत्र व्याप्य (कण-कण में समाए हुए) तथा असीम शक्ति सम्पन्न हैं।</td>
+                        <td>जो सर्वत्र व्याप्य (कण-कण में समाए हुए) हैं।</td>
                     </tr>
                     <tr>
                         <td class="col-num">३</td>
                         <td class="col-nama">ॐ वषट्काराय नमः</td>
-                        <td class="col-meaning">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</td>
+                        <td>जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</td>
                     </tr>
                     <tr>
                         <td class="col-num">४</td>
                         <td class="col-nama">ॐ भूतभव्यभवत्प्रभवे नमः</td>
-                        <td class="col-meaning">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</td>
+                        <td>जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</td>
                     </tr>
                     <tr>
                         <td class="col-num">५</td>
                         <td class="col-nama">ॐ भूतकृते नमः</td>
-                        <td class="col-meaning">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले रचियता हैं।</td>
+                        <td>जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</td>
                     </tr>
                     <tr>
                         <td class="col-num">६</td>
                         <td class="col-nama">ॐ भूतभृते नमः</td>
-                        <td class="col-meaning">जो सम्पूर्ण जीवों का अपने पोषण एवं अनुग्रह द्वारा धारण तथा भरण-पोषण करते हैं।</td>
+                        <td>जो सम्पूर्ण जीवों का अपने पोषण एवं अनुग्रह द्वारा भरण-पोषण करते हैं।</td>
                     </tr>
                     <tr>
                         <td class="col-num">७</td>
                         <td class="col-nama">ॐ भावाय नमः</td>
-                        <td class="col-meaning">जो निरपेक्ष सत्ता (Absolute Being) के रूप में सर्वदा विद्यमान रहते हैं।</td>
+                        <td>जो निरपेक्ष सत्ता (Absolute Being) के रूप में सर्वदा विद्यमान रहते हैं।</td>
                     </tr>
                     <tr>
                         <td class="col-num">८</td>
                         <td class="col-nama">ॐ भूतात्मने नमः</td>
-                        <td class="col-meaning">जो समस्त प्राणियों की आत्मा तथा आन्तरिक चेतना रूप में विराजमान हैं।</td>
-                    </tr>
-                    <tr>
-                        <td class="col-num">९</td>
-                        <td class="col-nama">ॐ भूतभावनाय नमः</td>
-                        <td class="col-meaning">जो सभी जीवों की उत्पत्ति, वृद्धि तथा आध्यात्मिक कल्याण की भावना करते हैं।</td>
+                        <td>जो समस्त प्राणियों की आत्मा तथा आन्तरिक चेतना रूप में विराजमान हैं।</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="page-footer">
-            <div>अन्तरा विष्णु १००० • दैनिक साधना पुस्तिका</div>
+            <div>अन्तरा विष्णु १००० • साधना पुस्तिका (1H)</div>
             <div>पृष्ठ १</div>
         </div>
     </div>
 
-    <!-- ENGLISH INTERIOR PAGE MOCKUP -->
-    <div id="view-english" class="page-container" style="display: none;">
+    <!-- CHOICE 1E: ENGLISH SADHANA LIST -->
+    <div id="view-1E" class="page-container" style="display: none;">
         <div class="page-border"></div>
         <div class="page-border-inner"></div>
 
         <div>
             <div class="page-header">
-                <div class="header-title">SHREE VISHNU SAHASRANAMA | ENGLISH EDITION</div>
+                <div class="header-title">SHREE VISHNU SAHASRANAMA | 1E: ENGLISH ESSENTIAL</div>
                 <div class="header-edition">Antara Digital Sanctuary</div>
-            </div>
-
-            <div class="intro-card">
-                <div class="intro-title">Origin & Philosophical Context</div>
-                <div class="intro-p">
-                    Recited by Grandsire Bhishma while resting on the bed of arrows to Emperor Yudhishtira in the Mahabharata. When asked about the supreme deity and the ultimate path to liberation, Bhishma revealed these 1000 names. Here, 'Dharma' signifies the eternal Code of Conduct rather than narrow belief.
-                </div>
             </div>
 
             <table class="namavali-grid">
                 <thead>
                     <tr>
-                        <th style="width: 50px;">No.</th>
-                        <th style="width: 230px;">Japa Formulation & Transliteration</th>
-                        <th>Spiritual Meaning (Based on Adi Shankaracharya's Bhashya)</th>
+                        <th style="width: 40px;">No.</th>
+                        <th style="width: 220px;">Devanagari & Transliteration</th>
+                        <th>English Meaning</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="col-num">1</td>
                         <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ विश्वाय नमः</div>
+                            <div class="col-nama">ॐ विश्वाय नमः</div>
                             <div class="meaning-roman">Om Viśvāya Namaḥ</div>
                         </td>
-                        <td class="col-meaning">He who is the cosmos itself and pervades the entire universe as its manifest cause.</td>
+                        <td>He who is the cosmos itself and pervades the entire universe.</td>
                     </tr>
                     <tr>
                         <td class="col-num">2</td>
                         <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ विष्णवे नमः</div>
+                            <div class="col-nama">ॐ विष्णवे नमः</div>
                             <div class="meaning-roman">Om Viṣṇave Namaḥ</div>
                         </td>
-                        <td class="col-meaning">He who enters and permeates every atom of existence with boundless radiance.</td>
+                        <td>He who enters and permeates every atom of existence.</td>
                     </tr>
                     <tr>
                         <td class="col-num">3</td>
                         <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ वषट्काराय नमः</div>
+                            <div class="col-nama">ॐ वषट्काराय नमः</div>
                             <div class="meaning-roman">Om Vaṣaṭkārāya Namaḥ</div>
                         </td>
-                        <td class="col-meaning">He for whose invocation the sacred 'Vaṣaṭ' oblation is offered in Vedic Yajnas.</td>
+                        <td>He for whose invocation the sacred 'Vaṣaṭ' oblation is offered.</td>
                     </tr>
                     <tr>
                         <td class="col-num">4</td>
                         <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                            <div class="col-nama">ॐ भूतभव्यभवत्प्रभवे नमः</div>
                             <div class="meaning-roman">Om Bhūtabhavyabhavatprabhave Namaḥ</div>
                         </td>
-                        <td class="col-meaning">The Sovereign Lord of all three realms of Time—the Past, the Present, and the Future.</td>
+                        <td>The Sovereign Lord of all three realms of Time—Past, Present, and Future.</td>
                     </tr>
                     <tr>
                         <td class="col-num">5</td>
                         <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ भूतकृते नमः</div>
+                            <div class="col-nama">ॐ भूतकृते नमः</div>
                             <div class="meaning-roman">Om Bhūtakṛte Namaḥ</div>
                         </td>
-                        <td class="col-meaning">The Cosmic Creator who brings forth all beings and cosmic elements into existence.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-num">6</td>
-                        <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ भूतभृते नमः</div>
-                            <div class="meaning-roman">Om Bhūtabhṛte Namaḥ</div>
-                        </td>
-                        <td class="col-meaning">The Divine Sustainer who nourishes, supports, and upholds all living creatures.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-num">7</td>
-                        <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ भावाय नमः</div>
-                            <div class="meaning-roman">Om Bhāvāya Namaḥ</div>
-                        </td>
-                        <td class="col-meaning">The Absolute Being who exists eternally beyond creation and dissolution.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-num">8</td>
-                        <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ भूतात्मने नमः</div>
-                            <div class="meaning-roman">Om Bhūtātmane Namaḥ</div>
-                        </td>
-                        <td class="col-meaning">The Inmost Soul and Divine Consciousness residing within every living entity.</td>
-                    </tr>
-                    <tr>
-                        <td class="col-num">9</td>
-                        <td>
-                            <div class="col-nama" style="font-size: 15px;">ॐ भूतभावनाय नमः</div>
-                            <div class="meaning-roman">Om Bhūtabhāvanāya Namaḥ</div>
-                        </td>
-                        <td class="col-meaning">He who fosters the spiritual evolution, growth, and well-being of all beings.</td>
+                        <td>The Cosmic Creator who brings forth all beings into existence.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="page-footer">
-            <div>Antara Vishnu 1000 • Devotional Sadhana Booklet</div>
+            <div>Antara Vishnu 1000 • Essential Edition (1E)</div>
             <div>Page 1</div>
+        </div>
+    </div>
+
+    <!-- CHOICE 2H: HINDI SELF-STUDY (A5 SINGLE PAGE PER NAME) -->
+    <div id="view-2H" class="page-container-a5" style="display: none;">
+        <div class="page-border"></div>
+        <div class="page-border-inner"></div>
+
+        <div>
+            <div class="page-header">
+                <div class="header-title">स्वाध्याय संस्करण | 2H</div>
+                <div class="header-edition">अन्तरा विष्णु १०००</div>
+            </div>
+
+            <!-- Single Name Header -->
+            <div class="a5-name-header">
+                <div class="a5-name-number">नाम संख्या ४ / १०००</div>
+                <div class="a5-name-sanskrit">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+            </div>
+
+            <!-- Meaning Callout -->
+            <div class="a5-short-meaning">
+                जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी एवं संचालक हैं।
+            </div>
+
+            <!-- Deep Self-Study Commentary -->
+            <div class="a5-section-label">☸ स्वाध्याय एवं दार्शनिक चिंतन (आदि शंकर भाष्य)</div>
+            <div class="a5-commentary-text">
+                भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है। 
+                <br><br>
+                <strong>साधना सूत्र:</strong> चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div>अन्तरा डिजिटल अभयारण्य • ए५ स्वाध्याय पृष्ठ</div>
+            <div>नाम ४</div>
+        </div>
+    </div>
+
+    <!-- CHOICE 2E: ENGLISH SELF-STUDY (A5 SINGLE PAGE PER NAME) -->
+    <div id="view-2E" class="page-container-a5" style="display: none;">
+        <div class="page-border"></div>
+        <div class="page-border-inner"></div>
+
+        <div>
+            <div class="page-header">
+                <div class="header-title">SELF-STUDY EDITION | 2E</div>
+                <div class="header-edition">Antara Vishnu 1000</div>
+            </div>
+
+            <!-- Single Name Header -->
+            <div class="a5-name-header">
+                <div class="a5-name-number">NAME NO. 4 OF 1000</div>
+                <div class="a5-name-sanskrit">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                <div class="a5-name-roman">Om Bhūtabhavyabhavatprabhave Namaḥ</div>
+            </div>
+
+            <!-- Meaning Callout -->
+            <div class="a5-short-meaning">
+                The Sovereign Lord and Controller of all three realms of Time—the Past, the Present, and the Future.
+            </div>
+
+            <!-- Deep Self-Study Commentary -->
+            <div class="a5-section-label">☸ SELF-STUDY & CONTEMPLATION (Shankara Bhashya)</div>
+            <div class="a5-commentary-text">
+                Lord Vishnu is not merely a passive witness to time, but the absolute Master (*Prabhu*) of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
+                <br><br>
+                <strong>Sadhana Insight:</strong> Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary • A5 Self-Study Sanctuary</div>
+            <div>Name 4</div>
         </div>
     </div>
 
     <script>
         function showView(view) {
-            document.getElementById('view-cover').style.display = 'none';
-            document.getElementById('view-hindi').style.display = 'none';
-            document.getElementById('view-english').style.display = 'none';
+            document.getElementById('view-1H').style.display = 'none';
+            document.getElementById('view-1E').style.display = 'none';
+            document.getElementById('view-2H').style.display = 'none';
+            document.getElementById('view-2E').style.display = 'none';
             
             document.querySelectorAll('.btn-tab').forEach(btn => btn.classList.remove('active'));
             
-            if (view === 'cover') {
-                document.getElementById('view-cover').style.display = 'flex';
-                event.target.classList.add('active');
-            } else if (view === 'hindi') {
-                document.getElementById('view-hindi').style.display = 'flex';
-                event.target.classList.add('active');
-            } else if (view === 'english') {
-                document.getElementById('view-english').style.display = 'flex';
+            const selectedEl = document.getElementById('view-' + view);
+            if (selectedEl) {
+                selectedEl.style.display = 'flex';
                 event.target.classList.add('active');
             }
         }
