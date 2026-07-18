@@ -117,14 +117,14 @@
             font-size: 18.5px;
             font-weight: 700;
             color: var(--brand-saffron);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         /* Non-Tabular Open List Items - 10 per page */
         .list-item {
             display: flex;
             gap: 14px;
-            margin-bottom: 9px; /* Clean spacing fitting 10 items per page */
+            margin-bottom: 9px;
             align-items: flex-start;
         }
 
@@ -159,46 +159,59 @@
         .list-item-iast {
             font-family: 'Mukta', sans-serif;
             font-size: 13.5px;
-            font-weight: 400; /* Regular, NOT bold, NOT SmallCaps */
+            font-weight: 400;
             color: var(--brand-muted);
         }
 
         .list-item-meaning {
             font-family: 'Mukta', sans-serif;
-            font-size: 12.5px; /* Regular cinnamon, NOT bold, NO black at all */
+            font-size: 13px;
             color: var(--brand-text-regular);
             line-height: 1.35;
         }
 
-        /* 2H & 2E SELF-STUDY LAYOUT - 3 NAMES PER A5 PAGE WITH TINTED SAFFRON BOX */
+        /* 2H & 2E SELF-STUDY LAYOUT - 3 NAMES PER PAGE WITH 1.2X HINDI SCALE */
         .svadhyaya-entry {
-            margin-bottom: 12px;
+            margin-bottom: 16px; /* Generous block spacing */
         }
 
-        .svadhyaya-body {
+        /* Hindi 14pt (14px) Body Text */
+        .svadhyaya-body-hi {
             font-family: 'Mukta', sans-serif;
-            font-size: 12px;
+            font-size: 14px; /* 14pt for high Hindi legibility */
+            color: var(--brand-text-regular);
+            line-height: 1.45;
+            margin-top: 3px;
+            margin-bottom: 5px;
+        }
+
+        /* English 12pt (12px) Body Text */
+        .svadhyaya-body-en {
+            font-family: 'Mukta', sans-serif;
+            font-size: 12px; /* 12pt for English */
             color: var(--brand-text-regular);
             line-height: 1.4;
             margin-top: 3px;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
 
-        /* Tinted Saffron Container for Sadhana Insight / Sutra (No Border, Rounded Corners) */
-        .insight-box {
+        /* Tinted Saffron Container for Insight Text (No Repeating Labels) */
+        .insight-box-hi {
             background: rgba(224, 109, 40, 0.08); /* Tinted Saffron */
             border-radius: 6px;
-            padding: 5px 10px;
-            margin-top: 4px;
-            font-size: 12px;
+            padding: 6px 10px;
+            font-size: 13.5px; /* 13.5pt for Hindi Insight */
             color: var(--brand-cinnamon);
-            line-height: 1.38;
+            line-height: 1.4;
         }
 
-        .insight-label {
-            font-weight: 700;
-            color: var(--brand-saffron);
-            margin-right: 4px;
+        .insight-box-en {
+            background: rgba(224, 109, 40, 0.08); /* Tinted Saffron */
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 12px; /* 12pt for English Insight */
+            color: var(--brand-cinnamon);
+            line-height: 1.38;
         }
 
         /* STOTRAM LAYOUT */
@@ -247,8 +260,8 @@
     <div class="controls">
         <button class="btn-tab active" onclick="showView('1H')">हिन्दी नामावली (10 per A5)</button>
         <button class="btn-tab" onclick="showView('1E')">English Namavali (10 per A5)</button>
-        <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय (3 per A5)</button>
-        <button class="btn-tab" onclick="showView('2E')">English Self-Study (3 per A5)</button>
+        <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय (14pt, 3 per A5)</button>
+        <button class="btn-tab" onclick="showView('2E')">English Self-Study (12pt, 3 per A5)</button>
         <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ</button>
         <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital</button>
     </div>
@@ -475,7 +488,7 @@
         </div>
     </div>
 
-    <!-- HINDI SELF-STUDY (3 NAMES PER A5 PAGE WITH TINTED SAFFRON INSIGHT BOX) -->
+    <!-- HINDI SELF-STUDY (14PT FONT, 3 NAMES PER PAGE, TINTED SAFFRON CONTAINER WITHOUT DUPLICATE LABELS) -->
     <div id="view-2H" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -488,13 +501,13 @@
             <div class="list-item svadhyaya-entry">
                 <div class="list-item-num">००३</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 15.5px;">ॐ वषट्काराय नमः</div>
-                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
-                    <div class="svadhyaya-body">
+                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ वषट्काराय नमः</div>
+                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 1px;">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
+                    <div class="svadhyaya-body-hi">
                         भगवान् विष्णु ही समस्त वैदिक यज्ञों के भोक्ता एवं फलदाता हैं। जब याज्ञिक पुरोहित अग्नि में आहुति देते हुए 'वषट्' शब्द का उच्चारण करते हैं, तब वे वास्तव में श्रीहरि के ही स्वरूप का आह्वान कर रहे होते हैं।
                     </div>
-                    <div class="insight-box">
-                        <span class="insight-label">साधना सूत्र:</span>अपने प्रत्येक कर्म को ईश्वर के प्रति समर्पित यज्ञानुष्ठान समझकर सम्पादित करें।
+                    <div class="insight-box-hi">
+                        अपने प्रत्येक कर्म को ईश्वर के प्रति समर्पित यज्ञानुष्ठान समझकर सम्पादित करें।
                     </div>
                 </div>
             </div>
@@ -503,13 +516,13 @@
             <div class="list-item svadhyaya-entry">
                 <div class="list-item-num">००४</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 15.5px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
-                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
-                    <div class="svadhyaya-body">
+                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 1px;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                    <div class="svadhyaya-body-hi">
                         भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी हैं। अतीत, वर्तमान और भविष्य की समस्त घटनाएँ भगवान् के संकल्प में ही प्रतिष्ठित हैं।
                     </div>
-                    <div class="insight-box">
-                        <span class="insight-label">साधना सूत्र:</span>चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान में शरणार्थी बनें।
+                    <div class="insight-box-hi">
+                        चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान में शरणार्थी बनें।
                     </div>
                 </div>
             </div>
@@ -518,13 +531,13 @@
             <div class="list-item svadhyaya-entry" style="margin-bottom: 0;">
                 <div class="list-item-num">००५</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama" style="font-size: 15.5px;">ॐ भूतकृते नमः</div>
-                    <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; margin-top: 1px;">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</div>
-                    <div class="svadhyaya-body">
+                    <div class="list-item-nama" style="font-size: 16.5px;">ॐ भूतकृते नमः</div>
+                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; margin-top: 1px;">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</div>
+                    <div class="svadhyaya-body-hi">
                         भगवान् विष्णु ही इस ब्रह्मांड के मूल रचियता हैं। वे सूक्ष्म पंचमहाभूतों से लेकर विराट चैतन्य जीवों तक सबकी रचना अपनी अमोघ शक्ति द्वारा करते हैं।
                     </div>
-                    <div class="insight-box">
-                        <span class="insight-label">साधना सूत्र:</span>सृष्टि के प्रत्येक रूप में प्रभु की दिव्य कलाकृति का दर्शन करें और अहंकार का त्याग करें।
+                    <div class="insight-box-hi">
+                        सृष्टि के प्रत्येक रूप में प्रभु की दिव्य कलाकृति का दर्शन करें और अहंकार का त्याग करें।
                     </div>
                 </div>
             </div>
@@ -536,7 +549,7 @@
         </div>
     </div>
 
-    <!-- ENGLISH SELF-STUDY (3 NAMES PER A5 PAGE WITH TINTED SAFFRON INSIGHT BOX) -->
+    <!-- ENGLISH SELF-STUDY (12PT FONT, 3 NAMES PER PAGE, TINTED SAFFRON CONTAINER WITHOUT DUPLICATE LABELS) -->
     <div id="view-2E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -556,11 +569,11 @@
                     <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
                         He for whose invocation the sacred 'Vaṣaṭ' oblation is offered in Vedic Yajnas.
                     </div>
-                    <div class="svadhyaya-body">
+                    <div class="svadhyaya-body-en">
                         Lord Vishnu is the supreme recipient of all Vedic sacrifices. Whenever priests chant 'Vaṣaṭ' during oblations, they invoke His divine presence.
                     </div>
-                    <div class="insight-box">
-                        <span class="insight-label">Sadhana Insight:</span>Perform every daily act as a sacred offering to the Divine Consciousness.
+                    <div class="insight-box-en">
+                        Perform every daily act as a sacred offering to the Divine Consciousness.
                     </div>
                 </div>
             </div>
@@ -576,11 +589,11 @@
                     <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
                         The Sovereign Lord of all three realms of Time—Past, Present, and Future.
                     </div>
-                    <div class="svadhyaya-body">
+                    <div class="svadhyaya-body-en">
                         Lord Vishnu is not merely a passive witness to time, but the absolute Master of Time itself. Everything past, present, and future resides eternally within His consciousness.
                     </div>
-                    <div class="insight-box">
-                        <span class="insight-label">Sadhana Insight:</span>Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrender anxiety about time and rest in divine presence.
+                    <div class="insight-box-en">
+                        Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrender anxiety about time and rest in divine presence.
                     </div>
                 </div>
             </div>
@@ -596,11 +609,11 @@
                     <div class="list-item-meaning" style="font-size: 12.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 1px;">
                         The Cosmic Creator who brings forth all beings into existence.
                     </div>
-                    <div class="svadhyaya-body">
+                    <div class="svadhyaya-body-en">
                         Lord Vishnu is the primary creator of the universe. From subtle cosmic elements to living beings, everything is brought forth by His divine power.
                     </div>
-                    <div class="insight-box">
-                        <span class="insight-label">Sadhana Insight:</span>Recognize the Divine hand in all of creation and let go of individual ego.
+                    <div class="insight-box-en">
+                        Recognize the Divine hand in all of creation and let go of individual ego.
                     </div>
                 </div>
             </div>
