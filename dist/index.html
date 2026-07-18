@@ -1782,20 +1782,9 @@
                         </div>
 
                         <!-- Controls Row -->
-                        <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 8px;">
+                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 8px;">
                             <!-- Play button -->
-                            <button id="stotram-play-btn" onclick="toggleStotramPlayback()" style="background: var(--antara-saffron); color: white; border: none; border-radius: 50%; width: 38px; height: 38px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: all 0.2s;">▶</button>
-                            
-                            <!-- Speed selector -->
-                            <div style="position: relative;">
-                                <select id="stotram-speed-select" onchange="changeStotramSpeed(this.value)" style="background: rgba(255,255,255,0.9); border: 1px solid var(--antara-line); border-radius: 20px; padding: 4px 10px; font-size: 12px; font-family: 'Inter', sans-serif; color: var(--antara-dark); cursor: pointer; outline: none; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
-                                    <option value="0.5">0.5x</option>
-                                    <option value="0.75">0.75x</option>
-                                    <option value="1.0" selected>1.0x</option>
-                                    <option value="1.25">1.25x</option>
-                                    <option value="1.5">1.5x</option>
-                                </select>
-                            </div>
+                            <button id="stotram-play-btn" onclick="toggleStotramPlayback()" style="background: var(--antara-saffron); color: white; border: none; border-radius: 50%; width: 42px; height: 42px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; outline: none; box-shadow: 0 2px 8px rgba(224, 109, 40, 0.3); transition: all 0.2s;">▶</button>
                         </div>
                         
                         <!-- File Missing Warning -->
@@ -3810,19 +3799,6 @@
                 currentAudioPlayer = null;
             }
 
-            // Sync stotram speed select from settings
-            const globalRate = (state.speechRate || 0.3) / 0.3; // 1.0, 0.8, 1.2
-            const speedSelect = document.getElementById("stotram-speed-select");
-            if (speedSelect) {
-                if (Math.abs(globalRate - 0.8) < 0.1) {
-                    speedSelect.value = "0.75";
-                } else if (Math.abs(globalRate - 1.2) < 0.1) {
-                    speedSelect.value = "1.25";
-                } else {
-                    speedSelect.value = "1.0";
-                }
-            }
-
             // Hide warning by default
             document.getElementById("stotram-warning").style.display = "none";
 
@@ -3939,14 +3915,9 @@
                     stotramPlayer = null;
                 });
 
-                // Apply speed selection from select element
-                const speedSelect = document.getElementById("stotram-speed-select");
-                if (speedSelect) {
-                    stotramPlayer.playbackRate = parseFloat(speedSelect.value);
-                } else {
-                    const speedMultiplier = (state.speechRate || 0.3) / 0.3;
-                    stotramPlayer.playbackRate = speedMultiplier;
-                }
+                // Apply speed selection from global settings
+                const speedMultiplier = (state.speechRate || 0.3) / 0.3;
+                stotramPlayer.playbackRate = speedMultiplier;
 
                 stotramPlayer.play().then(() => {
                     warningEl.style.display = "none";
@@ -3969,22 +3940,7 @@
             }
         }
 
-        function changeStotramSpeed(val) {
-            const speed = parseFloat(val);
-            if (stotramPlayer) {
-                stotramPlayer.playbackRate = speed;
-            }
-            // Sync back to global settings
-            if (Math.abs(speed - 0.75) < 0.1) {
-                state.speechRate = 0.8 * 0.3;
-            } else if (Math.abs(speed - 1.25) < 0.1) {
-                state.speechRate = 1.2 * 0.3;
-            } else {
-                state.speechRate = speed * 0.3;
-            }
-            saveState();
-            updateSettingsUI();
-        }
+
 
         function startStotramProgressTracker() {
             if (stotramProgressInterval) clearInterval(stotramProgressInterval);
