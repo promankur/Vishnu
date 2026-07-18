@@ -180,7 +180,7 @@
         /* Hindi 14pt (14px) Body Text */
         .svadhyaya-body-hi-4 {
             font-family: 'Mukta', sans-serif;
-            font-size: 13.5px; /* High legibility */
+            font-size: 13.5px;
             color: var(--brand-text-regular);
             line-height: 1.38;
             margin-top: 2px;
@@ -216,11 +216,18 @@
             line-height: 1.32;
         }
 
-        /* STOTRAM RECITAL LAYOUT - FREE FLOWING WITH ATOMIC VERSE BINDING */
+        /* STOTRAM RECITAL LAYOUT - EVENLY SPACED VERTICAL FLOW */
+        .stotram-container-spaced {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            margin-bottom: 8px;
+        }
+
         .stotram-block-atomic {
             display: flex;
             gap: 14px;
-            margin-bottom: 12px;
             align-items: flex-start;
             page-break-inside: avoid; /* Ensures verse + transliteration never split across pages */
             break-inside: avoid;
@@ -266,8 +273,8 @@
         <button class="btn-tab" onclick="showView('1E')">English Namavali (10 per A5)</button>
         <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय (4 per A5)</button>
         <button class="btn-tab" onclick="showView('2E')">English Self-Study (4 per A5)</button>
-        <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ (Full Flow)</button>
-        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital (Full Flow)</button>
+        <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ (Spaced Flow)</button>
+        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital (Spaced Flow)</button>
     </div>
 
     <!-- HINDI ESSENTIAL - 10 NAMES WITH COMFORTABLE LINE SPACING MATCHING 1E -->
@@ -366,7 +373,7 @@
         </div>
     </div>
 
-    <!-- ENGLISH ESSENTIAL - 10 NAMES WITH MATCHING LINE SPACING -->
+    <!-- ENGLISH ESSENTIAL - 10 NAMES WITH ACTUAL ENGLISH MEANINGS -->
     <div id="view-1E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -382,7 +389,7 @@
                         <span class="list-item-nama">ॐ विश्वाय नमः</span>
                         <span class="list-item-iast">Om Viśvāya Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो सम्पूर्ण जगत् के रूप में स्वयं व्याप्त हैं।</div>
+                    <div class="list-item-meaning">He who is the cosmos itself and pervades the entire universe.</div>
                 </div>
             </div>
 
@@ -393,7 +400,7 @@
                         <span class="list-item-nama">ॐ विष्णवे नमः</span>
                         <span class="list-item-iast">Om Viṣṇave Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो सर्वत्र व्याप्य (कण-कण में समाए हुए) हैं।</div>
+                    <div class="list-item-meaning">He who enters and permeates every atom of existence.</div>
                 </div>
             </div>
 
@@ -404,7 +411,7 @@
                         <span class="list-item-nama">ॐ वषट्काराय नमः</span>
                         <span class="list-item-iast">Om Vaṣaṭkārāya Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
+                    <div class="list-item-meaning">He for whose invocation the sacred 'Vaṣaṭ' oblation is offered.</div>
                 </div>
             </div>
 
@@ -415,7 +422,7 @@
                         <span class="list-item-nama">ॐ भूतभव्यभवत्प्रभवे नमः</span>
                         <span class="list-item-iast">Om Bhūtabhavyabhavatprabhave Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                    <div class="list-item-meaning">The Sovereign Lord of all three realms of Time—Past, Present, and Future.</div>
                 </div>
             </div>
 
@@ -426,7 +433,7 @@
                         <span class="list-item-nama">ॐ भूतकृते नमः</span>
                         <span class="list-item-iast">Om Bhūtakṛte Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</div>
+                    <div class="list-item-meaning">The Cosmic Creator who brings forth all beings into existence.</div>
                 </div>
             </div>
 
@@ -437,7 +444,7 @@
                         <span class="list-item-nama">ॐ भूतभृते नमः</span>
                         <span class="list-item-iast">Om Bhūtabhṛte Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो सम्पूर्ण जीवों का अपने पोषण एवं अनुग्रह द्वारा भरण-पोषण करते हैं।</div>
+                    <div class="list-item-meaning">The Nurturer and Sustainer who nourishes all living beings.</div>
                 </div>
             </div>
 
@@ -448,7 +455,7 @@
                         <span class="list-item-nama">ॐ भावाय नमः</span>
                         <span class="list-item-iast">Om Bhāvāya Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो निरपेक्ष सत्ता (Absolute Being) के रूप में सर्वदा विद्यमान रहते हैं।</div>
+                    <div class="list-item-meaning">The Absolute Being who exists eternally as pure consciousness.</div>
                 </div>
             </div>
 
@@ -459,7 +466,7 @@
                         <span class="list-item-nama">ॐ भूतात्मने नमः</span>
                         <span class="list-item-iast">Om Bhūtātmane Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो समस्त प्राणियों की आत्मा तथा आन्तरिक चेतना रूप में विराजमान हैं।</div>
+                    <div class="list-item-meaning">The Inner Soul and animating consciousness of all living entities.</div>
                 </div>
             </div>
 
@@ -470,7 +477,7 @@
                         <span class="list-item-nama">ॐ भूतभावनाय नमः</span>
                         <span class="list-item-iast">Om Bhūtabhāvanāya Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो सभी जीवों की उत्पत्ति, वृद्धि तथा आध्यात्मिक कल्याण की भावना करते हैं।</div>
+                    <div class="list-item-meaning">The Benevolent Well-wisher who fosters the growth of all creation.</div>
                 </div>
             </div>
 
@@ -481,7 +488,7 @@
                         <span class="list-item-nama">ॐ पूतात्मने नमः</span>
                         <span class="list-item-iast">Om Pūtātmane Namaḥ</span>
                     </div>
-                    <div class="list-item-meaning">जो समस्त विकारों से रहित परम पवित्र आत्मा स्वरूप हैं।</div>
+                    <div class="list-item-meaning">The Supreme Pure Self free from all flaws and impurities.</div>
                 </div>
             </div>
         </div>
@@ -664,7 +671,7 @@
         </div>
     </div>
 
-    <!-- STOTRAM-H: HINDI STOTRAM RECITAL (FULL FLOW 8 VERSES) -->
+    <!-- STOTRAM-H: HINDI STOTRAM RECITAL (EVENLY SPACED 8 VERSES FILLING PAGE) -->
     <div id="view-StotramH" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -672,7 +679,9 @@
                 <span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span>
             </div>
             <div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div>
+        </div>
 
+        <div class="stotram-container-spaced">
             <div class="stotram-block-atomic">
                 <div class="list-item-num">००१</div>
                 <div class="stotram-verse-text-full">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
@@ -728,7 +737,7 @@
         </div>
     </div>
 
-    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL (FULL ATOMIC FLOW 5 VERSES) -->
+    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL (EVENLY SPACED 5 ATOMIC BLOCKS WITH CLEAN IAST) -->
     <div id="view-StotramE" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -736,14 +745,16 @@
                 <span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span>
             </div>
             <div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
 
+        <div class="stotram-container-spaced">
             <div class="stotram-block-atomic">
                 <div class="list-item-num">001</div>
                 <div>
                     <div class="stotram-verse-text-full">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
 भूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥</div>
                     <div class="stotram-iast-text-full">viśvaṁ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |
-bhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||</div>
+bhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ</div>
                 </div>
             </div>
 
@@ -753,7 +764,7 @@ bhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||</div>
                     <div class="stotram-verse-text-full">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
 अव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥</div>
                     <div class="stotram-iast-text-full">pūtātmā paramātmā ca muktānāṁ paramā gatiḥ |
-avyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||</div>
+avyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca</div>
                 </div>
             </div>
 
@@ -763,7 +774,7 @@ avyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||</div>
                     <div class="stotram-verse-text-full">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
 नारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥</div>
                     <div class="stotram-iast-text-full">yogo yogavidāṁ netā pradhānapuruṣeśvaraḥ |
-nārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||</div>
+nārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ</div>
                 </div>
             </div>
 
@@ -773,7 +784,7 @@ nārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||</div>
                     <div class="stotram-verse-text-full">सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।
 सम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥</div>
                     <div class="stotram-iast-text-full">sarvaḥ śarvaḥ śivaḥ sthāṇurbhūtādirnidhiravyayaḥ |
-sambhavo bhāvano bhartā prabhavaḥ prabhurīśvaraḥ || 4 ||</div>
+sambhavo bhāvano bhartā prabhavaḥ prabhurīśvaraḥ</div>
                 </div>
             </div>
 
@@ -783,7 +794,7 @@ sambhavo bhāvano bhartā prabhavaḥ prabhurīśvaraḥ || 4 ||</div>
                     <div class="stotram-verse-text-full">स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।
 अनादिनिधनो धाता विधाता धातुरुत्तमः ॥ ५ ॥</div>
                     <div class="stotram-iast-text-full">svayambhūḥ śambhurādityaḥ puṣkarākṣo mahāsvanaḥ |
-anādinidhano dhātā vidhātā dhāturuttamaḥ || 5 ||</div>
+anādinidhano dhātā vidhātā dhāturuttamaḥ</div>
                 </div>
             </div>
         </div>
