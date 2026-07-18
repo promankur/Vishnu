@@ -77,19 +77,20 @@
             vertical-align: super;
         }
 
+        /* Two-Line Space Below Header Page Title */
         .header-page-title {
             text-align: center;
             font-family: 'Mukta', sans-serif;
             font-size: 13.5pt;
             font-weight: 700;
             color: var(--brand-saffron);
-            margin-bottom: 12px;
+            margin-bottom: 18pt; /* Significant two-line space below title */
         }
 
         .list-item {
             display: flex;
             gap: 10px;
-            margin-bottom: 7.5px;
+            margin-bottom: 7pt;
             align-items: flex-start;
         }
 
@@ -106,10 +107,12 @@
             flex: 1;
         }
 
+        /* Balanced Flex Wrap for long Devanagari names */
         .list-item-nama-row {
             display: flex;
+            flex-wrap: wrap;
             align-items: baseline;
-            gap: 6px;
+            gap: 4px 8px;
             margin-bottom: 1px;
         }
 
@@ -121,9 +124,10 @@
             line-height: 1.35;
         }
 
+        /* IAST Transliteration reduced by -2pt for visual balance */
         .list-item-iast {
             font-family: 'Mukta', sans-serif;
-            font-size: 10pt;
+            font-size: 8.5pt; /* -2pt smaller than Devanagari */
             font-weight: 400;
             color: var(--brand-muted);
         }
@@ -137,7 +141,7 @@
         }
 
         .svadhyaya-entry-4 {
-            margin-bottom: 10px;
+            margin-bottom: 9pt;
         }
 
         .svadhyaya-body-hi-4 {
@@ -171,7 +175,7 @@
             background: rgba(224, 109, 40, 0.08);
             border-radius: 4px;
             padding: 3.5px 8px;
-            font-size: 8.8pt;
+            font-size: 8.5pt;
             color: var(--brand-cinnamon);
             line-height: 1.30;
         }
@@ -212,7 +216,7 @@
 
         .stotram-iast-text-full {
             font-family: 'Mukta', sans-serif;
-            font-size: 9.2pt;
+            font-size: 8.5pt; /* -2pt smaller */
             font-weight: 400;
             color: var(--brand-muted);
             line-height: 1.35;

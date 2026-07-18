@@ -111,20 +111,21 @@
             vertical-align: super;
         }
 
+        /* Two-Line Space Below Header Page Title */
         .header-page-title {
             text-align: center;
             font-family: 'Mukta', sans-serif;
             font-size: 18px;
             font-weight: 700;
             color: var(--brand-saffron);
-            margin-bottom: 14px;
+            margin-bottom: 24px; /* Significant 2-line spacing below title */
         }
 
-        /* Non-Tabular Open List Items - 10 per page with comfortable line-spacing matching 1E */
+        /* Non-Tabular Open List Items - 10 per page */
         .list-item {
             display: flex;
             gap: 14px;
-            margin-bottom: 8.5px;
+            margin-bottom: 7.5px;
             align-items: flex-start;
         }
 
@@ -141,11 +142,13 @@
             flex: 1;
         }
 
+        /* Balanced Flex Wrap for long Devanagari names */
         .list-item-nama-row {
             display: flex;
+            flex-wrap: wrap;
             align-items: baseline;
-            gap: 8px;
-            margin-bottom: 2px; /* Generous spacing matching 1E */
+            gap: 6px 10px;
+            margin-bottom: 2px;
         }
 
         .list-item-nama {
@@ -153,12 +156,13 @@
             font-size: 15.5px;
             font-weight: 700;
             color: var(--brand-saffron);
-            line-height: 1.35; /* Un-cramped line height */
+            line-height: 1.35;
         }
 
+        /* IAST Transliteration reduced by -2pt for visual balance */
         .list-item-iast {
             font-family: 'Mukta', sans-serif;
-            font-size: 13.5px;
+            font-size: 11.5px; /* -2pt smaller than Devanagari */
             font-weight: 400;
             color: var(--brand-muted);
         }
@@ -167,17 +171,17 @@
             font-family: 'Mukta', sans-serif;
             font-size: 13px;
             color: var(--brand-text-regular);
-            line-height: 1.4; /* Generous line height matching 1E */
+            line-height: 1.38;
             margin-top: 1px;
         }
 
         /* 2H & 2E SELF-STUDY LAYOUT - 4 NAMES PER A5 PAGE */
         .svadhyaya-entry-4 {
-            margin-bottom: 11px;
+            margin-bottom: 10px;
             padding-bottom: 2px;
         }
 
-        /* Hindi 14pt (14px) Body Text */
+        /* Hindi 14pt Body Text */
         .svadhyaya-body-hi-4 {
             font-family: 'Mukta', sans-serif;
             font-size: 13.5px;
@@ -187,7 +191,7 @@
             margin-bottom: 3px;
         }
 
-        /* English 12pt (12px) Body Text */
+        /* English 12pt Body Text */
         .svadhyaya-body-en-4 {
             font-family: 'Mukta', sans-serif;
             font-size: 12px;
@@ -197,9 +201,9 @@
             margin-bottom: 3px;
         }
 
-        /* Tinted Saffron Container for Insight Text (No Repeating Labels) */
+        /* Tinted Saffron Container for Insight Text */
         .insight-box-hi-4 {
-            background: rgba(224, 109, 40, 0.08); /* Tinted Saffron */
+            background: rgba(224, 109, 40, 0.08);
             border-radius: 5px;
             padding: 4px 9px;
             font-size: 13px;
@@ -208,7 +212,7 @@
         }
 
         .insight-box-en-4 {
-            background: rgba(224, 109, 40, 0.08); /* Tinted Saffron */
+            background: rgba(224, 109, 40, 0.08);
             border-radius: 5px;
             padding: 4px 9px;
             font-size: 11.5px;
@@ -216,18 +220,18 @@
             line-height: 1.32;
         }
 
-        /* STOTRAM RECITAL LAYOUT - CONTROLLED SPACING WITH 50PX BOTTOM BUFFER */
+        /* STOTRAM RECITAL LAYOUT */
         .stotram-container-balanced {
             display: flex;
             flex-direction: column;
             flex: 1;
-            padding-bottom: 32px; /* 50px buffer above footer line */
+            padding-bottom: 32px;
         }
 
         .stotram-block-atomic-hi {
             display: flex;
             gap: 14px;
-            margin-bottom: 13px; /* Controlled interpara spacing */
+            margin-bottom: 13px;
             align-items: flex-start;
             page-break-inside: avoid;
             break-inside: avoid;
@@ -236,26 +240,25 @@
         .stotram-block-atomic-en {
             display: flex;
             gap: 14px;
-            margin-bottom: 12px; /* Controlled interpara spacing */
+            margin-bottom: 12px;
             align-items: flex-start;
             page-break-inside: avoid;
             break-inside: avoid;
         }
 
-        /* Devanagari font increased by +2pt (16.5px) */
         .stotram-verse-text-full {
             font-family: 'Mukta', sans-serif;
-            font-size: 16.5px; /* +2pt larger for high Sanskrit legibility */
+            font-size: 16.5px;
             font-weight: 600;
             color: var(--brand-cinnamon);
             line-height: 1.4;
             white-space: pre-line;
         }
 
-        /* IAST transliteration font size unchanged (12.5px) */
+        /* IAST transliteration reduced by -2pt in Stotram as well */
         .stotram-iast-text-full {
             font-family: 'Mukta', sans-serif;
-            font-size: 12.5px; /* Unchanged */
+            font-size: 11px; /* -2pt smaller */
             font-weight: 400;
             color: var(--brand-muted);
             line-height: 1.35;
@@ -281,14 +284,14 @@
     <!-- Tab Selector -->
     <div class="controls">
         <button class="btn-tab active" onclick="showView('1H')">हिन्दी नामावली (10 per A5)</button>
-        <button class="btn-tab" onclick="showView('1E')">English Namavali (10 per A5)</button>
+        <button class="btn-tab" onclick="showView('1E')">English Namavali (-2pt IAST, 2-line title space)</button>
         <button class="btn-tab" onclick="showView('2H')">हिन्दी स्वाध्याय (4 per A5)</button>
         <button class="btn-tab" onclick="showView('2E')">English Self-Study (4 per A5)</button>
         <button class="btn-tab" onclick="showView('StotramH')">हिन्दी स्तोत्र पाठ (+2pt Devanagari)</button>
-        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital (+2pt Devanagari)</button>
+        <button class="btn-tab" onclick="showView('StotramE')">English Stotram Recital (-2pt IAST)</button>
     </div>
 
-    <!-- HINDI ESSENTIAL - 10 NAMES WITH COMFORTABLE LINE SPACING MATCHING 1E -->
+    <!-- HINDI ESSENTIAL - 10 NAMES WITH 2-LINE TITLE SPACING -->
     <div id="view-1H" class="page-container-a5">
         <div>
             <div class="header-logo-row">
@@ -384,7 +387,7 @@
         </div>
     </div>
 
-    <!-- ENGLISH ESSENTIAL - 10 NAMES WITH ACTUAL ENGLISH MEANINGS -->
+    <!-- ENGLISH ESSENTIAL - BALANCED LONG NAMES & -2PT IAST FONT SIZE -->
     <div id="view-1E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -426,6 +429,7 @@
                 </div>
             </div>
 
+            <!-- NAME 004 - BALANCED LONG COMPOUND NAME WITH -2PT IAST -->
             <div class="list-item">
                 <div class="list-item-num">००४</div>
                 <div class="list-item-content">
@@ -682,7 +686,7 @@
         </div>
     </div>
 
-    <!-- STOTRAM-H: HINDI STOTRAM RECITAL (+2PT DEVANAGARI FONT, CONTROLLED SPACING WITH 50PX BOTTOM BUFFER) -->
+    <!-- STOTRAM-H: HINDI STOTRAM RECITAL -->
     <div id="view-StotramH" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
@@ -742,7 +746,7 @@
         </div>
     </div>
 
-    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL (+2PT DEVANAGARI FONT, CLEAN IAST, 50PX BOTTOM BUFFER) -->
+    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL -->
     <div id="view-StotramE" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
