@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-maroon: #3A0F08;
+            --brand-cinnamon: #5C1D13;
+            --brand-saffron: #E06D28;
+            --brand-gold: #D4AF37;
+            --brand-paper: #FFFDF9;
+            --brand-text-regular: #4A1C14;
+            --brand-muted: #8C6A5E;
+            --brand-line: #EFE6D8;
+        }
+
+        @page {
+            size: A5 portrait;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--brand-paper);
+            font-family: 'Mukta', sans-serif;
+            color: var(--brand-text-regular);
+            -webkit-print-color-adjust: exact;
+        }
+
+        .page-container-a5 {
+            width: 148mm;
+            height: 210mm;
+            background: var(--brand-paper);
+            color: var(--brand-text-regular);
+            padding: 16mm 14mm 12mm 14mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            break-after: page;
+            overflow: hidden;
+        }
+
+        .header-logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+
+        .header-brand-title {
+            font-family: 'Mukta', sans-serif;
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            line-height: 1;
+        }
+
+        .header-brand-sub {
+            font-size: 9pt;
+            color: var(--brand-saffron);
+            font-weight: 700;
+            vertical-align: super;
+        }
+
+        .header-page-title {
+            text-align: center;
+            font-family: 'Mukta', sans-serif;
+            font-size: 13.5pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            margin-bottom: 12px;
+        }
+
+        .list-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 7.5px;
+            align-items: flex-start;
+        }
+
+        .list-item-num {
+            font-family: 'Mukta', sans-serif;
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            min-width: 26px;
+            padding-top: 1px;
+        }
+
+        .list-item-content {
+            flex: 1;
+        }
+
+        .list-item-nama-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 1px;
+        }
+
+        .list-item-nama {
+            font-family: 'Mukta', sans-serif;
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            line-height: 1.35;
+        }
+
+        .list-item-iast {
+            font-family: 'Mukta', sans-serif;
+            font-size: 10pt;
+            font-weight: 400;
+            color: var(--brand-muted);
+        }
+
+        .list-item-meaning {
+            font-family: 'Mukta', sans-serif;
+            font-size: 9.5pt;
+            color: var(--brand-text-regular);
+            line-height: 1.38;
+            margin-top: 1px;
+        }
+
+        .svadhyaya-entry-4 {
+            margin-bottom: 10px;
+        }
+
+        .svadhyaya-body-hi-4 {
+            font-family: 'Mukta', sans-serif;
+            font-size: 10pt;
+            color: var(--brand-text-regular);
+            line-height: 1.38;
+            margin-top: 2px;
+            margin-bottom: 3px;
+        }
+
+        .svadhyaya-body-en-4 {
+            font-family: 'Mukta', sans-serif;
+            font-size: 9pt;
+            color: var(--brand-text-regular);
+            line-height: 1.35;
+            margin-top: 2px;
+            margin-bottom: 3px;
+        }
+
+        .insight-box-hi-4 {
+            background: rgba(224, 109, 40, 0.08);
+            border-radius: 4px;
+            padding: 3.5px 8px;
+            font-size: 9.5pt;
+            color: var(--brand-cinnamon);
+            line-height: 1.32;
+        }
+
+        .insight-box-en-4 {
+            background: rgba(224, 109, 40, 0.08);
+            border-radius: 4px;
+            padding: 3.5px 8px;
+            font-size: 8.8pt;
+            color: var(--brand-cinnamon);
+            line-height: 1.30;
+        }
+
+        .stotram-container-balanced {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding-bottom: 24px;
+        }
+
+        .stotram-block-atomic-hi {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 11px;
+            align-items: flex-start;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .stotram-block-atomic-en {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: flex-start;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .stotram-verse-text-full {
+            font-family: 'Mukta', sans-serif;
+            font-size: 12.5pt;
+            font-weight: 600;
+            color: var(--brand-cinnamon);
+            line-height: 1.4;
+            white-space: pre-line;
+        }
+
+        .stotram-iast-text-full {
+            font-family: 'Mukta', sans-serif;
+            font-size: 9.2pt;
+            font-weight: 400;
+            color: var(--brand-muted);
+            line-height: 1.35;
+            white-space: pre-line;
+            margin-top: 2px;
+        }
+
+        .page-footer-a5 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--brand-line);
+            padding-top: 4px;
+            font-family: 'Mukta', sans-serif;
+            font-size: 8.5pt;
+            color: var(--brand-muted);
+        }
+    </style>
+</head>
+<body>
+<div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 1</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">00९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0११</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 2</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0१९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 3</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 4</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0२९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 5</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0३९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 6</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0४९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 7</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 8</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0५९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 9</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0६९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 10</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 11</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0७९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 12</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0८९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९०</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 13</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 14</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">0९९</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१००</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०१</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०२</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०३</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०४</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०५</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 15</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०६</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०७</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        
+        <div class="stotram-block-atomic-hi">
+            <div class="list-item-num">१०८</div>
+            <div class="stotram-verse-text-full"></div>
+        </div>
+        </div><div class="page-footer-a5"><div>अन्तरा विष्णु १००० • स्तोत्र पाठ</div><div>पृष्ठ 16</div></div></div>
+</body>
+</html>

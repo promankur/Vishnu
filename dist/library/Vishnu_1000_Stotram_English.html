@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-maroon: #3A0F08;
+            --brand-cinnamon: #5C1D13;
+            --brand-saffron: #E06D28;
+            --brand-gold: #D4AF37;
+            --brand-paper: #FFFDF9;
+            --brand-text-regular: #4A1C14;
+            --brand-muted: #8C6A5E;
+            --brand-line: #EFE6D8;
+        }
+
+        @page {
+            size: A5 portrait;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--brand-paper);
+            font-family: 'Mukta', sans-serif;
+            color: var(--brand-text-regular);
+            -webkit-print-color-adjust: exact;
+        }
+
+        .page-container-a5 {
+            width: 148mm;
+            height: 210mm;
+            background: var(--brand-paper);
+            color: var(--brand-text-regular);
+            padding: 16mm 14mm 12mm 14mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            break-after: page;
+            overflow: hidden;
+        }
+
+        .header-logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+
+        .header-brand-title {
+            font-family: 'Mukta', sans-serif;
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            line-height: 1;
+        }
+
+        .header-brand-sub {
+            font-size: 9pt;
+            color: var(--brand-saffron);
+            font-weight: 700;
+            vertical-align: super;
+        }
+
+        .header-page-title {
+            text-align: center;
+            font-family: 'Mukta', sans-serif;
+            font-size: 13.5pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            margin-bottom: 12px;
+        }
+
+        .list-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 7.5px;
+            align-items: flex-start;
+        }
+
+        .list-item-num {
+            font-family: 'Mukta', sans-serif;
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            min-width: 26px;
+            padding-top: 1px;
+        }
+
+        .list-item-content {
+            flex: 1;
+        }
+
+        .list-item-nama-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 1px;
+        }
+
+        .list-item-nama {
+            font-family: 'Mukta', sans-serif;
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            line-height: 1.35;
+        }
+
+        .list-item-iast {
+            font-family: 'Mukta', sans-serif;
+            font-size: 10pt;
+            font-weight: 400;
+            color: var(--brand-muted);
+        }
+
+        .list-item-meaning {
+            font-family: 'Mukta', sans-serif;
+            font-size: 9.5pt;
+            color: var(--brand-text-regular);
+            line-height: 1.38;
+            margin-top: 1px;
+        }
+
+        .svadhyaya-entry-4 {
+            margin-bottom: 10px;
+        }
+
+        .svadhyaya-body-hi-4 {
+            font-family: 'Mukta', sans-serif;
+            font-size: 10pt;
+            color: var(--brand-text-regular);
+            line-height: 1.38;
+            margin-top: 2px;
+            margin-bottom: 3px;
+        }
+
+        .svadhyaya-body-en-4 {
+            font-family: 'Mukta', sans-serif;
+            font-size: 9pt;
+            color: var(--brand-text-regular);
+            line-height: 1.35;
+            margin-top: 2px;
+            margin-bottom: 3px;
+        }
+
+        .insight-box-hi-4 {
+            background: rgba(224, 109, 40, 0.08);
+            border-radius: 4px;
+            padding: 3.5px 8px;
+            font-size: 9.5pt;
+            color: var(--brand-cinnamon);
+            line-height: 1.32;
+        }
+
+        .insight-box-en-4 {
+            background: rgba(224, 109, 40, 0.08);
+            border-radius: 4px;
+            padding: 3.5px 8px;
+            font-size: 8.8pt;
+            color: var(--brand-cinnamon);
+            line-height: 1.30;
+        }
+
+        .stotram-container-balanced {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding-bottom: 24px;
+        }
+
+        .stotram-block-atomic-hi {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 11px;
+            align-items: flex-start;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .stotram-block-atomic-en {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: flex-start;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .stotram-verse-text-full {
+            font-family: 'Mukta', sans-serif;
+            font-size: 12.5pt;
+            font-weight: 600;
+            color: var(--brand-cinnamon);
+            line-height: 1.4;
+            white-space: pre-line;
+        }
+
+        .stotram-iast-text-full {
+            font-family: 'Mukta', sans-serif;
+            font-size: 9.2pt;
+            font-weight: 400;
+            color: var(--brand-muted);
+            line-height: 1.35;
+            white-space: pre-line;
+            margin-top: 2px;
+        }
+
+        .page-footer-a5 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--brand-line);
+            padding-top: 4px;
+            font-family: 'Mukta', sans-serif;
+            font-size: 8.5pt;
+            color: var(--brand-muted);
+        }
+    </style>
+</head>
+<body>
+<div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">001</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">002</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">003</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">004</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 1</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">005</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">006</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">007</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">008</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 2</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">009</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">010</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">011</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">012</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 3</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">013</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">014</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">015</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">016</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 4</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">017</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">018</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">019</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">020</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 5</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">021</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">022</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">023</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">024</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 6</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">025</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">026</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">027</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">028</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 7</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">029</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">030</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">031</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">032</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 8</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">033</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">034</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">035</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">036</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 9</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">037</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">038</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">039</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">040</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 10</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">041</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">042</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">043</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">044</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 11</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">045</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">046</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">047</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">048</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 12</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">049</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">050</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">051</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">052</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 13</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">053</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">054</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">055</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">056</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 14</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">057</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">058</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">059</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">060</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 15</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">061</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">062</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">063</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">064</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 16</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">065</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">066</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">067</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">068</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 17</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">069</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">070</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">071</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">072</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 18</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">073</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">074</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">075</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">076</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 19</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">077</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">078</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">079</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">080</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 20</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">081</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">082</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">083</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">084</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 21</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">085</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">086</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">087</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">088</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 22</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">089</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">090</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">091</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">092</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 23</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">093</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">094</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">095</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">096</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 24</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">097</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">098</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">099</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">100</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 25</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">101</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">102</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">103</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">104</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 26</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">105</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">106</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">107</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        
+        <div class="stotram-block-atomic-en">
+            <div class="list-item-num">108</div>
+            <div>
+                <div class="stotram-verse-text-full"></div>
+                <div class="stotram-iast-text-full"></div>
+            </div>
+        </div>
+        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 27</div></div></div>
+</body>
+</html>
