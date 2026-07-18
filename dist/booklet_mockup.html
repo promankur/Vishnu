@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishnu 1000 - Devotional Publication Series (A5 Non-Tabular Mockups)</title>
+    <title>Vishnu 1000 - Antara Devotional Publication Mockups</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-maroon: #3A0F08;
+            --brand-cinnamon: #5C1D13;
             --brand-saffron: #E06D28;
             --brand-gold: #D4AF37;
             --brand-paper: #FFFDF9; /* Warm off-white paper matching screenshot */
-            --brand-dark-text: #2A0804;
-            --brand-muted: #7A6B63;
-            --brand-line: #E8DFD1;
+            --brand-text-regular: #4A1C14; /* Deep Cinnamon - NO BLACK AT ALL */
+            --brand-muted: #8C6A5E;
+            --brand-line: #EFE6D8;
         }
 
         * {
@@ -26,7 +27,7 @@
 
         body {
             background-color: #1A1817;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Mukta', sans-serif; /* Standard Mukta font throughout */
             color: #E0E0E0;
             padding: 40px 20px;
             display: flex;
@@ -38,11 +39,11 @@
         .controls {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             background: #2C2825;
-            padding: 10px 16px;
+            padding: 8px 14px;
             border-radius: 30px;
             border: 1px solid #443E38;
         }
@@ -53,9 +54,10 @@
             color: #A0958B;
             font-size: 13px;
             font-weight: 600;
-            padding: 8px 16px;
+            padding: 6px 14px;
             cursor: pointer;
-            border-radius: 20px;
+            border-radius: 18px;
+            font-family: 'Mukta', sans-serif;
             transition: all 0.2s;
         }
 
@@ -70,33 +72,33 @@
             width: 559px;
             height: 794px;
             background: var(--brand-paper);
-            color: var(--brand-dark-text);
+            color: var(--brand-text-regular);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             border-radius: 4px;
             position: relative;
-            padding: 36px 36px 28px 36px;
+            padding: 32px 36px 24px 36px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
         }
 
-        /* Header Layout matching Screenshot */
+        /* Header Layout matching exact screenshot */
         .header-logo-row {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 6px;
+            gap: 8px;
+            margin-bottom: 4px;
         }
 
         .header-logo-img {
-            height: 38px;
+            height: 36px;
         }
 
         .header-brand-title {
             font-family: 'Mukta', sans-serif;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--brand-saffron);
             line-height: 1;
@@ -112,109 +114,118 @@
         .header-page-title {
             text-align: center;
             font-family: 'Mukta', sans-serif;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: var(--brand-saffron);
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
-        /* Non-Tabular Open List Items */
+        /* Non-Tabular Open List Items - 1H & 1E */
         .list-item {
             display: flex;
-            gap: 18px;
-            margin-bottom: 18px;
+            gap: 16px;
+            margin-bottom: 15px; /* Clean spacing allowing max 10 items per page */
             align-items: flex-start;
         }
 
         .list-item-num {
-            font-family: 'Inter', 'Mukta', sans-serif;
-            font-size: 14px;
+            font-family: 'Mukta', sans-serif;
+            font-size: 14.5px;
             font-weight: 700;
             color: var(--brand-saffron);
-            min-width: 36px;
-            padding-top: 2px;
+            min-width: 34px;
+            padding-top: 1px;
         }
 
         .list-item-content {
             flex: 1;
         }
 
+        .list-item-nama-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 1px;
+        }
+
         .list-item-nama {
             font-family: 'Mukta', sans-serif;
-            font-size: 16.5px; /* Minimum 16.5pt for easy reading by elderly */
+            font-size: 16px;
             font-weight: 700;
             color: var(--brand-saffron);
-            line-height: 1.3;
-            margin-bottom: 2px;
+            line-height: 1.25;
+        }
+
+        .list-item-iast {
+            font-family: 'Mukta', sans-serif;
+            font-size: 14px;
+            font-weight: 400; /* Regular, NOT bold, NOT SmallCaps */
+            color: var(--brand-muted);
         }
 
         .list-item-meaning {
-            font-family: 'Mukta', 'Inter', sans-serif;
-            font-size: 13px; /* Minimum 13pt (above 12pt limit) */
-            color: var(--brand-dark-text);
-            line-height: 1.5;
+            font-family: 'Mukta', sans-serif;
+            font-size: 13px; /* Regular cinnamon, NOT bold, NO black at all */
+            color: var(--brand-text-regular);
+            line-height: 1.4;
         }
 
-        .list-item-roman {
-            font-family: 'Cinzel', 'Inter', serif;
-            font-size: 12px;
-            color: var(--brand-muted);
-            font-style: italic;
-            margin-bottom: 2px;
-        }
-
-        /* 2H & 2E SELF-STUDY SINGLE-PAGE LAYOUT */
-        .svadhyaya-box {
-            text-align: center;
+        /* 2H & 2E SELF-STUDY LAYOUT matching Image 2 */
+        .svadhyaya-item {
             margin-bottom: 20px;
-            padding: 16px 20px;
-            background: rgba(224, 109, 40, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(224, 109, 40, 0.15);
         }
 
-        .svadhyaya-num {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            letter-spacing: 1.5px;
-            margin-bottom: 6px;
-        }
-
-        .svadhyaya-nama {
+        .svadhyaya-body {
             font-family: 'Mukta', sans-serif;
-            font-size: 26px;
+            font-size: 13.5px;
+            color: var(--brand-text-regular);
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        .svadhyaya-subhead {
+            font-family: 'Mukta', sans-serif;
+            font-size: 14.5px;
             font-weight: 700;
             color: var(--brand-saffron);
             margin-bottom: 6px;
         }
 
-        .svadhyaya-meaning {
-            font-size: 14pt; /* Large font size for seniors */
+        .svadhyaya-bottom-badge {
+            text-align: center;
+            font-family: 'Mukta', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--brand-saffron);
+            margin-top: auto;
+            margin-bottom: 12px;
+        }
+
+        /* STOTRAM LAYOUT (Matching 1H/1E style) */
+        .stotram-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+            align-items: flex-start;
+        }
+
+        .stotram-verse-text {
+            font-family: 'Mukta', sans-serif;
+            font-size: 15.5px;
             font-weight: 600;
-            color: var(--brand-maroon);
+            color: var(--brand-cinnamon);
             line-height: 1.5;
+            white-space: pre-line;
         }
 
-        .svadhyaya-commentary-card {
-            background: var(--brand-paper);
-            padding: 16px 0;
-            border-top: 1px solid var(--brand-line);
-        }
-
-        .svadhyaya-label {
+        .stotram-iast-text {
             font-family: 'Mukta', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            margin-bottom: 10px;
-        }
-
-        .svadhyaya-text {
-            font-size: 13pt; /* 13pt body text for high legibility */
-            color: var(--brand-dark-text);
-            line-height: 1.7;
-            text-align: justify;
+            font-size: 13.5px;
+            font-weight: 400;
+            color: var(--brand-muted);
+            line-height: 1.4;
+            white-space: pre-line;
+            margin-top: 3px;
         }
 
         /* Footer */
@@ -223,9 +234,10 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid var(--brand-line);
-            padding-top: 10px;
+            padding-top: 8px;
             margin-top: auto;
-            font-size: 11px;
+            font-family: 'Mukta', sans-serif;
+            font-size: 11.5px;
             color: var(--brand-muted);
         }
     </style>
@@ -234,23 +246,23 @@
 
     <!-- Tab Selector -->
     <div class="controls">
-        <button class="btn-tab active" onclick="showView('1H')">1H: Hindi Essential (Open List A5)</button>
-        <button class="btn-tab" onclick="showView('1E')">1E: English Essential (Open List A5)</button>
-        <button class="btn-tab" onclick="showView('2H')">2H: Hindi Self-Study (1 Name / A5 Page)</button>
-        <button class="btn-tab" onclick="showView('2E')">2E: English Self-Study (1 Name / A5 Page)</button>
+        <button class="btn-tab active" onclick="showView('1H')">1H: Hindi Essential</button>
+        <button class="btn-tab" onclick="showView('1E')">1E: English Essential</button>
+        <button class="btn-tab" onclick="showView('2H')">2H: Hindi Self-Study</button>
+        <button class="btn-tab" onclick="showView('2E')">2E: English Self-Study</button>
+        <button class="btn-tab" onclick="showView('StotramH')">Stotram-H: Hindi Recital</button>
+        <button class="btn-tab" onclick="showView('StotramE')">Stotram-E: English Recital</button>
     </div>
 
-    <!-- CHOICE 1H: HINDI ESSENTIAL (MATCHING USER'S EXACT SCREENSHOT DESIGN) -->
+    <!-- CHOICE 1H: HINDI ESSENTIAL (MATCHING IMAGE 1 LEFT) -->
     <div id="view-1H" class="page-container-a5">
         <div>
-            <!-- Header matching screenshot -->
             <div class="header-logo-row">
                 <img src="Antara_Logo2.png" alt="Antara" class="header-logo-img">
                 <span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span>
             </div>
             <div class="header-page-title">श्रीविष्णुसहस्रनाम नामावली</div>
 
-            <!-- Open List Items (Min 12pt for meanings, 16.5pt for Devanagari) -->
             <div class="list-item">
                 <div class="list-item-num">००१</div>
                 <div class="list-item-content">
@@ -306,48 +318,78 @@
         </div>
     </div>
 
-    <!-- CHOICE 1E: ENGLISH ESSENTIAL (A5 OPEN LIST FORMAT) -->
+    <!-- CHOICE 1E: ENGLISH ESSENTIAL (MATCHING IMAGE 1 RIGHT) -->
     <div id="view-1E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
                 <img src="Antara_Logo2.png" alt="Antara" class="header-logo-img">
                 <span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span>
             </div>
-            <div class="header-page-title">SHREE VISHNU SAHASRANAMA NAMAVALI</div>
+            <div class="header-page-title">Shri Viṣṇu Sahasranama Namavali</div>
 
             <div class="list-item">
-                <div class="list-item-num">001</div>
+                <div class="list-item-num">००१</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama">ॐ विश्वाय नमः</div>
-                    <div class="list-item-roman">Om Viśvāya Namaḥ</div>
-                    <div class="list-item-meaning">He who is the cosmos itself and pervades the entire universe.</div>
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ विश्वाय नमः</span>
+                        <span class="list-item-iast">Om Viśvāya Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning">जो सम्पूर्ण जगत् के रूप में स्वयं व्याप्त हैं।</div>
                 </div>
             </div>
 
             <div class="list-item">
-                <div class="list-item-num">002</div>
+                <div class="list-item-num">००२</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama">ॐ विष्णवे नमः</div>
-                    <div class="list-item-roman">Om Viṣṇave Namaḥ</div>
-                    <div class="list-item-meaning">He who enters and permeates every atom of existence.</div>
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ विष्णवे नमः</span>
+                        <span class="list-item-iast">Om Viṣṇave Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning">जो सर्वत्र व्याप्य (कण-कण में समाए हुए) हैं।</div>
                 </div>
             </div>
 
             <div class="list-item">
-                <div class="list-item-num">003</div>
+                <div class="list-item-num">००३</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama">ॐ वषट्काराय नमः</div>
-                    <div class="list-item-roman">Om Vaṣaṭkārāya Namaḥ</div>
-                    <div class="list-item-meaning">He for whose invocation the sacred 'Vaṣaṭ' oblation is offered.</div>
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ वषट्काराय नमः</span>
+                        <span class="list-item-iast">Om Vaṣaṭkārāya Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning">जिनके उद्देश्य से यज्ञों में 'वषट्' स्वाहा मन्त्र का उच्चारण किया जाता है।</div>
                 </div>
             </div>
 
             <div class="list-item">
-                <div class="list-item-num">004</div>
+                <div class="list-item-num">००४</div>
                 <div class="list-item-content">
-                    <div class="list-item-nama">ॐ भूतभव्यभवत्प्रभवे नमः</div>
-                    <div class="list-item-roman">Om Bhūtabhavyabhavatprabhave Namaḥ</div>
-                    <div class="list-item-meaning">The Sovereign Lord of all three realms of Time—Past, Present, and Future.</div>
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ भूतभव्यभवत्प्रभवे नमः</span>
+                        <span class="list-item-iast">Om Bhūtabhavyabhavatprabhave Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-num">००५</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ भूतकृते नमः</span>
+                        <span class="list-item-iast">Om Bhūtakṛte Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning">जो समस्त प्राणियों तथा ब्रह्मांडीय तत्त्वों की सृष्टि करने वाले हैं।</div>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-item-num">००६</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama">ॐ भूतभृते नमः</span>
+                        <span class="list-item-iast">Om Bhūtabhṛte Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning">जो सम्पूर्ण जीवों का अपने पोषण एवं अनुग्रह द्वारा भरण-पोषण करते हैं।</div>
                 </div>
             </div>
         </div>
@@ -358,66 +400,164 @@
         </div>
     </div>
 
-    <!-- CHOICE 2H: HINDI SELF-STUDY (A5 SINGLE PAGE PER NAME) -->
+    <!-- CHOICE 2H: HINDI SELF-STUDY (MATCHING IMAGE 2 LEFT) -->
     <div id="view-2H" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
                 <img src="Antara_Logo2.png" alt="Antara" class="header-logo-img">
                 <span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span>
             </div>
-            <div class="header-page-title">स्वाध्याय संस्करण (2H)</div>
+            <div class="header-page-title">श्रीविष्णुसहस्रनाम स्वाध्याय</div>
 
-            <div class="svadhyaya-box">
-                <div class="svadhyaya-num">नाम संख्या ००४ / १०००</div>
-                <div class="svadhyaya-nama">ॐ भूतभव्यभवत्प्रभवे नमः</div>
-                <div class="svadhyaya-meaning">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी एवं संचालक हैं।</div>
+            <div class="list-item" style="margin-bottom: 20px;">
+                <div class="list-item-num">००४</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama" style="font-size: 18px;">ॐ भूतभव्यभवत्प्रभवे नमः</div>
+                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600;">जो भूत (अतीत), भव्य (भविष्य) और भवत् (वर्तमान)—तीनों कालों के स्वामी हैं।</div>
+                </div>
             </div>
 
-            <div class="svadhyaya-commentary-card">
-                <div class="svadhyaya-label">☸ स्वाध्याय एवं दार्शनिक चिंतन (आदि शंकर भाष्य)</div>
-                <div class="svadhyaya-text">
-                    भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है।
-                    <br><br>
-                    <strong>साधना सूत्र:</strong> चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
-                </div>
+            <div class="svadhyaya-body">
+                भगवान् विष्णु केवल समय के साक्षी नहीं हैं, अपितु वे तीनों कालों के निरपेक्ष स्वामी (प्रभु) हैं। अतीत में जो कुछ घटित हुआ, वर्तमान में जो दृश्यमान है, और भविष्य में जो उत्पन्न होने वाला है—यह सम्पूर्ण कालचक्र भगवान् के संकल्प में ही प्रतिष्ठित है।
+            </div>
+
+            <div class="svadhyaya-subhead">साधना सूत्र:</div>
+            <div class="svadhyaya-body">
+                चिंतन करें कि आपका अतीत कितना भी भारी क्यों न रहा हो, भगवान् आपके भविष्य के भी प्रभु हैं। काल के भय से मुक्त होकर वर्तमान क्षण में ईश्वर के शरणार्थी बनना ही इस नाम का परम स्वाध्याय है।
             </div>
         </div>
 
+        <div class="svadhyaya-bottom-badge">☸ स्वाध्याय एवं दार्शनिक चिंतन (आदि शंकर भाष्य)</div>
+
         <div class="page-footer-a5">
-            <div>अन्तरा डिजिटल अभयारण्य • ए५ स्वाध्याय पृष्ठ</div>
+            <div>अन्तरा डिजिटल अभयारण्य</div>
             <div>नाम ४</div>
         </div>
     </div>
 
-    <!-- CHOICE 2E: ENGLISH SELF-STUDY (A5 SINGLE PAGE PER NAME) -->
+    <!-- CHOICE 2E: ENGLISH SELF-STUDY (MATCHING IMAGE 2 RIGHT) -->
     <div id="view-2E" class="page-container-a5" style="display: none;">
         <div>
             <div class="header-logo-row">
                 <img src="Antara_Logo2.png" alt="Antara" class="header-logo-img">
                 <span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span>
             </div>
-            <div class="header-page-title">SELF-STUDY EDITION (2E)</div>
+            <div class="header-page-title">Shri Viṣṇu Sahasranama Self-Study</div>
 
-            <div class="svadhyaya-box">
-                <div class="svadhyaya-num">NAME NO. 004 OF 1000</div>
-                <div class="svadhyaya-nama">ॐ भूतभव्यभवत्प्रभवे नमः</div>
-                <div class="list-item-roman" style="font-size: 14px; margin-bottom: 6px;">Om Bhūtabhavyabhavatprabhave Namaḥ</div>
-                <div class="svadhyaya-meaning" style="font-size: 13pt;">The Sovereign Lord and Controller of all three realms of Time—the Past, the Present, and the Future.</div>
+            <div class="list-item" style="margin-bottom: 16px;">
+                <div class="list-item-num" style="font-family: 'Inter', sans-serif;">004</div>
+                <div class="list-item-content">
+                    <div class="list-item-nama-row">
+                        <span class="list-item-nama" style="font-size: 17px;">ॐ भूतभव्यभवत्प्रभवे नमः</span>
+                        <span class="list-item-iast" style="font-size: 14.5px;">Om Bhūtabhavyabhavatprabhave Namaḥ</span>
+                    </div>
+                    <div class="list-item-meaning" style="font-size: 13.5px; font-weight: 600; color: var(--brand-cinnamon); margin-top: 4px;">
+                        The Sovereign Lord of all three realms of Time—Past, Present, and Future.
+                    </div>
+                </div>
             </div>
 
-            <div class="svadhyaya-commentary-card">
-                <div class="svadhyaya-label">☸ SELF-STUDY & CONTEMPLATION (Shankara Bhashya)</div>
-                <div class="svadhyaya-text">
-                    Lord Vishnu is not merely a passive witness to time, but the absolute Master (*Prabhu*) of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
-                    <br><br>
-                    <strong>Sadhana Insight:</strong> Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
+            <div class="svadhyaya-body">
+                Lord Vishnu is not merely a passive witness to time, but the absolute Master (*Prabhu*) of Time itself. Everything that transpired in the past, everything that is manifesting in the present, and all possibilities waiting to unfold in the future reside within His supreme consciousness.
+            </div>
+
+            <div class="svadhyaya-subhead">Sadhana Insight:</div>
+            <div class="svadhyaya-body">
+                Contemplate that regardless of past burdens, the Supreme Lord governs your future. Surrendering anxiety about time and resting in divine presence in the present moment is the true essence of meditating on this name.
+            </div>
+        </div>
+
+        <div class="svadhyaya-bottom-badge" style="font-size: 11.5px; letter-spacing: 0.5px;">SELF-STUDY & CONTEMPLATION (Shankara Bhashya)</div>
+
+        <div class="page-footer-a5">
+            <div>Antara Vishnu 1000 • Essential Edition</div>
+            <div>Page 1</div>
+        </div>
+    </div>
+
+    <!-- STOTRAM-H: HINDI STOTRAM RECITAL RECITAL MOCKUP -->
+    <div id="view-StotramH" class="page-container-a5" style="display: none;">
+        <div>
+            <div class="header-logo-row">
+                <img src="Antara_Logo2.png" alt="Antara" class="header-logo-img">
+                <span class="header-brand-title">विष्णु<span class="header-brand-sub">1000</span></span>
+            </div>
+            <div class="header-page-title">श्रीविष्णुसहस्रनाम स्तोत्र पाठ</div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">००१</div>
+                <div class="stotram-verse-text">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
+भूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥</div>
+            </div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">००२</div>
+                <div class="stotram-verse-text">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
+अव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥</div>
+            </div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">००३</div>
+                <div class="stotram-verse-text">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
+नारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥</div>
+            </div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">००४</div>
+                <div class="stotram-verse-text">सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।
+सम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥</div>
+            </div>
+        </div>
+
+        <div class="page-footer-a5">
+            <div>अन्तरा विष्णु १००० • स्तोत्र पाठ पुस्तिका</div>
+            <div>पृष्ठ १</div>
+        </div>
+    </div>
+
+    <!-- STOTRAM-E: ENGLISH STOTRAM RECITAL MOCKUP -->
+    <div id="view-StotramE" class="page-container-a5" style="display: none;">
+        <div>
+            <div class="header-logo-row">
+                <img src="Antara_Logo2.png" alt="Antara" class="header-logo-img">
+                <span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span>
+            </div>
+            <div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">001</div>
+                <div>
+                    <div class="stotram-verse-text">विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।
+भूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥</div>
+                    <div class="stotram-iast-text">viśvaṁ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |
+bhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||</div>
+                </div>
+            </div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">002</div>
+                <div>
+                    <div class="stotram-verse-text">पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।
+अव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥</div>
+                    <div class="stotram-iast-text">pūtātmā paramātmā ca muktānāṁ paramā gatiḥ |
+avyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||</div>
+                </div>
+            </div>
+
+            <div class="stotram-item">
+                <div class="list-item-num">003</div>
+                <div>
+                    <div class="stotram-verse-text">योगो योगविदां नेता प्रधानपुरुषेश्वरः ।
+नारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥</div>
+                    <div class="stotram-iast-text">yogo yogavidāṁ netā pradhānapuruṣeśvaraḥ |
+nārasiṁhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||</div>
                 </div>
             </div>
         </div>
 
         <div class="page-footer-a5">
-            <div>Antara Digital Sanctuary • A5 Self-Study Page</div>
-            <div>Name 4</div>
+            <div>Antara Vishnu 1000 • Stotram Edition (1E)</div>
+            <div>Page 1</div>
         </div>
     </div>
 
@@ -427,6 +567,8 @@
             document.getElementById('view-1E').style.display = 'none';
             document.getElementById('view-2H').style.display = 'none';
             document.getElementById('view-2E').style.display = 'none';
+            document.getElementById('view-StotramH').style.display = 'none';
+            document.getElementById('view-StotramE').style.display = 'none';
             
             document.querySelectorAll('.btn-tab').forEach(btn => btn.classList.remove('active'));
             
