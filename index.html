@@ -67,6 +67,21 @@
         body.dark-theme .nama-card-meaning {
             color: var(--antara-muted);
         }
+        body.dark-theme .pref-quota-opt {
+            color: var(--antara-muted);
+            opacity: 0.9;
+        }
+        body.dark-theme .pref-quota-opt.active {
+            color: var(--antara-gold) !important;
+            opacity: 1 !important;
+        }
+        body.dark-theme .reset-progress-link {
+            color: var(--antara-muted);
+            opacity: 0.95;
+        }
+        body.dark-theme .reset-progress-link:hover {
+            color: var(--antara-gold);
+        }
 
         * {
             box-sizing: border-box;
@@ -1922,25 +1937,7 @@
                     </label>
                 </div>
 
-                <!-- Row 2: Daily Reminder (Android Native Feature) -->
-                <div id="settings-reminder-row" style="display: none; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding: 4px 8px; box-sizing: border-box; width: 100%;">
-                    <div style="display: flex; flex-direction: column;">
-                        <div style="font-family: 'Mukta', sans-serif; font-size: 16px; font-weight: bold; color: var(--antara-dark);">
-                            दैनिक स्मरणपत्र <span style="font-family: 'Inter', sans-serif; font-weight: normal; color: var(--antara-muted); opacity: 0.8;">/ Daily Reminder</span>
-                        </div>
-                        <div id="settings-reminder-time-row" style="font-family: 'Mukta', sans-serif; font-size: 13px; color: var(--antara-saffron); margin-top: 4px; display: flex; align-items: center; gap: 4px; display: none;">
-                            स्मरण समय: <span id="settings-reminder-time-txt">05:15 AM</span> 
-                            <span onclick="changeReminderTimeWeb()" style="color: #64B5F6; font-size: 12px; display: inline-flex; align-items: center; gap: 2px; cursor: pointer;">
-                                (⚙️ बदलें)
-                            </span>
-                        </div>
-                    </div>
-                    <!-- Custom Toggle Switch -->
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="settings-reminder-toggle" onchange="toggleReminderWeb()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
+
 
                 <!-- Support our Seva Link -->
                 <div style="text-align: center; margin-bottom: 16px; width: 100%;">
@@ -2502,23 +2499,6 @@
         let synthesis = window.speechSynthesis;
         let speechInProgress = false;
         let speechTimeout = null;
-
-        function changeVoice() {
-            const voiceSelect = document.getElementById("voice-select");
-            if (voiceSelect) {
-                state.useMaleVoice = (voiceSelect.value === "male");
-                saveState();
-            }
-        }
-
-        function changeSpeed(val) {
-            const speedVal = document.getElementById("speed-val");
-            if (speedVal) {
-                speedVal.innerText = Number(val).toFixed(2) + "x";
-            }
-            state.speechRate = parseFloat(val);
-            saveState();
-        }
 
         let globalNamavaliAudio = null;
         let currentAudioPlayer = null;
