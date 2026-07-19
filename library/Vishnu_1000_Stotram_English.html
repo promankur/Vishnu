@@ -2,21 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand-maroon: #3A0F08;
-            --brand-cinnamon: #5C1D13;
-            --brand-saffron: #E06D28;
-            --brand-gold: #D4AF37;
-            --brand-paper: #FFFDF9;
-            --brand-text-regular: #4A1C14;
-            --brand-muted: #8C6A5E;
-            --brand-line: #EFE6D8;
-        }
-
+        
         @page {
             size: A5 portrait;
             margin: 0;
@@ -29,1078 +17,1436 @@
         }
 
         body {
-            background-color: var(--brand-paper);
+            background-color: #FFFDF9;
             font-family: 'Mukta', sans-serif;
-            color: var(--brand-text-regular);
+            color: #4A1C14;
             -webkit-print-color-adjust: exact;
+        }
+
+        .page-cover-a5 {
+            width: 148mm;
+            height: 210mm;
+            background: #FFFDF9;
+            padding: 12mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .cover-logo-row {
+            margin-bottom: 8mm;
+            text-align: center;
+        }
+
+        .cover-antara-img {
+            height: 42px;
+            width: auto;
+        }
+
+        .cover-frame-box {
+            width: 120mm;
+            height: 170mm;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover-art-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .page-container-a5 {
             width: 148mm;
             height: 210mm;
-            background: var(--brand-paper);
-            color: var(--brand-text-regular);
-            padding: 16mm 14mm 12mm 14mm;
+            background: #FFFDF9;
+            padding: 12mm 14mm 10mm 14mm;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             page-break-after: always;
             break-after: page;
-            overflow: hidden;
         }
 
-        .header-logo-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 2px;
-        }
-
-        .header-logo-img {
-            height: 28px;
-            width: auto;
-        }
-
-        .header-brand-title {
-            font-family: 'Mukta', sans-serif;
-            font-size: 18pt;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            line-height: 1;
-        }
-
-        .header-brand-sub {
-            font-size: 9pt;
-            color: var(--brand-saffron);
-            font-weight: 700;
-            vertical-align: super;
-        }
-
-        /* Two-Line Space Below Header Page Title */
-        .header-page-title {
+        .header-banner {
+            background: #D8A353;
+            border-radius: 4px;
+            padding: 6px 12px;
             text-align: center;
+            margin-bottom: 12pt;
+        }
+
+        .banner-title {
             font-family: 'Mukta', sans-serif;
-            font-size: 13.5pt;
+            font-size: 14pt;
             font-weight: 700;
-            color: var(--brand-saffron);
-            margin-bottom: 18pt; /* Significant two-line space below title */
+            color: #FFFFFF;
+            line-height: 1.2;
         }
 
-        .list-item {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 7pt;
-            align-items: flex-start;
-        }
-
-        .list-item-num {
+        .banner-sub {
             font-family: 'Mukta', sans-serif;
             font-size: 10.5pt;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            min-width: 26px;
-            padding-top: 1px;
-        }
-
-        .list-item-content {
-            flex: 1;
-        }
-
-        /* Balanced Flex Wrap for long Devanagari names */
-        .list-item-nama-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 4px 8px;
-            margin-bottom: 1px;
-        }
-
-        .list-item-nama {
-            font-family: 'Mukta', sans-serif;
-            font-size: 11.5pt;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            line-height: 1.35;
-        }
-
-        /* IAST Transliteration reduced by -2pt for visual balance */
-        .list-item-iast {
-            font-family: 'Mukta', sans-serif;
-            font-size: 8.5pt; /* -2pt smaller than Devanagari */
             font-weight: 400;
-            color: var(--brand-muted);
+            font-style: italic;
+            color: #FFFDF9;
+            opacity: 0.95;
+            line-height: 1.2;
         }
 
-        .list-item-meaning {
-            font-family: 'Mukta', sans-serif;
-            font-size: 9.5pt;
-            color: var(--brand-text-regular);
-            line-height: 1.38;
-            margin-top: 1px;
-        }
-
-        .svadhyaya-entry-4 {
-            margin-bottom: 9pt;
-        }
-
-        .svadhyaya-body-hi-4 {
-            font-family: 'Mukta', sans-serif;
-            font-size: 10pt;
-            color: var(--brand-text-regular);
-            line-height: 1.38;
-            margin-top: 2px;
-            margin-bottom: 3px;
-        }
-
-        .svadhyaya-body-en-4 {
-            font-family: 'Mukta', sans-serif;
-            font-size: 9pt;
-            color: var(--brand-text-regular);
-            line-height: 1.35;
-            margin-top: 2px;
-            margin-bottom: 3px;
-        }
-
-        .insight-box-hi-4 {
-            background: rgba(224, 109, 40, 0.08);
-            border-radius: 4px;
-            padding: 3.5px 8px;
-            font-size: 9.5pt;
-            color: var(--brand-cinnamon);
-            line-height: 1.32;
-        }
-
-        .insight-box-en-4 {
-            background: rgba(224, 109, 40, 0.08);
-            border-radius: 4px;
-            padding: 3.5px 8px;
-            font-size: 8.5pt;
-            color: var(--brand-cinnamon);
-            line-height: 1.30;
-        }
-
-        .stotram-container-balanced {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            padding-bottom: 24px;
-        }
-
-        .stotram-block-atomic-hi {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 11px;
-            align-items: flex-start;
-            page-break-inside: avoid;
-            break-inside: avoid;
-        }
-
-        .stotram-block-atomic-en {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: flex-start;
-            page-break-inside: avoid;
-            break-inside: avoid;
-        }
-
-        .stotram-verse-text-full {
-            font-family: 'Mukta', sans-serif;
-            font-size: 12.5pt;
-            font-weight: 600;
-            color: var(--brand-cinnamon);
-            line-height: 1.4;
-            white-space: pre-line;
-        }
-
-        .stotram-iast-text-full {
-            font-family: 'Mukta', sans-serif;
-            font-size: 8.5pt; /* -2pt smaller */
-            font-weight: 400;
-            color: var(--brand-muted);
-            line-height: 1.35;
-            white-space: pre-line;
-            margin-top: 2px;
-        }
-
-        .page-footer-a5 {
+        .page-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--brand-line);
+            border-top: 1px solid #EFE6D8;
             padding-top: 4px;
             font-family: 'Mukta', sans-serif;
             font-size: 8.5pt;
-            color: var(--brand-muted);
+            color: #8C6A5E;
         }
+
     </style>
 </head>
 <body>
-<div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">001</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+
+<div class="page-cover-a5">
+    <div class="cover-logo-row">
+        <img src="Antara_Logo2.png" alt="Antara Logo" class="cover-antara-img">
+    </div>
+    <div class="cover-frame-box">
+        <img src="Vishnu1000_Kindle_Cover.jpg" alt="Vishnu1000 Cover" class="cover-art-img">
+    </div>
+</div>
+
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                ॐ विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः ।<br>भूतकृद्भूतभृद्भावो भूतात्मा भूतभावनः ॥ १ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                oṃ viśvaṃ viṣṇurvaṣaṭkāro bhūtabhavyabhavatprabhuḥ |<br>bhūtakṛdbhūtabhṛdbhāvo bhūtātmā bhūtabhāvanaḥ || 1 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">002</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                पूतात्मा परमात्मा च मुक्तानां परमा गतिः ।<br>अव्ययः पुरुषः साक्षी क्षेत्रज्ञोऽक्षर एव च ॥ २ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                pūtātmā paramātmā ca muktānāṃ paramā gatiḥ |<br>avyayaḥ puruṣaḥ sākṣī kṣetrajño'kṣara eva ca || 2 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">003</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                योगो योगविदां नेता प्रधानपुरुषेश्वरः ।<br>नारसिंहवपुः श्रीमान् केशवः पुरुषोत्तमः ॥ ३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                yogo yogavidāṃ netā pradhānapuruṣeśvaraḥ |<br>nārasiṃhavapuḥ śrīmān keśavaḥ puruṣottamaḥ || 3 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">004</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सर्वः शर्वः शिवः स्थाणुर्भूतादिर्निधिरव्ययः ।<br>सम्भवो भावनो भर्ता प्रभवः प्रभुरीश्वरः ॥ ४ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sarvaḥ śarvaḥ śivaḥ sthāṇurbhūtādirnidhiravyayaḥ |<br>sambhavo bhāvano bhartā prabhavaḥ prabhurīśvaraḥ || 4 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 1</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 1</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">005</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                स्वयम्भूः शम्भुरादित्यः पुष्कराक्षो महास्वनः ।<br>अनादिनिधनो धाता विधाता धातुरुत्तमः ॥ ५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                svayambhūḥ śambhurādityaḥ puṣkarākṣo mahāsvanaḥ |<br>anādinidhano dhātā vidhātā dhāturuttamaḥ || 5 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">006</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अप्रमेयो हृषीकेशः पद्मनाभोऽमरप्रभुः ।<br>विश्वकर्मा मनुस्त्वष्टा स्थविष्ठः स्थविरो ध्रुवः ॥ ६ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                aprameyo hṛṣīkeśaḥ padmanābho'maraprabhuḥ |<br>viśvakarmā manustvaṣṭā sthaviṣṭhaḥ sthaviro dhruvaḥ || 6 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">007</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अग्राह्यः शाश्वतः कृष्णो लोहिताक्षः प्रतर्दनः ।<br>प्रभूतस्त्रिककुब्धाम पवित्रं मङ्गलं परम् ॥ ७ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                agrāhyaḥ śāśvataḥ kṛṣṇo lohitākṣaḥ pratardanaḥ |<br>prabhūtastrikakubdhāma pavitraṃ maṅgalaṃ param || 7 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">008</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                ईशानः प्राणदः प्राणो ज्येष्ठः श्रेष्ठः प्रजापतिः ।<br>हिरण्यगर्भो भूगर्भो माधवो मधुसूदनः ॥ ८ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                īśānaḥ prāṇadaḥ prāṇo jyeṣṭhaḥ śreṣṭhaḥ prajāpatiḥ |<br>hiraṇyagarbho bhūgarbho mādhavo madhusūdanaḥ || 8 ||
             </div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 2</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">009</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 2</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                ईश्वरो विक्रमी धन्वी मेधावी विक्रमः क्रमः ।<br>अनुत्तमो दुराधर्षः कृतज्ञः कृतिरात्मवान् ॥ ९ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                īśvaro vikramī dhanvī medhāvī vikramaḥ kramaḥ |<br>anuttamo durādharṣaḥ kṛtajñaḥ kṛtirātmavān || 9 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">010</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुरेशः शरणं शर्म विश्वरेताः प्रजाभवः ।<br>अहः संवत्सरो व्यालः प्रत्ययः सर्वदर्शनः ॥ १० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sureśaḥ śaraṇaṃ śarma viśvaretāḥ prajābhavaḥ |<br>ahaḥ saṃvatsaro vyālaḥ pratyayaḥ sarvadarśanaḥ || 10 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">011</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अजः सर्वेश्वरः सिद्धः सिद्धिः सर्वादिरच्युतः ।<br>वृषाकपिरमेयात्मा सर्वयोगविनिःसृतः ॥ ११ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ajaḥ sarveśvaraḥ siddhaḥ siddhiḥ sarvādiracyutaḥ |<br>vṛṣākapirameyātmā sarvayogaviniḥsṛtaḥ || 11 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">012</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                वसुर्वसुमनाः सत्यः समात्माऽसम्मितः समः ।<br>अमोघः पुण्डरीकाक्षो वृषकर्मा वृषाकृतिः ॥ १२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vasurvasumanāḥ satyaḥ samātmā'sammitaḥ samaḥ |<br>amoghaḥ puṇḍarīkākṣo vṛṣakarmā vṛṣākṛtiḥ || 12 ||
+            </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 3</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">013</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 3</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                रुद्रो बहुशिरा बभ्रुर्विश्वयोनिः शुचिश्रवाः ।<br>अमृतः शाश्वतस्थाणुर्वरारोहो महातपाः ॥ १३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                rudro bahuśirā babhrurviśvayoniḥ śuciśravāḥ |<br>amṛtaḥ śāśvatasthāṇurvarāroho mahātapāḥ || 13 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">014</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सर्वगः सर्वविद्भानुर्विष्वक्सेनो जनार्दनः ।<br>वेदो वेदविदव्यङ्गो वेदाङ्गो वेदवित् कविः ॥ १४ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sarvagaḥ sarvavidbhānurviṣvakseno janārdanaḥ |<br>vedo vedavidavyaṅgo vedāṅgo vedavit kaviḥ || 14 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">015</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                लोकाध्यक्षः सुराध्यक्षो धर्माध्यक्षः कृताकृतः ।<br>चतुरात्मा चतुर्व्यूहश्चतुर्दंष्ट्रश्चतुर्भुजः ॥ १५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                lokādhyakṣaḥ surādhyakṣo dharmādhyakṣaḥ kṛtākṛtaḥ |<br>caturātmā caturvyūhaścaturdaṃṣṭraścaturbhujaḥ || 15 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">016</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                भ्राजिष्णुर्भोजनं भोक्ता सहिष्णुर्जगदादिजः ।<br>अनघो विजयो जेता विश्वयोनिः पुनर्वसुः ॥ १६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                bhrājiṣṇurbhojanaṃ bhoktā sahiṣṇurjagadādijaḥ |<br>anagho vijayo jetā viśvayoniḥ punarvasuḥ || 16 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 4</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 4</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">017</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                उपेन्द्रो वामनः प्रांशुरमोघः शुचिरूर्जितः ।<br>अतीन्द्रः सङ्ग्रहः सर्गो धृतात्मा नियमो यमः ॥ १७ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                upendro vāmanaḥ prāṃśuramoghaḥ śucirūrjitaḥ |<br>atīndraḥ saṅgrahaḥ sargo dhṛtātmā niyamo yamaḥ || 17 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">018</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                वेद्यो वैद्यः सदायोगी वीरहा माधवो मधुः ।<br>अतीन्द्रियो महामायो महोत्साहो महाबलः ॥ १८ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vedyo vaidyaḥ sadāyogī vīrahā mādhavo madhuḥ |<br>atīndriyo mahāmāyo mahotsāho mahābalaḥ || 18 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">019</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                महाबुद्धिर्महावीर्यो महाशक्तिर्महाद्युतिः ।<br>अनिर्देश्यवपुः श्रीमानमेयात्मा महाद्रिधृक् ॥ १९ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                mahābuddhirmahāvīryo mahāśaktirmahādyutiḥ |<br>anirdeśyavapuḥ śrīmānameyātmā mahādridhṛk || 19 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">020</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                महेष्वासो महीभर्ता श्रीनिवासः सतां गतिः ।<br>अनिरुद्धः सुरानन्दो गोविन्दो गोविदां पतिः ॥ २० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                maheṣvāso mahībhartā śrīnivāsaḥ satāṃ gatiḥ |<br>aniruddhaḥ surānando govindo govidāṃ patiḥ || 20 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 5</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 5</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">021</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                मरीचिर्दमनो हंसः सुपर्णो भुजगोत्तमः ।<br>हिरण्यनाभः सुतपाः पद्मनाभः प्रजापतिः ॥ २१ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                marīcirdamano haṃsaḥ suparṇo bhujagottamaḥ |<br>hiraṇyanābhaḥ sutapāḥ padmanābhaḥ prajāpatiḥ || 21 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">022</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अमृत्युः सर्वदृक् सिंहः सन्धाता सन्धिमान् स्थिरः ।<br>अजो दुर्मर्षणः शास्ता विश्रुतात्मा सुरारिहा ॥ २२ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                amṛtyuḥ sarvadṛk siṃhaḥ sandhātā sandhimān sthiraḥ |<br>ajo durmarṣaṇaḥ śāstā viśrutātmā surārihā || 22 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">023</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                गुरुर्गुरुतमो धाम सत्यः सत्यपराक्रमः ।<br>निमिषोऽनिमिषः स्रग्वी वाचस्पतिरुदारधीः ॥ २३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                gururgurutamo dhāma satyaḥ satyaparākramaḥ |<br>nimiṣo'nimiṣaḥ sragvī vācaspatirudāradhīḥ || 23 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">024</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अग्रणीर्ग्रामणीः श्रीमान् न्यायो नेता समीरणः ।<br>सहस्रमूर्धा विश्वात्मा सहस्राक्षः सहस्रपात् ॥ २४ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                agraṇīrgrāmaṇīḥ śrīmān nyāyo netā samīraṇaḥ |<br>sahasramūrdhā viśvātmā sahasrākṣaḥ sahasrapāt || 24 ||
             </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 6</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">025</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 6</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                आवर्तनो निवृत्तात्मा संवृतः सम्प्रमर्दनः ।<br>अहः संवर्तको वह्निरनिलो धरणीधरः ॥ २५ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                āvartano nivṛttātmā saṃvṛtaḥ sampramardanaḥ |<br>ahaḥ saṃvartako vahniranilo dharaṇīdharaḥ || 25 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">026</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुप्रसादः प्रसन्नात्मा विश्वधृग्विश्वभुग्विभुः ।<br>सत्कर्ता सत्कृतः साधुर्जह्नुर्नारायणो नरः ॥ २६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                suprasādaḥ prasannātmā viśvadhṛgviśvabhugvibhuḥ |<br>satkartā satkṛtaḥ sādhurjahnurnārāyaṇo naraḥ || 26 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">027</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                असङ्ख्येयोऽप्रमेयात्मा विशिष्टः शिष्टकृच्छुचिः ।<br>सिद्धार्थः सिद्धसङ्कल्पः सिद्धिदः सिद्धिसाधनः ॥ २७ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                asaṅkhyeyo'prameyātmā viśiṣṭaḥ śiṣṭakṛcchuciḥ |<br>siddhārthaḥ siddhasaṅkalpaḥ siddhidaḥ siddhisādhanaḥ || 27 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">028</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                वृषाही वृषभो विष्णुर्वृषपर्वा वृषोदरः ।<br>वर्धनो वर्धमानश्च विविक्तः श्रुतिसागरः ॥ २८ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vṛṣāhī vṛṣabho viṣṇurvṛṣaparvā vṛṣodaraḥ |<br>vardhano vardhamānaśca viviktaḥ śrutisāgaraḥ || 28 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 7</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 7</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">029</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुभुजो दुर्धरो वाग्मी महेन्द्रो वसुदो वसुः ।<br>नैकरूपो बृहद्रूपः शिपिविष्टः प्रकाशनः ॥ २९ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                subhujo durdharo vāgmī mahendro vasudo vasuḥ |<br>naikarūpo bṛhadrūpaḥ śipiviṣṭaḥ prakāśanaḥ || 29 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">030</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                ओजस्तेजोद्युतिधरः प्रकाशात्मा प्रतापनः ।<br>ऋद्धः स्पष्टाक्षरो मन्त्रश्चन्द्रांशुर्भास्करद्युतिः ॥ ३० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ojastejodyutidharaḥ prakāśātmā pratāpanaḥ |<br>ṛddhaḥ spaṣṭākṣaro mantraścandrāṃśurbhāskaradyutiḥ || 30 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">031</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अमृतांशूद्भवो भानुः शशबिन्दुः सुरेश्वरः ।<br>औषधं जगतः सेतुः सत्यधर्मपराक्रमः ॥ ३१ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                amṛtāṃśūdbhavo bhānuḥ śaśabinduḥ sureśvaraḥ |<br>auṣadhaṃ jagataḥ setuḥ satyadharmaparākramaḥ || 31 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">032</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                भूतभव्यभवन्नाथः पवनः पावनोऽनलः ।<br>कामहा कामकृत्कान्तः कामः कामप्रदः प्रभुः ॥ ३२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                bhūtabhavyabhavannāthaḥ pavanaḥ pāvano'nalaḥ |<br>kāmahā kāmakṛtkāntaḥ kāmaḥ kāmapradaḥ prabhuḥ || 32 ||
+            </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 8</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">033</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 8</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                युगादिकृद्युगावर्तो नैकमायो महाशनः ।<br>अदृश्यो व्यक्तरूपश्च सहस्रजिदनन्तजित् ॥ ३३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                yugādikṛdyugāvarto naikamāyo mahāśanaḥ |<br>adṛśyo vyaktarūpaśca sahasrajidanantajit || 33 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">034</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                इष्टोऽविशिष्टः शिष्टेष्टः शिखण्डी नहुषो वृषः ।<br>क्रोधहा क्रोधकृत्कर्ता विश्वबाहुर्महीधरः ॥ ३४ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                iṣṭo'viśiṣṭaḥ śiṣṭeṣṭaḥ śikhaṇḍī nahuṣo vṛṣaḥ |<br>krodhahā krodhakṛtkartā viśvabāhurmahīdharaḥ || 34 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">035</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अच्युतः प्रथितः प्राणः प्राणदो वासवानुजः ।<br>अपांनिधिरधिष्ठानमप्रमत्तः प्रतिष्ठितः ॥ ३५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                acyutaḥ prathitaḥ prāṇaḥ prāṇado vāsavānujaḥ |<br>apāṃnidhiradhiṣṭhānamapramattaḥ pratiṣṭhitaḥ || 35 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">036</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                स्कन्दः स्कन्दधरो धुर्यो वरदो वायुवाहनः ।<br>वासुदेवो बृहद्भानुरादिदेवः पुरन्दरः ॥ ३६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                skandaḥ skandadharo dhuryo varado vāyuvāhanaḥ |<br>vāsudevo bṛhadbhānurādidevaḥ purandaraḥ || 36 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 9</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 9</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">037</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अशोकस्तारणस्तारः शूरः शौरिर्जनेश्वरः ।<br>अनुकूलः शतावर्तः पद्मी पद्मनिभेक्षणः ॥ ३७ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                aśokastāraṇastāraḥ śūraḥ śaurirjaneśvaraḥ |<br>anukūlaḥ śatāvartaḥ padmī padmanibhekṣaṇaḥ || 37 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">038</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                पद्मनाभोऽरविन्दाक्षः पद्मगर्भः शरीरभृत् ।<br>महर्द्धिरृद्धो वृद्धात्मा महाक्षो गरुडध्वजः ॥ ३८ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                padmanābho'ravindākṣaḥ padmagarbhaḥ śarīrabhṛt |<br>maharddhirṛddho vṛddhātmā mahākṣo garuḍadhvajaḥ || 38 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">039</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अतुलः शरभो भीमः समयज्ञो हविर्हरिः ।<br>सर्वलक्षणलक्षण्यो लक्ष्मीवान् समितिञ्जयः ॥ ३९ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                atulaḥ śarabho bhīmaḥ samayajño havirhariḥ |<br>sarvalakṣaṇalakṣaṇyo lakṣmīvān samitiñjayaḥ || 39 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">040</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                विक्षरो रोहितो मार्गो हेतुर्दामोदरः सहः ।<br>महीधरो महाभागो वेगवानमिताशनः ॥ ४० ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vikṣaro rohito mārgo heturdāmodaraḥ sahaḥ |<br>mahīdharo mahābhāgo vegavānamitāśanaḥ || 40 ||
             </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 10</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 10</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">041</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                उद्भवः क्षोभणो देवः श्रीगर्भः परमेश्वरः ।<br>करणं कारणं कर्ता विकर्ता गहनो गुहः ॥ ४१ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                udbhavaḥ kṣobhaṇo devaḥ śrīgarbhaḥ parameśvaraḥ |<br>karaṇaṃ kāraṇaṃ kartā vikartā gahano guhaḥ || 41 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">042</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                व्यवसायो व्यवस्थानः संस्थानः स्थानदो ध्रुवः ।<br>परर्द्धिः परमस्पष्टस्तुष्टः पुष्टः शुभेक्षणः ॥ ४२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vyavasāyo vyavasthānaḥ saṃsthānaḥ sthānado dhruvaḥ |<br>pararddhiḥ paramaspaṣṭastuṣṭaḥ puṣṭaḥ śubhekṣaṇaḥ || 42 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">043</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                रामो विरामो विरजो मार्गो नेयो नयोऽनयः ।<br>वीरः शक्तिमतां श्रेष्ठो धर्मो धर्मविदुत्तमः ॥ ४३ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                rāmo virāmo virajo mārgo neyo nayo'nayaḥ |<br>vīraḥ śaktimatāṃ śreṣṭho dharmo dharmaviduttamaḥ || 43 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">044</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                वैकुण्ठः पुरुषः प्राणः प्राणदः प्रणवः पृथुः ।<br>हिरण्यगर्भः शत्रुघ्नो व्याप्तो वायुरधोक्षजः ॥ ४४ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vaikuṇṭhaḥ puruṣaḥ prāṇaḥ prāṇadaḥ praṇavaḥ pṛthuḥ |<br>hiraṇyagarbhaḥ śatrughno vyāpto vāyuradhokṣajaḥ || 44 ||
+            </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 11</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">045</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 11</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                ऋतुः सुदर्शनः कालः परमेष्ठी परिग्रहः ।<br>उग्रः संवत्सरो दक्षो विश्रामो विश्वदक्षिणः ॥ ४५ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ṛtuḥ sudarśanaḥ kālaḥ parameṣṭhī parigrahaḥ |<br>ugraḥ saṃvatsaro dakṣo viśrāmo viśvadakṣiṇaḥ || 45 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">046</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                विस्तारः स्थावरस्थाणुः प्रमाणं बीजमव्ययम् ।<br>अर्थोऽनर्थो महाकोशो महाभोगो महाधनः ॥ ४६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vistāraḥ sthāvarasthāṇuḥ pramāṇaṃ bījamavyayam |<br>artho'nartho mahākośo mahābhogo mahādhanaḥ || 46 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">047</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अनिर्विण्णः स्थविष्ठोऽभूर्धर्मयूपो महामखः ।<br>नक्षत्रनेमिर्नक्षत्री क्षमः क्षामः समीहनः ॥ ४७ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                anirviṇṇaḥ sthaviṣṭho'bhūrdharmayūpo mahāmakhaḥ |<br>nakṣatranemirnakṣatrī kṣamaḥ kṣāmaḥ samīhanaḥ || 47 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">048</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                यज्ञ इज्यो महेज्यश्च क्रतुः सत्रं सतां गतिः ।<br>सर्वदर्शी विमुक्तात्मा सर्वज्ञो ज्ञानमुत्तमम् ॥ ४८ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                yajña ijyo mahejyaśca kratuḥ satraṃ satāṃ gatiḥ |<br>sarvadarśī vimuktātmā sarvajño jñānamuttamam || 48 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 12</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 12</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">049</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुव्रतः सुमुखः सूक्ष्मः सुघोषः सुखदः सुहृत् ।<br>मनोहरो जितक्रोधो वीरबाहुर्विदारणः ॥ ४९ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                suvrataḥ sumukhaḥ sūkṣmaḥ sughoṣaḥ sukhadaḥ suhṛt |<br>manoharo jitakrodho vīrabāhurvidāraṇaḥ || 49 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">050</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                स्वापनः स्ववशो व्यापी नैकात्मा नैककर्मकृत् ।<br>वत्सरो वत्सलो वत्सी रत्नगर्भो धनेश्वरः ॥ ५० ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                svāpanaḥ svavaśo vyāpī naikātmā naikakarmakṛt |<br>vatsaro vatsalo vatsī ratnagarbho dhaneśvaraḥ || 50 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">051</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                धर्मगुब्धर्मकृद्धर्मी सदसत्क्षरमक्षरम् ।<br>अविज्ञाता सहस्रांशुर्विधाता कृतलक्षणः ॥ ५१ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                dharmagubdharmakṛddharmī sadasatkṣaramakṣaram |<br>avijñātā sahasrāṃśurvidhātā kṛtalakṣaṇaḥ || 51 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">052</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                गभस्तिनेमिः सत्त्वस्थः सिंहो भूतमहेश्वरः ।<br>आदिदेवो महादेवो देवेशो देवभृद्गुरुः ॥ ५२ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                gabhastinemiḥ sattvasthaḥ siṃho bhūtamaheśvaraḥ |<br>ādidevo mahādevo deveśo devabhṛdguruḥ || 52 ||
             </div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 13</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">053</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 13</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                उत्तरो गोपतिर्गोप्ता ज्ञानगम्यः पुरातनः ।<br>शरीरभूतभृद्भोक्ता कपीन्द्रो भूरिदक्षिणः ॥ ५३ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                uttaro gopatirgoptā jñānagamyaḥ purātanaḥ |<br>śarīrabhūtabhṛdbhoktā kapīndro bhūridakṣiṇaḥ || 53 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">054</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सोमपोऽमृतपः सोमः पुरुजित्पुरुसत्तमः ।<br>विनयो जयः सत्यसन्धो दाशार्हः सात्वताम्पतिः  विनियोज्यः ॥ ५४ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                somapo'mṛtapaḥ somaḥ purujitpurusattamaḥ |<br>vinayo jayaḥ satyasandho dāśārhaḥ sātvatāmpatiḥ  viniyojyaḥ || 54 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">055</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                जीवो विनयिता साक्षी मुकुन्दोऽमितविक्रमः ।<br>अम्भोनिधिरनन्तात्मा महोदधिशयोऽन्तकः ॥ ५५ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                jīvo vinayitā sākṣī mukundo'mitavikramaḥ |<br>ambhonidhiranantātmā mahodadhiśayo'ntakaḥ || 55 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">056</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अजो महार्हः स्वाभाव्यो जितामित्रः प्रमोदनः ।<br>आनन्दो नन्दनो नन्दः सत्यधर्मा त्रिविक्रमः ॥ ५६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ajo mahārhaḥ svābhāvyo jitāmitraḥ pramodanaḥ |<br>ānando nandano nandaḥ satyadharmā trivikramaḥ || 56 ||
+            </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 14</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">057</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 14</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                महर्षिः कपिलाचार्यः कृतज्ञो मेदिनीपतिः ।<br>त्रिपदस्त्रिदशाध्यक्षो महाशृङ्गः कृतान्तकृत् ॥ ५७ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                maharṣiḥ kapilācāryaḥ kṛtajño medinīpatiḥ |<br>tripadastridaśādhyakṣo mahāśṛṅgaḥ kṛtāntakṛt || 57 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">058</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                महावराहो गोविन्दः सुषेणः कनकाङ्गदी ।<br>गुह्यो गभीरो गहनो गुप्तश्चक्रगदाधरः ॥ ५८ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                mahāvarāho govindaḥ suṣeṇaḥ kanakāṅgadī |<br>guhyo gabhīro gahano guptaścakragadādharaḥ || 58 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">059</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                वेधाः स्वाङ्गोऽजितः कृष्णो दृढः सङ्कर्षणोऽच्युतः ।<br>वरुणो वारुणो वृक्षः पुष्कराक्षो महामनाः ॥ ५९ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vedhāḥ svāṅgo'jitaḥ kṛṣṇo dṛḍhaḥ saṅkarṣaṇo'cyutaḥ |<br>varuṇo vāruṇo vṛkṣaḥ puṣkarākṣo mahāmanāḥ || 59 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">060</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                भगवान् भगहाऽऽनन्दी वनमाली हलायुधः ।<br>आदित्यो ज्योतिरादित्यः सहिष्णुर्गतिसत्तमः ॥ ६० ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                bhagavān bhagahā''nandī vanamālī halāyudhaḥ |<br>ādityo jyotirādityaḥ sahiṣṇurgatisattamaḥ || 60 ||
             </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 15</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 15</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">061</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुधन्वा खण्डपरशुर्दारुणो द्रविणप्रदः ।<br>दिवस्पृक् सर्वदृग्व्यासो वाचस्पतिरयोनिजः ॥ ६१ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sudhanvā khaṇḍaparaśurdāruṇo draviṇapradaḥ |<br>divaspṛk sarvadṛgvyāso vācaspatirayonijaḥ || 61 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">062</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                त्रिसामा सामगः साम निर्वाणं भेषजं भिषक् ।<br>संन्यासकृच्छमः शान्तो निष्ठा शान्तिः परायणम् ॥ ६२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                trisāmā sāmagaḥ sāma nirvāṇaṃ bheṣajaṃ bhiṣak |<br>saṃnyāsakṛcchamaḥ śānto niṣṭhā śāntiḥ parāyaṇam || 62 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">063</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                शुभाङ्गः शान्तिदः स्रष्टा कुमुदः कुवलेशयः ।<br>गोहितो गोपतिर्गोप्ता वृषभाक्षो वृषप्रियः ॥ ६३ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                śubhāṅgaḥ śāntidaḥ sraṣṭā kumudaḥ kuvaleśayaḥ |<br>gohito gopatirgoptā vṛṣabhākṣo vṛṣapriyaḥ || 63 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">064</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अनिवर्ती निवृत्तात्मा सङ्क्षेप्ता क्षेमकृच्छिवः ।<br>श्रीवत्सवक्षाः श्रीवासः श्रीपतिः श्रीमतांवरः ॥ ६४ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                anivartī nivṛttātmā saṅkṣeptā kṣemakṛcchivaḥ |<br>śrīvatsavakṣāḥ śrīvāsaḥ śrīpatiḥ śrīmatāṃvaraḥ || 64 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 16</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 16</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">065</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                श्रीदः श्रीशः श्रीनिवासः श्रीनिधिः श्रीविभावनः ।<br>श्रीधरः श्रीकरः श्रेयः श्रीमाँल्लोकत्रयाश्रयः ॥ ६५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                śrīdaḥ śrīśaḥ śrīnivāsaḥ śrīnidhiḥ śrīvibhāvanaḥ |<br>śrīdharaḥ śrīkaraḥ śreyaḥ śrīmā~llokatrayāśrayaḥ || 65 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">066</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                स्वक्षः स्वङ्गः शतानन्दो नन्दिर्ज्योतिर्गणेश्वरः ।<br>विजितात्माऽविधेयात्मा सत्कीर्तिश्छिन्नसंशयः ॥ ६६ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                svakṣaḥ svaṅgaḥ śatānando nandirjyotirgaṇeśvaraḥ |<br>vijitātmā'vidheyātmā satkīrtiśchinnasaṃśayaḥ || 66 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">067</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                उदीर्णः सर्वतश्चक्षुरनीशः शाश्वतस्थिरः ।<br>भूशयो भूषणो भूतिर्विशोकः शोकनाशनः ॥ ६७ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                udīrṇaḥ sarvataścakṣuranīśaḥ śāśvatasthiraḥ |<br>bhūśayo bhūṣaṇo bhūtirviśokaḥ śokanāśanaḥ || 67 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">068</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अर्चिष्मानर्चितः कुम्भो विशुद्धात्मा विशोधनः ।<br>अनिरुद्धोऽप्रतिरथः प्रद्युम्नोऽमितविक्रमः ॥ ६८ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                arciṣmānarcitaḥ kumbho viśuddhātmā viśodhanaḥ |<br>aniruddho'pratirathaḥ pradyumno'mitavikramaḥ || 68 ||
             </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 17</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">069</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 17</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                कालनेमिनिहा वीरः शौरिः शूरजनेश्वरः ।<br>त्रिलोकात्मा त्रिलोकेशः केशवः केशिहा हरिः ॥ ६९ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                kālaneminihā vīraḥ śauriḥ śūrajaneśvaraḥ |<br>trilokātmā trilokeśaḥ keśavaḥ keśihā hariḥ || 69 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">070</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                कामदेवः कामपालः कामी कान्तः कृतागमः ।<br>अनिर्देश्यवपुर्विष्णुर्वीरोऽनन्तो धनञ्जयः ॥ ७० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                kāmadevaḥ kāmapālaḥ kāmī kāntaḥ kṛtāgamaḥ |<br>anirdeśyavapurviṣṇurvīro'nanto dhanañjayaḥ || 70 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">071</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                ब्रह्मण्यो ब्रह्मकृद् ब्रह्मा ब्रह्म ब्रह्मविवर्धनः ।<br>ब्रह्मविद् ब्राह्मणो ब्रह्मी ब्रह्मज्ञो ब्राह्मणप्रियः ॥ ७१ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                brahmaṇyo brahmakṛd brahmā brahma brahmavivardhanaḥ |<br>brahmavid brāhmaṇo brahmī brahmajño brāhmaṇapriyaḥ || 71 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">072</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                महाक्रमो महाकर्मा महातेजा महोरगः ।<br>महाक्रतुर्महायज्वा महायज्ञो महाहविः ॥ ७२ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                mahākramo mahākarmā mahātejā mahoragaḥ |<br>mahākraturmahāyajvā mahāyajño mahāhaviḥ || 72 ||
             </div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 18</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">073</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 18</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                स्तव्यः स्तवप्रियः स्तोत्रं स्तुतिः स्तोता रणप्रियः ।<br>पूर्णः पूरयिता पुण्यः पुण्यकीर्तिरनामयः ॥ ७३ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                stavyaḥ stavapriyaḥ stotraṃ stutiḥ stotā raṇapriyaḥ |<br>pūrṇaḥ pūrayitā puṇyaḥ puṇyakīrtiranāmayaḥ || 73 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">074</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                मनोजवस्तीर्थकरो वसुरेता वसुप्रदः ।<br>वसुप्रदो वासुदेवो वसुर्वसुमना हविः ॥ ७४ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                manojavastīrthakaro vasuretā vasupradaḥ |<br>vasuprado vāsudevo vasurvasumanā haviḥ || 74 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">075</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सद्गतिः सत्कृतिः सत्ता सद्भूतिः सत्परायणः ।<br>शूरसेनो यदुश्रेष्ठः सन्निवासः सुयामुनः ॥ ७५ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sadgatiḥ satkṛtiḥ sattā sadbhūtiḥ satparāyaṇaḥ |<br>śūraseno yaduśreṣṭhaḥ sannivāsaḥ suyāmunaḥ || 75 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">076</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                भूतावासो वासुदेवः सर्वासुनिलयोऽनलः ।<br>दर्पहा दर्पदो दृप्तो दुर्धरोऽथापराजितः ॥ ७६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                bhūtāvāso vāsudevaḥ sarvāsunilayo'nalaḥ |<br>darpahā darpado dṛpto durdharo'thāparājitaḥ || 76 ||
+            </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 19</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">077</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 19</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                विश्वमूर्तिर्महामूर्तिर्दीप्तमूर्तिरमूर्तिमान् ।<br>अनेकमूर्तिरव्यक्तः शतमूर्तिः शताननः ॥ ७७ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                viśvamūrtirmahāmūrtirdīptamūrtiramūrtimān |<br>anekamūrtiravyaktaḥ śatamūrtiḥ śatānanaḥ || 77 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">078</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                एको नैकः सवः कः किं यत् तत्पदमनुत्तमम् ।<br>लोकबन्धुर्लोकनाथो माधवो भक्तवत्सलः ॥ ७८ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                eko naikaḥ savaḥ kaḥ kiṃ yat tatpadamanuttamam |<br>lokabandhurlokanātho mādhavo bhaktavatsalaḥ || 78 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">079</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुवर्णवर्णो हेमाङ्गो वराङ्गश्चन्दनाङ्गदी ।<br>वीरहा विषमः शून्यो घृताशीरचलश्चलः ॥ ७९ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                suvarṇavarṇo hemāṅgo varāṅgaścandanāṅgadī |<br>vīrahā viṣamaḥ śūnyo ghṛtāśīracalaścalaḥ || 79 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">080</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अमानी मानदो मान्यो लोकस्वामी त्रिलोकधृक् ।<br>सुमेधा मेधजो धन्यः सत्यमेधा धराधरः ॥ ८० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                amānī mānado mānyo lokasvāmī trilokadhṛk |<br>sumedhā medhajo dhanyaḥ satyamedhā dharādharaḥ || 80 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 20</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 20</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">081</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                तेजोवृषो द्युतिधरः सर्वशस्त्रभृतां वरः ।<br>प्रग्रहो निग्रहो व्यग्रो नैकशृङ्गो गदाग्रजः ॥ ८१ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                tejovṛṣo dyutidharaḥ sarvaśastrabhṛtāṃ varaḥ |<br>pragraho nigraho vyagro naikaśṛṅgo gadāgrajaḥ || 81 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">082</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                चतुर्मूर्तिश्चतुर्बाहुश्चतुर्व्यूहश्चतुर्गतिः ।<br>चतुरात्मा चतुर्भावश्चतुर्वेदविदेकपात् ॥ ८२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                caturmūrtiścaturbāhuścaturvyūhaścaturgatiḥ |<br>caturātmā caturbhāvaścaturvedavidekapāt || 82 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">083</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                समावर्तोऽनिवृत्तात्मा दुर्जयो दुरतिक्रमः ।<br>दुर्लभो दुर्गमो दुर्गो दुरावासो दुरारिहा ॥ ८३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                samāvarto'nivṛttātmā durjayo duratikramaḥ |<br>durlabho durgamo durgo durāvāso durārihā || 83 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">084</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                शुभाङ्गो लोकसारङ्गः सुतन्तुस्तन्तुवर्धनः ।<br>इन्द्रकर्मा महाकर्मा कृतकर्मा कृतागमः ॥ ८४ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                śubhāṅgo lokasāraṅgaḥ sutantustantuvardhanaḥ |<br>indrakarmā mahākarmā kṛtakarmā kṛtāgamaḥ || 84 ||
             </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 21</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 21</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">085</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                उद्भवः सुन्दरः सुन्दो रत्ननाभः सुलोचनः ।<br>अर्को वाजसनः शृङ्गी जयन्तः सर्वविज्जयी ॥ ८५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                udbhavaḥ sundaraḥ sundo ratnanābhaḥ sulocanaḥ |<br>arko vājasanaḥ śṛṅgī jayantaḥ sarvavijjayī || 85 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">086</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुवर्णबिन्दुरक्षोभ्यः सर्ववागीश्वरेश्वरः ।<br>महाह्रदो महागर्तो महाभूतो महानिधिः ॥ ८६ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                suvarṇabindurakṣobhyaḥ sarvavāgīśvareśvaraḥ |<br>mahāhrado mahāgarto mahābhūto mahānidhiḥ || 86 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">087</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                कुमुदः कुन्दरः कुन्दः पर्जन्यः पावनोऽनिलः ।<br>अमृताशोऽमृतवपुः सर्वज्ञः सर्वतोमुखः ॥ ८७ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                kumudaḥ kundaraḥ kundaḥ parjanyaḥ pāvano'nilaḥ |<br>amṛtāśo'mṛtavapuḥ sarvajñaḥ sarvatomukhaḥ || 87 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">088</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सुलभः सुव्रतः सिद्धः शत्रुजिच्छत्रुतापनः ।<br>न्यग्रोधोऽदुम्बरोऽश्वत्थश्चाणूरान्ध्रनिषूदनः ॥ ८८ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sulabhaḥ suvrataḥ siddhaḥ śatrujicchatrutāpanaḥ |<br>nyagrodho'dumbaro'śvatthaścāṇūrāndhraniṣūdanaḥ || 88 ||
             </div>
+        </div>
+        
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 22</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">089</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 22</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सहस्रार्चिः सप्तजिह्वः सप्तैधाः सप्तवाहनः ।<br>अमूर्तिरनघोऽचिन्त्यो भयकृद्भयनाशनः ॥ ८९ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sahasrārciḥ saptajihvaḥ saptaidhāḥ saptavāhanaḥ |<br>amūrtiranagho'cintyo bhayakṛdbhayanāśanaḥ || 89 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">090</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अणुर्बृहत्कृशः स्थूलो गुणभृन्निर्गुणो महान् ।<br>अधृतः स्वधृतः स्वास्यः प्राग्वंशो वंशवर्धनः ॥ ९० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                aṇurbṛhatkṛśaḥ sthūlo guṇabhṛnnirguṇo mahān |<br>adhṛtaḥ svadhṛtaḥ svāsyaḥ prāgvaṃśo vaṃśavardhanaḥ || 90 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">091</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                भारभृत् कथितो योगी योगीशः सर्वकामदः ।<br>आश्रमः श्रमणः क्षामः सुपर्णो वायुवाहनः ॥ ९१ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                bhārabhṛt kathito yogī yogīśaḥ sarvakāmadaḥ |<br>āśramaḥ śramaṇaḥ kṣāmaḥ suparṇo vāyuvāhanaḥ || 91 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">092</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                धनुर्धरो धनुर्वेदो दण्डो दमयिता दमः ।<br>अपराजितः सर्वसहो नियन्ताऽनियमोऽयमः ॥ ९२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                dhanurdharo dhanurvedo daṇḍo damayitā damaḥ |<br>aparājitaḥ sarvasaho niyantā'niyamo'yamaḥ || 92 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 23</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 23</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">093</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सत्त्ववान् सात्त्विकः सत्यः सत्यधर्मपरायणः ।<br>अभिप्रायः प्रियार्होऽर्हः प्रियकृत् प्रीतिवर्धनः ॥ ९३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sattvavān sāttvikaḥ satyaḥ satyadharmaparāyaṇaḥ |<br>abhiprāyaḥ priyārho'rhaḥ priyakṛt prītivardhanaḥ || 93 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">094</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                विहायसगतिर्ज्योतिः सुरुचिर्हुतभुग्विभुः ।<br>रविर्विरोचनः सूर्यः सविता रविलोचनः ॥ ९४ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vihāyasagatirjyotiḥ surucirhutabhugvibhuḥ |<br>ravirvirocanaḥ sūryaḥ savitā ravilocanaḥ || 94 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">095</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अनन्तो हुतभुग्भोक्ता सुखदो नैकजोऽग्रजः ।<br>अनिर्विण्णः सदामर्षी लोकाधिष्ठानमद्भुतः ॥ ९५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ananto hutabhugbhoktā sukhado naikajo'grajaḥ |<br>anirviṇṇaḥ sadāmarṣī lokādhiṣṭhānamadbhutaḥ || 95 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">096</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                सनात्सनातनतमः कपिलः कपिरव्ययः ।<br>स्वस्तिदः स्वस्तिकृत्स्वस्ति स्वस्तिभुक्स्वस्तिदक्षिणः ॥ ९६ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                sanātsanātanatamaḥ kapilaḥ kapiravyayaḥ |<br>svastidaḥ svastikṛtsvasti svastibhuksvastidakṣiṇaḥ || 96 ||
             </div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 24</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">097</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 24</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अरौद्रः कुण्डली चक्री विक्रम्यूर्जितशासनः ।<br>शब्दातिगः शब्दसहः शिशिरः शर्वरीकरः ॥ ९७ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                araudraḥ kuṇḍalī cakrī vikramyūrjitaśāsanaḥ |<br>śabdātigaḥ śabdasahaḥ śiśiraḥ śarvarīkaraḥ || 97 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">098</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अक्रूरः पेशलो दक्षो दक्षिणः क्षमिणांवरः ।<br>विद्वत्तमो वीतभयः पुण्यश्रवणकीर्तनः ॥ ९८ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                akrūraḥ peśalo dakṣo dakṣiṇaḥ kṣamiṇāṃvaraḥ |<br>vidvattamo vītabhayaḥ puṇyaśravaṇakīrtanaḥ || 98 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">099</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                उत्तारणो दुष्कृतिहा पुण्यो दुःस्वप्ननाशनः ।<br>वीरहा रक्षणः सन्तो जीवनः पर्यवस्थितः ॥ ९९ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                uttāraṇo duṣkṛtihā puṇyo duḥsvapnanāśanaḥ |<br>vīrahā rakṣaṇaḥ santo jīvanaḥ paryavasthitaḥ || 99 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">100</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अनन्तरूपोऽनन्तश्रीर्जितमन्युर्भयापहः ।<br>चतुरश्रो गभीरात्मा विदिशो व्यादिशो दिशः ॥ १०० ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                anantarūpo'nantaśrīrjitamanyurbhayāpahaḥ |<br>caturaśro gabhīrātmā vidiśo vyādiśo diśaḥ || 100 ||
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 25</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 25</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">101</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                अनादिर्भूर्भुवो लक्ष्मीः सुवीरो रुचिराङ्गदः ।<br>जननो जनजन्मादिर्भीमो भीमपराक्रमः ॥ १०१ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                anādirbhūrbhuvo lakṣmīḥ suvīro rucirāṅgadaḥ |<br>janano janajanmādirbhīmo bhīmaparākramaḥ || 101 ||
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">102</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                आधारनिलयोऽधाता पुष्पहासः प्रजागरः ।<br>ऊर्ध्वगः सत्पथाचारः प्राणदः प्रणवः पणः ॥ १०२ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ādhāranilayo'dhātā puṣpahāsaḥ prajāgaraḥ |<br>ūrdhvagaḥ satpathācāraḥ prāṇadaḥ praṇavaḥ paṇaḥ || 102 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">103</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                प्रमाणं प्राणनिलयः प्राणभृत्प्राणजीवनः ।<br>तत्त्वं तत्त्वविदेकात्मा जन्ममृत्युजरातिगः ॥ १०३ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                pramāṇaṃ prāṇanilayaḥ prāṇabhṛtprāṇajīvanaḥ |<br>tattvaṃ tattvavidekātmā janmamṛtyujarātigaḥ || 103 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">104</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                भूर्भुवःस्वस्तरुस्तारः सविता प्रपितामहः ।<br>यज्ञो यज्ञपतिर्यज्वा यज्ञाङ्गो यज्ञवाहनः ॥ १०४ ॥
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                bhūrbhuvaḥsvastarustāraḥ savitā prapitāmahaḥ |<br>yajño yajñapatiryajvā yajñāṅgo yajñavāhanaḥ || 104 ||
             </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 26</div>
+        </div>
+    </div>
+    
+    <div class="page-container-a5">
+        <div class="header-banner">
+            <div class="banner-title">Shri Viṣṇu Sahasranama Stotram Recital</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 26</div></div></div><div class="page-container-a5"><div><div class="header-logo-row"><img src="Antara_Logo2.png" alt="Antara" class="header-logo-img"><span class="header-brand-title">Vishnu<span class="header-brand-sub">1000</span></span></div><div class="header-page-title">Shri Viṣṇu Sahasranama Stotram Recital</div></div><div class="stotram-container-balanced">
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">105</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-around;">
+    
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                यज्ञभृद् यज्ञकृद् यज्ञी यज्ञभुग् यज्ञसाधनः ।<br>यज्ञान्तकृद् यज्ञगुह्यमन्नमन्नाद एव च ॥ १०५ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                yajñabhṛd yajñakṛd yajñī yajñabhug yajñasādhanaḥ |<br>yajñāntakṛd yajñaguhyamannamannāda eva ca || 105 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">106</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                आत्मयोनिः स्वयञ्जातो वैखानः सामगायनः ।<br>देवकीनन्दनः स्रष्टा क्षितीशः पापनाशनः ॥ १०६ ॥
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                ātmayoniḥ svayañjāto vaikhānaḥ sāmagāyanaḥ |<br>devakīnandanaḥ sraṣṭā kṣitīśaḥ pāpanāśanaḥ || 106 ||
+            </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">107</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                शङ्खभृन्नन्दकी चक्री शार्ङ्गधन्वा गदाधरः ।<br>रथाङ्गपाणिरक्षोभ्यः सर्वप्रहरणायुधः ॥ १०७ ॥<br>सर्वप्रहरणायुध ॐ नम इति ।
+            </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                śaṅkhabhṛnnandakī cakrī śārṅgadhanvā gadādharaḥ |<br>rathāṅgapāṇirakṣobhyaḥ sarvapraharaṇāyudhaḥ || 107 ||<br>sarvapraharaṇāyudha oṃ nama iti |
             </div>
         </div>
         
-        <div class="stotram-block-atomic-en">
-            <div class="list-item-num">108</div>
-            <div>
-                <div class="stotram-verse-text-full"></div>
-                <div class="stotram-iast-text-full"></div>
+        <div style="margin-bottom: 6pt; page-break-inside: avoid;">
+            <div style="font-size: 12.5pt; font-weight: 700; color: #5C1D13; line-height: 1.35; text-align: center;">
+                वनमाली गदी शार्ङ्गी शङ्खी चक्री च नन्दकी ।<br>श्रीमान् नारायणो विष्णुर्वासुदेवोऽभिरक्षतु ॥ १०८ ॥<br>श्रीवासुदेवोऽभिरक्षतु ॐ नम इति ।
             </div>
+            <div style="font-size: 9.5pt; font-weight: 400; color: #8C6A5E; line-height: 1.3; text-align: center; margin-top: 2px;">
+                vanamālī gadī śārṅgī śaṅkhī cakrī ca nandakī |<br>śrīmān nārāyaṇo viṣṇurvāsudevo'bhirakṣatu || 108 ||<br>śrīvāsudevo'bhirakṣatu oṃ nama iti |
+            </div>
+        </div>
+        
+        </div>
+        <div class="page-footer">
+            <div>Antara Digital Sanctuary</div>
+            <div>Page 27</div>
         </div>
-        </div><div class="page-footer-a5"><div>Antara Vishnu 1000 • Stotram Recital</div><div>Page 27</div></div></div>
+    </div>
+    
 </body>
 </html>
