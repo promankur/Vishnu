@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         @page {
-            size: 12.813in 9.250in;
+            size: 12.703in 9.250in;
             margin: 0;
         }
 
@@ -18,7 +18,7 @@
         }
 
         body {
-            width: 12.813in;
+            width: 12.703in;
             height: 9.250in;
             background: #141211;
             font-family: 'Mukta', sans-serif;
@@ -58,7 +58,7 @@
         }
 
         .spine {
-            width: 0.563in;
+            width: 0.453in;
             height: 9.250in;
             background: #1F1B18;
             display: flex;
@@ -66,7 +66,7 @@
             justify-content: center;
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            font-size: 12pt;
+            font-size: 11pt;
             font-weight: 700;
             color: #E06D28;
             letter-spacing: 2px;
@@ -76,7 +76,7 @@
             width: 6.125in;
             height: 9.250in;
             background: radial-gradient(circle at center, #2C221A 0%, #141211 100%);
-            padding: 1.0in 0.9in;
+            padding: 0.8in 0.6in;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -87,57 +87,20 @@
 
         .front-frame {
             position: absolute;
-            top: 0.70in;
-            bottom: 0.70in;
-            left: 0.70in;
-            right: 0.70in;
+            top: 0.60in;
+            bottom: 0.60in;
+            left: 0.60in;
+            right: 0.60in;
             border: 2px solid #D4AF37;
             border-radius: 6px;
             pointer-events: none;
         }
 
-        .front-title-large {
-            font-size: 34pt;
-            font-weight: 700;
-            color: #E06D28;
-            line-height: 1;
-            margin-bottom: 6px;
-            text-shadow: 0 4px 12px rgba(224, 109, 40, 0.3);
-        }
-
-        .front-devanagari {
-            font-size: 19pt;
-            font-weight: 700;
-            color: #FFFDF9;
-            margin-bottom: 10px;
-        }
-
-        .front-subtitle {
-            font-size: 11.5pt;
-            font-weight: 600;
-            color: #D4AF37;
-            margin-bottom: 16px;
-        }
-
-        .art-box {
-            width: 2.6in;
-            height: 2.6in;
-            border-radius: 50%;
-            background: rgba(224, 109, 40, 0.12);
-            border: 2px solid #E06D28;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40pt;
-            color: #E06D28;
-            box-shadow: 0 0 40px rgba(224, 109, 40, 0.25);
-        }
-
-        .front-author {
-            font-size: 10.5pt;
-            font-weight: 600;
-            color: #A8988B;
-            letter-spacing: 1px;
+        .front-art-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -165,19 +128,7 @@
     </div>
 
     <div class="front-cover">
-        <div class="front-frame"></div>
-        <div>
-            <div class="front-title-large">Vishnu1000</div>
-            <div class="front-devanagari">श्रीविष्णुसहस्रनाम</div>
-            <div class="front-subtitle">Self-Study & Contemplation Edition</div>
-        </div>
-
-        <div class="art-box">ॐ</div>
-
-        <div>
-            <div class="front-author">ANTARA DIGITAL SANCTUARY</div>
-            <div style="font-size: 8.5pt; color: #8C6A5E; margin-top: 2px;">BY ANKUR GUPTA</div>
-        </div>
+        <img src="Vishnu1000_Kindle_Cover.jpg" alt="Front Cover" class="front-art-img">
     </div>
 </body>
 </html>
