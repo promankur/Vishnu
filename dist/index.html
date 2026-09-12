@@ -1578,7 +1578,7 @@
         <div class="screen">
             
             <!-- 1. DASHBOARD SCREEN -->
-            <div class="app-screen active" id="screen-dashboard" style="flex-direction: column; height: 100%; box-sizing: border-box; padding: 20px 24px 20px 24px;">
+            <div class="app-screen active" id="screen-dashboard" style="flex-direction: column; min-height: 100%; height: auto; box-sizing: border-box; padding: 20px 24px 20px 24px;">
                 
                 <!-- Antara Branding Logo at Top -->
                 <div class="antara-logo-container" style="margin-bottom: 2px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%;">
@@ -1631,7 +1631,7 @@
                         <div class="btn-pill primary" onclick="enterStotramScreen()" style="height: 38px; border-radius: 19px; font-size: 14px; background-color: var(--antara-saffron); margin-top: 8px;">सम्पूर्ण स्तोत्र पाठ <span class="pipe">|</span> <span class="en-text" style="font-size: 11px;">Full Stotram</span></div>
                     </div>
 
-                    <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-top: 14px; margin-bottom: 14px;">
+                    <div class="reset-progress-link narrow-block" onclick="confirmResetProgress()" style="margin-top: 8px; margin-bottom: 8px;">
                         प्रगति रीसेट <span class="pipe">|</span> <span class="en-text">Reset Progress</span>
                     </div>
                 </div>
@@ -1670,7 +1670,7 @@
                 </div>
 
                 <!-- Today's Vishnu Nama Card -->
-                <div class="nama-card narrow-block" onclick="openSignificanceForTodayNama()">
+                <div class="nama-card narrow-block" onclick="openSignificanceForTodayNama()" style="margin-top: 4px; margin-bottom: 4px;">
                     <div class="nama-card-title">
                         <div class="nama-card-title-hi">आज का विष्णु नाम</div>
                         <div class="nama-card-title-en">Today's Vishnu Nama</div>
@@ -1681,9 +1681,9 @@
                     <div class="nama-card-meaning" id="nama-meaning">Ultimate Goal of Liberated Souls</div>
                 </div>
 
-                <!-- Streak / Calendar Card -->
-                <div class="nama-card narrow-block" style="margin-top: 8px; margin-bottom: 8px; cursor: default; padding: 12px 14px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <!-- Streak / Calendar Card with Integrated Paperback Showcase -->
+                <div class="nama-card narrow-block" style="margin-top: 6px; margin-bottom: 6px; cursor: default; padding: 12px 14px; box-sizing: border-box; width: 100%; max-width: 300px; height: auto; min-height: auto; overflow: visible;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; width: 100%;">
                         <div style="font-family: 'Mukta', sans-serif; font-size: 13px; font-weight: 700; color: var(--antara-dark);">
                             साधना प्रगति <span style="font-size: 10px; font-weight: 400; opacity: 0.7;">| Progress</span>
                         </div>
@@ -1693,38 +1693,41 @@
                     </div>
                     
                     <!-- Calendar Grid Wrapper -->
-                    <div id="progress-calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 8px;">
+                    <div id="progress-calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 2px; margin-bottom: 8px; width: 100%;">
                         <!-- Last 7 days populated here -->
                     </div>
-                <!-- Paperback Edition Showcase Card -->
-                <div class="narrow-block" style="background: linear-gradient(135deg, rgba(224, 109, 40, 0.08) 0%, rgba(212, 175, 55, 0.09) 100%); border: 1.5px solid var(--antara-line); border-radius: 16px; padding: 12px 14px; margin-top: 10px; margin-bottom: 8px; box-sizing: border-box; width: 100%;">
-                    <div style="display: flex; gap: 14px; align-items: center;">
-                        <!-- Book Cover Thumbnail -->
+
+                    <!-- Subtle Divider -->
+                    <div style="width: 100%; height: 1px; background: var(--antara-line); margin-bottom: 8px; opacity: 0.75;"></div>
+
+                    <!-- Paperback Edition Showcase Panel (Enlarged prominent book cover) -->
+                    <div style="display: flex; gap: 10px; align-items: center; width: 100%; text-align: left;">
+                        <!-- Book Cover (Enlarged) -->
                         <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" style="flex-shrink: 0; display: block;" title="Buy Vishnu1000 Paperback on Amazon">
-                            <img src="book_cover_bilingual.jpg" alt="Vishnu1000 Paperback Book Cover" style="width: 70px; height: 105px; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.25); border: 1px solid rgba(212,175,55,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                            <img src="book_cover_bilingual.jpg" alt="Vishnu1000 Paperback Book Cover" style="width: 90px; height: 135px; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.4); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
                         </a>
                         
                         <!-- Book Details & Actions -->
                         <div style="flex: 1; display: flex; flex-direction: column; min-width: 0;">
-                            <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: var(--antara-saffron); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">
+                            <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 9.5px; font-weight: 700; color: var(--antara-saffron); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">
                                 📖 मुद्रित पुस्तक • Paperback
                             </div>
-                            <div style="font-family: 'Mukta', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--antara-dark); line-height: 1.25; margin-bottom: 2px;">
+                            <div style="font-family: 'Mukta', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--antara-dark); line-height: 1.25; margin-bottom: 2px;">
                                 Vishnu 1000: Sahasra-Nāmāñjali & Stotram
                             </div>
-                            <div style="font-size: 11px; font-weight: 600; color: var(--antara-gold); margin-bottom: 4px;">
-                                Bilingual / द्विभाषीय Edition • By Ankur Gupta
+                            <div style="font-size: 10px; font-weight: 600; color: var(--antara-gold); margin-bottom: 3px;">
+                                Bilingual / द्विभाषीय • Ankur Gupta
                             </div>
-                            <div style="font-size: 10px; color: var(--antara-muted); line-height: 1.35; margin-bottom: 8px;">
+                            <div style="font-size: 9px; color: var(--antara-muted); line-height: 1.35; margin-bottom: 8px;">
                                 अर्थ, न्यास, व्याख्या एवं फलश्रुति सहित प्रामाणिक पुस्तक
                             </div>
                             
                             <!-- Amazon Buttons Row -->
-                            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                                <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 95px; background: var(--antara-saffron); color: #FFFFFF; font-family: 'Inter', 'Mukta', sans-serif; font-size: 10.5px; font-weight: 600; text-decoration: none; border-radius: 12px; padding: 5px 8px; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 2px 6px rgba(224,109,40,0.3);">
+                            <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                                <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 76px; background: var(--antara-saffron); color: #FFFFFF; font-family: 'Inter', 'Mukta', sans-serif; font-size: 10px; font-weight: 600; text-decoration: none; border-radius: 12px; padding: 5px 4px; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 2px; box-shadow: 0 2px 6px rgba(224,109,40,0.3);">
                                     🇮🇳 Amazon.in
                                 </a>
-                                <a href="https://www.amazon.com/dp/8188782386" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 95px; background: transparent; color: var(--antara-dark); font-family: 'Inter', 'Mukta', sans-serif; font-size: 10.5px; font-weight: 600; text-decoration: none; border-radius: 12px; padding: 4px 8px; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--antara-line);">
+                                <a href="https://www.amazon.com/dp/8188782386" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 76px; background: transparent; color: var(--antara-dark); font-family: 'Inter', 'Mukta', sans-serif; font-size: 10px; font-weight: 600; text-decoration: none; border-radius: 12px; padding: 4px 4px; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 2px; border: 1px solid var(--antara-line);">
                                     🌍 Amazon.com
                                 </a>
                             </div>
