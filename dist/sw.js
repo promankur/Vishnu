@@ -1,4 +1,4 @@
-const CACHE_NAME = 'antara-sahasranama-v3';
+const CACHE_NAME = 'antara-sahasranama-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -9,7 +9,6 @@ const ASSETS_TO_CACHE = [
   './Vishnu Logo E.png',
   './Vishnu Logo.png',
   './Female.png',
-  './Male.png',
   './Finger.png',
   './app_logo_transparent.png'
 ];

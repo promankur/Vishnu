@@ -1889,38 +1889,20 @@
                     </div>
                 </div>
 
-                <!-- CARD 2: Voice & Speed -->
+                <!-- CARD 2: Chanting Speed -->
                 <div style="background: rgba(58, 15, 8, 0.04); border: 1.5px solid var(--antara-line); border-radius: 16px; padding: 18px 20px; margin-bottom: 20px; box-sizing: border-box; width: 100%;">
-                    <div style="display: flex; width: 100%; align-items: center;">
-                        <!-- Voice Column -->
-                        <div style="flex: 1.1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="font-family: 'Mukta', sans-serif; font-size: 12px; color: var(--antara-muted); margin-bottom: 12px;">आवाज | Voice</div>
-                            <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
-                                <!-- Female Avatar -->
-                                <div class="voice-avatar-btn" id="voice-female-btn" onclick="selectVoice('female')">
-                                    <img src="Female.png" alt="Female Voice">
-                                </div>
-                                <!-- Male Avatar -->
-                                <div class="voice-avatar-btn" id="voice-male-btn" onclick="selectVoice('male')">
-                                    <img src="Male.png" alt="Male Voice">
-                                </div>
-                            </div>
+                    <div style="display: flex; width: 100%; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; flex-direction: column;">
+                            <div style="font-family: 'Mukta', sans-serif; font-size: 15px; font-weight: 600; color: var(--antara-dark);">जाप गति | Speed</div>
+                            <div style="font-family: 'Mukta', sans-serif; font-size: 12px; color: var(--antara-muted);">उच्चारण की गति समायोजित करें</div>
                         </div>
-                        
-                        <!-- Vertical Divider -->
-                        <div style="width: 1px; background: var(--antara-line); margin: 0 10px; height: 60px; opacity: 0.5;"></div>
-                        
-                        <!-- Speed Column -->
-                        <div style="flex: 1.1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="font-family: 'Mukta', sans-serif; font-size: 12px; color: var(--antara-muted); margin-bottom: 12px;">गति | Speed</div>
-                            <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
-                                <!-- Speed 0.8 -->
-                                <div class="speed-dial-btn" id="speed-0.8-btn" onclick="selectSpeed(0.8)">0.8</div>
-                                <!-- Speed 1.0 -->
-                                <div class="speed-dial-btn" id="speed-1.0-btn" onclick="selectSpeed(1.0)">1.0</div>
-                                <!-- Speed 1.2 -->
-                                <div class="speed-dial-btn" id="speed-1.2-btn" onclick="selectSpeed(1.2)">1.2</div>
-                            </div>
+                        <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
+                            <!-- Speed 0.8 -->
+                            <div class="speed-dial-btn" id="speed-0.8-btn" onclick="selectSpeed(0.8)">0.8</div>
+                            <!-- Speed 1.0 -->
+                            <div class="speed-dial-btn" id="speed-1.0-btn" onclick="selectSpeed(1.0)">1.0</div>
+                            <!-- Speed 1.2 -->
+                            <div class="speed-dial-btn" id="speed-1.2-btn" onclick="selectSpeed(1.2)">1.2</div>
                         </div>
                     </div>
                 </div>
@@ -2159,13 +2141,6 @@
             refreshDashboard();
         }
 
-        function selectVoice(gender) {
-            state.useMaleVoice = (gender === 'male');
-            saveState();
-            updateSettingsUI();
-            playSample();
-        }
-
         function toggleDarkMode() {
             const isDark = document.body.classList.toggle("dark-theme");
             localStorage.setItem("antara_dark_theme", isDark);
@@ -2184,20 +2159,7 @@
         }
 
         function updateSettingsUI() {
-            // 1. Sync voice avatars
-            const femaleBtn = document.getElementById("voice-female-btn");
-            const maleBtn = document.getElementById("voice-male-btn");
-            if (femaleBtn && maleBtn) {
-                if (state.useMaleVoice) {
-                    maleBtn.classList.add("active");
-                    femaleBtn.classList.remove("active");
-                } else {
-                    femaleBtn.classList.add("active");
-                    maleBtn.classList.remove("active");
-                }
-            }
-
-            // 2. Sync speed dials (closest to 0.8, 1.0, 1.2)
+            // 1. Sync speed dials (closest to 0.8, 1.0, 1.2)
             const currentRate = state.speechRate / 0.3;
             const btn8 = document.getElementById("speed-0.8-btn");
             const btn10 = document.getElementById("speed-1.0-btn");
@@ -2531,8 +2493,7 @@
             globalNamavaliAudio.onended = null;
             globalNamavaliAudio.onerror = null;
 
-            const gender = state.useMaleVoice ? "male" : "female";
-            const audioPath = `audio/${gender}/${item.id}.mp3`;
+            const audioPath = `audio/female/${item.id}.mp3`;
             
             globalNamavaliAudio.src = audioPath;
             globalNamavaliAudio.playbackRate = Math.max(0.5, Math.min(2.0, (state.speechRate || 0.3) / 0.3));
@@ -2611,22 +2572,11 @@
                             );
                             
                             if (hiVoices.length > 0) {
-                                let selectedVoice = null;
-                                const useMale = (state.useMaleVoice !== false); // default to true
-                                
-                                if (useMale) {
-                                    // Search for male voices or Hemant/hic/hie/male
-                                    selectedVoice = hiVoices.find(v => {
-                                        const name = v.name.toLowerCase();
-                                        return name.includes("male") || name.includes("hemant") || name.includes("hic") || name.includes("hie") || name.includes("hemand");
-                                    });
-                                } else {
-                                    // Search for female voices or Kalpana/hia/hib/hid/female/lekha
-                                    selectedVoice = hiVoices.find(v => {
-                                        const name = v.name.toLowerCase();
-                                        return name.includes("female") || name.includes("kalpana") || name.includes("lekha") || name.includes("hia") || name.includes("hib") || name.includes("hid");
-                                    });
-                                }
+                                // Search for female voices or Kalpana/hia/hib/hid/female/lekha
+                                let selectedVoice = hiVoices.find(v => {
+                                    const name = v.name.toLowerCase();
+                                    return name.includes("female") || name.includes("kalpana") || name.includes("lekha") || name.includes("hia") || name.includes("hib") || name.includes("hid");
+                                });
                                 
                                 if (!selectedVoice) {
                                     selectedVoice = hiVoices[0]; // fallback
@@ -3880,8 +3830,7 @@
                 }
             } else {
                 // Initialize player
-                const gender = state.useMaleVoice ? "male" : "female";
-                const audioPath = `audio/${gender}/stotram.mp3`;
+                const audioPath = `audio/female/stotram.mp3`;
                 stotramPlayer = new Audio(audioPath);
                 
                 stotramPlayer.addEventListener('loadedmetadata', () => {
