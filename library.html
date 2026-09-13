@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>अन्तरा डिजिटल अभयारण्य • Antara Digital Sanctuary</title>
-    <meta name="description" content="Download printable A5 PDF booklets and Kindle eBook for Shri Vishnu Sahasranama Namavali, Self-Study with Adi Shankara Bhashya, and Stotram Recital.">
+    <title>अन्तरा डिजिटल अभयारण्य • Antara Digital Sanctuary & Library</title>
+    <meta name="description" content="A digital home for Sri Vishnu Sahasranama: Vishnu 1000 Chanting App, Published Books, and Free A4 Devotional Library.">
+    <link rel="shortcut icon" href="app_logo_transparent.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #1C0905;
-            --brand-saffron: #E06D28;
+            --surface-card: #250C07;
+            --surface-elevated: #31110A;
+            --brand-saffron: #E5732F;
+            --brand-saffron-warm: #EF823A;
             --brand-gold: #D4AF37;
-            --brand-paper: #FFFDF9;
+            --brand-gold-bright: #F5D778;
             --text-light: #F2E8DF;
-            --text-title: #E57E25;
-            --text-muted: #BFA893;
-            --icon-bg: #40596B;
+            --text-muted: #BCA691;
+            --text-gold: #E5C266;
+            --border-gold: rgba(212, 175, 55, 0.28);
         }
 
         * {
@@ -31,124 +35,611 @@
             color: var(--text-light);
             font-family: 'Mukta', sans-serif;
             min-height: 100vh;
-            padding: 30px 20px 60px 20px;
+            padding: 24px 16px 64px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            line-height: 1.45;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 680px;
             width: 100%;
         }
 
-        /* Header */
-        .hero {
-            text-align: center;
-            margin-bottom: 28px;
-            padding-bottom: 12px;
+        /* Nav Header */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
         }
 
-        .brand-logo-img {
-            height: 44px;
-            margin-bottom: 12px;
-        }
-
-        .brand-header-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--brand-saffron);
-            letter-spacing: 0.2px;
-        }
-
-        /* Section Group */
-        .section-group {
-            margin-bottom: 26px;
-        }
-
-        .section-meta {
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--brand-gold-bright);
+            text-decoration: none;
             font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-gold);
+            transition: all 0.2s ease;
+        }
+        .nav-back:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateX(-2px);
+        }
+
+        /* 1. QUIET, PURPOSEFUL BRAND ENTRANCE */
+        .hero-header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+        }
+
+        .brand-logo-mark {
+            height: 48px;
             margin-bottom: 10px;
         }
 
-        .download-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .hero-sub-title {
+            font-size: 16px;
+            color: var(--brand-gold-bright);
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
-        .download-item {
-            display: flex;
-            flex-direction: column;
+        .hero-sub-tags {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        .download-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: inherit;
+        /* 2. SMART DEVICE HERO CTA BANNER */
+        .hero-app-card {
+            background: linear-gradient(145deg, #36140D 0%, #200A05 100%);
+            border: 2px solid var(--brand-gold);
+            border-radius: 20px;
+            padding: 24px 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(229, 115, 47, 0.18);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .icon-box {
-            width: 22px;
-            height: 22px;
-            background-color: var(--icon-bg);
-            color: #FFFFFF;
-            border-radius: 4px;
+        .hero-app-card::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 120px;
+            background: radial-gradient(ellipse at center, rgba(245, 215, 120, 0.2) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+
+        .app-hero-identity {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            flex-shrink: 0;
+            gap: 12px;
+            margin-bottom: 8px;
         }
 
-        .download-title {
+        .app-hero-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(245, 215, 120, 0.4);
+        }
+
+        .app-hero-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+        }
+
+        .app-hero-tagline {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .app-smart-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .btn-dominant-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 320px;
+            padding: 13px 24px;
+            background: linear-gradient(135deg, #E5732F 0%, #C95716 100%);
+            color: #FFFFFF;
             font-size: 16px;
             font-weight: 700;
-            color: var(--text-title);
-            line-height: 1.3;
-            transition: color 0.2s;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 6px 18px rgba(229, 115, 47, 0.45);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
-        .download-row:hover .download-title {
-            color: #F39C12;
+        .btn-dominant-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(229, 115, 47, 0.6);
+        }
+
+        .btn-secondary-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--brand-gold-bright);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-secondary-link:hover {
+            opacity: 1;
             text-decoration: underline;
         }
 
-        .page-suffix {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-light);
+        .app-hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #FAF5EE;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
         }
 
-        .ebook-desc {
+        /* SECTION TITLES (Natural Title Case, No Forcing Uppercase) */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-top: 14px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+            padding-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--brand-gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        .section-subtag {
             font-size: 12px;
-            line-height: 1.45;
+            font-weight: 500;
             color: var(--text-muted);
-            margin-top: 6px;
-            margin-left: 32px;
+            letter-spacing: 0.2px;
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 20px 16px 40px 16px;
+        /* 3. THE PUBLISHED LIBRARY (Master + Trio Shelf) */
+        .bookshelf-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 34px;
+        }
+
+        /* Master Edition (Dominant) */
+        .book-card-master {
+            background: linear-gradient(135deg, rgba(229, 115, 47, 0.18) 0%, rgba(48, 14, 8, 0.98) 100%);
+            border: 2px solid var(--brand-gold);
+            border-radius: 16px;
+            padding: 20px 22px;
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.55), 0 0 20px rgba(212, 175, 55, 0.15);
+            transition: all 0.25s ease;
+        }
+
+        .book-card-master:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.65), 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .book-3d-wrap {
+            perspective: 800px;
+            flex-shrink: 0;
+        }
+
+        .book-3d-master {
+            width: 125px;
+            height: 188px;
+            object-fit: cover;
+            border-radius: 2px 8px 8px 2px;
+            transform: rotateY(-8deg);
+            transform-origin: left center;
+            box-shadow: 
+                -5px 0 8px -1px rgba(0, 0, 0, 0.7),
+                6px 10px 22px rgba(0, 0, 0, 0.7),
+                inset 5px 0 10px rgba(255, 255, 255, 0.25),
+                inset -3px 0 6px rgba(0, 0, 0, 0.4);
+            border-left: 3px solid rgba(255, 255, 255, 0.22);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .book-card-master:hover .book-3d-master {
+            transform: rotateY(-3deg) translateY(-4px) scale(1.02);
+        }
+
+        .master-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .badge-master {
+            background: rgba(212, 175, 55, 0.25);
+            color: var(--brand-gold-bright);
+            border: 1px solid var(--brand-gold);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .master-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .master-desc {
+            font-size: 12.5px;
+            color: var(--text-light);
+            line-height: 1.45;
+            margin-bottom: 14px;
+            opacity: 0.9;
+        }
+
+        .btn-master-amazon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            background: linear-gradient(135deg, #E5732F 0%, #C95716 100%);
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 22px;
+            box-shadow: 0 4px 14px rgba(229, 115, 47, 0.45);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-master-amazon:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(229, 115, 47, 0.6);
+        }
+
+        /* 3 Covers Sitting Together on a Shelf */
+        .trio-shelf {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .shelf-book-item {
+            min-width: 0;
+            overflow: hidden;
+            background: #220B05;
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            border-radius: 14px;
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.22s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .shelf-book-item:hover {
+            border-color: var(--brand-gold);
+            background: #290E07;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+        }
+
+        .shelf-3d-cover {
+            width: 84px;
+            height: 126px;
+            object-fit: cover;
+            border-radius: 2px 6px 6px 2px;
+            transform: rotateY(-6deg);
+            transform-origin: left center;
+            box-shadow: 
+                -3px 0 6px -1px rgba(0, 0, 0, 0.6),
+                4px 6px 14px rgba(0, 0, 0, 0.55),
+                inset 3px 0 6px rgba(255, 255, 255, 0.2),
+                inset -2px 0 4px rgba(0, 0, 0, 0.3);
+            border-left: 2px solid rgba(255, 255, 255, 0.18);
+            margin-bottom: 10px;
+            transition: transform 0.25s ease;
+            display: block;
+        }
+
+        .shelf-book-item:hover .shelf-3d-cover {
+            transform: rotateY(-2deg) scale(1.04);
+        }
+
+        .shelf-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .badge-colorsoft {
+            background: rgba(229, 115, 47, 0.2);
+            color: #FFA56B;
+            border: 1px solid rgba(229, 115, 47, 0.5);
+        }
+        .badge-english {
+            background: rgba(14, 101, 189, 0.2);
+            color: #92CDFF;
+            border: 1px solid rgba(14, 101, 189, 0.5);
+        }
+        .badge-hindi {
+            background: rgba(30, 130, 62, 0.2);
+            color: #8CE8AB;
+            border: 1px solid rgba(30, 130, 62, 0.5);
+        }
+
+        .shelf-book-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.25;
+            margin-bottom: 4px;
+        }
+
+        .shelf-book-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.3;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+
+        .btn-shelf-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 100%;
+            padding: 6px 0;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-shelf-action:hover {
+            background: var(--brand-saffron);
+            border-color: var(--brand-saffron);
+            color: #FFFFFF;
+        }
+
+        /* 4. FREE DEVOTIONAL LIBRARY (Typographic Catalogue) */
+        .catalogue-panel {
+            background: var(--surface-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+        }
+
+        .catalogue-cat-block {
+            margin-bottom: 16px;
+        }
+        .catalogue-cat-block:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .catalogue-cat-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--brand-gold-bright);
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .catalogue-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.18s ease;
+        }
+
+        .catalogue-row:hover {
+            background: rgba(229, 115, 47, 0.16);
+            transform: translateX(3px);
+        }
+
+        .catalogue-title {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .catalogue-meta {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .catalogue-row:hover .catalogue-meta {
+            color: var(--brand-gold-bright);
+        }
+
+        .catalogue-divider {
+            height: 1px;
+            background: rgba(212, 175, 55, 0.18);
+            margin: 16px 0;
+        }
+
+        .catalogue-epub-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(45, 14, 8, 0.7) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.2s ease;
+        }
+
+        .catalogue-epub-row:hover {
+            border-color: var(--brand-gold-bright);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(55, 18, 10, 0.9) 100%);
+            transform: translateY(-1px);
+        }
+
+        .epub-left-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .epub-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .epub-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .btn-epub-pill {
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--brand-gold);
+            color: #1C0905;
+            padding: 4px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: 16px;
+        }
+
+        @media (max-width: 520px) {
+            .trio-shelf {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 6px;
             }
-            .brand-header-title {
-                font-size: 15px;
+            .shelf-book-item {
+            min-width: 0;
+            overflow: hidden;
+                padding: 10px 4px;
             }
-            .download-title {
-                font-size: 15px;
+            .shelf-3d-cover {
+                width: 68px;
+                height: 102px;
+                margin-bottom: 6px;
             }
-            .section-meta {
-                font-size: 12px;
+            .shelf-badge {
+                font-size: 9px;
+                padding: 1px 5px;
             }
-            .ebook-desc {
-                font-size: 11px;
-                margin-left: 32px;
+            .shelf-book-title {
+                font-size: 11.5px;
+            }
+            .shelf-book-sub {
+                font-size: 9.5px;
+                line-height: 1.2;
+                margin-bottom: 6px;
+            }
+            .btn-shelf-action {
+                font-size: 10.5px;
+                padding: 5px 0;
+            }
+            .book-card-master {
+                padding: 14px 12px;
+                gap: 14px;
+            }
+            .book-3d-master {
+                width: 95px;
+                height: 142px;
+            }
+            .master-title {
+                font-size: 16px;
+            }
+            .master-desc {
+                font-size: 11.5px;
             }
         }
     </style>
@@ -156,119 +647,222 @@
 <body>
 
     <div class="container">
-        <!-- Header -->
-        <header class="hero">
-            <img src="Antara_Logo2.png" alt="Antara Logo" class="brand-logo-img">
-            <h1 class="brand-header-title">
-                अन्तरा डिजिटल अभयारण्य • Antara Digital Sanctuary
-            </h1>
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <a href="index.html" class="nav-back">
+                ← जप एवं स्तोत्र पाठ | Return to Chanting App
+            </a>
+            <span style="font-size: 11px; color: var(--brand-gold); font-weight: 600;">Proman Associates LLP</span>
+        </div>
+
+        <!-- 1. QUIET, PURPOSEFUL BRAND ENTRANCE -->
+        <header class="hero-header">
+            <img src="Antara_Logo2.png" alt="Antara" class="brand-logo-mark">
+            <div class="hero-sub-title">A digital home for Sri Vishnu Sahasranama</div>
+            <div class="hero-sub-tags">Chant • Study • Recite</div>
         </header>
 
-        <!-- FEATURED PAPERBACK BOOK EDITION -->
-        <div class="section-group" style="background: linear-gradient(135deg, rgba(224, 109, 40, 0.12) 0%, rgba(212, 175, 55, 0.14) 100%); border: 1.5px solid rgba(212, 175, 55, 0.35); border-radius: 16px; padding: 16px; margin-bottom: 28px;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--brand-saffron); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
-                <span>📖</span> आधिकारिक मुद्रित पुस्तक • OFFICIAL PAPERBACK EDITIONS
+        <!-- 2. SMART-DEVICE HERO ENTRANCE (Dynamic Device Adaptation) -->
+        <section class="hero-app-card" id="hero-app-card">
+            <div class="app-hero-identity">
+                <img src="app_logo_transparent.png" alt="Vishnu1000 App Icon" class="app-hero-icon">
+                <div class="app-hero-title">Vishnu 1000</div>
             </div>
-            <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-                <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" style="flex-shrink: 0; display: block;">
-                    <img src="book_cover_bilingual.jpg" alt="Vishnu 1000 Paperback Cover" style="width: 85px; height: 128px; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); border: 1px solid rgba(212,175,55,0.4);">
+            <p class="app-hero-tagline" id="app-tagline">
+                Pure female voice chanting • 1,000 Divine Names • Full 108 Stotram verses
+            </p>
+
+            <div class="app-smart-actions">
+                <!-- Dominant Device CTA -->
+                <a href="https://play.google.com/store/apps/details?id=com.promankur.vishnu1000" target="_blank" rel="noopener noreferrer" class="btn-dominant-cta" id="btn-dominant">
+                    <span id="dominant-icon">▶</span> <span id="dominant-text">Download for Android</span>
                 </a>
-                <div style="flex: 1; min-width: 240px;">
-                    <div style="font-size: 17px; font-weight: 700; color: #FFFFFF; line-height: 1.25; margin-bottom: 4px;">
-                        Vishnu 1000: Sahasra-Nāmāñjali & Stotram
-                    </div>
-                    <div style="font-size: 13px; font-weight: 600; color: var(--brand-gold); margin-bottom: 6px;">
-                        Bilingual / द्विभाषीय Edition • By Ankur Gupta
-                    </div>
-                    <div style="font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
-                        सम्पूर्ण 1,000 नाम, पदच्छेद, प्रामाणिक अर्थ, आदि शंकराचार्य भाष्य सार, न्यास एवं फलश्रुति सहित मुद्रित पेपरबैक संस्करण। (Also available in separate Only Hindi & Only English editions).
-                    </div>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" style="background: var(--brand-saffron); color: #FFFFFF; font-size: 12px; font-weight: 600; text-decoration: none; border-radius: 20px; padding: 7px 14px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(224,109,40,0.4);">
-                            🇮🇳 Buy on Amazon.in (India)
-                        </a>
-                        <a href="https://www.amazon.com/dp/8188782386" target="_blank" rel="noopener noreferrer" style="background: rgba(255,255,255,0.08); color: var(--text-light); font-size: 12px; font-weight: 600; text-decoration: none; border-radius: 20px; padding: 6px 14px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,0.25);">
-                            🌍 Buy on Amazon.com (USA / Global)
-                        </a>
-                    </div>
-                </div>
+
+                <!-- Secondary fallback -->
+                <a href="index.html" class="btn-secondary-link" id="btn-secondary">
+                    🌐 Web App — Open Instantly in Browser →
+                </a>
             </div>
+
+            <div class="app-hero-pill">
+                ✨ 100% Free • Offline • Zero Ads
+            </div>
+        </section>
+
+        <!-- 3. THE PUBLISHED LIBRARY (Master + Curated Bookshelf) -->
+        <div class="section-header">
+            <h2 class="section-title"><span>📖</span> Published library</h2>
+            <span class="section-subtag">Available worldwide</span>
         </div>
 
-        <!-- SECTION 1 -->
-        <div class="section-group">
-            <div class="section-meta">PDF • A4 Printable • 51 Pages each (20 names/page)</div>
-            <div class="download-list">
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_Namavali_Hindi.pdf" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">हिन्दी विष्णु सहस्रनाम नामावली</span>
-                    </a>
+        <div class="bookshelf-container">
+            <!-- MASTER EDITION (Prominent) -->
+            <div class="book-card-master">
+                <div class="book-3d-wrap">
+                    <img src="covers/cover_bilingual.jpg" alt="Vishnu 1000 Master Bilingual Edition" class="book-3d-master">
                 </div>
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_Namavali_English.pdf" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">English Viṣṇu Sahasranama Namavali</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 2 -->
-        <div class="section-group">
-            <div class="section-meta">PDF • A5 Printable • 201 Pages</div>
-            <div class="download-list">
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_SelfStudy_Hindi.pdf" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">हिन्दी स्वाध्याय एवं दार्शनिक चिंतन</span>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_SelfStudy_English.pdf" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">English Self-Study & Contemplation</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 3 -->
-        <div class="section-group">
-            <div class="section-meta">PDF • A5 Printable</div>
-            <div class="download-list">
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_Stotram_Hindi.pdf" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">हिन्दी स्तोत्र पाठ पुस्तिका <span class="page-suffix">• 16 Pages</span></span>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_Stotram_English.pdf" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">English Stotram Recital Edition <span class="page-suffix">• 27 Pages</span></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 4 -->
-        <div class="section-group">
-            <div class="section-meta">ePub for Amazon Kindle • Apple Books • Kobo • e-Readers</div>
-            <div class="download-list">
-                <div class="download-item">
-                    <a href="library/Vishnu_1000_SelfStudy_Kindle.epub" download class="download-row">
-                        <span class="icon-box">⬇</span>
-                        <span class="download-title">Shri Vishnu Sahasranama Self-Study Kindle eBook</span>
-                    </a>
-                    <p class="ebook-desc">
-                        Complete 1,000 Divine Names with English meanings, Adi Shankara Bhashya commentary, and Sadhana Insights with 20 interactive navigation chapters, Devanagari, Transliteration.
+                <div class="master-details">
+                    <span class="badge-master">Master Edition · Bilingual</span>
+                    <div class="master-title">Vishnu 1000: Sahasra-Nāmāñjali & Stotram</div>
+                    <p class="master-desc">
+                        The definitive reference with all 1,000 Divine Names, IAST transliteration, verse breaks, Hindi & English meanings, and classical Shankara Bhashya. (ISBN: 978-81-88782-38-3).
                     </p>
+                    <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" class="btn-master-amazon btn-geo-amazon">
+                        <span>📖</span> View on Amazon
+                    </a>
+                </div>
+            </div>
+
+            <!-- TRIO BOOKSHELF: 3 Covers Sitting Together -->
+            <div class="trio-shelf">
+                <!-- Colorsoft -->
+                <div class="shelf-book-item">
+                    <div class="book-3d-wrap">
+                        <img src="covers/cover_colorsoft.jpg" alt="Vishnu 1000 Kindle Colorsoft Cover" class="shelf-3d-cover">
+                    </div>
+                    <span class="shelf-badge badge-colorsoft">Colorsoft replica</span>
+                    <div class="shelf-book-title">Print Replica in Color</div>
+                    <div class="shelf-book-sub">Full-color fixed layout for Kindle Colorsoft & tablets.</div>
+                    <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" class="btn-shelf-action btn-geo-amazon">
+                        Kindle Store
+                    </a>
+                </div>
+
+                <!-- English -->
+                <div class="shelf-book-item">
+                    <div class="book-3d-wrap">
+                        <img src="covers/cover_english.jpg" alt="Vishnu 1000 English Edition Cover" class="shelf-3d-cover">
+                    </div>
+                    <span class="shelf-badge badge-english">English edition</span>
+                    <div class="shelf-book-title">Viṣṇu 1000</div>
+                    <div class="shelf-book-sub">Complete 1,000 Names with Roman IAST & commentary.</div>
+                    <a href="https://www.amazon.com/dp/8188782386" target="_blank" rel="noopener noreferrer" class="btn-shelf-action">
+                        View on Amazon
+                    </a>
+                </div>
+
+                <!-- Hindi -->
+                <div class="shelf-book-item">
+                    <div class="book-3d-wrap">
+                        <img src="covers/cover_hindi.jpg" alt="Vishnu 1000 Hindi Edition Cover" class="shelf-3d-cover">
+                    </div>
+                    <span class="shelf-badge badge-hindi">हिन्दी संस्करण</span>
+                    <div class="shelf-book-title">विष्णु 1000</div>
+                    <div class="shelf-book-sub">शुद्ध देवनागरी में 1000 नाम, पदच्छेद एवं भाष्य सार।</div>
+                    <a href="https://www.amazon.in/dp/8188782386" target="_blank" rel="noopener noreferrer" class="btn-shelf-action btn-geo-amazon">
+                        Kindle Store
+                    </a>
                 </div>
             </div>
         </div>
+
+        <!-- 4. FREE DEVOTIONAL LIBRARY (Typographic Catalogue Index) -->
+        <div class="section-header">
+            <h2 class="section-title"><span>⬇️</span> Free devotional library</h2>
+            <span class="section-subtag">All PDFs are free • A4 format</span>
+        </div>
+
+        <div class="catalogue-panel">
+            <!-- CHANT -->
+            <div class="catalogue-cat-block">
+                <div class="catalogue-cat-label"><span>📿</span> Chant · दैनिक जप</div>
+                <a href="library/Vishnu_1000_Namavali_Hindi.pdf" download class="catalogue-row">
+                    <span class="catalogue-title">Hindi Namavali</span>
+                    <span class="catalogue-meta">51 pages →</span>
+                </a>
+                <a href="library/Vishnu_1000_Namavali_English.pdf" download class="catalogue-row">
+                    <span class="catalogue-title">English Namavali</span>
+                    <span class="catalogue-meta">51 pages →</span>
+                </a>
+            </div>
+
+            <!-- STUDY -->
+            <div class="catalogue-cat-block">
+                <div class="catalogue-cat-label"><span>📖</span> Study · गहन स्वाध्याय</div>
+                <a href="library/Vishnu_1000_SelfStudy_Hindi.pdf" download class="catalogue-row">
+                    <span class="catalogue-title">Hindi Self-Study with Commentary</span>
+                    <span class="catalogue-meta">201 pages →</span>
+                </a>
+                <a href="library/Vishnu_1000_SelfStudy_English.pdf" download class="catalogue-row">
+                    <span class="catalogue-title">English Self-Study & Contemplation Guide</span>
+                    <span class="catalogue-meta">201 pages →</span>
+                </a>
+            </div>
+
+            <!-- RECITE -->
+            <div class="catalogue-cat-block">
+                <div class="catalogue-cat-label"><span>📜</span> Recite · सम्पूर्ण स्तोत्र पाठ</div>
+                <a href="library/Vishnu_1000_Stotram_Hindi.pdf" download class="catalogue-row">
+                    <span class="catalogue-title">Hindi Stotram</span>
+                    <span class="catalogue-meta">17 pages →</span>
+                </a>
+                <a href="library/Vishnu_1000_Stotram_English.pdf" download class="catalogue-row">
+                    <span class="catalogue-title">English Stotram</span>
+                    <span class="catalogue-meta">28 pages →</span>
+                </a>
+            </div>
+
+            <div class="catalogue-divider"></div>
+
+            <!-- DIGITAL EDITION -->
+            <a href="library/Vishnu_1000_SelfStudy_Kindle.epub" download class="catalogue-epub-row">
+                <div class="epub-left-meta">
+                    <span style="font-size: 16px;">📱</span>
+                    <div>
+                        <div class="epub-title">Universal ePub Edition</div>
+                        <div class="epub-sub">Kindle • Apple Books • Kobo • Full 20 Chapters</div>
+                    </div>
+                </div>
+                <span class="btn-epub-pill">Download ↓</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Antara • Promankur · Author & Publisher: Ankur Gupta</p>
+        </footer>
 
     </div>
 
+    <!-- Smart Device & Geo-Targeting Engine -->
+    <script>
+        (function() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isAndroid = /android/i.test(ua);
+            const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            const dominantBtn = document.getElementById('btn-dominant');
+            const dominantIcon = document.getElementById('dominant-icon');
+            const dominantText = document.getElementById('dominant-text');
+            const secondaryLink = document.getElementById('btn-secondary');
+
+            if (isAndroid) {
+                dominantBtn.href = "https://play.google.com/store/apps/details?id=com.promankur.vishnu1000";
+                dominantIcon.innerText = "▶";
+                dominantText.innerText = "Download for Android";
+                secondaryLink.innerText = "🌐 Web App — Open Instantly in Browser →";
+            } else if (isIOS) {
+                dominantBtn.href = "https://apps.apple.com/app/vishnu1000/id681157118";
+                dominantIcon.innerText = "🍏";
+                dominantText.innerText = "Download on the App Store";
+                secondaryLink.innerText = "🌐 Web App — Open Instantly in Browser →";
+            } else {
+                // Desktop / Laptop
+                dominantBtn.href = "index.html";
+                dominantIcon.innerText = "🌐";
+                dominantText.innerText = "Open Chanting Web App";
+                secondaryLink.style.display = "none";
+            }
+
+            // Geo-targeting for Amazon (India vs Global)
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+            const isIndia = tz.includes("Kolkata") || tz.includes("Calcutta");
+            if (!isIndia) {
+                document.querySelectorAll('.btn-geo-amazon').forEach(btn => {
+                    btn.href = "https://www.amazon.com/dp/8188782386";
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
