@@ -83,6 +83,49 @@
             color: var(--antara-gold);
         }
 
+        /* Stotram Verse Card Styling with High-Contrast Typography */
+        .stotram-verse-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .stotram-verse-sanskrit {
+            font-size: 19px;
+            font-family: 'Mukta', sans-serif;
+            font-weight: 700;
+            color: var(--antara-dark);
+            line-height: 1.55;
+            white-space: pre-line;
+            margin-bottom: 8px;
+        }
+        .stotram-verse-roman {
+            font-size: 13.5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: #5A4E42;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        /* Dark Theme High Contrast for Stotram Verses (Resolving _0058) */
+        body.dark-theme .stotram-verse-card {
+            background: rgba(48, 14, 8, 0.9) !important;
+            border-color: rgba(218, 170, 85, 0.35) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+        }
+        body.dark-theme .stotram-verse-sanskrit {
+            color: #FFFDF9 !important; /* Radiant Warm Ivory - 14:1 contrast ratio */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+        body.dark-theme .stotram-verse-roman {
+            color: #F0D080 !important; /* Luminous Warm Gold - 9:1 contrast ratio */
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -979,8 +1022,8 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Mobile Responsive Viewport Overrides */
-        @media (max-width: 480px) {
+        /* Mobile and Tablet Responsive Viewport Overrides */
+        @media (max-width: 1100px) {
             body {
                 padding: 0;
                 align-items: stretch;
@@ -988,7 +1031,9 @@
             }
             .device-container {
                 width: 100%;
+                max-width: 760px;
                 height: 100dvh;
+                margin: 0 auto;
                 border-radius: 0;
                 padding: 0;
                 box-shadow: none;
@@ -1009,6 +1054,39 @@
             .modal-sheet-backdrop {
                 border-radius: 0;
             }
+        }
+
+        /* Tablet-Specific Typography and Spacing Expansion */
+        @media (min-width: 601px) and (max-width: 1100px) {
+            .stotram-verse-card {
+                padding: 22px 24px;
+                margin-bottom: 18px;
+            }
+            .stotram-verse-sanskrit {
+                font-size: 24px !important;
+                line-height: 1.6 !important;
+            }
+            .stotram-verse-roman {
+                font-size: 16px !important;
+                line-height: 1.55 !important;
+            }
+            .nama-card {
+                padding: 16px 20px !important;
+                margin-bottom: 10px !important;
+            }
+            .nama-card-sanskrit {
+                font-size: 22px !important;
+            }
+            .nama-card-meaning, .nama-card-hi-meaning {
+                font-size: 15px !important;
+                line-height: 1.45 !important;
+            }
+            .modal-sheet {
+                max-width: 640px !important;
+                margin: 0 auto !important;
+                border-radius: 24px 24px 0 0 !important;
+            }
+        }
             .focus-container {
                 padding-top: 10px !important;
             }
@@ -1599,10 +1677,10 @@
 
                 <!-- Support & Library links right-aligned below settings/theme -->
                 <div style="display: flex; justify-content: flex-end; gap: 8px; width: 100%; margin-bottom: 8px;">
-                    <a href="library" style="text-decoration: none; color: var(--antara-saffron); font-family: 'Inter', 'Mukta', sans-serif; font-size: 10.5px; font-weight: 600; border: 1px solid var(--antara-line); border-radius: 12px; padding: 2px 10px; display: inline-flex; align-items: center; transition: all 0.2s; background: transparent;" onmouseover="this.style.borderColor='var(--antara-gold)';" onmouseout="this.style.borderColor='var(--antara-line)';" title="Devotional Publications Library">
+                    <a href="https://vishnu.promankur.com/library" target="_blank" rel="noopener" style="text-decoration: none; color: var(--antara-saffron); font-family: 'Inter', 'Mukta', sans-serif; font-size: 11px; font-weight: 600; border: 1px solid var(--antara-line); border-radius: 12px; padding: 4px 12px; display: inline-flex; align-items: center; transition: all 0.2s; background: transparent;" onmouseover="this.style.borderColor='var(--antara-gold)';" onmouseout="this.style.borderColor='var(--antara-line)';" title="Devotional Publications Library">
                         📚 पुस्तकालय | Library
                     </a>
-                    <a href="support" style="text-decoration: none; color: var(--antara-saffron); font-family: 'Inter', 'Mukta', sans-serif; font-size: 10.5px; font-weight: 600; border: 1px solid var(--antara-line); border-radius: 12px; padding: 2px 10px; display: inline-flex; align-items: center; transition: all 0.2s; background: transparent;" onmouseover="this.style.borderColor='var(--antara-gold)';" onmouseout="this.style.borderColor='var(--antara-line)';" title="Support our Seva">
+                    <a href="https://vishnu.promankur.com/support.html" target="_blank" rel="noopener" style="text-decoration: none; color: var(--antara-saffron); font-family: 'Inter', 'Mukta', sans-serif; font-size: 11px; font-weight: 600; border: 1px solid var(--antara-line); border-radius: 12px; padding: 4px 12px; display: inline-flex; align-items: center; transition: all 0.2s; background: transparent;" onmouseover="this.style.borderColor='var(--antara-gold)';" onmouseout="this.style.borderColor='var(--antara-line)';" title="Support our Seva">
                         🙏 सहयोग | Support
                     </a>
                 </div>
@@ -3819,9 +3897,9 @@
                     }).join('\n');
 
                     return `
-                        <div class="stotram-verse-card" style="background: rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.4); text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-                            <div style="font-size: 17px; font-family: 'Mukta', sans-serif; font-weight: 600; color: var(--antara-dark); line-height: 1.5; white-space: pre-line; margin-bottom: 8px;">${v.sanskrit}</div>
-                            <div style="font-size: 10px; font-family: 'Inter', sans-serif; color: var(--antara-muted); line-height: 1.35; white-space: pre-line;">${cleanRoman}</div>
+                        <div class="stotram-verse-card">
+                            <div class="stotram-verse-sanskrit">${v.sanskrit}</div>
+                            <div class="stotram-verse-roman">${cleanRoman}</div>
                         </div>
                     `;
                 }).join("");
