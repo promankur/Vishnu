@@ -1,7 +1,8 @@
-const CACHE_NAME = 'antara-sahasranama-v4';
+const CACHE_NAME = 'antara-sahasranama-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './RobotoCondensedIAST-LightItalic.ttf',
   './manifest.json',
   './Antara_Logo2.png',
   './Vishnu AG.png',
