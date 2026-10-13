@@ -1774,13 +1774,37 @@
             color: #F0D080 !important; /* Luminous Warm Gold */
         }
 
+        .modal-heading-hi {
+            font-family: Mukta, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--antara-saffron);
+            margin-bottom: 3px;
+        }
+        body.dark-theme .modal-heading-hi {
+            color: var(--antara-saffron) !important;
+        }
+
+        .modal-heading-en {
+            font-family: Inter, sans-serif;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--antara-saffron);
+            margin-bottom: 3px;
+            text-transform: none !important;
+            letter-spacing: 0.2px;
+        }
+        body.dark-theme .modal-heading-en {
+            color: var(--antara-saffron) !important;
+        }
+
         .modal-commentary-en {
             font-family: Inter, sans-serif;
-            font-size: 13.8px;
+            font-size: 11.5px;
             font-weight: 400;
-            line-height: 1.62;
+            line-height: 1.4;
             color: #2E2219;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
         body.dark-theme .modal-commentary-en {
             color: #F0E6D8 !important; /* Radiant Warm Ivory - 13:1 contrast ratio */
@@ -1788,11 +1812,11 @@
 
         .modal-commentary-hi {
             font-family: Mukta, sans-serif;
-            font-size: 15.5px;
-            font-weight: 500;
-            line-height: 1.65;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.42;
             color: var(--antara-dark);
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
         body.dark-theme .modal-commentary-hi {
             color: #FFFDF9 !important; /* Radiant Warm White */
@@ -3606,8 +3630,8 @@
                     </div>
                     
                     ${(lang === 'hi' || lang === 'both') && v.commentary_hi ? `
-                        <div style="margin-bottom: 14px;">
-                            ${lang === 'both' ? '<div style="font-size: 11px; font-weight: 700; color: var(--antara-saffron); margin-bottom: 4px; font-family: Mukta, sans-serif;">हिन्दी व्याख्या :</div>' : ''}
+                        <div style="margin-bottom: 10px;">
+                            ${lang === 'both' ? '<div class="modal-heading-hi">हिन्दी व्याख्या :</div>' : ''}
                             <div class="modal-commentary-hi">
                                 ${v.commentary_hi}
                             </div>
@@ -3615,8 +3639,8 @@
                     ` : ''}
 
                     ${(lang === 'en' || lang === 'both') && v.commentary_en ? `
-                        <div>
-                            ${lang === 'both' ? '<div style="font-size: 11px; font-weight: 700; color: var(--antara-saffron); margin-bottom: 4px; font-family: Inter, sans-serif;">ENGLISH CONTEMPLATION :</div>' : ''}
+                        <div style="margin-bottom: 10px;">
+                            ${lang === 'both' ? '<div class="modal-heading-en">English Contemplation :</div>' : ''}
                             <div class="modal-commentary-en">
                                 ${v.commentary_en}
                             </div>
